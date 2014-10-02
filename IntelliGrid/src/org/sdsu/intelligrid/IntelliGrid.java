@@ -8,6 +8,6 @@ public class IntelliGrid extends Application {
 	public void onCreate() {
 		super.onCreate();
 
-		// State code here
+		// State code goes here
 	}
 }
