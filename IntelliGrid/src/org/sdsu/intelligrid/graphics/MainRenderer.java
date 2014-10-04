@@ -54,7 +54,8 @@ public class MainRenderer implements GLSurfaceView.Renderer {
 	private void draw(float amount) {
 		// Test
 		// Should flash blue and then white for slower frames
-		GLES20.glClearColor(Math.min(amount, 1f), Math.min(amount * 2f, 1f), Math.min(amount * 3f, 1f), 1.0f);
+		GLES20.glClearColor(Math.min(amount, 1f), Math.min(amount * 2f, 1f),
+				Math.min(amount * 3f, 1f), 1.0f);
 		GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
 	}
 }

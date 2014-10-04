@@ -29,7 +29,7 @@ public class MainSurfaceView extends GLSurfaceView {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * Example of an event function
 	 **/

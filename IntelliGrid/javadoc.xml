@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="javadoc">
+    <target name="javadoc">
+        <javadoc access="private" author="true" classpath="libs/android-support-v4.jar" destdir="doc" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" packagenames="org.sdsu.intelligrid.simulation,org.sdsu.intelligrid.network,org.sdsu.intelligrid.graphics" source="1.7" sourcefiles="src/org/sdsu/intelligrid/IntelliGrid.java,src/org/sdsu/intelligrid/Global.java,src/org/sdsu/intelligrid/MainActivity.java" sourcepath="src;gen" splitindex="true" use="true" version="true"/>
+    </target>
+</project>

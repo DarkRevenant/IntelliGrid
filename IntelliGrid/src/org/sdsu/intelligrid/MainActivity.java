@@ -1,6 +1,7 @@
 package org.sdsu.intelligrid;
 
 import org.sdsu.intelligrid.graphics.MainSurfaceView;
+import org.sdsu.intelligrid.network.MainNetworkInterface;
 import org.sdsu.intelligrid.simulation.Simulation;
 
 import android.app.Activity;
@@ -26,9 +27,12 @@ public class MainActivity extends Activity {
 
 		GLView = new MainSurfaceView(this);
 		setContentView(GLView);
-		
+
 		Simulation simulation = new Simulation();
 		Global.simulation = simulation;
+
+		MainNetworkInterface networkInterface = new MainNetworkInterface();
+		Global.networkInterface = networkInterface;
 	}
 
 	@Override
