@@ -18,7 +18,9 @@ public class MainRenderer implements GLSurfaceView.Renderer {
 
 	private long lastms;
 
-	private static final int FRAME_RATE = 63; // maximum frames per second, set slightly higher than 60 because we're rebels
+	private static final int FRAME_RATE = 63; // maximum frames per second, set
+												// slightly higher than 60
+												// because we're rebels
 
 	public void onDrawFrame(GL10 unused) {
 		long beginms, endms, leftms;
