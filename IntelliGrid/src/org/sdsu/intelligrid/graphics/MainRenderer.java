@@ -22,6 +22,7 @@ public class MainRenderer implements GLSurfaceView.Renderer {
 												// slightly higher than 60
 												// because we're rebels
 
+	@Override
 	public void onDrawFrame(GL10 unused) {
 		long beginms, endms, leftms;
 
@@ -49,6 +50,7 @@ public class MainRenderer implements GLSurfaceView.Renderer {
 		}
 	}
 
+	@Override
 	public void onSurfaceChanged(GL10 unused, int width, int height) {
 		GLES20.glViewport(0, 0, width, height);
 	}
