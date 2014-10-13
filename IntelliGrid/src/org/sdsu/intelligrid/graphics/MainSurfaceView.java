@@ -8,10 +8,10 @@ public class MainSurfaceView extends GLSurfaceView {
 
 	private MainRenderer mainRenderer;
 
-	public MainSurfaceView(Context context) {
+	public MainSurfaceView(Context context, MainRenderer renderer) {
 		super(context);
 
-		mainRenderer = new MainRenderer();
+		mainRenderer = renderer;
 
 		setEGLContextClientVersion(2);
 		setRenderer(mainRenderer);

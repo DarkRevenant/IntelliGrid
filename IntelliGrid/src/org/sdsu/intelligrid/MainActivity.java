@@ -1,5 +1,6 @@
 package org.sdsu.intelligrid;
 
+import org.sdsu.intelligrid.graphics.MainRenderer;
 import org.sdsu.intelligrid.graphics.MainSurfaceView;
 import org.sdsu.intelligrid.network.MainNetworkInterface;
 import org.sdsu.intelligrid.simulation.Simulation;
@@ -25,7 +26,9 @@ public class MainActivity extends Activity {
 
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-		GLView = new MainSurfaceView(this);
+		MainRenderer renderer = new MainRenderer();
+		Global.renderer = renderer;
+		GLView = new MainSurfaceView(this, renderer);
 		setContentView(GLView);
 
 		Simulation simulation = new Simulation();
