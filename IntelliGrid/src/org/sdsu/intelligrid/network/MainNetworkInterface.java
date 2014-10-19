@@ -43,7 +43,7 @@ public class MainNetworkInterface {
 		if (inputBuffer.size() <= 0) {
 			return null;
 		} else {
-			IntelliGridPacket packet = inputBuffer.remove();
+			final IntelliGridPacket packet = inputBuffer.remove();
 			return packet.message;
 		}
 	}

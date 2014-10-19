@@ -8,8 +8,10 @@ import org.sdsu.intelligrid.util.Vector2f;
 public interface Drawable {
 
 	/**
-	 * Gets the drawable object's scene location (0,0 is the top left while
-	 * 2560x1600 is the bottom right).
+	 * Gets the drawable object's scene location. <tt>[0,0]</tt> is the center;
+	 * on our device, in landscape mode, <tt>[-1.6,-1.0]</tt> is the bottom left
+	 * corner and <tt>[1.6,1.0]</tt> is the top right corner. These values can
+	 * change on other aspect ratios, but that shouldn't be an issue right now.
 	 * 
 	 * @return the drawable object's current location
 	 */

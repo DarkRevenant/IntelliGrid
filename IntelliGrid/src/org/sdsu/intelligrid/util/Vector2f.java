@@ -82,9 +82,9 @@ public class Vector2f {
 	 * @return the local vector
 	 */
 	public Vector2f rotate(float angle) {
-		double cs = Math.cos(angle);
-		double sn = Math.sin(angle);
-		double px = this.x * cs - this.y * sn;
+		final double cs = Math.cos(angle);
+		final double sn = Math.sin(angle);
+		final double px = this.x * cs - this.y * sn;
 		this.y = (float) (this.x * sn + this.y * cs);
 		this.x = (float) px;
 		return this;
@@ -112,7 +112,7 @@ public class Vector2f {
 	 * @return the result of normalization
 	 */
 	public Vector2f normalise(Vector2f dst) {
-		float r = (float) (1.0 / Math.sqrt(this.x * this.x + this.y * this.y));
+		final float r = (float) (1.0 / Math.sqrt(this.x * this.x + this.y * this.y));
 		if (dst == null) {
 			return new Vector2f(this.x * r, this.y * r);
 		} else {

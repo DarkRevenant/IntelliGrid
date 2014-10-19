@@ -4,6 +4,8 @@ import org.sdsu.intelligrid.graphics.MainRenderer;
 import org.sdsu.intelligrid.network.MainNetworkInterface;
 import org.sdsu.intelligrid.simulation.Simulation;
 
+import android.content.res.Resources;
+
 public class Global {
 
 	protected static MainActivity mainActivity;
@@ -18,6 +20,16 @@ public class Global {
 	 */
 	public static MainActivity getMainActivity() {
 		return mainActivity;
+	}
+
+	/**
+	 * Returns the application's resources structure. Use this any time you need
+	 * to access internal files, such as textures.
+	 * 
+	 * @return this application's Resources.
+	 */
+	public static Resources getResources() {
+		return mainActivity.getResources();
 	}
 
 	/**
@@ -49,7 +61,8 @@ public class Global {
 	 * @return this application's primary renderer object, as defined by
 	 *         MainRenderer.java.
 	 */
-	/*
-	 * public static MainRenderer getRenderer() { return renderer; }
-	 */
+	public static MainRenderer getRenderer() {
+		return renderer;
+	}
+
 }

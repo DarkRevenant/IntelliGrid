@@ -1,5 +1,6 @@
 package org.sdsu.intelligrid.graphics;
 
+import org.sdsu.intelligrid.Global;
 import org.sdsu.intelligrid.util.Vector2f;
 
 /**
@@ -9,12 +10,12 @@ public class Sprite implements Drawable {
 
 	private final Vector2f loc = new Vector2f();
 	private int texture;
-	private String textureID;
+	private int resource;
 
-	public Sprite(Vector2f loc, String textureID) {
+	public Sprite(Vector2f loc, int resource) {
 		this.loc.set(loc);
-		this.textureID = textureID;
-		texture = MainRenderer.getTexture(textureID);
+		this.resource = resource;
+		texture = Global.getRenderer().getTexture(resource);
 	}
 
 	@Override
@@ -26,13 +27,13 @@ public class Sprite implements Drawable {
 		this.loc.set(loc);
 	}
 
-	public void setTexture(String textureID) {
-		this.textureID = textureID;
-		texture = MainRenderer.getTexture(textureID);
+	public void setResource(int resource) {
+		this.resource = resource;
+		texture = Global.getRenderer().getTexture(resource);
 	}
 
-	public String getTexture() {
-		return textureID;
+	public int getResource() {
+		return resource;
 	}
 
 	@Override

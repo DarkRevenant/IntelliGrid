@@ -1,5 +1,8 @@
 package org.sdsu.intelligrid;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.sdsu.intelligrid.graphics.MainRenderer;
 import org.sdsu.intelligrid.graphics.MainSurfaceView;
 import org.sdsu.intelligrid.network.MainNetworkInterface;
@@ -26,16 +29,21 @@ public class MainActivity extends Activity {
 
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-		MainRenderer renderer = new MainRenderer();
+		final MainRenderer renderer = new MainRenderer();
 		Global.renderer = renderer;
 		GLView = new MainSurfaceView(this, renderer);
 		setContentView(GLView);
 
-		Simulation simulation = new Simulation();
+		final Simulation simulation = new Simulation();
 		Global.simulation = simulation;
 
-		MainNetworkInterface networkInterface = new MainNetworkInterface();
+		final MainNetworkInterface networkInterface = new MainNetworkInterface();
 		Global.networkInterface = networkInterface;
+
+		// Test
+		final List<Integer> resources = new ArrayList<>();
+		resources.add(org.sdsu.intelligrid.R.drawable.dominator);
+		Global.getRenderer().loadTextures(resources);
 	}
 
 	@Override
