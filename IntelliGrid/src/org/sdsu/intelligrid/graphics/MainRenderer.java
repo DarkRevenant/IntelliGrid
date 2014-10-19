@@ -1,3 +1,5 @@
+// Copyright 2014 Harrison Snodgrass, all rights reserved
+
 package org.sdsu.intelligrid.graphics;
 
 import java.nio.ByteBuffer;

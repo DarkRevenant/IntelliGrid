@@ -1,3 +1,5 @@
+// Copyright 2014 Harrison Snodgrass, all rights reserved
+
 package org.sdsu.intelligrid;
 
 import org.sdsu.intelligrid.graphics.MainRenderer;

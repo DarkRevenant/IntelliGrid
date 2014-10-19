@@ -1,3 +1,5 @@
+// Copyright 2014 Harrison Snodgrass, all rights reserved
+
 package org.sdsu.intelligrid.graphics;
 
 import org.sdsu.intelligrid.util.Vector2f;
