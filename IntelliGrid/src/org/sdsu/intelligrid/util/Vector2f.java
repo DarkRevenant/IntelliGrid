@@ -16,9 +16,14 @@ public class Vector2f {
 		this.y = 0f;
 	}
 
-	public Vector2f(float x, float y) {
+	public Vector2f(final float x, final float y) {
 		this.x = x;
 		this.y = y;
+	}
+
+	public Vector2f(final Vector2f src) {
+		this.x = src.x;
+		this.y = src.y;
 	}
 
 	/**
@@ -28,7 +33,7 @@ public class Vector2f {
 	 *            the vector to copy
 	 * @return the local vector
 	 */
-	public Vector2f set(Vector2f src) {
+	public Vector2f set(final Vector2f src) {
 		this.x = src.x;
 		this.y = src.y;
 		return this;
@@ -45,7 +50,8 @@ public class Vector2f {
 	 *            the destination vector; may be null
 	 * @return the result of <tt>left + right</tt>
 	 */
-	public static Vector2f add(Vector2f left, Vector2f right, Vector2f dst) {
+	public static Vector2f add(final Vector2f left, final Vector2f right,
+			final Vector2f dst) {
 		if (dst == null) {
 			return new Vector2f(left.x + right.x, left.y + right.y);
 		} else {
@@ -66,7 +72,8 @@ public class Vector2f {
 	 *            the destination vector; may be null
 	 * @return the result of <tt>left - right</tt>
 	 */
-	public static Vector2f sub(Vector2f left, Vector2f right, Vector2f dst) {
+	public static Vector2f sub(final Vector2f left, final Vector2f right,
+			final Vector2f dst) {
 		if (dst == null) {
 			return new Vector2f(left.x - right.x, left.y - right.y);
 		} else {
@@ -83,7 +90,7 @@ public class Vector2f {
 	 *            the angle to rotate the vector by, in radians.
 	 * @return the local vector
 	 */
-	public Vector2f rotate(float angle) {
+	public Vector2f rotate(final float angle) {
 		final double cs = Math.cos(angle);
 		final double sn = Math.sin(angle);
 		final double px = this.x * cs - this.y * sn;
@@ -99,9 +106,20 @@ public class Vector2f {
 	 *            the factor by which to multiply the vector
 	 * @return the local vector
 	 */
-	public Vector2f scale(float factor) {
+	public Vector2f scale(final float factor) {
 		this.x *= factor;
 		this.y *= factor;
+		return this;
+	}
+
+	/**
+	 * Translates the vector by the given amount.
+	 * 
+	 * @return the local vector
+	 */
+	public Vector2f translate(final float x, final float y) {
+		this.x += x;
+		this.y += y;
 		return this;
 	}
 
@@ -113,8 +131,9 @@ public class Vector2f {
 	 *            the destination vector; may be null
 	 * @return the result of normalization
 	 */
-	public Vector2f normalise(Vector2f dst) {
-		final float r = (float) (1.0 / Math.sqrt(this.x * this.x + this.y * this.y));
+	public Vector2f normalise(final Vector2f dst) {
+		final float r = (float) (1.0 / Math.sqrt(this.x * this.x + this.y
+				* this.y));
 		if (dst == null) {
 			return new Vector2f(this.x * r, this.y * r);
 		} else {
@@ -161,7 +180,7 @@ public class Vector2f {
 	 *            the destination vector; may be null
 	 * @return the negation of the vector
 	 */
-	public Vector2f negate(Vector2f dst) {
+	public Vector2f negate(final Vector2f dst) {
 		if (dst == null) {
 			return new Vector2f(-this.x, -this.y);
 		} else {
@@ -176,7 +195,7 @@ public class Vector2f {
 	 * 
 	 * @return the angle of <tt>b</tt> relative to <tt>a</tt>, in radians.
 	 */
-	public static float angle(Vector2f a, Vector2f b) {
+	public static float angle(final Vector2f a, final Vector2f b) {
 		double angle = Math.atan2(b.y, b.x) - Math.atan2(a.y, a.x);
 		if (angle > Math.PI) {
 			angle -= PI2;
@@ -195,7 +214,7 @@ public class Vector2f {
 	 *            the right-hand side of the equation
 	 * @return the dot product: <tt>left.x * right.x + left.y * right.y</tt>
 	 */
-	public static float dot(Vector2f left, Vector2f right) {
+	public static float dot(final Vector2f left, final Vector2f right) {
 		return left.x * right.x + left.y * right.y;
 	}
 }

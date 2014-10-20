@@ -15,6 +15,9 @@ import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.view.Window;
 
+/**
+ * The Activity for the application.
+ */
 public class MainActivity extends Activity {
 
 	private GLSurfaceView GLView;

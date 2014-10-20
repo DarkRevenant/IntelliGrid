@@ -9,6 +9,9 @@ import java.io.InputStreamReader;
 
 import android.content.res.Resources;
 
+/**
+ * Utilities for Strings.
+ */
 public class StringUtils {
 
 	/**
@@ -21,7 +24,7 @@ public class StringUtils {
 	 * @return a {@link String} containing the read data, or <tt>null</tt> if an
 	 *         error was encountered
 	 */
-	public static String rawResourceToString(Resources resources, int resourceId) {
+	public static String rawResourceToString(final Resources resources, final int resourceId) {
 		final InputStream inputStream = resources.openRawResource(resourceId);
 		final InputStreamReader inputStreamReader = new InputStreamReader(
 				inputStream);

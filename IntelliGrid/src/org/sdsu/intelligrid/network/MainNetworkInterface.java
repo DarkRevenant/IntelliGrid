@@ -5,6 +5,9 @@ package org.sdsu.intelligrid.network;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
 
+/**
+ * Network API for the application.
+ */
 public class MainNetworkInterface {
 
 	private static final int BUFFER_CAPACITY = 100;
@@ -28,7 +31,7 @@ public class MainNetworkInterface {
 	 * @throws IllegalStateException
 	 *             if the buffer is full
 	 */
-	public void sendMessage(String message) {
+	public void sendMessage(final String message) {
 		outputBuffer.add(new IntelliGridPacket(message));
 	}
 

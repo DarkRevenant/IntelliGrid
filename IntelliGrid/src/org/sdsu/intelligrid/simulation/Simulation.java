@@ -2,6 +2,9 @@
 
 package org.sdsu.intelligrid.simulation;
 
+/**
+ * Container for electrical simulation.
+ */
 public class Simulation {
 
 	public Simulation() {
@@ -14,9 +17,9 @@ public class Simulation {
 	 * 
 	 * @param amount
 	 *            the amount of time that has passed since the previous frame,
-	 *            in seconds.
+	 *            in seconds
 	 */
-	public void advance(float amount) {
+	public void advance(final float amount) {
 
 	}
 }

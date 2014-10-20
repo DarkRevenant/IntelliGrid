@@ -8,12 +8,15 @@ import org.sdsu.intelligrid.simulation.Simulation;
 
 import android.content.res.Resources;
 
+/**
+ * Container of global variables.
+ */
 public class Global {
 
-	protected static MainActivity mainActivity;
-	protected static Simulation simulation;
-	protected static MainNetworkInterface networkInterface;
-	protected static MainRenderer renderer;
+	static MainActivity mainActivity;
+	static Simulation simulation;
+	static MainNetworkInterface networkInterface;
+	static MainRenderer renderer;
 
 	/**
 	 * Returns the primary instance of MainActivity for this application.
