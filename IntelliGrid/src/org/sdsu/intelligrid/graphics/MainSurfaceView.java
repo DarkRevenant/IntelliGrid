@@ -21,6 +21,7 @@ public class MainSurfaceView extends GLSurfaceView {
 		mainRenderer = renderer;
 
 		setEGLContextClientVersion(2);
+		super.setEGLConfigChooser(8, 8, 8, 8, 16, 0);
 		setRenderer(mainRenderer);
 	}
 
