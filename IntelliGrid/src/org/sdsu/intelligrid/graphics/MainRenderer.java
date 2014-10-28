@@ -18,6 +18,7 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 import org.sdsu.intelligrid.Global;
+import org.sdsu.intelligrid.graphics.ui.ClickableSprite;
 import org.sdsu.intelligrid.util.Color;
 import org.sdsu.intelligrid.util.Vector2f;
 
@@ -243,6 +244,9 @@ public class MainRenderer implements GLSurfaceView.Renderer {
 		// Increment the simulation
 		Global.getGlobalSimulation().advance(amount);
 
+		// Increment the user interface
+		Global.getMainUI().advance(amount);
+
 		// Call each Drawable's advance function
 		for (Drawable drawable : drawableSet) {
 			drawable.advance(amount);
@@ -250,13 +254,7 @@ public class MainRenderer implements GLSurfaceView.Renderer {
 	}
 
 	private boolean first = true; // Test
-	private Sprite sprite; // Test
-	private float scale = 1f; // Test
-	private boolean scaleUp = true; // Test
-
-	public void setSpriteLocation(Vector2f location) {
-		sprite.setLocation(location);
-	}
+	public ClickableSprite sprite; // Test
 
 	/**
 	 * Primary rendering hook
@@ -279,25 +277,20 @@ public class MainRenderer implements GLSurfaceView.Renderer {
 		// Test
 		if (first) {
 			first = false;
-			sprite = new Sprite(new Vector2f(-0.5f, -0.5f), 0f, new Vector2f(
-					1.0f, 1.0f), new Color(255, 255, 255, 150),
-					org.sdsu.intelligrid.R.drawable.dominator);
+			sprite = new ClickableSprite(new Vector2f(-0.5f, -0.5f), 0f,
+					new Vector2f(1.0f, 1.0f), new Color(255, 255, 255, 150),
+					org.sdsu.intelligrid.R.drawable.dominator, new Vector2f(
+							0.0f, 0.0f), new Vector2f(0.0f, 0.0f), "test", 0);
+			sprite.setBoundLL(new Vector2f(-0.5f * (float) sprite.getWidth()
+					/ (float) screenHeight, -0.5f * (float) sprite.getHeight()
+					/ (float) screenHeight));
+			sprite.setBoundUR(new Vector2f(0.5f * (float) sprite.getWidth()
+					/ (float) screenHeight, 0.5f * (float) sprite.getHeight()
+					/ (float) screenHeight));
 			addDrawable(sprite);
+			Global.getMainUI().addClickable(sprite);
 		} else {
-			if (scaleUp) {
-				scale *= (1f + amount / 10f);
-				if (scale >= 2f) {
-					scaleUp = false;
-				}
-			} else {
-				scale /= (1f + amount / 10f);
-				if (scale <= 0.5f) {
-					scaleUp = true;
-				}
-			}
-			sprite.setRotation(sprite.getRotation() + (float) Math.PI * amount
-					/ 2f);
-			sprite.setScale(new Vector2f(scale, scale));
+			sprite.setRotation(sprite.getRotation() + (float) Math.PI * amount);
 			final float[] color = sprite.getColor().getArray();
 			color[0] *= (1f + ((float) Math.random() - 0.5f) * 2.0f * amount
 					/ 5f);

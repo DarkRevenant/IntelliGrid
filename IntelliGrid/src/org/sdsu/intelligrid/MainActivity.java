@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.sdsu.intelligrid.graphics.MainRenderer;
 import org.sdsu.intelligrid.graphics.MainSurfaceView;
+import org.sdsu.intelligrid.graphics.ui.MainUI;
 import org.sdsu.intelligrid.network.MainNetworkInterface;
 import org.sdsu.intelligrid.simulation.Simulation;
 
@@ -44,6 +45,9 @@ public class MainActivity extends Activity {
 
 		final MainNetworkInterface networkInterface = new MainNetworkInterface();
 		Global.networkInterface = networkInterface;
+
+		final MainUI mainUI = new MainUI();
+		Global.mainUI = mainUI;
 
 		// Test
 		final List<Integer> resources = new ArrayList<>();

@@ -240,6 +240,24 @@ public class Sprite implements Drawable {
 	}
 
 	/**
+	 * Gets the sprite image's actual width, in texels.
+	 * 
+	 * @return the actual width, in texels, of the sprite image
+	 */
+	public int getWidth() {
+		return width;
+	}
+
+	/**
+	 * Gets the sprite image's actual height, in texels.
+	 * 
+	 * @return the actual height, in texels, of the sprite image
+	 */
+	public int getHeight() {
+		return height;
+	}
+
+	/**
 	 * Sets the sprite's resource ID. Make sure it has been already loaded with
 	 * {@link MainRenderer#loadTextures(resources)}.
 	 * 
@@ -258,8 +276,8 @@ public class Sprite implements Drawable {
 	/**
 	 * Sets the scaling mode to <tt>absolute</tt>. This means that the sprite's
 	 * size will remain consistent, in pixels, regardless of the screen size.
-	 * For example, a 1280x800 sprite will appear to fill a quarter of the
-	 * screen on a 2560x1600 display, at <tt>[1.0,1.0]</tt> scaling.
+	 * For example, a 1280x800 image will appear to fill a quarter of the screen
+	 * on a 2560x1600 display, at <tt>[1.0,1.0]</tt> scaling.
 	 * <p>
 	 * This is the default scaling mode for sprites.
 	 */
@@ -269,8 +287,8 @@ public class Sprite implements Drawable {
 
 	/**
 	 * Sets the scaling mode to <tt>relative</tt>. This means that the sprite's
-	 * size will scale to the screen. For example, a 1280x800 sprite will
-	 * stretch to fill the whole screen on a 2560x1600 display, at
+	 * size will scale to the screen. For example, a 512x512 image will stretch
+	 * to fill the whole vertical area of the screen on a 2560x1600 display, at
 	 * <tt>[1.0,1.0]</tt> scaling.
 	 */
 	public void setRelativeScale() {

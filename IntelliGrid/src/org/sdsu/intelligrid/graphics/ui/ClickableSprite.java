@@ -2,23 +2,24 @@
 
 package org.sdsu.intelligrid.graphics.ui;
 
-import org.sdsu.intelligrid.graphics.Clickable;
 import org.sdsu.intelligrid.graphics.MainRenderer;
 import org.sdsu.intelligrid.graphics.Sprite;
 import org.sdsu.intelligrid.util.Color;
 import org.sdsu.intelligrid.util.Vector2f;
 
 /**
- * A Class that extends Sprite with Clickable capabilities.
+ * A class that extends Sprite with Clickable capabilities.
  */
 public class ClickableSprite extends Sprite implements Clickable {
 
 	private final Vector2f boundLL;
 	private final Vector2f boundUR;
+	private String id;
+	private int depth;
 
 	/**
 	 * A Class that extends Sprite with Clickable capabilities.
-	 * 
+	 * <p>
 	 * The dimensions are in openGL coordinates, so bounds of
 	 * <tt>[-0.1,-0.1]</tt> to <tt>[0.1,0.1]</tt> defines a clickable 160-pixel
 	 * square (on our device) centered on the object.
@@ -44,52 +45,105 @@ public class ClickableSprite extends Sprite implements Clickable {
 	 * @param boundUR
 	 *            the upper right bounds of the clickable object, where
 	 *            <tt>[0,0]</tt> is the center of the object
+	 * @param id
+	 *            the identifier for the clickable object
+	 * @param depth
+	 *            the interface depth for the clickable object
 	 */
 	public ClickableSprite(final Vector2f location, final float rotation,
 			final Vector2f scale, final Color color, final int resource,
-			final Vector2f boundLL, final Vector2f boundUR) {
+			final Vector2f boundLL, final Vector2f boundUR, final String id,
+			final int depth) {
 		super(location, rotation, scale, color, resource);
 		this.boundLL = new Vector2f(boundLL);
 		this.boundUR = new Vector2f(boundUR);
+		this.id = id;
+		this.depth = depth;
 	}
 
 	/**
 	 * Gets the clickable object's lower left corner of its clickable bounds.
+	 * <p>
+	 * Clickable bounds do not respect sprite rotation or scale. If you rotate
+	 * or scale the sprite, the bounds will NOT change.
 	 * 
 	 * @return the clickable object's lower left bounds
 	 */
 	@Override
-	public Vector2f getLLBound() {
+	public Vector2f getBoundLL() {
 		return boundLL;
 	}
 
 	/**
 	 * Gets the clickable object's upper right corner of its clickable bounds.
+	 * <p>
+	 * Clickable bounds do not respect sprite rotation or scale. If you rotate
+	 * or scale the sprite, the bounds will NOT change.
 	 * 
 	 * @return the clickable object's upper right bounds
 	 */
 	@Override
-	public Vector2f getURBound() {
+	public Vector2f getBoundUR() {
 		return boundUR;
 	}
 
 	/**
 	 * Sets the clickable object's lower left corner of its clickable bounds.
+	 * <p>
+	 * Clickable bounds do not respect sprite rotation or scale. If you rotate
+	 * or scale the sprite, the bounds will NOT change.
 	 * 
 	 * @param boundLL
 	 *            the lower left bounds to set for the clickable object
 	 */
-	public void setLLBound(final Vector2f boundLL) {
+	public void setBoundLL(final Vector2f boundLL) {
 		this.boundLL.set(boundLL);
 	}
 
 	/**
 	 * Sets the clickable object's upper right corner of its clickable bounds.
+	 * <p>
+	 * Clickable bounds do not respect sprite rotation or scale. If you rotate
+	 * or scale the sprite, the bounds will NOT change.
 	 * 
 	 * @param boundUR
 	 *            the upper right bounds to set for the clickable object
 	 */
-	public void setURBound(final Vector2f boundUR) {
+	public void setBoundUR(final Vector2f boundUR) {
 		this.boundUR.set(boundUR);
+	}
+
+	@Override
+	public String getId() {
+		return id;
+	}
+
+	/**
+	 * Sets the clickable object's identifier. This is designed for internal use
+	 * in InputHook, so you don't have to extend different classes for every
+	 * single button.
+	 * 
+	 * @param id
+	 *            the desired identifier for the clickable object
+	 */
+	public void setId(final String id) {
+		this.id = id;
+	}
+
+	@Override
+	public int getDepth() {
+		return depth;
+	}
+
+	/**
+	 * Sets the clickable object's interface depth. A lower depth means the
+	 * object's click priority is higher (reflecting a more frontward location
+	 * on the screen).
+	 * 
+	 * @param depth
+	 *            the desired interface depth for clickable object
+	 */
+	public void setDepth(final int depth) {
+		this.depth = depth;
 	}
 }

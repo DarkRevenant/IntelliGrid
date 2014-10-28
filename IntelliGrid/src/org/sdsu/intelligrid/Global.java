@@ -3,6 +3,7 @@
 package org.sdsu.intelligrid;
 
 import org.sdsu.intelligrid.graphics.MainRenderer;
+import org.sdsu.intelligrid.graphics.ui.MainUI;
 import org.sdsu.intelligrid.network.MainNetworkInterface;
 import org.sdsu.intelligrid.simulation.Simulation;
 
@@ -17,6 +18,7 @@ public class Global {
 	static Simulation simulation;
 	static MainNetworkInterface networkInterface;
 	static MainRenderer renderer;
+	static MainUI mainUI;
 
 	/**
 	 * Returns the primary instance of MainActivity for this application.
@@ -61,8 +63,6 @@ public class Global {
 	/**
 	 * Returns the primary instance of MainRenderer for this application.
 	 * 
-	 * Commented out because it's currently not needed.
-	 * 
 	 * @return this application's primary renderer object, as defined by
 	 *         MainRenderer.java.
 	 */
@@ -70,4 +70,13 @@ public class Global {
 		return renderer;
 	}
 
+	/**
+	 * Returns the primary instance of MainUI for this application.
+	 * 
+	 * @return this application's primary user interface object, as defined by
+	 *         MainUI.java.
+	 */
+	public static MainUI getMainUI() {
+		return mainUI;
+	}
 }
