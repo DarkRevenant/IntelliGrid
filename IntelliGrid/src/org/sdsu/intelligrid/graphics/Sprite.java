@@ -160,7 +160,7 @@ public class Sprite implements Drawable {
 	 * {@link MainRenderer#getLeftEdge()} and the other similar functions to get
 	 * the screen dimensions.
 	 * 
-	 * @param loc
+	 * @param location
 	 *            the desired location for the drawable object
 	 */
 	public void setLocation(final Vector2f location) {
@@ -180,7 +180,7 @@ public class Sprite implements Drawable {
 	/**
 	 * Sets the sprite's rotation, in radians.
 	 * 
-	 * @param scale
+	 * @param rotation
 	 *            the desired rotation for the sprite, in radians
 	 */
 	public void setRotation(final float rotation) {
@@ -259,7 +259,7 @@ public class Sprite implements Drawable {
 
 	/**
 	 * Sets the sprite's resource ID. Make sure it has been already loaded with
-	 * {@link MainRenderer#loadTextures(resources)}.
+	 * {@link MainRenderer#loadTextures(java.util.List<Integer>)}.
 	 * 
 	 * @param resource
 	 *            the resource ID that the sprite should display

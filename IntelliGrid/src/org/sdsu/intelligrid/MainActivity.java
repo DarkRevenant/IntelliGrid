@@ -49,6 +49,8 @@ public class MainActivity extends Activity {
 		final MainUI mainUI = new MainUI();
 		Global.mainUI = mainUI;
 
+        mainUI.init();
+
 		// Test
 		final List<Integer> resources = new ArrayList<>();
 		resources.add(org.sdsu.intelligrid.R.drawable.dominator);

@@ -63,6 +63,13 @@ public class MainUI {
 		return clickableList;
 	}
 
+    /**
+     * This is the initialization function for the interface. Load textures here.
+     */
+    public void init() {
+
+    }
+
 	/**
 	 * This is the primary step driver for the interface. Call all time-based
 	 * functions from here.

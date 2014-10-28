@@ -241,11 +241,13 @@ public class MainRenderer implements GLSurfaceView.Renderer {
 		// Add any unadded drawables
 		addDrawables();
 
-		// Increment the simulation
-		Global.getGlobalSimulation().advance(amount);
+        if(!first) {
+            // Increment the simulation
+            Global.getGlobalSimulation().advance(amount);
 
-		// Increment the user interface
-		Global.getMainUI().advance(amount);
+            // Increment the user interface
+            Global.getMainUI().advance(amount);
+        }
 
 		// Call each Drawable's advance function
 		for (Drawable drawable : drawableSet) {
