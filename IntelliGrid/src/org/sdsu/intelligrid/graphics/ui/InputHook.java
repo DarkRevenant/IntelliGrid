@@ -1,7 +1,5 @@
 package org.sdsu.intelligrid.graphics.ui;
 
-import org.sdsu.intelligrid.Global;
-import org.sdsu.intelligrid.util.Color;
 import org.sdsu.intelligrid.util.Vector2f;
 
 import android.view.MotionEvent;
@@ -30,17 +28,6 @@ public class InputHook {
 	 */
 	public static synchronized void reportDownOnObject(final Clickable object,
 			final Vector2f coords, final MotionEvent e, final int id) {
-		// test
-		if (object.getId().equals("test")) {
-			ClickableSprite sprite = (ClickableSprite) object;
-			sprite.setColor(new Color((int) ((float) Math.random() * 255f),
-					(int) ((float) Math.random() * 255f), (int) ((float) Math
-							.random() * 255f),
-					(int) ((float) Math.random() * 200f + 55f)));
-			sprite.setRotation(0f);
-			sprite.setScale(new Vector2f((float) Math.random() * 0.5f + 0.75f,
-					(float) Math.random() * 0.5f + 0.75f));
-		}
 	}
 
 	/**
@@ -123,8 +110,6 @@ public class InputHook {
 	 */
 	public static synchronized void reportDown(final Vector2f coords,
 			final MotionEvent e, final int id) {
-		// test
-		Global.getRenderer().sprite.setLocation(coords);
 	}
 
 	/**
@@ -140,8 +125,6 @@ public class InputHook {
 	 */
 	public static synchronized void reportMove(final Vector2f coords,
 			final MotionEvent e, final int id) {
-		// test
-		Global.getRenderer().sprite.setLocation(coords);
 	}
 
 	/**

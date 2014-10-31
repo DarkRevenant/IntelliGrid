@@ -18,9 +18,6 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 import org.sdsu.intelligrid.Global;
-import org.sdsu.intelligrid.graphics.ui.ClickableSprite;
-import org.sdsu.intelligrid.util.Color;
-import org.sdsu.intelligrid.util.Vector2f;
 
 import static android.opengl.GLES20.*;
 import android.graphics.Bitmap;
@@ -234,6 +231,8 @@ public class MainRenderer implements GLSurfaceView.Renderer {
 		Matrix.orthoM(projectionMatrix, 0, left, right, bottom, top, near, far);
 	}
 
+	private boolean first = true;
+
 	/**
 	 * Primary simulation hook
 	 */
@@ -241,22 +240,21 @@ public class MainRenderer implements GLSurfaceView.Renderer {
 		// Add any unadded drawables
 		addDrawables();
 
-        if(!first) {
-            // Increment the simulation
-            Global.getGlobalSimulation().advance(amount);
+		if (!first) {
+			// Increment the simulation
+			Global.getGlobalSimulation().advance(amount);
 
-            // Increment the user interface
-            Global.getMainUI().advance(amount);
-        }
+			// Increment the user interface
+			Global.getMainUI().advance(amount);
+		} else {
+			first = false;
+		}
 
 		// Call each Drawable's advance function
 		for (Drawable drawable : drawableSet) {
 			drawable.advance(amount);
 		}
 	}
-
-	private boolean first = true; // Test
-	public ClickableSprite sprite; // Test
 
 	/**
 	 * Primary rendering hook
@@ -274,35 +272,6 @@ public class MainRenderer implements GLSurfaceView.Renderer {
 		// Call each Drawable's draw function
 		for (Drawable drawable : drawableSet) {
 			drawable.draw(amount, viewMatrix, projectionMatrix);
-		}
-
-		// Test
-		if (first) {
-			first = false;
-			sprite = new ClickableSprite(new Vector2f(-0.5f, -0.5f), 0f,
-					new Vector2f(1.0f, 1.0f), new Color(255, 255, 255, 150),
-					org.sdsu.intelligrid.R.drawable.dominator, new Vector2f(
-							0.0f, 0.0f), new Vector2f(0.0f, 0.0f), "test", 0);
-			sprite.setBoundLL(new Vector2f(-0.5f * (float) sprite.getWidth()
-					/ (float) screenHeight, -0.5f * (float) sprite.getHeight()
-					/ (float) screenHeight));
-			sprite.setBoundUR(new Vector2f(0.5f * (float) sprite.getWidth()
-					/ (float) screenHeight, 0.5f * (float) sprite.getHeight()
-					/ (float) screenHeight));
-			addDrawable(sprite);
-			Global.getMainUI().addClickable(sprite);
-		} else {
-			sprite.setRotation(sprite.getRotation() + (float) Math.PI * amount);
-			final float[] color = sprite.getColor().getArray();
-			color[0] *= (1f + ((float) Math.random() - 0.5f) * 2.0f * amount
-					/ 5f);
-			color[1] *= (1f + ((float) Math.random() - 0.5f) * 2.0f * amount
-					/ 5f);
-			color[2] *= (1f + ((float) Math.random() - 0.5f) * 2.0f * amount
-					/ 5f);
-			color[3] *= (1f + ((float) Math.random() - 0.5f) * 2.0f * amount
-					/ 5f);
-			sprite.setColor(new Color(color));
 		}
 	}
 
