@@ -38,7 +38,7 @@ public class MainActivity extends Activity {
 		final MainRenderer renderer = new MainRenderer();
 		Global.renderer = renderer;
 		GLView = new MainSurfaceView(this, renderer);
-		setContentView(GLView);
+		getWindow().setContentView(GLView);
 
 		final Simulation simulation = new Simulation();
 		Global.simulation = simulation;
@@ -49,7 +49,7 @@ public class MainActivity extends Activity {
 		final MainUI mainUI = new MainUI();
 		Global.mainUI = mainUI;
 
-        mainUI.init();
+		mainUI.init();
 
 		// Test
 		final List<Integer> resources = new ArrayList<>();

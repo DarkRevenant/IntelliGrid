@@ -22,6 +22,14 @@ public interface Drawable {
 	public Vector2f getLocation();
 
 	/**
+	 * Gets the drawable object's scene depth. A lower depth means the object is
+	 * drawn on top of higher-depth objects.
+	 * 
+	 * @return the drawable object's scene depth
+	 */
+	public int getDepth();
+
+	/**
 	 * This is the primary step driver for the object. Call all time-based
 	 * functions from here.
 	 * 

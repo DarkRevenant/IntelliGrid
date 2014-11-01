@@ -15,7 +15,6 @@ public class ClickableSprite extends Sprite implements Clickable {
 	private final Vector2f boundLL;
 	private final Vector2f boundUR;
 	private String id;
-	private int depth;
 
 	/**
 	 * A Class that extends Sprite with Clickable capabilities.
@@ -27,6 +26,8 @@ public class ClickableSprite extends Sprite implements Clickable {
 	 * @param location
 	 *            the location of the sprite, in OpenGL coordinates (
 	 *            <tt>[0.0,0.0]</tt> is the default position)
+	 * @param depth
+	 *            the scene and interface depth of the sprite
 	 * @param rotation
 	 *            the rotation of the sprite, in radians (<tt>0.0</tt> means it
 	 *            is facing in the default direction)
@@ -47,14 +48,12 @@ public class ClickableSprite extends Sprite implements Clickable {
 	 *            <tt>[0,0]</tt> is the center of the object
 	 * @param id
 	 *            the identifier for the clickable object
-	 * @param depth
-	 *            the interface depth for the clickable object
 	 */
-	public ClickableSprite(final Vector2f location, final float rotation,
-			final Vector2f scale, final Color color, final int resource,
-			final Vector2f boundLL, final Vector2f boundUR, final String id,
-			final int depth) {
-		super(location, rotation, scale, color, resource);
+	public ClickableSprite(final Vector2f location, final int depth,
+			final float rotation, final Vector2f scale, final Color color,
+			final int resource, final Vector2f boundLL, final Vector2f boundUR,
+			final String id) {
+		super(location, depth, rotation, scale, color, resource);
 		this.boundLL = new Vector2f(boundLL);
 		this.boundUR = new Vector2f(boundUR);
 		this.id = id;

@@ -69,6 +69,8 @@ public class Sprite implements Drawable {
 	private int width;
 	private int height;
 
+	protected int depth;
+
 	private static final int BYTES_PER_FLOAT = 4;
 
 	static {
@@ -115,6 +117,8 @@ public class Sprite implements Drawable {
 	 * @param location
 	 *            the location of the sprite, in OpenGL coordinates (
 	 *            <tt>[0.0,0.0]</tt> is the default position)
+	 * @param depth
+	 *            the scene depth of the sprite
 	 * @param rotation
 	 *            the rotation of the sprite, in radians (<tt>0.0</tt> means it
 	 *            is facing in the default direction)
@@ -128,8 +132,9 @@ public class Sprite implements Drawable {
 	 *            has been already loaded with
 	 *            {@link MainRenderer#loadTextures(resources)})
 	 */
-	public Sprite(final Vector2f location, final float rotation,
-			final Vector2f scale, final Color color, final int resource) {
+	public Sprite(final Vector2f location, final int depth,
+			final float rotation, final Vector2f scale, final Color color,
+			final int resource) {
 		if (location != null) {
 			this.location.set(location);
 		}
@@ -143,6 +148,8 @@ public class Sprite implements Drawable {
 		texture = tex.getTexture();
 		width = tex.getWidth();
 		height = tex.getHeight();
+		
+		this.depth = depth;
 
 		this.color = color.getArray();
 	}
@@ -165,6 +172,22 @@ public class Sprite implements Drawable {
 	 */
 	public void setLocation(final Vector2f location) {
 		this.location.set(location);
+	}
+
+	@Override
+	public int getDepth() {
+		return depth;
+	}
+
+	/**
+	 * Sets the the drawable object's scene depth. A lower depth means the
+	 * object is drawn on top of higher-depth objects.
+	 * 
+	 * @param location
+	 *            the desired depth for the drawable object
+	 */
+	public void setDepth(final int depth) {
+		this.depth = depth;
 	}
 
 	/**

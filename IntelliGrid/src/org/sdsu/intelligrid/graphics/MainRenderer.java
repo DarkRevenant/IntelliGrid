@@ -5,11 +5,12 @@ package org.sdsu.intelligrid.graphics;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,7 +33,7 @@ import android.opengl.Matrix;
 public class MainRenderer implements GLSurfaceView.Renderer {
 
 	private final Map<Integer, Texture> textureTable = new HashMap<>();
-	private final Set<Drawable> drawableSet = new LinkedHashSet<>();
+	private final Set<Drawable> drawableSet = new TreeSet<>(DEPTH_DESCENDING);
 	private final List<Integer> toLoad = Collections
 			.synchronizedList(new ArrayList<Integer>());
 	private final List<Drawable> toDraw = Collections
@@ -399,4 +400,11 @@ public class MainRenderer implements GLSurfaceView.Renderer {
 
 		toLoad.clear();
 	}
+
+	private final static Comparator<Drawable> DEPTH_DESCENDING = new Comparator<Drawable>() {
+		@Override
+		public int compare(Drawable c1, Drawable c2) {
+			return c1.getDepth() - c2.getDepth();
+		}
+	};
 }
