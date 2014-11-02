@@ -1,7 +1,11 @@
 package org.sdsu.intelligrid.graphics.ui;
 
+import org.sdsu.intelligrid.Global;
+import org.sdsu.intelligrid.graphics.TextSprite;
+import org.sdsu.intelligrid.util.Color;
 import org.sdsu.intelligrid.util.Vector2f;
 
+import android.graphics.Typeface;
 import android.view.MotionEvent;
 
 /**
@@ -110,6 +114,12 @@ public class InputHook {
 	 */
 	public static synchronized void reportDown(final Vector2f coords,
 			final MotionEvent e, final int id) {
+		// Test
+		final TextSprite text = new TextSprite(
+				"This is a test paragraph designed to demonstrate the multi-line capabilities of the text rendering system. There are no word-processor features for this system; carriage returns do not work and word wrap does not exist. Please note that this system is slow to initialize new strings; do not change them too often. Do not vary font, size, or line width on strings that do change, such as energy readouts.",
+				new Vector2f(0f, 0f), 60, Typeface.DEFAULT, 1000f, 0, 0,
+				new Vector2f(1f, 1f), new Color(255, 255, 255));
+		Global.getRenderer().addDrawable(text);
 	}
 
 	/**

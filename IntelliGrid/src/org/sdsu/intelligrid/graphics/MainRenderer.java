@@ -373,7 +373,7 @@ public class MainRenderer implements GLSurfaceView.Renderer {
 			return;
 		}
 
-		IntBuffer buffer = IntBuffer.allocate(toLoad.size());
+		final IntBuffer buffer = IntBuffer.allocate(toLoad.size());
 		glGenTextures(toLoad.size(), buffer);
 
 		synchronized (toLoad) {

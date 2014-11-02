@@ -3,6 +3,7 @@
 package org.sdsu.intelligrid;
 
 import org.sdsu.intelligrid.graphics.MainRenderer;
+import org.sdsu.intelligrid.graphics.MainSurfaceView;
 import org.sdsu.intelligrid.graphics.ui.MainUI;
 import org.sdsu.intelligrid.network.MainNetworkInterface;
 import org.sdsu.intelligrid.simulation.Simulation;
@@ -17,6 +18,7 @@ public class Global {
 	static MainActivity mainActivity;
 	static Simulation simulation;
 	static MainNetworkInterface networkInterface;
+	static MainSurfaceView surface;
 	static MainRenderer renderer;
 	static MainUI mainUI;
 
@@ -58,6 +60,16 @@ public class Global {
 	 */
 	public static MainNetworkInterface getNetworkInterface() {
 		return networkInterface;
+	}
+
+	/**
+	 * Returns the primary instance of GLSurfaceView for this application.
+	 * 
+	 * @return this application's primary surface object, as defined by
+	 *         MainSurfaceView.java.
+	 */
+	public static MainSurfaceView getSurface() {
+		return surface;
 	}
 
 	/**

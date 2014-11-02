@@ -12,7 +12,6 @@ import org.sdsu.intelligrid.network.MainNetworkInterface;
 import org.sdsu.intelligrid.simulation.Simulation;
 
 import android.app.Activity;
-import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.view.Window;
 
@@ -21,7 +20,7 @@ import android.view.Window;
  */
 public class MainActivity extends Activity {
 
-	private GLSurfaceView GLView;
+	private MainSurfaceView GLView;
 
 	public MainActivity() {
 		super();
@@ -39,6 +38,7 @@ public class MainActivity extends Activity {
 		Global.renderer = renderer;
 		GLView = new MainSurfaceView(this, renderer);
 		getWindow().setContentView(GLView);
+		Global.surface = GLView;
 
 		final Simulation simulation = new Simulation();
 		Global.simulation = simulation;

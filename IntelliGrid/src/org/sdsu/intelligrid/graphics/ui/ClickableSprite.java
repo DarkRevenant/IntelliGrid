@@ -57,7 +57,7 @@ public class ClickableSprite extends Sprite implements Clickable {
 		this.boundLL = new Vector2f(boundLL);
 		this.boundUR = new Vector2f(boundUR);
 		this.id = id;
-		this.depth = depth;
+		super.setDepth(depth);
 	}
 
 	/**
@@ -127,22 +127,5 @@ public class ClickableSprite extends Sprite implements Clickable {
 	 */
 	public void setId(final String id) {
 		this.id = id;
-	}
-
-	@Override
-	public int getDepth() {
-		return depth;
-	}
-
-	/**
-	 * Sets the clickable object's interface depth. A lower depth means the
-	 * object's click priority is higher (reflecting a more frontward location
-	 * on the screen).
-	 * 
-	 * @param depth
-	 *            the desired interface depth for clickable object
-	 */
-	public void setDepth(final int depth) {
-		this.depth = depth;
 	}
 }

@@ -13,12 +13,18 @@ import org.sdsu.intelligrid.util.Color;
 import org.sdsu.intelligrid.util.StringUtils;
 import org.sdsu.intelligrid.util.Vector2f;
 
+import android.graphics.Typeface;
 import android.opengl.Matrix;
 
 /**
- * A simple drawable object designed to render a single static sprite.
+ * A drawable object designed to render text. The text is always
+ * center-justified. Use {@link #getWidth()} and similar methods to help you
+ * manually justify the text, if needed.
+ * <p>
+ * This implementation is rather slow for rapidly-changing text, but is fast for
+ * static paragraphs and such.
  */
-public class Sprite implements Drawable {
+public class TextSprite implements Drawable {
 
 	private static final float[] spritePositionData = {
 			// X, Y, Z
@@ -50,6 +56,8 @@ public class Sprite implements Drawable {
 			0.0f, 1.0f };
 	private static final FloatBuffer spriteTexCoordinateBuffer;
 
+	private static final int BYTES_PER_FLOAT = 4;
+
 	private static final int spriteShader;
 	private static final int[] spriteShaderParams = new int[5];
 
@@ -64,14 +72,15 @@ public class Sprite implements Drawable {
 	private boolean absoluteScale = true;
 
 	private int texture;
-	private int resource;
+	private String text;
+	private int fontSize;
+	private Typeface font;
+	private float maxLineWidth;
 
 	private int width;
 	private int height;
 
-	private int depth;
-
-	private static final int BYTES_PER_FLOAT = 4;
+	protected int depth;
 
 	static {
 		// Load information into buffers
@@ -112,11 +121,24 @@ public class Sprite implements Drawable {
 	}
 
 	/**
-	 * A simple drawable object designed to render a single static sprite.
+	 * A drawable object designed to render text. The text is always
+	 * center-justified. Use {@link #getWidth()} and similar methods to help you
+	 * manually justify the text, if needed.
+	 * <p>
+	 * This implementation is rather slow for rapidly-changing text, but is fast
+	 * for static paragraphs and such.
 	 * 
+	 * @param text
+	 *            the string to draw
 	 * @param location
 	 *            the location of the sprite, in OpenGL coordinates (
 	 *            <tt>[0.0,0.0]</tt> is the default position)
+	 * @param fontSize
+	 *            the size of the font for the text
+	 * @param maxLineWidth
+	 *            the maximum width, in pixels, for lines in a paragraph
+	 * @param font
+	 *            the {@link android.graphics.Typeface Typeface} of the text
 	 * @param depth
 	 *            the scene depth of the sprite
 	 * @param rotation
@@ -126,15 +148,12 @@ public class Sprite implements Drawable {
 	 *            the scale of the sprite (<tt>[1.0,1.0]</tt> is the default
 	 *            scale)
 	 * @param color
-	 *            the color factor of the sprite
-	 * @param resource
-	 *            the resource ID that the sprite should display (make sure it
-	 *            has been already loaded with
-	 *            {@link MainRenderer#loadTextures(resources)})
+	 *            the color of the text
 	 */
-	public Sprite(final Vector2f location, final int depth,
-			final float rotation, final Vector2f scale, final Color color,
-			final int resource) {
+	public TextSprite(final String text, final Vector2f location,
+			final int fontSize, final Typeface font, final float maxLineWidth,
+			final int depth, final float rotation, final Vector2f scale,
+			final Color color) {
 		if (location != null) {
 			this.location.set(location);
 		}
@@ -142,7 +161,8 @@ public class Sprite implements Drawable {
 		if (scale != null) {
 			this.scale.set(scale);
 		}
-		setResource(resource);
+
+		setText(text, fontSize, font, maxLineWidth);
 
 		this.depth = depth;
 
@@ -249,12 +269,12 @@ public class Sprite implements Drawable {
 	}
 
 	/**
-	 * Gets the sprite's current resource ID.
+	 * Gets the text associated with this object.
 	 * 
-	 * @return the resource ID that the sprite is using
+	 * @return the string that this object represents
 	 */
-	public int getResource() {
-		return resource;
+	public String getText() {
+		return text;
 	}
 
 	/**
@@ -276,16 +296,52 @@ public class Sprite implements Drawable {
 	}
 
 	/**
-	 * Sets the sprite's resource ID. Make sure it has been already loaded with
-	 * {@link MainRenderer#loadTextures(java.util.List<Integer>)}.
+	 * Gets the text font size.
 	 * 
-	 * @param resource
-	 *            the resource ID that the sprite should display
+	 * @return the font size of the drawn text
 	 */
-	public void setResource(final int resource) {
-		this.resource = resource;
+	public int getFontSize() {
+		return fontSize;
+	}
 
-		final Texture tex = Global.getRenderer().getTexture(resource);
+	/**
+	 * Gets the font of the text.
+	 * 
+	 * @return the Typeface font of the text
+	 */
+	public Typeface getFont() {
+		return font;
+	}
+
+	/**
+	 * Gets the text font size.
+	 * 
+	 * @return the font size of the drawn text
+	 */
+	public float getMaxLineWidth() {
+		return maxLineWidth;
+	}
+
+	/**
+	 * Sets the text, font size, and font that this object should draw.
+	 * 
+	 * @param text
+	 *            the string to draw
+	 * @param fontSize
+	 *            the size of the font for the text
+	 * @param font
+	 *            the {@link android.graphics.Typeface Typeface} of the text
+	 * @param maxLineWidth
+	 *            the maximum width, in pixels, for lines in a paragraph
+	 */
+	public void setText(final String text, final int fontSize,
+			final Typeface font, final float maxLineWidth) {
+		this.fontSize = fontSize;
+		this.font = font;
+		this.maxLineWidth = maxLineWidth;
+
+		final Texture tex = TextTextureManager.getTexture(text, fontSize, font,
+				maxLineWidth);
 		texture = tex.getTexture();
 		width = tex.getWidth();
 		height = tex.getHeight();
