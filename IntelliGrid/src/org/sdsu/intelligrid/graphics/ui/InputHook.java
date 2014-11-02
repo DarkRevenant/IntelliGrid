@@ -116,7 +116,7 @@ public class InputHook {
 			final MotionEvent e, final int id) {
 		// Test
 		final TextSprite text = new TextSprite(
-				"This is a test paragraph designed to demonstrate the multi-line capabilities of the text rendering system. There are no word-processor features for this system; carriage returns do not work and word wrap does not exist. Please note that this system is slow to initialize new strings; do not change them too often. Do not vary font, size, or line width on strings that do change, such as energy readouts.",
+				"This is a test paragraph designed to demonstrate the multi-line capabilities of the text rendering system.\nThere are few word-processor features for this system; carriage returns and wrap does work, but that's about it. Please note that this system is slow to initialize new strings; do not change them too often. Do not vary font, size, or line width on strings that do change, such as power readouts.",
 				new Vector2f(0f, 0f), 60, Typeface.DEFAULT, 1000f, 0, 0,
 				new Vector2f(1f, 1f), new Color(255, 255, 255));
 		Global.getRenderer().addDrawable(text);

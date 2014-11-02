@@ -36,9 +36,28 @@ class TextTextureManager {
 			if (currentStart != 0) {
 				totalHeight += lineSpacing;
 			}
-			final int limit = textPaint.breakText(text.substring(currentStart),
-					true, maxLineWidth, null);
-			currentStart += limit;
+			int chars = textPaint.breakText(text.substring(currentStart), true,
+					maxLineWidth, null);
+			int skip = 0;
+			for (int i = currentStart; i < currentStart + chars; i++) {
+				if (text.charAt(i) == '\n') {
+					chars = i - currentStart;
+					skip++;
+					break;
+				}
+			}
+			if (skip == 0 && text.length() > currentStart + chars
+					&& text.charAt(currentStart + chars) != '\n'
+					&& text.charAt(currentStart + chars) != ' ') {
+				for (int i = currentStart + chars - 1; i >= currentStart; i--) {
+					if (text.charAt(i) == ' ') {
+						chars = i - currentStart;
+						skip++;
+						break;
+					}
+				}
+			}
+			currentStart += chars + skip;
 		}
 		// Logger.getGlobal().log(Level.SEVERE, "totalheight: " + totalHeight);
 
@@ -71,19 +90,38 @@ class TextTextureManager {
 		Rect fullRect = null;
 		while (currentStart < text.length()) {
 			iterations++;
-			final int limit = textPaint.breakText(text.substring(currentStart),
-					true, maxLineWidth, null);
+			int chars = textPaint.breakText(text.substring(currentStart), true,
+					maxLineWidth, null);
+			int skip = 0;
+			for (int i = currentStart; i < currentStart + chars; i++) {
+				if (text.charAt(i) == '\n') {
+					chars = i - currentStart;
+					skip++;
+					break;
+				}
+			}
+			if (skip == 0 && text.length() > currentStart + chars
+					&& text.charAt(currentStart + chars) != '\n'
+					&& text.charAt(currentStart + chars) != ' ') {
+				for (int i = currentStart + chars - 1; i >= currentStart; i--) {
+					if (text.charAt(i) == ' ') {
+						chars = i - currentStart;
+						skip++;
+						break;
+					}
+				}
+			}
 			Rect rect = new Rect();
 			textPaint.getTextBounds(
-					text.substring(currentStart, currentStart + limit), 0,
-					limit, rect);
+					text.substring(currentStart, currentStart + chars), 0,
+					chars, rect);
 			if (fullRect == null) {
 				fullRect = new Rect(rect);
 			} else {
 				rect.offset(0, (int) (lineSpacing * (float) iterations));
 				fullRect.union(rect);
 			}
-			currentStart += limit;
+			currentStart += chars + skip;
 		}
 
 		final Bitmap bitmap = Bitmap.createBitmap(
@@ -96,11 +134,30 @@ class TextTextureManager {
 		currentStart = 0;
 		while (currentStart < text.length()) {
 			iterations++;
-			final int limit = textPaint.breakText(text.substring(currentStart),
-					true, maxLineWidth, null);
-			canvas.drawText(text.substring(currentStart, currentStart + limit),
+			int chars = textPaint.breakText(text.substring(currentStart), true,
+					maxLineWidth, null);
+			int skip = 0;
+			for (int i = currentStart; i < currentStart + chars; i++) {
+				if (text.charAt(i) == '\n') {
+					chars = i - currentStart;
+					skip++;
+					break;
+				}
+			}
+			if (skip == 0 && text.length() > currentStart + chars
+					&& text.charAt(currentStart + chars) != '\n'
+					&& text.charAt(currentStart + chars) != ' ') {
+				for (int i = currentStart + chars - 1; i >= currentStart; i--) {
+					if (text.charAt(i) == ' ') {
+						chars = i - currentStart;
+						skip++;
+						break;
+					}
+				}
+			}
+			canvas.drawText(text.substring(currentStart, currentStart + chars),
 					0, (int) (lineSpacing * (float) iterations), textPaint);
-			currentStart += limit;
+			currentStart += chars + skip;
 		}
 
 		final IntBuffer buffer = IntBuffer.allocate(1);
