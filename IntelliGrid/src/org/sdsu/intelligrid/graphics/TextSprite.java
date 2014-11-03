@@ -71,7 +71,7 @@ public class TextSprite implements Drawable {
 	private float[] color;
 	private boolean absoluteScale = true;
 
-	private int texture;
+	int texture;
 	private String text;
 	private int fontSize;
 	private Typeface font;

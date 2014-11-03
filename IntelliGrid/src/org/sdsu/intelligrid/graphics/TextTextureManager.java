@@ -3,8 +3,14 @@ package org.sdsu.intelligrid.graphics;
 import static android.opengl.GLES20.*;
 
 import java.nio.IntBuffer;
-import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Set;
+
+import org.sdsu.intelligrid.Global;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -16,7 +22,7 @@ import android.opengl.GLUtils;
 
 class TextTextureManager {
 
-	private static final Map<String, Texture> textureMap = new HashMap<>();
+	private static final Map<String, Texture> textureMap = new LinkedHashMap<>();
 
 	private static int measureHeight(final String text, final int fontSize,
 			final Typeface font, final float maxLineWidth) {
@@ -177,6 +183,8 @@ class TextTextureManager {
 		return new Texture(-1, texture, bitmap.getWidth(), bitmap.getHeight());
 	}
 
+	private static int count = 0;
+
 	static Texture getTexture(final String text, final int fontSize,
 			final Typeface font, final float maxLineWidth) {
 		final float height = measureHeight(text, fontSize, font, maxLineWidth);
@@ -186,10 +194,46 @@ class TextTextureManager {
 		if (!textureMap.containsKey(mapString)) {
 			final Texture texture = buildTexture(text, fontSize, font,
 					maxLineWidth);
+			count++;
+			if (count > 100) {
+				count = 0;
+				flushUnusedTextTextures();
+			}
 			textureMap.put(mapString, texture);
 			return texture;
 		} else {
 			return textureMap.get(mapString);
 		}
+	}
+
+	private static void flushUnusedTextTextures() {
+		Set<Integer> stillUsedTextures = new HashSet<>();
+		for (Drawable drawable : Global.getRenderer().drawableSet) {
+			if (drawable instanceof TextSprite) {
+				TextSprite text = (TextSprite) drawable;
+				stillUsedTextures.add(text.texture);
+			}
+		}
+
+		Set<Integer> unusedTextures = new LinkedHashSet<>();
+		Iterator<Map.Entry<String, Texture>> iter = textureMap.entrySet()
+				.iterator();
+		while (iter.hasNext()) {
+			Map.Entry<String, Texture> entry = iter.next();
+			int texture = entry.getValue().getTexture();
+			if (!stillUsedTextures.contains(texture)) {
+				unusedTextures.add(texture);
+				iter.remove();
+			}
+		}
+
+		int[] toRemove = new int[unusedTextures.size()];
+		int count = 0;
+		for (int i : unusedTextures) {
+			toRemove[count] = i;
+			count++;
+		}
+
+		glDeleteTextures(count, toRemove, 0);
 	}
 }
