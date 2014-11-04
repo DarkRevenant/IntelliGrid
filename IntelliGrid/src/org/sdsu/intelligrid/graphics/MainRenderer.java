@@ -33,7 +33,7 @@ import android.opengl.Matrix;
 public class MainRenderer implements GLSurfaceView.Renderer {
 
 	private final Map<Integer, Texture> textureTable = new HashMap<>();
-	private final Set<Drawable> drawableSet = new TreeSet<>(DEPTH_DESCENDING);
+	final Set<Drawable> drawableSet = new TreeSet<>(DEPTH_DESCENDING);
 	private final List<Integer> toLoad = Collections
 			.synchronizedList(new ArrayList<Integer>());
 	private final List<Drawable> toDraw = Collections
@@ -112,6 +112,17 @@ public class MainRenderer implements GLSurfaceView.Renderer {
 	 */
 	public void addDrawable(final Drawable drawable) {
 		toDraw.add(drawable);
+	}
+
+	/**
+	 * Removes a {@link org.sdsu.intelligrid.graphics.Drawable Drawable} from
+	 * the rendering list.
+	 * 
+	 * @param drawable
+	 *            the drawable object to remove
+	 */
+	public void removeDrawable(final Drawable drawable) {
+		toDraw.remove(drawable);
 	}
 
 	/**
