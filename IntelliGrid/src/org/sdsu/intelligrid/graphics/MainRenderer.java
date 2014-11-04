@@ -415,7 +415,11 @@ public class MainRenderer implements GLSurfaceView.Renderer {
 	private final static Comparator<Drawable> DEPTH_DESCENDING = new Comparator<Drawable>() {
 		@Override
 		public int compare(Drawable c1, Drawable c2) {
-			return c2.getDepth() - c1.getDepth();
+            if (c2.getDepth() == c1.getDepth()) {
+                return c2.hashCode() - c1.hashCode();
+            } else {
+                return c2.getDepth() - c1.getDepth();
+            }
 		}
 	};
 }

@@ -100,10 +100,10 @@ public class Simulation {
     }
 
     public static double linear(final double[] array, double d) {
-        while (d > array.length) {
+        while (d > array.length - 1) {
             d -= array.length;
         }
-        while (d < array.length) {
+        while (d < 0) {
             d += array.length;
         }
         final int ceil = (int) Math.ceil(d);
@@ -136,7 +136,7 @@ public class Simulation {
         final double time = data.time;
 
         double Load1 = linear(data.res1, time) + (data.L1EV * (data.numEV * data.EV)) - (data.L1SL * (linear(data.Solar, time) * linear(data.weather, data.w)));
-        double Load2 = res2[i] + (L2EV * (numEV * EV)) - (L2SL * (Solar[i] * weather[w]));
+        /*double Load2 = res2[i] + (L2EV * (numEV * EV)) - (L2SL * (Solar[i] * weather[w]));
         double Load3 = res3[i] + (L3EV * (numEV * EV)) - (L3SL * (Solar[i] * weather[w]));
         double Load6 = ind1[i];
         double Load4 = comm2[i];
@@ -280,7 +280,7 @@ public class Simulation {
         }
 
         double SolFarm = SolarFarm[i] * weather[w];
-        double SDGE = transTotal - SolFarm - WindFarm[i] + Battery[i];
+        double SDGE = transTotal - SolFarm - WindFarm[i] + Battery[i];*/
 	}
 }
 
