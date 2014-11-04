@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.sdsu.intelligrid.Global;
+import org.sdsu.intelligrid.R;
+import org.sdsu.intelligrid.graphics.Sprite;
+import org.sdsu.intelligrid.util.Color;
 import org.sdsu.intelligrid.util.Vector2f;
 
 /**
@@ -67,8 +70,22 @@ public class MainUI {
      * This is the initialization function for the interface. Load textures here.
      */
     public void init() {
-
+        final List<Integer> resources = new ArrayList<>();
+        resources.add(R.drawable.background);
+        Global.getRenderer().loadTextures(resources);
     }
+
+    /**
+     * This runs on the first frame.
+     */
+    public void postInit() {
+        Sprite background = new Sprite(new Vector2f(), Integer.MAX_VALUE, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.background);
+        background.setRelativeScale();
+        Global.getRenderer().addDrawable(background);
+    }
+
+    private boolean first = true;
 
 	/**
 	 * This is the primary step driver for the interface. Call all time-based
@@ -79,6 +96,10 @@ public class MainUI {
 	 *            in seconds
 	 */
 	public void advance(final float amount) {
-
+        if (first) {
+            first = false;
+            postInit();
+            return;
+        }
 	}
 }

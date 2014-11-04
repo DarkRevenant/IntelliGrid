@@ -11,8 +11,10 @@ import org.sdsu.intelligrid.graphics.ui.MainUI;
 import org.sdsu.intelligrid.network.MainNetworkInterface;
 import org.sdsu.intelligrid.simulation.Simulation;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 
 /**
@@ -40,6 +42,10 @@ public class MainActivity extends Activity {
 		getWindow().setContentView(GLView);
 		Global.surface = GLView;
 
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
+
 		final Simulation simulation = new Simulation();
 		Global.simulation = simulation;
 
@@ -49,12 +55,8 @@ public class MainActivity extends Activity {
 		final MainUI mainUI = new MainUI();
 		Global.mainUI = mainUI;
 
-		mainUI.init();
-
-		// Test
-		final List<Integer> resources = new ArrayList<>();
-		resources.add(org.sdsu.intelligrid.R.drawable.dominator);
-		Global.getRenderer().loadTextures(resources);
+        simulation.init();
+        mainUI.init();
 	}
 
 	@Override

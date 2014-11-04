@@ -243,7 +243,7 @@ public class MainSurfaceView extends GLSurfaceView {
 	private final static Comparator<Clickable> DEPTH_ASCENDING = new Comparator<Clickable>() {
 		@Override
 		public int compare(Clickable c1, Clickable c2) {
-			return c2.getDepth() - c1.getDepth();
+			return c1.getDepth() - c2.getDepth();
 		}
 	};
 }
