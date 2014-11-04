@@ -170,7 +170,7 @@ public class Simulation {
             trK = trI + trJ;
             trM = trK + trL;
         }
-        if (data.fault == "B") {
+        if (data.fault.equals("B")) {
             Load1 = 0;
             //res1r[i] = 0;
             trB = 0;
@@ -180,7 +180,7 @@ public class Simulation {
             trM = trK + trL;
             transTotal = (trA + trM) * data.capacity;
         }
-        if (data.fault == "C") {
+        if (data.fault.equals("C")) {
             trG = trE + trF;
             trC = 0;
             trE = trD;
@@ -189,7 +189,7 @@ public class Simulation {
             trK = trI + trJ;
             trM = trK + trL;
         }
-        if (data.fault == "D") {
+        if (data.fault.equals("D")) {
             Load2 = 0;
            // res2r[i] = 0;
             trD = 0;
@@ -199,7 +199,7 @@ public class Simulation {
             trM = trK + trL;
             transTotal = (trA + trM) * data.capacity;
         }
-        if (data.fault == "E") {
+        if (data.fault.equals("E")) {
             trE = 0;
             trG = trE + trF;
             trC = trD;
@@ -208,7 +208,7 @@ public class Simulation {
             trK = trI + trJ;
             trM = trK + trL;
         }
-        if (data.fault == "F") {
+        if (data.fault.equals("F")) {
             Load3 = 0;
             //res3r[i] = 0;
             trF = 0;
@@ -218,7 +218,7 @@ public class Simulation {
             trM = trK + trL;
             transTotal = (trA + trM) * data.capacity;
         }
-        if (data.fault == "H") {
+        if (data.fault.equals("H")) {
             Load4 = 0;
             //comm2r[i] = 0;
             trH = 0;
@@ -228,7 +228,7 @@ public class Simulation {
             trM = trK + trL;
             transTotal = (trA + trM) * 28;
         }
-        if (data.fault == "I") {
+        if (data.fault.equals("I")) {
             trI = 0;
             trG = trH;
             trE = trF + trG;
@@ -237,7 +237,7 @@ public class Simulation {
             trK = trJ;
             trM = trK + trL;
         }
-        if (data.fault == "J") {
+        if (data.fault.equals("J")) {
             Load5 = 0;
            // comm1r[i] = 0;
             trJ = 0;
@@ -247,7 +247,7 @@ public class Simulation {
             trM = trK + trL;
             transTotal = (trA + trM) * data.capacity;
         }
-        if (data.fault == "K") {
+        if (data.fault.equals("K")) {
 
             trG = trI + trH;
             trE = trF + trG;
@@ -257,7 +257,7 @@ public class Simulation {
             trK = 0;
             trM = trK + trL;
         }
-        if (data.fault == "L") {
+        if (data.fault.equals("L")) {
             Load6 = 0;
            // ind1r[i] = 0;
             trL = 0;
@@ -268,7 +268,7 @@ public class Simulation {
             transTotal = (trA + trM) * data.capacity;
         }
 
-        if (data.fault == "M") {
+        if (data.fault.equals("M")) {
 
             trG = trH + trI;
             trE = trF + trG;
