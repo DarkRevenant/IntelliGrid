@@ -100,10 +100,10 @@ public class Simulation {
     }
 
     public static double linear(final double[] array, double d) {
-        while (d > array.length) {
+        while (d > array.length - 1) {
             d -= array.length;
         }
-        while (d < array.length) {
+        while (d < 0) {
             d += array.length;
         }
         final int ceil = (int) Math.ceil(d);
@@ -136,21 +136,21 @@ public class Simulation {
         final double time = data.time;
 
         double Load1 = linear(data.res1, time) + (data.L1EV * (data.numEV * data.EV)) - (data.L1SL * (linear(data.Solar, time) * linear(data.weather, data.w)));
-        double Load2 = res2[i] + (L2EV * (numEV * EV)) - (L2SL * (Solar[i] * weather[w]));
-        double Load3 = res3[i] + (L3EV * (numEV * EV)) - (L3SL * (Solar[i] * weather[w]));
-        double Load6 = ind1[i];
-        double Load4 = comm2[i];
-        double Load5 = comm1[i];
+        double Load2 = linear(data.res2, time) + (data.L2EV * (data.numEV * data.EV)) - (data.L2SL * (linear(data.Solar, time) * linear(data.weather, data.w)));
+        double Load3 = linear(data.res3, time) + (data.L3EV * (data.numEV * data.EV)) - (data.L3SL * (linear(data.Solar, time) * linear(data.weather, data.w)));
+        double Load6 = linear(data.ind1, time);
+        double Load4 = linear(data.comm2, time);
+        double Load5 = linear(data.comm1, time);
 
 
-        double trB = Math.sqrt((Load1 * Load1) + (res1r[i] * res1r[i])) / capacity;
-        double trD = Math.sqrt((Load2 * Load2) + (res2r[i] * res2r[i])) / capacity;
-        double trE = Math.sqrt((Load3 * Load3) + (res3r[i] * res3r[i])) / capacity;
-        double trF = Math.sqrt((Load3 * Load3) + (res3r[i] * res3r[i])) / capacity;
-        double trH = Math.sqrt((Load4 * Load4) + (comm2r[i] * comm2r[i])) / capacity;
-        double trI = Math.sqrt((Load4 * Load4) + (comm2r[i] * comm2r[i])) / capacity;
-        double trJ = Math.sqrt((Load5 * Load5) + (comm1r[i] * comm1r[i])) / capacity;
-        double trL = Math.sqrt((Load6 * Load6) + (ind1r[i] * ind1r[i])) / capacity;
+        double trB = Math.sqrt((Load1 * Load1) + (linear(data.res1, time) * linear(data.res1, time))) / data.capacity;
+        double trD = Math.sqrt((Load2 * Load2) + (linear(data.res2, time) * linear(data.res2, time))) / data.capacity;
+        double trE = Math.sqrt((Load3 * Load3) + (linear(data.res3, time) * linear(data.res3, time))) / data.capacity;
+        double trF = Math.sqrt((Load3 * Load3) + (linear(data.res3, time) * linear(data.res3, time))) / data.capacity;
+        double trH = Math.sqrt((Load4 * Load4) + (linear(data.comm2, time) * linear(data.comm2, time))) / data.capacity;
+        double trI = Math.sqrt((Load4 * Load4) + (linear(data.comm2, time) * linear(data.comm2, time))) / data.capacity;
+        double trJ = Math.sqrt((Load5 * Load5) + (linear(data.comm1, time) * linear(data.comm1, time))) / data.capacity;
+        double trL = Math.sqrt((Load6 * Load6) + (linear(data.ind1, time) * linear(data.ind1, time))) / data.capacity;
 
         double trG = 0;
 
@@ -158,9 +158,9 @@ public class Simulation {
         double trA = trB + trC;
         double trK = trI + trJ;
         double trM = trK + trL;
-        double transTotal = (trA + trM) * capacity;
+        double transTotal = (trA + trM) * data.capacity;
 
-        if (fault.equals("A")) {
+        if (data.fault.equals("A")) {
 
             trG = trE + trF;
             trC = trB;
@@ -170,7 +170,7 @@ public class Simulation {
             trK = trI + trJ;
             trM = trK + trL;
         }
-        if (fault == "B") {
+        if (data.fault == "B") {
             Load1 = 0;
             res1r[i] = 0;
             trB = 0;
@@ -178,9 +178,9 @@ public class Simulation {
             trA = trB + trC;
             trK = trI + trJ;
             trM = trK + trL;
-            transTotal = (trA + trM) * capacity;
+            transTotal = (trA + trM) * data.capacity;
         }
-        if (fault == "C") {
+        if (data.fault == "C") {
             trG = trE + trF;
             trC = 0;
             trE = trD;
@@ -189,7 +189,7 @@ public class Simulation {
             trK = trI + trJ;
             trM = trK + trL;
         }
-        if (fault == "D") {
+        if (data.fault == "D") {
             Load2 = 0;
             res2r[i] = 0;
             trD = 0;
@@ -197,9 +197,9 @@ public class Simulation {
             trA = trB + trC;
             trK = trI + trJ;
             trM = trK + trL;
-            transTotal = (trA + trM) * capacity;
+            transTotal = (trA + trM) * data.capacity;
         }
-        if (fault == "E") {
+        if (data.fault == "E") {
             trE = 0;
             trG = trE + trF;
             trC = trD;
@@ -208,7 +208,7 @@ public class Simulation {
             trK = trI + trJ;
             trM = trK + trL;
         }
-        if (fault == "F") {
+        if (data.fault == "F") {
             Load3 = 0;
             res3r[i] = 0;
             trF = 0;
@@ -216,9 +216,9 @@ public class Simulation {
             trA = trB + trC;
             trK = trI + trJ;
             trM = trK + trL;
-            transTotal = (trA + trM) * capacity;
+            transTotal = (trA + trM) * data.capacity;
         }
-        if (fault == "H") {
+        if (data.fault == "H") {
             Load4 = 0;
             comm2r[i] = 0;
             trH = 0;
@@ -228,7 +228,7 @@ public class Simulation {
             trM = trK + trL;
             transTotal = (trA + trM) * 28;
         }
-        if (fault == "I") {
+        if (data.fault == "I") {
             trI = 0;
             trG = trH;
             trE = trF + trG;
@@ -237,7 +237,7 @@ public class Simulation {
             trK = trJ;
             trM = trK + trL;
         }
-        if (fault == "J") {
+        if (data.fault == "J") {
             Load5 = 0;
             comm1r[i] = 0;
             trJ = 0;
@@ -245,9 +245,9 @@ public class Simulation {
             trA = trB + trC;
             trK = trI + trJ;
             trM = trK + trL;
-            transTotal = (trA + trM) * capacity;
+            transTotal = (trA + trM) * data.capacity;
         }
-        if (fault == "K") {
+        if (data.fault == "K") {
 
             trG = trI + trH;
             trE = trF + trG;
@@ -257,7 +257,7 @@ public class Simulation {
             trK = 0;
             trM = trK + trL;
         }
-        if (fault == "L") {
+        if (data.fault == "L") {
             Load6 = 0;
             ind1r[i] = 0;
             trL = 0;
@@ -265,10 +265,10 @@ public class Simulation {
             trA = trB + trC;
             trK = trI + trJ;
             trM = trK + trL;
-            transTotal = (trA + trM) * capacity;
+            transTotal = (trA + trM) * data.capacity;
         }
 
-        if (fault == "M") {
+        if (data.fault == "M") {
 
             trG = trH + trI;
             trE = trF + trG;
@@ -279,8 +279,8 @@ public class Simulation {
             trM = 0;
         }
 
-        double SolFarm = SolarFarm[i] * weather[w];
-        double SDGE = transTotal - SolFarm - WindFarm[i] + Battery[i];
+        double SolFarm = linear(data.SolarFarm, time) * linear(data.weather, data.w);
+        double SDGE = transTotal - SolFarm - linear(data.SolarFarm, time) + linear(data.Battery, time);
 	}
 }
 
