@@ -80,6 +80,7 @@ public class MainUI {
     public void init() {
         final List<Integer> resources = new ArrayList<>();
         resources.add(R.drawable.background);
+        resources.add(R.drawable.paths);
         resources.add(R.drawable.intelligrid);
         resources.add(R.drawable.house1);
         resources.add(R.drawable.house1copy);
@@ -91,6 +92,7 @@ public class MainUI {
         resources.add(R.drawable.business1copy);
         resources.add(R.drawable.business2);
         resources.add(R.drawable.business2copy);
+        resources.add(R.drawable.business2copy2);
         resources.add(R.drawable.condo);
         resources.add(R.drawable.condo2);
         resources.add(R.drawable.store);
@@ -107,7 +109,14 @@ public class MainUI {
         resources.add(R.drawable.transformer4);
         resources.add(R.drawable.transformer5);
         resources.add(R.drawable.transformer6);
-        resources.add(R.drawable.recloser);
+        resources.add(R.drawable.switch1);
+        resources.add(R.drawable.switch2);
+        resources.add(R.drawable.switch3);
+        resources.add(R.drawable.switch4);
+        resources.add(R.drawable.switch5);
+        resources.add(R.drawable.switch6);
+        resources.add(R.drawable.tie);
+        resources.add(R.drawable.trackhoe);
         Global.getRenderer().loadTextures(resources);
     }
 
@@ -119,6 +128,11 @@ public class MainUI {
                 new Color(255, 255, 255), R.drawable.background);
         background.setRelativeScale();
         Global.getRenderer().addDrawable(background);
+
+        Sprite paths = new Sprite(new Vector2f(), 2, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.paths);
+        background.setRelativeScale();
+        Global.getRenderer().addDrawable(paths);
 
         Sprite intelligrid = new Sprite(pixelsToCoords(195, 1555), 1, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.intelligrid);
@@ -156,13 +170,17 @@ public class MainUI {
                 new Color(255, 255, 255), R.drawable.business1copy);
         Global.getRenderer().addDrawable(business1copy);
 
-        Sprite business2 = new Sprite(pixelsToCoords(2050, 700), 1, 0f, new Vector2f(1f, 1f),
+        Sprite business2 = new Sprite(pixelsToCoords(1900, 580), 1, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.business2);
         Global.getRenderer().addDrawable(business2);
 
-        Sprite business2copy = new Sprite(pixelsToCoords(2200, 817), 1, 0f, new Vector2f(1f, 1f),
+        Sprite business2copy = new Sprite(pixelsToCoords(2145, 775), 1, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.business2copy);
         Global.getRenderer().addDrawable(business2copy);
+
+        Sprite business2copy2 = new Sprite(pixelsToCoords(2300, 900), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.business2copy2);
+        Global.getRenderer().addDrawable(business2copy2);
 
         Sprite condo = new Sprite(pixelsToCoords(870, 1070), 1, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.condo);
@@ -180,7 +198,7 @@ public class MainUI {
                 new Color(255, 255, 255), R.drawable.museum);
         Global.getRenderer().addDrawable(museum);
 
-        Sprite stadium = new Sprite(pixelsToCoords(2350, 1170), 1, 0f, new Vector2f(1f, 1f),
+        Sprite stadium = new Sprite(pixelsToCoords(2350, 1180), 1, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.stadium);
         Global.getRenderer().addDrawable(stadium);
 
@@ -204,33 +222,61 @@ public class MainUI {
                 new Color(255, 255, 255), R.drawable.substation);
         Global.getRenderer().addDrawable(substation);
 
-        Sprite recloser = new Sprite(pixelsToCoords(1250, 500), 1, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.recloser);
-        Global.getRenderer().addDrawable(recloser);
+        Sprite tie = new Sprite(pixelsToCoords(1050, 115), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.tie);
+        Global.getRenderer().addDrawable(tie);
 
-        Sprite transformer = new Sprite(pixelsToCoords(800, 100), 1, 0f, new Vector2f(1f, 1f),
+        Sprite transformer = new Sprite(pixelsToCoords(770, 115), 1, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.transformer);
         Global.getRenderer().addDrawable(transformer);
 
-        Sprite transformer2 = new Sprite(pixelsToCoords(800, 450), 1, 0f, new Vector2f(1f, 1f),
+        Sprite transformer2 = new Sprite(pixelsToCoords(520, 640), 1, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.transformer2);
         Global.getRenderer().addDrawable(transformer2);
 
-        Sprite transformer3 = new Sprite(pixelsToCoords(1250, 1000), 1, 0f, new Vector2f(1f, 1f),
+        Sprite transformer3 = new Sprite(pixelsToCoords(1200, 1000), 1, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.transformer3);
         Global.getRenderer().addDrawable(transformer3);
 
-        Sprite transformer4 = new Sprite(pixelsToCoords(1250, 310), 1, 0f, new Vector2f(1f, 1f),
+        Sprite transformer4 = new Sprite(pixelsToCoords(1800, 1150), 1, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.transformer4);
         Global.getRenderer().addDrawable(transformer4);
 
-        Sprite transformer5 = new Sprite(pixelsToCoords(1700, 1150), 1, 0f, new Vector2f(1f, 1f),
+        Sprite transformer5 = new Sprite(pixelsToCoords(1800, 800), 1, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.transformer5);
         Global.getRenderer().addDrawable(transformer5);
 
-        Sprite transformer6 = new Sprite(pixelsToCoords(1700, 800), 1, 0f, new Vector2f(1f, 1f),
+        Sprite transformer6 = new Sprite(pixelsToCoords(1350, 335), 1, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.transformer6);
         Global.getRenderer().addDrawable(transformer6);
+
+        Sprite switch1 = new Sprite(pixelsToCoords(870, 115), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.switch1);
+        Global.getRenderer().addDrawable(switch1);
+
+        Sprite switch2 = new Sprite(pixelsToCoords(870, 450), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.switch2);
+        Global.getRenderer().addDrawable(switch2);
+
+        Sprite switch3 = new Sprite(pixelsToCoords(1300, 1000), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.switch3);
+        Global.getRenderer().addDrawable(switch3);
+
+        Sprite switch4 = new Sprite(pixelsToCoords(1700, 1150), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.switch4);
+        Global.getRenderer().addDrawable(switch4);
+
+        Sprite switch5 = new Sprite(pixelsToCoords(1700, 800), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.switch5);
+        Global.getRenderer().addDrawable(switch5);
+
+        Sprite switch6 = new Sprite(pixelsToCoords(1250, 335), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.switch6);
+        Global.getRenderer().addDrawable(switch6);
+
+        Sprite trackhoe = new Sprite(pixelsToCoords(1310, 550), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.trackhoe);
+        Global.getRenderer().addDrawable(trackhoe);
     }
 
     private boolean first = true;
