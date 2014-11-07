@@ -92,8 +92,22 @@ public class MainUI {
         resources.add(R.drawable.business2);
         resources.add(R.drawable.business2copy);
         resources.add(R.drawable.condo);
-        resources.add(R.drawable.condocopy);
+        resources.add(R.drawable.condo2);
         resources.add(R.drawable.store);
+        resources.add(R.drawable.museum);
+        resources.add(R.drawable.stadium);
+        resources.add(R.drawable.midway);
+        resources.add(R.drawable.solarpanel);
+        resources.add(R.drawable.turbine);
+        resources.add(R.drawable.turbine2);
+        resources.add(R.drawable.substation);
+        resources.add(R.drawable.transformer);
+        resources.add(R.drawable.transformer2);
+        resources.add(R.drawable.transformer3);
+        resources.add(R.drawable.transformer4);
+        resources.add(R.drawable.transformer5);
+        resources.add(R.drawable.transformer6);
+        resources.add(R.drawable.recloser);
         Global.getRenderer().loadTextures(resources);
     }
 
@@ -106,23 +120,27 @@ public class MainUI {
         background.setRelativeScale();
         Global.getRenderer().addDrawable(background);
 
-        Sprite house1 = new Sprite(pixelsToCoords(500, 500), 1, 0f, new Vector2f(1f, 1f),
+        Sprite intelligrid = new Sprite(pixelsToCoords(195, 1555), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.intelligrid);
+        Global.getRenderer().addDrawable(intelligrid);
+
+        Sprite house1 = new Sprite(pixelsToCoords(155, 120), 1, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.house1);
         Global.getRenderer().addDrawable(house1);
 
-        Sprite house1copy = new Sprite(pixelsToCoords(500, 600), 1, 0f, new Vector2f(1f, 1f),
+        Sprite house1copy = new Sprite(pixelsToCoords(375, 270), 1, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.house1copy);
         Global.getRenderer().addDrawable(house1copy);
 
-        Sprite house1copy2 = new Sprite(pixelsToCoords(600, 700), 1, 0f, new Vector2f(1f, 1f),
+        Sprite house1copy2 = new Sprite(pixelsToCoords(615, 270), 1, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.house1copy2);
         Global.getRenderer().addDrawable(house1copy2);
 
-        Sprite house2 = new Sprite(pixelsToCoords(125, 500), 1, 0f, new Vector2f(1f, 1f),
+        Sprite house2 = new Sprite(pixelsToCoords(135, 500), 1, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.house2);
         Global.getRenderer().addDrawable(house2);
 
-        Sprite house2copy = new Sprite(pixelsToCoords(125, 830), 1, 0f, new Vector2f(1f, 1f),
+        Sprite house2copy = new Sprite(pixelsToCoords(135, 830), 1, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.house2copy);
         Global.getRenderer().addDrawable(house2copy);
 
@@ -130,19 +148,19 @@ public class MainUI {
                 new Color(255, 255, 255), R.drawable.house2copy2);
         Global.getRenderer().addDrawable(house2copy2);
 
-        Sprite business1 = new Sprite(pixelsToCoords(1500, 800), 1, 0f, new Vector2f(1f, 1f),
+        Sprite business1 = new Sprite(pixelsToCoords(1500, 480), 1, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.business1);
         Global.getRenderer().addDrawable(business1);
 
-        Sprite business1copy = new Sprite(pixelsToCoords(1600, 900), 1, 0f, new Vector2f(1f, 1f),
+        Sprite business1copy = new Sprite(pixelsToCoords(1920, 1000), 1, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.business1copy);
         Global.getRenderer().addDrawable(business1copy);
 
-        Sprite business2 = new Sprite(pixelsToCoords(2000, 800), 1, 0f, new Vector2f(1f, 1f),
+        Sprite business2 = new Sprite(pixelsToCoords(2050, 700), 1, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.business2);
         Global.getRenderer().addDrawable(business2);
 
-        Sprite business2copy = new Sprite(pixelsToCoords(2100, 900), 1, 0f, new Vector2f(1f, 1f),
+        Sprite business2copy = new Sprite(pixelsToCoords(2200, 817), 1, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.business2copy);
         Global.getRenderer().addDrawable(business2copy);
 
@@ -150,17 +168,69 @@ public class MainUI {
                 new Color(255, 255, 255), R.drawable.condo);
         Global.getRenderer().addDrawable(condo);
 
-        Sprite condocopy = new Sprite(pixelsToCoords(1070, 1190), 1, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.condocopy);
-        Global.getRenderer().addDrawable(condocopy);
+        Sprite condo2 = new Sprite(pixelsToCoords(1080, 1190), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.condo2);
+        Global.getRenderer().addDrawable(condo2);
 
-        Sprite store = new Sprite(pixelsToCoords(900, 800), 1, 0f, new Vector2f(1f, 1f),
+        Sprite store = new Sprite(pixelsToCoords(1070, 860), 1, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.store);
         Global.getRenderer().addDrawable(store);
 
-        Sprite intelligrid = new Sprite(pixelsToCoords(195, 1555), 1, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.intelligrid);
-        Global.getRenderer().addDrawable(intelligrid);
+        Sprite museum = new Sprite(pixelsToCoords(310, 1280), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.museum);
+        Global.getRenderer().addDrawable(museum);
+
+        Sprite stadium = new Sprite(pixelsToCoords(2350, 1170), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.stadium);
+        Global.getRenderer().addDrawable(stadium);
+
+        Sprite midway = new Sprite(pixelsToCoords(1722, 125), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.midway);
+        Global.getRenderer().addDrawable(midway);
+
+        Sprite turbine = new Sprite(pixelsToCoords(900, 1420), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.turbine);
+        Global.getRenderer().addDrawable(turbine);
+
+        Sprite turbine2 = new Sprite(pixelsToCoords(1040, 1435), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.turbine2);
+        Global.getRenderer().addDrawable(turbine2);
+
+        Sprite solarpanel = new Sprite(pixelsToCoords(2270, 1440), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.solarpanel);
+        Global.getRenderer().addDrawable(solarpanel);
+
+        Sprite substation = new Sprite(pixelsToCoords(1500, 1150), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.substation);
+        Global.getRenderer().addDrawable(substation);
+
+        Sprite recloser = new Sprite(pixelsToCoords(1250, 500), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.recloser);
+        Global.getRenderer().addDrawable(recloser);
+
+        Sprite transformer = new Sprite(pixelsToCoords(800, 100), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.transformer);
+        Global.getRenderer().addDrawable(transformer);
+
+        Sprite transformer2 = new Sprite(pixelsToCoords(800, 450), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.transformer2);
+        Global.getRenderer().addDrawable(transformer2);
+
+        Sprite transformer3 = new Sprite(pixelsToCoords(1250, 1000), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.transformer3);
+        Global.getRenderer().addDrawable(transformer3);
+
+        Sprite transformer4 = new Sprite(pixelsToCoords(1250, 310), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.transformer4);
+        Global.getRenderer().addDrawable(transformer4);
+
+        Sprite transformer5 = new Sprite(pixelsToCoords(1700, 1150), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.transformer5);
+        Global.getRenderer().addDrawable(transformer5);
+
+        Sprite transformer6 = new Sprite(pixelsToCoords(1700, 800), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.transformer6);
+        Global.getRenderer().addDrawable(transformer6);
     }
 
     private boolean first = true;

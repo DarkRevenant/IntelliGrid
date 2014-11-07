@@ -100,14 +100,8 @@ public class Simulation {
     }
 
     public static double linear(final double[] array, double d) {
-        while (d > array.length - 1) {
-            d -= array.length;
-        }
-        while (d < 0) {
-            d += array.length;
-        }
-        final int ceil = (int) Math.ceil(d);
-        final int floor = (int) Math.floor(d);
+        final int ceil = (int) Math.ceil(d) % array.length;
+        final int floor = (int) Math.floor(d) % array.length;
         final double lint = d - floor;
         return array[ceil] * lint + array[floor] * (1.0 - lint);
     }
