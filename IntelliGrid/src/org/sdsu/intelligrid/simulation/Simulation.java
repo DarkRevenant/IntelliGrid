@@ -2,8 +2,6 @@
 
 package org.sdsu.intelligrid.simulation;
 
-import java.util.Arrays;
-
 /**
  * Container for electrical simulation.
  */
@@ -14,7 +12,7 @@ public class Simulation {
     }
 
     public static class SimulationData {
-        //Solar
+        //Solar Panels
         public static double[] Solar = {0, 0, 0, 0, 0, 0, 0, 0.336, 1, 1.2, 1.4, 1.6, 1.6, 1.6, 1.6, 1.6, 1.4, 1.2, 1, 0.336, 0, 0, 0, 0};
 
         // Solar Farm
@@ -22,7 +20,6 @@ public class Simulation {
                 2.86416, 2.86416, 2.86416, 2.86416, 2.50614, 2.14812, 1.7901, 0.6014736, 0, 0, 0, 0};
 
         //Wind Farm
-
         public static double[] WindFarm = {1.68, 1.6945, 1.7584, 1.7895, 1.8452, 1.825, 1.752, 1.325, 0.895, 0.785, 0.6845, 0.6948,
                 0.6894, 0.7548, 1.025, 1.2548, 1.458, 1.785, 1.885, 1.96, 1.92, 1.88, 1.84, 1.8};
 
@@ -75,9 +72,13 @@ public class Simulation {
         double numEV = 1; //number of electric vehicles
         double EV = 1;  //sample number
 
-        //Weather
-        double[] weather = {1, .8, .6, .4, .2};
-        double w = 0;                    //Sunny to very cloudy
+        //Weather for Solar Panels
+        double[] weather = {1, .8, .6, .4, .2}; //Sunny to cloudy
+        double w = 0;
+
+        //Wind Turbine Multiplier
+        double[] turbineLevel = {1, .6, .3, 0};  //Fastest to off
+        int turbineSpeed = 0;
 
         //Electric Vehicle & Solar Panel Enables
         //On = 1 Off = 0
@@ -92,10 +93,11 @@ public class Simulation {
         //Fault Selection
         String fault = "";
 
+        //Transformer Capacity
         double capacity = 30;
 
+        //Time Scale
         double timeScale = 100.0; // ex. timeScale 100 = 1 second of application time is 100 seconds of simulation
-
         double time = 12; // in Hours
     }
 
@@ -220,7 +222,7 @@ public class Simulation {
             trA = trB + trC;
             trK = trI + trJ;
             trM = trK + trL;
-            transTotal = (trA + trM) * 28;
+            transTotal = (trA + trM) * data.capacity;
         }
         if (data.fault.equals("I")) {
             trI = 0;
@@ -274,6 +276,9 @@ public class Simulation {
         }
 
         double SolFarm = linear(data.SolarFarm, time) * linear(data.weather, data.w);
-        double SDGE = transTotal - SolFarm - linear(data.SolarFarm, time) + linear(data.Battery, time);
+        double WindTurbines = linear(data.WindFarm, time) * linear(data.turbineLevel, data.turbineSpeed);
+
+        //Total SDGE Power
+        double SDGE = transTotal - SolFarm - WindTurbines + linear(data.Battery, time);
     }
 }
