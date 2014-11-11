@@ -281,4 +281,12 @@ public class Simulation {
         //Total SDGE Power
         double SDGE = transTotal - SolFarm - WindTurbines + linear(data.Battery, time);
     }
+
+    public static class SimInfo {
+        public double trK;
+        public SimInfo(double trK) {
+            this.trK = trK;
+        }
+    }
 }
+
