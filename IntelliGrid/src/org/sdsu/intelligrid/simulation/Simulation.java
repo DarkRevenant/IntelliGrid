@@ -277,6 +277,8 @@ public class Simulation {
 
         double SolFarm = linear(data.SolarFarm, time) * linear(data.weather, data.w);
         double WindTurbines = linear(data.WindFarm, time) * linear(data.turbineLevel, data.turbineSpeed);
+
+        //Total SDGE Power
         double SDGE = transTotal - SolFarm - WindTurbines + linear(data.Battery, time);
     }
 }
