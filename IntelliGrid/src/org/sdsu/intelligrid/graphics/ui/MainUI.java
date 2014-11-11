@@ -82,6 +82,13 @@ public class MainUI {
         resources.add(R.drawable.background);
         resources.add(R.drawable.paths);
         resources.add(R.drawable.intelligrid);
+        resources.add(R.drawable.settings);
+        resources.add(R.drawable.info);
+        resources.add(R.drawable.faults);
+        resources.add(R.drawable.play);
+        resources.add(R.drawable.play2);
+        resources.add(R.drawable.play3);
+        resources.add(R.drawable.pause);
         resources.add(R.drawable.house1);
         resources.add(R.drawable.house1copy);
         resources.add(R.drawable.house1copy2);
@@ -117,6 +124,8 @@ public class MainUI {
         resources.add(R.drawable.switch6);
         resources.add(R.drawable.tie);
         resources.add(R.drawable.trackhoe);
+        resources.add(R.drawable.blue);
+        resources.add(R.drawable.green);
         Global.getRenderer().loadTextures(resources);
     }
 
@@ -137,6 +146,34 @@ public class MainUI {
         Sprite intelligrid = new Sprite(pixelsToCoords(195, 1555), 1, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.intelligrid);
         Global.getRenderer().addDrawable(intelligrid);
+
+        Sprite settings = new Sprite(pixelsToCoords(2485, 75), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.settings);
+        Global.getRenderer().addDrawable(settings);
+
+        Sprite info = new Sprite(pixelsToCoords(2335, 75), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.info);
+        Global.getRenderer().addDrawable(info);
+
+        Sprite faults = new Sprite(pixelsToCoords(2185, 75), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.faults);
+        Global.getRenderer().addDrawable(faults);
+
+        Sprite play = new Sprite(pixelsToCoords(2210, 1550), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.play);
+        Global.getRenderer().addDrawable(play);
+
+        Sprite play2 = new Sprite(pixelsToCoords(2300, 1550), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.play2);
+        Global.getRenderer().addDrawable(play2);
+
+        Sprite play3 = new Sprite(pixelsToCoords(2400, 1550), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.play3);
+        Global.getRenderer().addDrawable(play3);
+
+        Sprite pause = new Sprite(pixelsToCoords(2500, 1550), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.pause);
+        Global.getRenderer().addDrawable(pause);
 
         Sprite house1 = new Sprite(pixelsToCoords(155, 120), 1, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.house1);
@@ -277,6 +314,14 @@ public class MainUI {
         Sprite trackhoe = new Sprite(pixelsToCoords(1310, 550), 1, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.trackhoe);
         Global.getRenderer().addDrawable(trackhoe);
+
+        Sprite blue = new Sprite(pixelsToCoords(1250, 500), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.blue);
+        Global.getRenderer().addDrawable(blue);
+
+        Sprite green = new Sprite(pixelsToCoords(1250, 450), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.green);
+        Global.getRenderer().addDrawable(green);
     }
 
     private boolean first = true;
