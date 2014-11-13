@@ -11,6 +11,7 @@ import org.sdsu.intelligrid.Global;
 import org.sdsu.intelligrid.R;
 import org.sdsu.intelligrid.graphics.Sprite;
 import org.sdsu.intelligrid.graphics.TextSprite;
+import org.sdsu.intelligrid.simulation.Simulation;
 import org.sdsu.intelligrid.util.Color;
 import org.sdsu.intelligrid.util.Vector2f;
 import org.sdsu.intelligrid.simulation.Simulation.SimInfo;
@@ -134,8 +135,9 @@ public class MainUI {
         Global.getRenderer().loadTextures(resources);
     }
 
-    public static class SimInfo {
-        public double trK;
+    public class SimInfo {
+        public double PowPlant;
+        public double Load1;
     }
 
     /**
@@ -333,11 +335,11 @@ public class MainUI {
         Global.getRenderer().addDrawable(green);
 
 
-        TextSprite transK = new TextSprite(
-                "" + SimInfo.trK,
+        TextSprite PowPlant = new TextSprite(
+                "" + Simulation.SimInfo.Load6,
                 new Vector2f(0f, 0f), 60, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(255, 255, 255));
-        Global.getRenderer().addDrawable(transK);
+        Global.getRenderer().addDrawable(PowPlant);
     }
 
     private boolean first = true;

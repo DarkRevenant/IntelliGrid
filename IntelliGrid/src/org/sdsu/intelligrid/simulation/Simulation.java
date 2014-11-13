@@ -2,7 +2,6 @@
 
 package org.sdsu.intelligrid.simulation;
 
-import org.sdsu.intelligrid.graphics.ui.MainUI;
 
 /**
  * Container for electrical simulation.
@@ -293,17 +292,17 @@ public class Simulation {
 
         //Total SDGE Power
         double SDGE = transTotal - PowPlant - WindTurbines + BatteryStorage;
+
+        SimInfo.PowPlant = PowPlant;
+        SimInfo.Load6 = Load6;
     }
 
     public static class SimInfo {
-        public static double SimInfo() {
-            SimulationData.trK = trK;
-
-        }
-
-
-
+        public static double PowPlant;
+        public static double Load6;
 
     }
+
 }
+
 
