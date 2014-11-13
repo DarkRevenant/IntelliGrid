@@ -16,7 +16,7 @@ public class Simulation {
         public static double[] Solar = {0, 0, 0, 0, 0, 0, 0, 0.336, 1, 1.2, 1.4, 1.6, 1.6, 1.6, 1.6, 1.6, 1.4, 1.2, 1, 0.336, 0, 0, 0, 0};
 
         // Solar Farm
-        public static double[] SolarFarm = {0, 0, 0, 0, 0, 0, 0, 0.6014736, 1.7901, 2.14812, 2.50614, 2.86416,
+        public static double[] PowerPlant = {0, 0, 0, 0, 0, 0, 0, 0.6014736, 1.7901, 2.14812, 2.50614, 2.86416,
                 2.86416, 2.86416, 2.86416, 2.86416, 2.50614, 2.14812, 1.7901, 0.6014736, 0, 0, 0, 0};
 
         //Wind Farm
@@ -156,8 +156,8 @@ public class Simulation {
         double trM = trK + trL;
         double transTotal = (trA + trM) * data.capacity;
 
+       //Fault between Substation and Load1/Residential1
         if (data.fault.equals("A")) {
-
             trG = trE + trF;
             trC = trB;
             trE = trD + trC;
@@ -166,6 +166,7 @@ public class Simulation {
             trK = trI + trJ;
             trM = trK + trL;
         }
+        //Fault at Load1/Residential1
         if (data.fault.equals("B")) {
             Load1 = 0;
             //res1r[i] = 0;
@@ -176,6 +177,7 @@ public class Simulation {
             trM = trK + trL;
             transTotal = (trA + trM) * data.capacity;
         }
+        //Fault between Load1/Residential1 and Load2/Residential2
         if (data.fault.equals("C")) {
             trG = trE + trF;
             trC = 0;
@@ -185,6 +187,7 @@ public class Simulation {
             trK = trI + trJ;
             trM = trK + trL;
         }
+        //Fault at Load2/Residential2
         if (data.fault.equals("D")) {
             Load2 = 0;
             // res2r[i] = 0;
@@ -195,6 +198,7 @@ public class Simulation {
             trM = trK + trL;
             transTotal = (trA + trM) * data.capacity;
         }
+        //Fault between Load2/Residential2 and Load3/Residential3
         if (data.fault.equals("E")) {
             trE = 0;
             trG = trE + trF;
@@ -204,6 +208,7 @@ public class Simulation {
             trK = trI + trJ;
             trM = trK + trL;
         }
+        //Fault at Load3/Residential3
         if (data.fault.equals("F")) {
             Load3 = 0;
             //res3r[i] = 0;
@@ -214,6 +219,7 @@ public class Simulation {
             trM = trK + trL;
             transTotal = (trA + trM) * data.capacity;
         }
+        //Fault at Load4/Commercial2
         if (data.fault.equals("H")) {
             Load4 = 0;
             //comm2r[i] = 0;
@@ -224,6 +230,7 @@ public class Simulation {
             trM = trK + trL;
             transTotal = (trA + trM) * data.capacity;
         }
+        //Fault between Load4/Commercial1 and Load5/Commercial2
         if (data.fault.equals("I")) {
             trI = 0;
             trG = trH;
@@ -233,6 +240,7 @@ public class Simulation {
             trK = trJ;
             trM = trK + trL;
         }
+        //Fault at Load5/Commercial1
         if (data.fault.equals("J")) {
             Load5 = 0;
             // comm1r[i] = 0;
@@ -243,6 +251,7 @@ public class Simulation {
             trM = trK + trL;
             transTotal = (trA + trM) * data.capacity;
         }
+        //Fault between Load5/Commercial1 and Load6/Industrial1
         if (data.fault.equals("K")) {
 
             trG = trI + trH;
@@ -253,6 +262,7 @@ public class Simulation {
             trK = 0;
             trM = trK + trL;
         }
+        //Fault at Load6/Industrial1
         if (data.fault.equals("L")) {
             Load6 = 0;
             // ind1r[i] = 0;
@@ -263,7 +273,7 @@ public class Simulation {
             trM = trK + trL;
             transTotal = (trA + trM) * data.capacity;
         }
-
+        //Fault between Load6/Industrial1 and Substation
         if (data.fault.equals("M")) {
 
             trG = trH + trI;
@@ -275,11 +285,12 @@ public class Simulation {
             trM = 0;
         }
 
-        double SolFarm = linear(data.SolarFarm, time) * linear(data.weather, data.w);
+        double PowPlant = linear(data.PowerPlant, time) * linear(data.weather, data.w);
         double WindTurbines = linear(data.WindFarm, time) * linear(data.turbineLevel, data.turbineSpeed);
+        double BatteryStorage = linear(data.Battery, time);
 
         //Total SDGE Power
-        double SDGE = transTotal - SolFarm - WindTurbines + linear(data.Battery, time);
+        double SDGE = transTotal - PowPlant - WindTurbines + BatteryStorage;
     }
 
     public static class SimInfo {
