@@ -139,15 +139,22 @@ public class Simulation {
         double Load4 = linear(data.comm2, time);
         double Load5 = linear(data.comm1, time);
 
+        double Load1r = Math.sqrt((Load1 * Load1) + (linear(data.res1r, time) * linear(data.res1r, time)));
+        double Load2r = Math.sqrt((Load2 * Load2) + (linear(data.res2r, time) * linear(data.res2r, time)));
+        double Load3r = Math.sqrt((Load3 * Load3) + (linear(data.res3r, time) * linear(data.res3r, time)));
+        double Load4r = Math.sqrt((Load4 * Load4) + (linear(data.comm2r, time) * linear(data.comm2r, time)));
+        double Load5r = Math.sqrt((Load5 * Load5) + (linear(data.comm1r, time) * linear(data.comm1r, time)));
+        double Load6r = Math.sqrt((Load6 * Load6) + (linear(data.ind1r, time) * linear(data.ind1r, time)));
 
-        double trB = Math.sqrt((Load1 * Load1) + (linear(data.res1r, time) * linear(data.res1r, time))) / data.capacity;
-        double trD = Math.sqrt((Load2 * Load2) + (linear(data.res2r, time) * linear(data.res2r, time))) / data.capacity;
-        double trE = Math.sqrt((Load3 * Load3) + (linear(data.res3r, time) * linear(data.res3r, time))) / data.capacity;
-        double trF = Math.sqrt((Load3 * Load3) + (linear(data.res3r, time) * linear(data.res3r, time))) / data.capacity;
-        double trH = Math.sqrt((Load4 * Load4) + (linear(data.comm2r, time) * linear(data.comm2r, time))) / data.capacity;
-        double trI = Math.sqrt((Load4 * Load4) + (linear(data.comm2r, time) * linear(data.comm2r, time))) / data.capacity;
-        double trJ = Math.sqrt((Load5 * Load5) + (linear(data.comm1r, time) * linear(data.comm1r, time))) / data.capacity;
-        double trL = Math.sqrt((Load6 * Load6) + (linear(data.ind1r, time) * linear(data.ind1r, time))) / data.capacity;
+
+        double trB = Load1r / data.capacity;
+        double trD = Load2r / data.capacity;
+        double trE = Load3r / data.capacity;
+        double trF = Load3r / data.capacity;
+        double trH = Load4r / data.capacity;
+        double trI = Load4r / data.capacity;
+        double trJ = Load5r / data.capacity;
+        double trL = Load6r / data.capacity;
 
         double trG = 0;
 
@@ -293,13 +300,54 @@ public class Simulation {
         //Total SDGE Power
         double SDGE = transTotal - PowPlant - WindTurbines + BatteryStorage;
 
-        SimInfo.PowPlant = PowPlant;
+        SimInfo.Load1 = Load1;
+        SimInfo.Load2 = Load2;
+        SimInfo.Load3 = Load3;
+        SimInfo.Load4 = Load4;
+        SimInfo.Load5 = Load5;
         SimInfo.Load6 = Load6;
+        SimInfo.trA = trA;
+        SimInfo.trB = trB;
+        SimInfo.trC = trC;
+        SimInfo.trD = trD;
+        SimInfo.trE = trE;
+        SimInfo.trF = trF;
+        SimInfo.trG = trG;
+        SimInfo.trH = trH;
+        SimInfo.trI = trI;
+        SimInfo.trJ = trJ;
+        SimInfo.trK = trK;
+        SimInfo.trL = trL;
+        SimInfo.trM = trM;
+
+
+        SimInfo.PowPlant = PowPlant;
     }
 
     public static class SimInfo {
-        public static double PowPlant;
+        public static double Load1;
+        public static double Load2;
+        public static double Load3;
+        public static double Load4;
+        public static double Load5;
         public static double Load6;
+        public static double trA;
+        public static double trB;
+        public static double trC;
+        public static double trD;
+        public static double trE;
+        public static double trF;
+        public static double trG;
+        public static double trH;
+        public static double trI;
+        public static double trJ;
+        public static double trK;
+        public static double trL;
+        public static double trM;
+        public static double PowPlant;
+        public static double WindTurbines;
+        public static double BatteryStorage;
+        public static double SDGE;
 
     }
 

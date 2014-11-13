@@ -337,7 +337,7 @@ public class MainUI {
 
         TextSprite PowPlant = new TextSprite(
                 "" + Simulation.SimInfo.Load6,
-                new Vector2f(0f, 0f), 60, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(2100, 1200), 40, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(255, 255, 255));
         Global.getRenderer().addDrawable(PowPlant);
     }
