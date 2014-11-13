@@ -4,10 +4,10 @@ import org.sdsu.intelligrid.Global;
 import org.sdsu.intelligrid.graphics.TextSprite;
 import org.sdsu.intelligrid.util.Color;
 import org.sdsu.intelligrid.util.Vector2f;
-import org.sdsu.intelligrid.simulation.Simulation.SimInfo;
 
 import android.graphics.Typeface;
 import android.view.MotionEvent;
+import org.sdsu.intelligrid.simulation.Simulation.SimInfo;
 
 /**
  * A hook containing static methods that are called when input events happen.

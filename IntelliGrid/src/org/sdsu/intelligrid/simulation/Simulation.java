@@ -2,6 +2,8 @@
 
 package org.sdsu.intelligrid.simulation;
 
+import org.sdsu.intelligrid.graphics.ui.MainUI;
+
 /**
  * Container for electrical simulation.
  */
@@ -294,10 +296,14 @@ public class Simulation {
     }
 
     public static class SimInfo {
-        public double trK;
-        public SimInfo(double trK) {
-            this.trK = trK;
+        public static double SimInfo() {
+            SimulationData.trK = trK;
+
         }
+
+
+
+
     }
 }
 

@@ -2,14 +2,19 @@
 
 package org.sdsu.intelligrid.graphics.ui;
 
+import android.graphics.Typeface;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import org.sdsu.intelligrid.Global;
 import org.sdsu.intelligrid.R;
 import org.sdsu.intelligrid.graphics.Sprite;
+import org.sdsu.intelligrid.graphics.TextSprite;
 import org.sdsu.intelligrid.util.Color;
 import org.sdsu.intelligrid.util.Vector2f;
+import org.sdsu.intelligrid.simulation.Simulation.SimInfo;
+
 
 /**
  * User interface class for the application.
@@ -127,6 +132,10 @@ public class MainUI {
         resources.add(R.drawable.blue);
         resources.add(R.drawable.green);
         Global.getRenderer().loadTextures(resources);
+    }
+
+    public static class SimInfo {
+        public double trK;
     }
 
     /**
@@ -322,6 +331,13 @@ public class MainUI {
         Sprite green = new Sprite(pixelsToCoords(1250, 450), 1, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.green);
         Global.getRenderer().addDrawable(green);
+
+
+        TextSprite transK = new TextSprite(
+                "" + SimInfo.trK,
+                new Vector2f(0f, 0f), 60, Typeface.DEFAULT, 1000f, 0, 0,
+                new Vector2f(1f, 1f), new Color(255, 255, 255));
+        Global.getRenderer().addDrawable(transK);
     }
 
     private boolean first = true;
