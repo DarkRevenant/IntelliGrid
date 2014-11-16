@@ -38,6 +38,8 @@ public class MainRenderer implements GLSurfaceView.Renderer {
 			.synchronizedList(new ArrayList<Integer>());
 	private final List<Drawable> toDraw = Collections
 			.synchronizedList(new ArrayList<Drawable>());
+	private final List<Drawable> toRemove = Collections
+			.synchronizedList(new ArrayList<Drawable>());
 
 	private int screenWidth;
 	private int screenHeight;
@@ -122,7 +124,7 @@ public class MainRenderer implements GLSurfaceView.Renderer {
 	 *            the drawable object to remove
 	 */
 	public void removeDrawable(final Drawable drawable) {
-		toDraw.remove(drawable);
+		toRemove.add(drawable);
 	}
 
 	/**
@@ -251,6 +253,7 @@ public class MainRenderer implements GLSurfaceView.Renderer {
 	private void advance(final float amount) {
 		// Add any unadded drawables
 		addDrawables();
+		removeDrawables();
 
 		if (!first) {
 			// Increment the simulation
@@ -277,6 +280,7 @@ public class MainRenderer implements GLSurfaceView.Renderer {
 	private void draw(final float amount) {
 		// Add any unadded drawables
 		addDrawables();
+		removeDrawables();
 
 		// Load any unloaded textures
 		loadTextures();
@@ -380,6 +384,20 @@ public class MainRenderer implements GLSurfaceView.Renderer {
 		}
 
 		toDraw.clear();
+	}
+
+	private void removeDrawables() {
+		if (toRemove.isEmpty()) {
+			return;
+		}
+
+		synchronized (toRemove) {
+			for (Drawable drawable : toRemove) {
+				drawableSet.remove(drawable);
+			}
+		}
+
+		toRemove.clear();
 	}
 
 	private void loadTextures() {

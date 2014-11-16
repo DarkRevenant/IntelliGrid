@@ -217,4 +217,21 @@ public class Vector2f {
 	public static float dot(final Vector2f left, final Vector2f right) {
 		return left.x * right.x + left.y * right.y;
 	}
+
+	/**
+	 * Calculates a point on a linear path between two vectors.
+	 * 
+	 * @param bias
+	 *            the coefficient between a and b to find the position for
+	 * 
+	 * @return the point between <tt>a</tt> and <tt>b</tt>, where
+	 *         <tt>bias = 0.0</tt> represents <tt>a</tt> and <tt>bias = 1.0</tt>
+	 *         represents <tt>b</tt>
+	 */
+	public static Vector2f linear(final Vector2f a, final Vector2f b,
+			final float bias) {
+		final float invBias = 1f - bias;
+		return new Vector2f(a.x * invBias + b.x * bias, a.y * invBias + b.y
+				* bias);
+	}
 }

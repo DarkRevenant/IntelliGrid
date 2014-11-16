@@ -374,9 +374,14 @@ public class Simulation {
 		SimInfo.trM = trM;
 
 		SimInfo.PowPlant = PowPlant;
+		SimInfo.WindTurbines = WindTurbines;
+		SimInfo.BatteryStorage = BatteryStorage;
+		SimInfo.SDGE = SDGE;
+		SimInfo.capacity = data.capacity;
 	}
 
 	public static class SimInfo {
+
 		public static double Load1;
 		public static double Load2;
 		public static double Load3;
@@ -400,7 +405,6 @@ public class Simulation {
 		public static double WindTurbines;
 		public static double BatteryStorage;
 		public static double SDGE;
-
+		public static double capacity;
 	}
-
 }
