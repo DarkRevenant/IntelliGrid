@@ -1,3 +1,5 @@
+// Copyright 2014 Kysa Tran, all rights reserved
+
 package org.sdsu.intelligrid.graphics.ui;
 
 import org.sdsu.intelligrid.Global;

@@ -5,7 +5,8 @@ package org.sdsu.intelligrid;
 import org.sdsu.intelligrid.graphics.MainRenderer;
 import org.sdsu.intelligrid.graphics.MainSurfaceView;
 import org.sdsu.intelligrid.graphics.ui.MainUI;
-import org.sdsu.intelligrid.network.MainNetworkInterface;
+import org.sdsu.intelligrid.network.MainNetworkHandler;
+import org.sdsu.intelligrid.network.NetworkInterface;
 import org.sdsu.intelligrid.simulation.Simulation;
 
 import android.app.Activity;
@@ -47,13 +48,19 @@ public class MainActivity extends Activity {
 		final Simulation simulation = new Simulation();
 		Global.simulation = simulation;
 
-		final MainNetworkInterface networkInterface = new MainNetworkInterface();
+		final NetworkInterface networkInterface = new NetworkInterface();
 		Global.networkInterface = networkInterface;
+
+		final MainNetworkHandler networkHandler = new MainNetworkHandler();
+		Global.networkHandler = networkHandler;
 
 		final MainUI mainUI = new MainUI();
 		Global.mainUI = mainUI;
 
+		new Thread(networkInterface).start();
+
 		simulation.init();
+		networkHandler.init();
 		mainUI.init();
 	}
 

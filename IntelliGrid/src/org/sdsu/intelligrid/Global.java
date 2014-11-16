@@ -5,7 +5,8 @@ package org.sdsu.intelligrid;
 import org.sdsu.intelligrid.graphics.MainRenderer;
 import org.sdsu.intelligrid.graphics.MainSurfaceView;
 import org.sdsu.intelligrid.graphics.ui.MainUI;
-import org.sdsu.intelligrid.network.MainNetworkInterface;
+import org.sdsu.intelligrid.network.MainNetworkHandler;
+import org.sdsu.intelligrid.network.NetworkInterface;
 import org.sdsu.intelligrid.simulation.Simulation;
 
 import android.content.res.Resources;
@@ -17,7 +18,8 @@ public class Global {
 
 	static MainActivity mainActivity;
 	static Simulation simulation;
-	static MainNetworkInterface networkInterface;
+	static NetworkInterface networkInterface;
+	static MainNetworkHandler networkHandler;
 	static MainSurfaceView surface;
 	static MainRenderer renderer;
 	static MainUI mainUI;
@@ -52,14 +54,23 @@ public class Global {
 	}
 
 	/**
-	 * Returns the primary instance of MainNetworkInterface for this
-	 * application.
+	 * Returns the primary instance of NetworkInterface for this application.
 	 * 
 	 * @return this application's primary network interface object, as defined
-	 *         by MainNetworkInterface.java.
+	 *         by NetworkInterface.java.
 	 */
-	public static MainNetworkInterface getNetworkInterface() {
+	public static NetworkInterface getNetworkInterface() {
 		return networkInterface;
+	}
+
+	/**
+	 * Returns the primary instance of MainNetworkHandler for this application.
+	 * 
+	 * @return this application's primary network handler object, as defined by
+	 *         MainNetworkHandler.java.
+	 */
+	public static MainNetworkHandler getNetworkHandler() {
+		return networkHandler;
 	}
 
 	/**

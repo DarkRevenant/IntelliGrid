@@ -1,4 +1,4 @@
-// Copyright 2014 Harrison Snodgrass, all rights reserved
+// Copyright 2014 Kysa Tran, all rights reserved
 
 package org.sdsu.intelligrid.graphics.ui;
 
