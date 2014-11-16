@@ -169,6 +169,8 @@ public class TextSprite implements Drawable {
 		this.color = color.getArray();
 	}
 
+
+
 	@Override
 	public Vector2f getLocation() {
 		return location;
