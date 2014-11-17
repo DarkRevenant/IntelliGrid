@@ -179,9 +179,9 @@ public class MainUI {
 				R.drawable.intelligrid);
 		Global.getRenderer().addDrawable(intelligrid);
 
-		Sprite settings = new Sprite(pixelsToCoords(2485, 75), 1, 0f,
+		ClickableSprite settings = new ClickableSprite(pixelsToCoords(2485, 75), 1, 0f,
 				new Vector2f(1f, 1f), new Color(255, 255, 255),
-				R.drawable.settings);
+				R.drawable.settings, pixelsToCoords(2480,70), pixelsToCoords(2485,100), "settings");
 		Global.getRenderer().addDrawable(settings);
 
 		Sprite info = new Sprite(pixelsToCoords(2335, 75), 1, 0f, new Vector2f(
