@@ -181,11 +181,11 @@ public class MainUI {
 
 		ClickableSprite settings = new ClickableSprite(pixelsToCoords(2485, 75), 1, 0f,
 				new Vector2f(1f, 1f), new Color(255, 255, 255),
-				R.drawable.settings, pixelsToCoords(2480,70), pixelsToCoords(2485,100), "settings");
+				R.drawable.settings, pixelsToCoords(2485,60), pixelsToCoords(2495,75), "settings");
 		Global.getRenderer().addDrawable(settings);
 
-		Sprite info = new Sprite(pixelsToCoords(2335, 75), 1, 0f, new Vector2f(
-				1f, 1f), new Color(255, 255, 255), R.drawable.info);
+		ClickableSprite info = new ClickableSprite(pixelsToCoords(2335, 75), 1, 0f, new Vector2f(
+				1f, 1f), new Color(255, 255, 255), R.drawable.info, pixelsToCoords(2335,90), pixelsToCoords(2345,75), "info");
 		Global.getRenderer().addDrawable(info);
 
 		Sprite faults = new Sprite(pixelsToCoords(2185, 75), 1, 0f,
