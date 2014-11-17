@@ -7,20 +7,16 @@ import android.graphics.Typeface;
 import java.util.ArrayList;
 import java.util.List;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.sdsu.intelligrid.Global;
 import org.sdsu.intelligrid.R;
-import org.sdsu.intelligrid.graphics.Drawable;
 import org.sdsu.intelligrid.graphics.Sprite;
 import org.sdsu.intelligrid.graphics.TextSprite;
 import org.sdsu.intelligrid.simulation.Simulation;
 import org.sdsu.intelligrid.util.Color;
 import org.sdsu.intelligrid.util.Vector2f;
-import org.sdsu.intelligrid.simulation.Simulation.SimInfo;
 
 /**
  * User interface class for the application.
@@ -30,6 +26,7 @@ public class MainUI {
     private final List<Clickable> clickableList = new ArrayList<>();
 
     public final static Map<Integer, Vector2f> ledPositionMap = new HashMap<>();
+
     static {
         // Use this format; just have 177 lines placing the pixel locations for
         // each of the LEDs
@@ -55,10 +52,8 @@ public class MainUI {
      * Returns the on-screen openGL coordinates of the position returned from a
      * MotionEvent.
      *
-     * @param x
-     *            the x-axis value of the MotionEvent position
-     * @param y
-     *            the y-axis value of the MotionEvent position
+     * @param x the x-axis value of the MotionEvent position
+     * @param y the y-axis value of the MotionEvent position
      * @return the openGL coordinates of the given MotionEvent position
      */
     public static Vector2f eventPosToCoords(final float x, final float y) {
@@ -73,8 +68,7 @@ public class MainUI {
      * Adds a {@link org.sdsu.intelligrid.graphics.ui.Clickable Clickable} to
      * the input handler.
      *
-     * @param clickable
-     *            the clickable object to add
+     * @param clickable the clickable object to add
      */
     public void addClickable(final Clickable clickable) {
         if (!clickableList.contains(clickable)) {
@@ -88,8 +82,8 @@ public class MainUI {
      * currently added to the input handler.
      *
      * @return the list of all
-     *         {@link org.sdsu.intelligrid.graphics.ui.Clickable Clickable}
-     *         objects currently added to the input handler
+     * {@link org.sdsu.intelligrid.graphics.ui.Clickable Clickable}
+     * objects currently added to the input handler
      */
     public List<Clickable> getClickablesList() {
         return clickableList;
@@ -153,6 +147,7 @@ public class MainUI {
         resources.add(R.drawable.switch6);
         resources.add(R.drawable.tie);
         resources.add(R.drawable.trackhoe);
+        resources.add(R.drawable.orb);
         Global.getRenderer().loadTextures(resources);
     }
 
@@ -193,7 +188,6 @@ public class MainUI {
         public static TextSprite BatteryStorage;
         public static TextSprite transTotal;
         public static TextSprite SDGE;
-        public static TextSprite capacity;
         public static TextSprite currentTime;
     }
 
@@ -383,182 +377,122 @@ public class MainUI {
                 new Color(255, 255, 255), R.drawable.trackhoe);
         Global.getRenderer().addDrawable(trackhoe);
 
-        UIInfo.Load1 = new TextSprite("" + Simulation.SimInfo.Load1,
+        UIInfo.Load1 = new TextSprite("",
                 pixelsToCoords(1080, 1045), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load1);
 
-        UIInfo.Load1r = new TextSprite("" + Simulation.SimInfo.Load1r,
-                pixelsToCoords(1080, 1025), 20, Typeface.DEFAULT, 1000f, 0, 0,
-                new Vector2f(1f, 1f), new Color(0, 0, 0));
-        Global.getRenderer().addDrawable(UIInfo.Load1r);
-
-        UIInfo.Load1a = new TextSprite("" + Simulation.SimInfo.Load1a,
-                pixelsToCoords(1080, 1005), 20, Typeface.DEFAULT, 1000f, 0, 0,
-                new Vector2f(1f, 1f), new Color(0, 0, 0));
-        Global.getRenderer().addDrawable(UIInfo.Load1a);
-
-        UIInfo.Load2 = new TextSprite("" + Simulation.SimInfo.Load2,
+        UIInfo.Load2 = new TextSprite("",
                 pixelsToCoords(305, 700), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load2);
 
-        UIInfo.Load2r = new TextSprite("" + Simulation.SimInfo.Load2r,
-                pixelsToCoords(305, 680), 20, Typeface.DEFAULT, 1000f, 0, 0,
-                new Vector2f(1f, 1f), new Color(0, 0, 0));
-        Global.getRenderer().addDrawable(UIInfo.Load2r);
-
-        UIInfo.Load2a = new TextSprite("" + Simulation.SimInfo.Load2a,
-                pixelsToCoords(305, 660), 20, Typeface.DEFAULT, 1000f, 0, 0,
-                new Vector2f(1f, 1f), new Color(0, 0, 0));
-        Global.getRenderer().addDrawable(UIInfo.Load2a);
-
-        UIInfo.Load3 = new TextSprite("" + Simulation.SimInfo.Load3,
+        UIInfo.Load3 = new TextSprite("",
                 pixelsToCoords(500, 80), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load3);
 
-        UIInfo.Load3r = new TextSprite("" + Simulation.SimInfo.Load3r,
-                pixelsToCoords(500, 60), 20, Typeface.DEFAULT, 1000f, 0, 0,
-                new Vector2f(1f, 1f), new Color(0, 0, 0));
-        Global.getRenderer().addDrawable(UIInfo.Load3r);
-
-        UIInfo.Load3a = new TextSprite("" + Simulation.SimInfo.Load3a,
-                pixelsToCoords(500, 40), 20, Typeface.DEFAULT, 1000f, 0, 0,
-                new Vector2f(1f, 1f), new Color(0, 0, 0));
-        Global.getRenderer().addDrawable(UIInfo.Load3a);
-
-        UIInfo.Load4 = new TextSprite("" + Simulation.SimInfo.Load4,
+        UIInfo.Load4 = new TextSprite("",
                 pixelsToCoords(1700, 350), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load4);
 
-        UIInfo.Load4r = new TextSprite("" + Simulation.SimInfo.Load4r,
-                pixelsToCoords(1700, 330), 20, Typeface.DEFAULT, 1000f, 0, 0,
-                new Vector2f(1f, 1f), new Color(0, 0, 0));
-        Global.getRenderer().addDrawable(UIInfo.Load4r);
-
-        UIInfo.Load4a = new TextSprite("" + Simulation.SimInfo.Load4a,
-                pixelsToCoords(1700, 310), 20, Typeface.DEFAULT, 1000f, 0, 0,
-                new Vector2f(1f, 1f), new Color(0, 0, 0));
-        Global.getRenderer().addDrawable(UIInfo.Load4a);
-
-        UIInfo.Load5 = new TextSprite("" + Simulation.SimInfo.Load5,
+        UIInfo.Load5 = new TextSprite("",
                 pixelsToCoords(1980, 855), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load5);
 
-        UIInfo.Load5r = new TextSprite("" + Simulation.SimInfo.Load5r,
-                pixelsToCoords(1980, 835), 20, Typeface.DEFAULT, 1000f, 0, 0,
-                new Vector2f(1f, 1f), new Color(0, 0, 0));
-        Global.getRenderer().addDrawable(UIInfo.Load5r);
-
-        UIInfo.Load5a = new TextSprite("" + Simulation.SimInfo.Load5a,
-                pixelsToCoords(1980, 815), 20, Typeface.DEFAULT, 1000f, 0, 0,
-                new Vector2f(1f, 1f), new Color(0, 0, 0));
-        Global.getRenderer().addDrawable(UIInfo.Load5a);
-
-        UIInfo.Load6 = new TextSprite("" + Simulation.SimInfo.Load6,
+        UIInfo.Load6 = new TextSprite("",
                 pixelsToCoords(2070, 1200), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load6);
 
-        UIInfo.Load6r = new TextSprite("" + Simulation.SimInfo.Load6r,
-                pixelsToCoords(2070, 1180), 20, Typeface.DEFAULT, 1000f, 0, 0,
-                new Vector2f(1f, 1f), new Color(0, 0, 0));
-        Global.getRenderer().addDrawable(UIInfo.Load6r);
-
-        UIInfo.Load6a = new TextSprite("" + Simulation.SimInfo.Load6a,
-                pixelsToCoords(2070, 1160), 20, Typeface.DEFAULT, 1000f, 0, 0,
-                new Vector2f(1f, 1f), new Color(0, 0, 0));
-        Global.getRenderer().addDrawable(UIInfo.Load6a);
-
-        UIInfo.trA = new TextSprite("" + Simulation.SimInfo.trA,
+        UIInfo.trA = new TextSprite("",
                 pixelsToCoords(1450, 990), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trA);
 
-        UIInfo.trB = new TextSprite("" + Simulation.SimInfo.trB,
+        UIInfo.trB = new TextSprite("",
                 pixelsToCoords(1250, 945), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trB);
 
-        UIInfo.trC = new TextSprite("" + Simulation.SimInfo.trC,
+        UIInfo.trC = new TextSprite("",
                 pixelsToCoords(1015, 450), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trC);
 
-        UIInfo.trD = new TextSprite("" + Simulation.SimInfo.trD,
+        UIInfo.trD = new TextSprite("",
                 pixelsToCoords(675, 640), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trD);
 
-        UIInfo.trE = new TextSprite("" + Simulation.SimInfo.trE,
+        UIInfo.trE = new TextSprite("",
                 pixelsToCoords(930, 150), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trE);
 
-        UIInfo.trF = new TextSprite("" + Simulation.SimInfo.trF,
+        UIInfo.trF = new TextSprite("",
                 pixelsToCoords(850, 60), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trF);
 
-        UIInfo.trG = new TextSprite("" + Simulation.SimInfo.trG,
+        UIInfo.trG = new TextSprite("",
                 pixelsToCoords(1105, 100), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trG);
 
-        UIInfo.trH = new TextSprite("" + Simulation.SimInfo.trH,
+        UIInfo.trH = new TextSprite("",
                 pixelsToCoords(1410, 285), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trH);
 
-        UIInfo.trI = new TextSprite("" + Simulation.SimInfo.trI,
+        UIInfo.trI = new TextSprite("",
                 pixelsToCoords(1140, 320), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trI);
 
-        UIInfo.trJ = new TextSprite("" + Simulation.SimInfo.trJ,
+        UIInfo.trJ = new TextSprite("",
                 pixelsToCoords(1880, 750), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trJ);
 
-        UIInfo.trK = new TextSprite("" + Simulation.SimInfo.trK,
+        UIInfo.trK = new TextSprite("",
                 pixelsToCoords(1580, 780), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trK);
 
-        UIInfo.trL = new TextSprite("" + Simulation.SimInfo.trL,
+        UIInfo.trL = new TextSprite("",
                 pixelsToCoords(1885, 1100), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trL);
 
-        UIInfo.trM = new TextSprite("" + Simulation.SimInfo.trM,
+        UIInfo.trM = new TextSprite("",
                 pixelsToCoords(1760, 1185), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trM);
 
-        UIInfo.WindTurbines = new TextSprite("" + Simulation.SimInfo.WindTurbines,
+        UIInfo.WindTurbines = new TextSprite("",
                 pixelsToCoords(1250, 1400), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.WindTurbines);
 
-        UIInfo.PowPlant = new TextSprite("" + Simulation.SimInfo.PowPlant,
+        UIInfo.PowPlant = new TextSprite("",
                 pixelsToCoords(1950, 1400), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.PowPlant);
 
-        UIInfo.transTotal = new TextSprite("" + Simulation.SimInfo.transTotal,
+        UIInfo.transTotal = new TextSprite("",
                 pixelsToCoords(1515, 1060), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.transTotal);
 
-        UIInfo.SDGE = new TextSprite("" + Simulation.SimInfo.SDGE,
+        UIInfo.SDGE = new TextSprite("",
                 pixelsToCoords(1530, 1480), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.SDGE);
 
-        UIInfo.currentTime = new TextSprite("" + Simulation.SimInfo.currentTime,
+        UIInfo.currentTime = new TextSprite("",
                 pixelsToCoords(1000, 1550), 40, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.currentTime);
@@ -566,148 +500,156 @@ public class MainUI {
 
     private boolean first = true;
 
-    private static float TEXT_UPDATE_INTERVAL = 0.5f;
+    private LightAnimation lightAnimation;
+
+    private static final float TEXT_UPDATE_INTERVAL = 0.1f;
+    private static final double TEXT_UPDATE_CHANCE = 0.1;
+
+    private double textUpdateChance = 1.0;
     private float textUpdateTimer = TEXT_UPDATE_INTERVAL;
 
     /**
      * This is the primary step driver for the interface. Call all time-based
      * functions from here.
      *
-     * @param amount
-     *            the amount of time that has passed since the previous frame,
-     *            in seconds
+     * @param amount the amount of time that has passed since the previous frame,
+     *               in seconds
      */
     public void advance(final float amount) {
         if (first) {
             first = false;
             postInit();
+            lightAnimation = new LightAnimation();
             return;
         }
 
         textUpdateTimer -= amount;
         if (textUpdateTimer <= 0f) {
 
-            UIInfo.Load1.setText("" + Simulation.SimInfo.Load1 + " MW",
-                    UIInfo.Load1.getFontSize(), UIInfo.Load1.getFont(),
-                    UIInfo.Load1.getMaxLineWidth());
-            UIInfo.Load1r.setText("" + Simulation.SimInfo.Load1r + " MVAR",
-                    UIInfo.Load1r.getFontSize(), UIInfo.Load1r.getFont(),
-                    UIInfo.Load1r.getMaxLineWidth());
-            UIInfo.Load1a.setText("" + Simulation.SimInfo.Load1a + " MVA",
-                    UIInfo.Load1a.getFontSize(), UIInfo.Load1a.getFont(),
-                    UIInfo.Load1a.getMaxLineWidth());
+            if (Math.random() < textUpdateChance)
+                UIInfo.Load1.setText("" + String.format("%.2f", Simulation.SimInfo.Load1) + " MW"
+                                + "\n" + String.format("%.2f", Simulation.SimInfo.Load1r) + " MVAR"
+                                + "\n" + String.format("%.2f", Simulation.SimInfo.Load1a) + " MVA",
+                        UIInfo.Load1.getFontSize(), UIInfo.Load1.getFont(),
+                        UIInfo.Load1.getMaxLineWidth());
 
-            UIInfo.Load2.setText("" + Simulation.SimInfo.Load2 + " MW",
-                    UIInfo.Load2.getFontSize(), UIInfo.Load2.getFont(),
-                    UIInfo.Load2.getMaxLineWidth());
-            UIInfo.Load2r.setText("" + Simulation.SimInfo.Load2r + " MVAR",
-                    UIInfo.Load2r.getFontSize(), UIInfo.Load2r.getFont(),
-                    UIInfo.Load2r.getMaxLineWidth());
-            UIInfo.Load2a.setText("" + Simulation.SimInfo.Load2a + " MVA",
-                    UIInfo.Load2a.getFontSize(), UIInfo.Load2a.getFont(),
-                    UIInfo.Load2a.getMaxLineWidth());
+            if (Math.random() < textUpdateChance)
+                UIInfo.Load2.setText("" + String.format("%.2f", Simulation.SimInfo.Load2) + " MW"
+                                + "\n" + String.format("%.2f", Simulation.SimInfo.Load2r) + " MVAR"
+                                + "\n" + String.format("%.2f", Simulation.SimInfo.Load2a) + " MVA",
+                        UIInfo.Load2.getFontSize(), UIInfo.Load2.getFont(),
+                        UIInfo.Load2.getMaxLineWidth());
 
-            UIInfo.Load3.setText("" + Simulation.SimInfo.Load3 + " MW",
-                    UIInfo.Load3.getFontSize(), UIInfo.Load3.getFont(),
-                    UIInfo.Load3.getMaxLineWidth());
-            UIInfo.Load3r.setText("" + Simulation.SimInfo.Load3r + " MVAR",
-                    UIInfo.Load3r.getFontSize(), UIInfo.Load3r.getFont(),
-                    UIInfo.Load3r.getMaxLineWidth());
-            UIInfo.Load3a.setText("" + Simulation.SimInfo.Load3a + " MVA",
-                    UIInfo.Load3a.getFontSize(), UIInfo.Load3a.getFont(),
-                    UIInfo.Load3a.getMaxLineWidth());
+            if (Math.random() < textUpdateChance)
+                UIInfo.Load3.setText("" + String.format("%.2f", Simulation.SimInfo.Load3) + " MW"
+                                + "\n" + String.format("%.2f", Simulation.SimInfo.Load3r) + " MVAR"
+                                + "\n" + String.format("%.2f", Simulation.SimInfo.Load3a) + " MVA",
+                        UIInfo.Load3.getFontSize(), UIInfo.Load3.getFont(),
+                        UIInfo.Load3.getMaxLineWidth());
 
-            UIInfo.Load4.setText("" + Simulation.SimInfo.Load4 + " MW",
-                    UIInfo.Load4.getFontSize(), UIInfo.Load4.getFont(),
-                    UIInfo.Load4.getMaxLineWidth());
-            UIInfo.Load4r.setText("" + Simulation.SimInfo.Load4r + " MVAR",
-                    UIInfo.Load4r.getFontSize(), UIInfo.Load4r.getFont(),
-                    UIInfo.Load4r.getMaxLineWidth());
-            UIInfo.Load4a.setText("" + Simulation.SimInfo.Load4a + " MVA",
-                    UIInfo.Load4a.getFontSize(), UIInfo.Load4a.getFont(),
-                    UIInfo.Load4a.getMaxLineWidth());
+            if (Math.random() < textUpdateChance)
+                UIInfo.Load4.setText("" + String.format("%.2f", Simulation.SimInfo.Load4) + " MW"
+                                + "\n" + String.format("%.2f", Simulation.SimInfo.Load4r) + " MVAR"
+                                + "\n" + String.format("%.2f", Simulation.SimInfo.Load4a) + " MVA",
+                        UIInfo.Load4.getFontSize(), UIInfo.Load4.getFont(),
+                        UIInfo.Load4.getMaxLineWidth());
 
-            UIInfo.Load5.setText("" + Simulation.SimInfo.Load5 + " MW",
-                    UIInfo.Load5.getFontSize(), UIInfo.Load5.getFont(),
-                    UIInfo.Load5.getMaxLineWidth());
-            UIInfo.Load5r.setText("" + Simulation.SimInfo.Load5r + " MVAR",
-                    UIInfo.Load5r.getFontSize(), UIInfo.Load5r.getFont(),
-                    UIInfo.Load5r.getMaxLineWidth());
-            UIInfo.Load5a.setText("" + Simulation.SimInfo.Load5a + " MVA",
-                    UIInfo.Load5a.getFontSize(), UIInfo.Load5a.getFont(),
-                    UIInfo.Load5a.getMaxLineWidth());
+            if (Math.random() < textUpdateChance)
+                UIInfo.Load5.setText("" + String.format("%.2f", Simulation.SimInfo.Load5) + " MW"
+                                + "\n" + String.format("%.2f", Simulation.SimInfo.Load5r) + " MVAR"
+                                + "\n" + String.format("%.2f", Simulation.SimInfo.Load5a) + " MVA",
+                        UIInfo.Load5.getFontSize(), UIInfo.Load5.getFont(),
+                        UIInfo.Load5.getMaxLineWidth());
 
-            UIInfo.Load6.setText("" + Simulation.SimInfo.Load6 + " MW",
-                    UIInfo.Load6.getFontSize(), UIInfo.Load6.getFont(),
-                    UIInfo.Load6.getMaxLineWidth());
-            UIInfo.Load6r.setText("" + Simulation.SimInfo.Load6r + " MVAR",
-                    UIInfo.Load6r.getFontSize(), UIInfo.Load6r.getFont(),
-                    UIInfo.Load6r.getMaxLineWidth());
-            UIInfo.Load6a.setText("" + Simulation.SimInfo.Load6a + " MVA",
-                    UIInfo.Load6a.getFontSize(), UIInfo.Load6a.getFont(),
-                    UIInfo.Load6a.getMaxLineWidth());
+            if (Math.random() < textUpdateChance)
+                UIInfo.Load6.setText("" + String.format("%.2f", Simulation.SimInfo.Load6) + " MW"
+                                + "\n" + String.format("%.2f", Simulation.SimInfo.Load6r) + " MVAR"
+                                + "\n" + String.format("%.2f", Simulation.SimInfo.Load6a) + " MVA",
+                        UIInfo.Load6.getFontSize(), UIInfo.Load6.getFont(),
+                        UIInfo.Load6.getMaxLineWidth());
 
-            UIInfo.trA.setText("" + Simulation.SimInfo.trA + " %",
-                    UIInfo.trA.getFontSize(), UIInfo.trA.getFont(),
-                    UIInfo.trA.getMaxLineWidth());
-            UIInfo.trB.setText("" + Simulation.SimInfo.trB + " %",
-                    UIInfo.trB.getFontSize(), UIInfo.trB.getFont(),
-                    UIInfo.trB.getMaxLineWidth());
-            UIInfo.trC.setText("" + Simulation.SimInfo.trC + " %",
-                    UIInfo.trC.getFontSize(), UIInfo.trC.getFont(),
-                    UIInfo.trC.getMaxLineWidth());
-            UIInfo.trD.setText("" + Simulation.SimInfo.trD + " %",
-                    UIInfo.trD.getFontSize(), UIInfo.trD.getFont(),
-                    UIInfo.trD.getMaxLineWidth());
-            UIInfo.trE.setText("" + Simulation.SimInfo.trE + " %",
-                    UIInfo.trE.getFontSize(), UIInfo.trE.getFont(),
-                    UIInfo.trE.getMaxLineWidth());
-            UIInfo.trF.setText("" + Simulation.SimInfo.trF + " %",
-                    UIInfo.trF.getFontSize(), UIInfo.trF.getFont(),
-                    UIInfo.trF.getMaxLineWidth());
-            UIInfo.trG.setText("" + Simulation.SimInfo.trG + " %",
-                    UIInfo.trG.getFontSize(), UIInfo.trG.getFont(),
-                    UIInfo.trG.getMaxLineWidth());
-            UIInfo.trH.setText("" + Simulation.SimInfo.trH + " %",
-                    UIInfo.trH.getFontSize(), UIInfo.trH.getFont(),
-                    UIInfo.trH.getMaxLineWidth());
-            UIInfo.trI.setText("" + Simulation.SimInfo.trI + " %",
-                    UIInfo.trI.getFontSize(), UIInfo.trI.getFont(),
-                    UIInfo.trI.getMaxLineWidth());
-            UIInfo.trJ.setText("" + Simulation.SimInfo.trJ + " %",
-                    UIInfo.trJ.getFontSize(), UIInfo.trJ.getFont(),
-                    UIInfo.trJ.getMaxLineWidth());
-            UIInfo.trK.setText("" + Simulation.SimInfo.trK + " %",
-                    UIInfo.trK.getFontSize(), UIInfo.trK.getFont(),
-                    UIInfo.trK.getMaxLineWidth());
-            UIInfo.trL.setText("" + Simulation.SimInfo.trL + " %",
-                    UIInfo.trL.getFontSize(), UIInfo.trL.getFont(),
-                    UIInfo.trL.getMaxLineWidth());
-            UIInfo.trM.setText("" + Simulation.SimInfo.trM + " %",
-                    UIInfo.trM.getFontSize(), UIInfo.trM.getFont(),
-                    UIInfo.trM.getMaxLineWidth());
+            if (Math.random() < textUpdateChance)
+                UIInfo.trA.setText("" + String.format("%.2f", Simulation.SimInfo.trA * 100) + " %",
+                        UIInfo.trA.getFontSize(), UIInfo.trA.getFont(),
+                        UIInfo.trA.getMaxLineWidth());
+            if (Math.random() < textUpdateChance)
+                UIInfo.trB.setText("" + String.format("%.2f", Simulation.SimInfo.trB * 100) + " %",
+                        UIInfo.trB.getFontSize(), UIInfo.trB.getFont(),
+                        UIInfo.trB.getMaxLineWidth());
+            if (Math.random() < textUpdateChance)
+                UIInfo.trC.setText("" + String.format("%.2f", Simulation.SimInfo.trC * 100) + " %",
+                        UIInfo.trC.getFontSize(), UIInfo.trC.getFont(),
+                        UIInfo.trC.getMaxLineWidth());
+            if (Math.random() < textUpdateChance)
+                UIInfo.trD.setText("" + String.format("%.2f", Simulation.SimInfo.trD * 100) + " %",
+                        UIInfo.trD.getFontSize(), UIInfo.trD.getFont(),
+                        UIInfo.trD.getMaxLineWidth());
+            if (Math.random() < textUpdateChance)
+                UIInfo.trE.setText("" + String.format("%.2f", Simulation.SimInfo.trE * 100) + " %",
+                        UIInfo.trE.getFontSize(), UIInfo.trE.getFont(),
+                        UIInfo.trE.getMaxLineWidth());
+            if (Math.random() < textUpdateChance)
+                UIInfo.trF.setText("" + String.format("%.2f", Simulation.SimInfo.trF * 100) + " %",
+                        UIInfo.trF.getFontSize(), UIInfo.trF.getFont(),
+                        UIInfo.trF.getMaxLineWidth());
+            if (Math.random() < textUpdateChance)
+                UIInfo.trG.setText("" + String.format("%.2f", Simulation.SimInfo.trG * 100) + " %",
+                        UIInfo.trG.getFontSize(), UIInfo.trG.getFont(),
+                        UIInfo.trG.getMaxLineWidth());
+            if (Math.random() < textUpdateChance)
+                UIInfo.trH.setText("" + String.format("%.2f", Simulation.SimInfo.trH * 100) + " %",
+                        UIInfo.trH.getFontSize(), UIInfo.trH.getFont(),
+                        UIInfo.trH.getMaxLineWidth());
+            if (Math.random() < textUpdateChance)
+                UIInfo.trI.setText("" + String.format("%.2f", Simulation.SimInfo.trI * 100) + " %",
+                        UIInfo.trI.getFontSize(), UIInfo.trI.getFont(),
+                        UIInfo.trI.getMaxLineWidth());
+            if (Math.random() < textUpdateChance)
+                UIInfo.trJ.setText("" + String.format("%.2f", Simulation.SimInfo.trJ * 100) + " %",
+                        UIInfo.trJ.getFontSize(), UIInfo.trJ.getFont(),
+                        UIInfo.trJ.getMaxLineWidth());
+            if (Math.random() < textUpdateChance)
+                UIInfo.trK.setText("" + String.format("%.2f", Simulation.SimInfo.trK * 100) + " %",
+                        UIInfo.trK.getFontSize(), UIInfo.trK.getFont(),
+                        UIInfo.trK.getMaxLineWidth());
+            if (Math.random() < textUpdateChance)
+                UIInfo.trL.setText("" + String.format("%.2f", Simulation.SimInfo.trL * 100) + " %",
+                        UIInfo.trL.getFontSize(), UIInfo.trL.getFont(),
+                        UIInfo.trL.getMaxLineWidth());
+            if (Math.random() < textUpdateChance)
+                UIInfo.trM.setText("" + String.format("%.2f", Simulation.SimInfo.trM * 100) + " %",
+                        UIInfo.trM.getFontSize(), UIInfo.trM.getFont(),
+                        UIInfo.trM.getMaxLineWidth());
 
-            UIInfo.WindTurbines.setText("" + Simulation.SimInfo.WindTurbines + " MW",
-                    UIInfo.WindTurbines.getFontSize(), UIInfo.WindTurbines.getFont(),
-                    UIInfo.WindTurbines.getMaxLineWidth());
+            if (Math.random() < textUpdateChance)
+                UIInfo.WindTurbines.setText("" + String.format("%.2f", Simulation.SimInfo.WindTurbines) + " MW",
+                        UIInfo.WindTurbines.getFontSize(), UIInfo.WindTurbines.getFont(),
+                        UIInfo.WindTurbines.getMaxLineWidth());
 
-            UIInfo.PowPlant.setText("" + Simulation.SimInfo.PowPlant + " MW",
-                    UIInfo.PowPlant.getFontSize(), UIInfo.PowPlant.getFont(),
-                    UIInfo.PowPlant.getMaxLineWidth());
+            if (Math.random() < textUpdateChance)
+                UIInfo.PowPlant.setText("" + String.format("%.2f", Simulation.SimInfo.PowPlant) + " MW",
+                        UIInfo.PowPlant.getFontSize(), UIInfo.PowPlant.getFont(),
+                        UIInfo.PowPlant.getMaxLineWidth());
 
-            UIInfo.transTotal.setText("" + Simulation.SimInfo.transTotal + " MVA",
-                    UIInfo.transTotal.getFontSize(), UIInfo.transTotal.getFont(),
-                    UIInfo.transTotal.getMaxLineWidth());
+            if (Math.random() < textUpdateChance)
+                UIInfo.transTotal.setText("" + String.format("%.2f", Simulation.SimInfo.transTotal) + " MVA",
+                        UIInfo.transTotal.getFontSize(), UIInfo.transTotal.getFont(),
+                        UIInfo.transTotal.getMaxLineWidth());
 
-            UIInfo.SDGE.setText("" + Simulation.SimInfo.SDGE + " MW",
-                    UIInfo.SDGE.getFontSize(), UIInfo.SDGE.getFont(),
-                    UIInfo.SDGE.getMaxLineWidth());
+            if (Math.random() < textUpdateChance)
+                UIInfo.SDGE.setText("" + String.format("%.2f", Simulation.SimInfo.SDGE) + " MW",
+                        UIInfo.SDGE.getFontSize(), UIInfo.SDGE.getFont(),
+                        UIInfo.SDGE.getMaxLineWidth());
 
-            UIInfo.currentTime.setText("Time: " + "" + Simulation.SimInfo.currentTime,
+            UIInfo.currentTime.setText("Time: " + "" + String.format("%.2f", Simulation.SimInfo.currentTime),
                     UIInfo.currentTime.getFontSize(), UIInfo.currentTime.getFont(),
                     UIInfo.currentTime.getMaxLineWidth());
 
             textUpdateTimer += TEXT_UPDATE_INTERVAL;
         }
+
+        lightAnimation.advance(amount);
+
+        textUpdateChance = TEXT_UPDATE_CHANCE;
     }
 }

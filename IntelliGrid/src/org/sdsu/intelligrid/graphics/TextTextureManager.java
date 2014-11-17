@@ -130,41 +130,48 @@ class TextTextureManager {
 			currentStart += chars + skip;
 		}
 
-		final Bitmap bitmap = Bitmap.createBitmap(
-				getPowerOfTwo(fullRect.width()),
-				getPowerOfTwo(fullRect.height()), Bitmap.Config.ARGB_8888);
-		final Canvas canvas = new Canvas(bitmap);
-		bitmap.eraseColor(0);
+        final Bitmap bitmap;
+        if (fullRect != null) {
+            bitmap = Bitmap.createBitmap(
+                    getPowerOfTwo(fullRect.width()),
+                    getPowerOfTwo(fullRect.height()), Bitmap.Config.ARGB_8888);
+            final Canvas canvas = new Canvas(bitmap);
+            bitmap.eraseColor(0);
 
-		iterations = 0;
-		currentStart = 0;
-		while (currentStart < text.length()) {
-			iterations++;
-			int chars = textPaint.breakText(text.substring(currentStart), true,
-					maxLineWidth, null);
-			int skip = 0;
-			for (int i = currentStart; i < currentStart + chars; i++) {
-				if (text.charAt(i) == '\n') {
-					chars = i - currentStart;
-					skip++;
-					break;
-				}
-			}
-			if (skip == 0 && text.length() > currentStart + chars
-					&& text.charAt(currentStart + chars) != '\n'
-					&& text.charAt(currentStart + chars) != ' ') {
-				for (int i = currentStart + chars - 1; i >= currentStart; i--) {
-					if (text.charAt(i) == ' ') {
-						chars = i - currentStart;
-						skip++;
-						break;
-					}
-				}
-			}
-			canvas.drawText(text.substring(currentStart, currentStart + chars),
-					0, (int) (lineSpacing * (float) iterations), textPaint);
-			currentStart += chars + skip;
-		}
+            iterations = 0;
+            currentStart = 0;
+            while (currentStart < text.length()) {
+                iterations++;
+                int chars = textPaint.breakText(text.substring(currentStart), true,
+                        maxLineWidth, null);
+                int skip = 0;
+                for (int i = currentStart; i < currentStart + chars; i++) {
+                    if (text.charAt(i) == '\n') {
+                        chars = i - currentStart;
+                        skip++;
+                        break;
+                    }
+                }
+                if (skip == 0 && text.length() > currentStart + chars
+                        && text.charAt(currentStart + chars) != '\n'
+                        && text.charAt(currentStart + chars) != ' ') {
+                    for (int i = currentStart + chars - 1; i >= currentStart; i--) {
+                        if (text.charAt(i) == ' ') {
+                            chars = i - currentStart;
+                            skip++;
+                            break;
+                        }
+                    }
+                }
+                canvas.drawText(text.substring(currentStart, currentStart + chars),
+                        0, (int) (lineSpacing * (float) iterations), textPaint);
+                currentStart += chars + skip;
+            }
+        } else {
+            bitmap = Bitmap.createBitmap(
+                    getPowerOfTwo(0),
+                    getPowerOfTwo(0), Bitmap.Config.ARGB_8888);
+        }
 
 		final IntBuffer buffer = IntBuffer.allocate(1);
 		glGenTextures(1, buffer);

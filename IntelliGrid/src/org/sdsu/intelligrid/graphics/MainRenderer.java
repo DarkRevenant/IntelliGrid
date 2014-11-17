@@ -75,6 +75,11 @@ public class MainRenderer implements GLSurfaceView.Renderer {
 			leftms = 5;
 		}
 
+        // avoid catchup
+        if (leftms > 1000) {
+            leftms = 1000;
+        }
+
 		try {
 			TimeUnit.MILLISECONDS.sleep(leftms);
 		} catch (InterruptedException e) {

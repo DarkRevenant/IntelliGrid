@@ -343,8 +343,8 @@ public class LightAnimation {
 		}
 
 		public int advance(final float blueFlow, final float greenFlow) {
-			gen += (blueFlow + greenFlow) * GEN_SCALE;
-			genGreen += greenFlow * GEN_SCALE;
+			gen += (blueFlow + greenFlow) * GEN_SCALE * orbFlowScale;
+			genGreen += greenFlow * GEN_SCALE * orbFlowScale;
 
 			if (gen >= 1f && genGreen >= 1f) {
 				gen -= 1f;
@@ -373,8 +373,8 @@ public class LightAnimation {
 
 	private static final float OFF_THRESHOLD = 0.0001f;
 
-	private static final float GEN_SCALE = 2f;
-	private static final float FLOW_SCALE = 2f;
+	private static final float GEN_SCALE = 40f;
+	private static final float FLOW_SCALE = 20f;
 
 	private final List<Orb> orbs = new ArrayList<>();
 
@@ -393,6 +393,10 @@ public class LightAnimation {
 				}
 
 				final Segment segment = orb.getSegment();
+                if (segment.getFlow() <= OFF_THRESHOLD) {
+                    orb.fading = true;
+                    continue;
+                }
 				adv = orb
 						.advance(segment.getFlow() * amount * FLOW_SCALE + adv);
 				if (adv <= 0f) {
@@ -818,9 +822,8 @@ public class LightAnimation {
 								nextSegment.getLEDs().size() - 2));
 					}
 				} else {
-					orb.destroy(); // welp.
-					iter.remove();
-					break;
+                    orb.fading = true;
+                    continue;
 				}
 			}
 		}
@@ -828,8 +831,8 @@ public class LightAnimation {
 		if ((float) SimInfo.trA > OFF_THRESHOLD) {
 			final float flow = (float) SimInfo.trA * amount;
 			final float greenFlow = (float) (SimInfo.PowPlant + SimInfo.WindTurbines)
-					* (float) (SimInfo.trA / (SimInfo.trA + SimInfo.trM))
-					* amount / (float) SimInfo.capacity;
+					* (float) (SimInfo.trA / (SimInfo.trA + SimInfo.trM + SimInfo.BatteryStorage * SimInfo.GenScale))
+					* amount * (float) SimInfo.GenScale;
 			final float blueFlow = flow - greenFlow;
 
 			final Segment strand = (Segment) LightStrands.SEGMENT_A.strand;
@@ -896,8 +899,10 @@ public class LightAnimation {
 		}
 
 		if ((float) SimInfo.trD > OFF_THRESHOLD) {
-			Segment strand = (Segment) LightStrands.SEGMENT_D.strand;
-			strand.setFlow((float) SimInfo.trD);
+            Segment strand = (Segment) LightStrands.SEGMENT_D.strand;
+            strand.setFlow((float) SimInfo.trD);
+            strand = (Segment) LightStrands.SEGMENT_D_2.strand;
+            strand.setFlow((float) SimInfo.trD * (2f/3f));
 			strand = (Segment) LightStrands.SEGMENT_D_BRANCH_1.strand;
 			strand.setFlow((float) SimInfo.trD / 3f);
 			strand = (Segment) LightStrands.SEGMENT_D_BRANCH_2.strand;
@@ -906,12 +911,14 @@ public class LightAnimation {
 			strand.setFlow((float) SimInfo.trD / 3f);
 		} else {
 			final List<Integer> leds = LightStrands.SEGMENT_D.modelLEDs;
+            final List<Integer> leds2 = LightStrands.SEGMENT_D_2.modelLEDs;
 			final List<Integer> ledsBranch1 = LightStrands.SEGMENT_D_BRANCH_1.modelLEDs;
 			final List<Integer> ledsBranch2 = LightStrands.SEGMENT_D_BRANCH_2.modelLEDs;
 			final List<Integer> ledsBranch3 = LightStrands.SEGMENT_D_BRANCH_3.modelLEDs;
 
 			for (Orb orb : orbs) {
 				if (leds.contains(orb.getTo())
+                        || leds2.contains(orb.getTo())
 						|| ledsBranch1.contains(orb.getTo())
 						|| ledsBranch2.contains(orb.getTo())
 						|| ledsBranch3.contains(orb.getTo())) {
@@ -936,6 +943,8 @@ public class LightAnimation {
 		if ((float) SimInfo.trF > OFF_THRESHOLD) {
 			Segment strand = (Segment) LightStrands.SEGMENT_F.strand;
 			strand.setFlow((float) SimInfo.trF);
+            strand = (Segment) LightStrands.SEGMENT_F_2.strand;
+            strand.setFlow((float) SimInfo.trF * (2f/3f));
 			strand = (Segment) LightStrands.SEGMENT_F_BRANCH_1.strand;
 			strand.setFlow((float) SimInfo.trF / 3f);
 			strand = (Segment) LightStrands.SEGMENT_F_BRANCH_2.strand;
@@ -944,12 +953,14 @@ public class LightAnimation {
 			strand.setFlow((float) SimInfo.trF / 3f);
 		} else {
 			final List<Integer> leds = LightStrands.SEGMENT_F.modelLEDs;
+            final List<Integer> leds2 = LightStrands.SEGMENT_F_2.modelLEDs;
 			final List<Integer> ledsBranch1 = LightStrands.SEGMENT_F_BRANCH_1.modelLEDs;
 			final List<Integer> ledsBranch2 = LightStrands.SEGMENT_F_BRANCH_2.modelLEDs;
 			final List<Integer> ledsBranch3 = LightStrands.SEGMENT_F_BRANCH_3.modelLEDs;
 
 			for (Orb orb : orbs) {
 				if (leds.contains(orb.getTo())
+                        || leds2.contains(orb.getTo())
 						|| ledsBranch1.contains(orb.getTo())
 						|| ledsBranch2.contains(orb.getTo())
 						|| ledsBranch3.contains(orb.getTo())) {
@@ -1063,8 +1074,8 @@ public class LightAnimation {
 		if ((float) SimInfo.trM > OFF_THRESHOLD) {
 			final float flow = (float) SimInfo.trM * amount;
 			final float greenFlow = (float) (SimInfo.PowPlant + SimInfo.WindTurbines)
-					* (float) (SimInfo.trM / (SimInfo.trA + SimInfo.trM))
-					* amount / (float) SimInfo.capacity;
+					* (float) (SimInfo.trM / (SimInfo.trA + SimInfo.trM + SimInfo.BatteryStorage * SimInfo.GenScale))
+					* amount * (float) SimInfo.GenScale;
 			final float blueFlow = flow - greenFlow;
 
 			final Segment strand = (Segment) LightStrands.SEGMENT_M.strand;
@@ -1092,15 +1103,15 @@ public class LightAnimation {
 			}
 		}
 
-		if ((float) SimInfo.PowPlant / (float) SimInfo.capacity > OFF_THRESHOLD) {
-			final float flow = (float) SimInfo.PowPlant * amount
-					/ (float) SimInfo.capacity;
-			final float greenFlow = (float) SimInfo.PowPlant * amount
-					/ (float) SimInfo.capacity;
+		if (SimInfo.PowPlant + SimInfo.BatteryStorage > 0.0) {
+			final float flow = ((float) SimInfo.PowPlant + (float) SimInfo.BatteryStorage) * amount
+                    * (float) SimInfo.GenScale;
+			final float greenFlow = ((float) SimInfo.PowPlant + (float) SimInfo.BatteryStorage) * amount
+                    * (float) SimInfo.GenScale;
 			final float blueFlow = flow - greenFlow;
 
 			final Segment strand = (Segment) LightStrands.SEGMENT_W.strand;
-			strand.setFlow((float) SimInfo.PowPlant / (float) SimInfo.capacity);
+			strand.setFlow(((float) SimInfo.PowPlant + (float) SimInfo.BatteryStorage) * (float) SimInfo.GenScale);
 
 			final int type = strand.advance(blueFlow, greenFlow);
 			final OrbTypes orbType;
@@ -1115,25 +1126,41 @@ public class LightAnimation {
 						strand.getLEDs().get(1)));
 			}
 		} else {
-			final List<Integer> leds = LightStrands.SEGMENT_W.modelLEDs;
+            final float flow = -((float) SimInfo.PowPlant + (float) SimInfo.BatteryStorage) * amount
+                    * (float) SimInfo.GenScale;
+            final float greenFlow = 0f;
+            final float blueFlow = flow - greenFlow;
 
-			for (Orb orb : orbs) {
-				if (leds.contains(orb.getTo())) {
-					orb.fading = true;
-				}
-			}
-		}
+            final Segment strand = (Segment) LightStrands.SEGMENT_W.strand;
+            strand.setFlow(-((float) SimInfo.PowPlant + (float) SimInfo.BatteryStorage)  * (float) SimInfo.GenScale);
 
-		if ((float) SimInfo.WindTurbines / (float) SimInfo.capacity > OFF_THRESHOLD) {
+            final int type = strand.advance(blueFlow, greenFlow);
+            final OrbTypes orbType;
+            if (type == 2) {
+                orbType = OrbTypes.GREEN;
+            } else {
+                orbType = OrbTypes.BLUE;
+            }
+
+            if (type > 0) {
+                Orb orb = new Orb(orbType, strand, strand.getLEDs().get(
+                        strand.getLEDs().size() - 1), strand.getLEDs().get(
+                        strand.getLEDs().size() - 2));
+                orb.forward = false;
+                orbs.add(orb);
+            }
+        }
+
+		if ((float) SimInfo.WindTurbines * (float) SimInfo.GenScale > OFF_THRESHOLD) {
 			final float flow = (float) SimInfo.WindTurbines * amount
-					/ (float) SimInfo.capacity;
+                    * (float) SimInfo.GenScale;
 			final float greenFlow = (float) SimInfo.WindTurbines * amount
-					/ (float) SimInfo.capacity;
+                    * (float) SimInfo.GenScale;
 			final float blueFlow = flow - greenFlow;
 
 			final Segment strand = (Segment) LightStrands.SEGMENT_X.strand;
 			strand.setFlow((float) SimInfo.WindTurbines
-					/ (float) SimInfo.capacity);
+                    * (float) SimInfo.GenScale);
 
 			final int type = strand.advance(blueFlow, greenFlow);
 			final OrbTypes orbType;

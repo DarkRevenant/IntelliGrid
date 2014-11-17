@@ -102,7 +102,7 @@ public class Simulation {
 
         //Time Scale
         double timeScale = 100.0; // ex. timeScale 100 = 1 second of application time is 100 seconds of simulation
-        double time = 12; // in Hours
+        double time = 0; // in Hours
     }
 
     public static double linear(final double[] array, double d) {
@@ -134,6 +134,8 @@ public class Simulation {
 
         data.time += amt * data.timeScale / 3600.0;
         final double time = data.time;
+
+
 
         double Load1 = linear(data.res1, time) + (data.L1EV * (data.numEV * data.EV)) - (data.L1SL * (linear(data.Solar, time) * linear(data.weather, data.w)));
         double Load2 = linear(data.res2, time) + (data.L2EV * (data.numEV * data.EV)) - (data.L2SL * (linear(data.Solar, time) * linear(data.weather, data.w)));
@@ -352,7 +354,7 @@ public class Simulation {
         SimInfo.BatteryStorage = BatteryStorage;
         SimInfo.transTotal = transTotal;
         SimInfo.SDGE = SDGE;
-        SimInfo.capacity = data.capacity;
+        SimInfo.GenScale = 1.0 / data.capacity;
         SimInfo.currentTime = currentTime;
     }
 
@@ -397,7 +399,7 @@ public class Simulation {
         public static double BatteryStorage;
         public static double transTotal;
         public static double SDGE;
-        public static double capacity;
+        public static double GenScale;
         public static double currentTime;
 
     }
