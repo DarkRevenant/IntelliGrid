@@ -187,7 +187,7 @@ public class Simulation {
         //Fault at Load1/Residential1
         if (data.fault.equals("B")) {
             Load1 = 0;
-            //res1r[i] = 0;
+            Load1r = 0;
             trB = 0;
             trC = trD + trE;
             trA = trB + trC;
@@ -208,7 +208,7 @@ public class Simulation {
         //Fault at Load2/Residential2
         if (data.fault.equals("D")) {
             Load2 = 0;
-            // res2r[i] = 0;
+            Load2r = 0;
             trD = 0;
             trC = trD + trE;
             trA = trB + trC;
@@ -229,7 +229,7 @@ public class Simulation {
         //Fault at Load3/Residential3
         if (data.fault.equals("F")) {
             Load3 = 0;
-            //res3r[i] = 0;
+            Load3r = 0;
             trF = 0;
             trC = trD + trE;
             trA = trB + trC;
@@ -240,7 +240,7 @@ public class Simulation {
         //Fault at Load4/Commercial2
         if (data.fault.equals("H")) {
             Load4 = 0;
-            //comm2r[i] = 0;
+            Load4r = 0;
             trH = 0;
             trC = trD + trE;
             trA = trB + trC;
@@ -261,7 +261,7 @@ public class Simulation {
         //Fault at Load5/Commercial1
         if (data.fault.equals("J")) {
             Load5 = 0;
-            // comm1r[i] = 0;
+            Load5r = 0;
             trJ = 0;
             trC = trD + trE;
             trA = trB + trC;
@@ -283,7 +283,7 @@ public class Simulation {
         //Fault at Load6/Industrial1
         if (data.fault.equals("L")) {
             Load6 = 0;
-            // ind1r[i] = 0;
+            Load6r = 0;
             trL = 0;
             trC = trD + trE;
             trA = trB + trC;
