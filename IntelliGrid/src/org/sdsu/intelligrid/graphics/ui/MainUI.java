@@ -503,12 +503,12 @@ public class MainUI {
         ledPositionMap.put(5, pixelsToCoords(1300, 1005));
         ledPositionMap.put(6, pixelsToCoords(1300, 965));
         ledPositionMap.put(7, pixelsToCoords(1280, 1005));
-        ledPositionMap.put(8, pixelsToCoords(1180, 1005));
-        ledPositionMap.put(9, pixelsToCoords(1120, 1005));
+        ledPositionMap.put(8, pixelsToCoords(1230, 1005));
+        ledPositionMap.put(9, pixelsToCoords(1190, 1005));
         ledPositionMap.put(10, pixelsToCoords(1060, 1005));
-        ledPositionMap.put(11, pixelsToCoords(1060, 990));
+        ledPositionMap.put(11, pixelsToCoords(1060, 1040));
         ledPositionMap.put(12, pixelsToCoords(1060, 1070));
-        ledPositionMap.put(13, pixelsToCoords(1080, 1005));
+        ledPositionMap.put(13, pixelsToCoords(1000, 1005));
         ledPositionMap.put(14, pixelsToCoords(938, 1005));
         ledPositionMap.put(15, pixelsToCoords(1060, 970));
         ledPositionMap.put(16, pixelsToCoords(1060, 935));
@@ -631,7 +631,7 @@ public class MainUI {
         ledPositionMap.put(133, pixelsToCoords(000, 000));
         ledPositionMap.put(134, pixelsToCoords(000, 000));
         ledPositionMap.put(135, pixelsToCoords(000, 000));
-        ledPositionMap.put(136, pixelsToCoords(000, 000));
+        ledPositionMap.put(136, pixelsToCoords(1690, 1150));
         ledPositionMap.put(137, pixelsToCoords(000, 000));
         ledPositionMap.put(138, pixelsToCoords(000, 000));
         ledPositionMap.put(139, pixelsToCoords(000, 000));
@@ -648,8 +648,8 @@ public class MainUI {
         ledPositionMap.put(150, pixelsToCoords(000, 000));
         ledPositionMap.put(151, pixelsToCoords(000, 000));
         ledPositionMap.put(152, pixelsToCoords(000, 000));
-        ledPositionMap.put(153, pixelsToCoords(000, 000));
-        ledPositionMap.put(154, pixelsToCoords(000, 000));
+        ledPositionMap.put(153, pixelsToCoords(1720, 1150));
+        ledPositionMap.put(154, pixelsToCoords(1690, 1150));
         ledPositionMap.put(155, pixelsToCoords(000, 000));
         ledPositionMap.put(156, pixelsToCoords(000, 000));
         ledPositionMap.put(157, pixelsToCoords(000, 000));

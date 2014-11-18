@@ -8,10 +8,6 @@ package org.sdsu.intelligrid.simulation;
  */
 public class Simulation {
 
-    public Simulation() {
-
-    }
-
     public static class SimulationData {
         //Solar Panels
         public static double[] Solar = {0, 0, 0, 0, 0, 0, 0, 0.336, 1, 1.2, 1.4, 1.6, 1.6, 1.6, 1.6, 1.6, 1.4, 1.2, 1, 0.336, 0, 0, 0, 0};
@@ -68,10 +64,6 @@ public class Simulation {
         public static double[] ind1r =
                 {2.54269227, 2.436141356, 2.329590442, 2.271471761, 2.223039528, 2.436625678, 2.644399961, 2.857501789, 3.070603618, 3.283705446, 3.598514965, 3.705065879,
                         3.811616794, 4.024718622, 4.23782045, 4.446079055, 4.660633851, 4.658212239, 4.660149528, 4.339528141, 3.811616794, 3.283705446, 2.964052704, 2.54269227};
-
-        public static double[] Hour = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
-                13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23};
-
         //Electric Vehicles
         double numEV = 1; //number of electric vehicles
         double EV = 1;  //sample number
@@ -101,7 +93,7 @@ public class Simulation {
         double capacity = 30;
 
         //Time Scale
-        double timeScale = 100.0; // ex. timeScale 100 = 1 second of application time is 100 seconds of simulation
+        double timeScale = 2000.0; // ex. timeScale 100 = 1 second of application time is 100 seconds of simulation
         double time = 0; // in Hours
     }
 
@@ -134,6 +126,9 @@ public class Simulation {
 
         data.time += amt * data.timeScale / 3600.0;
         final double time = data.time;
+        if (data.time >= 24.0) {
+            data.time -= 24.0;
+        }
 
 
 
@@ -312,7 +307,7 @@ public class Simulation {
         //Total SDGE Power
         double SDGE = transTotal - PowPlant - WindTurbines + BatteryStorage;
 
-        double currentTime = linear(data.Hour, time);
+        double currentTime = data.time;
 
         SimInfo.Load1 = Load1;
         SimInfo.Load2 = Load2;

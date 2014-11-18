@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.sdsu.intelligrid.Global;
 import org.sdsu.intelligrid.R;
@@ -239,14 +241,18 @@ public class LightAnimation {
 				color = new Color(111, 255, 0);
 			}
 
-			sprite = new Sprite(MainUI.ledPositionMap.get(from), 0, 0f,
+			sprite = new Sprite(MainUI.ledPositionMap.get(from), 1, 0f,
 					new Vector2f(1f, 1f), color, R.drawable.orb);
 
 			Global.getRenderer().addDrawable(sprite);
 		}
 
 		public float advance(final float distance) {
-			final float dist = Vector2f.sub(MainUI.ledPositionMap.get(toLED),
+            if (Math.abs(MainUI.ledPositionMap.get(toLED).x - MainUI.ledPositionMap.get(fromLED).x) <= OFF_THRESHOLD && Math.abs(MainUI.ledPositionMap.get(toLED).y - MainUI.ledPositionMap.get(fromLED).y) <= OFF_THRESHOLD) {
+                return distance;
+            }
+
+            final float dist = Vector2f.sub(MainUI.ledPositionMap.get(toLED),
 					MainUI.ledPositionMap.get(fromLED), null).length();
 			progress += distance / dist;
 
@@ -379,6 +385,7 @@ public class LightAnimation {
 	private final List<Orb> orbs = new ArrayList<>();
 
 	public void advance(final float amount) {
+        //Logger.getGlobal().log(Level.SEVERE, "" + orbs.size() + " orbs");
 		Iterator<Orb> iter = orbs.iterator();
 		while (iter.hasNext()) {
 			Orb orb = iter.next();
@@ -393,12 +400,15 @@ public class LightAnimation {
 				}
 
 				final Segment segment = orb.getSegment();
-                if (segment.getFlow() <= OFF_THRESHOLD) {
+                if (Math.abs(segment.getFlow()) <= OFF_THRESHOLD) {
                     orb.fading = true;
                     continue;
                 }
+                if ((segment.getFlow() < 0f && orb.forward) || (segment.getFlow() > 0f && !orb.forward)) {
+                    orb.forward = !orb.forward;
+                }
 				adv = orb
-						.advance(segment.getFlow() * amount * FLOW_SCALE + adv);
+						.advance(Math.abs(segment.getFlow()) * amount * FLOW_SCALE + adv);
 				if (adv <= 0f) {
 					break;
 				}
@@ -421,10 +431,8 @@ public class LightAnimation {
 				Segment nextSegment = null;
 
 				if (segment == LightStrands.SEGMENT_A.strand && orb.forward) {
-					final float b = SimInfo.Load1 > 0.0 ? (float) SimInfo.trB
-							: 0f;
-					final float c = SimInfo.trC + OFF_THRESHOLD >= SimInfo.trD
-							+ SimInfo.trE ? (float) SimInfo.trC : 0f;
+					final float b = Math.max(getFlow(LightStrands.SEGMENT_B), 0f);
+					final float c = Math.max(getFlow(LightStrands.SEGMENT_C), 0f);
 					final int dir = Junctions.ABC.advance(b, c, 0f);
 					if (dir == 1) {
 						nextSegment = (Segment) LightStrands.SEGMENT_B.strand;
@@ -451,7 +459,7 @@ public class LightAnimation {
 				}
 
 				if (segment == LightStrands.SEGMENT_B.strand && !orb.forward) {
-					if (SimInfo.trC > OFF_THRESHOLD) {
+					if (getFlow(LightStrands.SEGMENT_C) > OFF_THRESHOLD) {
 						nextSegment = (Segment) LightStrands.SEGMENT_C.strand;
 						orb.forward = true;
 					} else {
@@ -474,10 +482,8 @@ public class LightAnimation {
 				}
 
 				if (segment == LightStrands.SEGMENT_C.strand && orb.forward) {
-					final float d = SimInfo.Load2 > 0.0 ? (float) SimInfo.trD
-							: 0f;
-					final float e = SimInfo.trE + OFF_THRESHOLD >= SimInfo.trF
-							+ SimInfo.trG ? (float) SimInfo.trE : 0f;
+					final float d = Math.max(getFlow(LightStrands.SEGMENT_D), 0f);
+					final float e = Math.max(getFlow(LightStrands.SEGMENT_E), 0f);
 					final int dir = Junctions.CDE.advance(0f, d, e);
 					if (dir == 2) {
 						nextSegment = (Segment) LightStrands.SEGMENT_D.strand;
@@ -487,7 +493,7 @@ public class LightAnimation {
 				}
 
 				if (segment == LightStrands.SEGMENT_C.strand && !orb.forward) {
-					if (SimInfo.trB > OFF_THRESHOLD) {
+					if (getFlow(LightStrands.SEGMENT_B) > OFF_THRESHOLD) {
 						nextSegment = (Segment) LightStrands.SEGMENT_B.strand;
 						orb.forward = true;
 					} else {
@@ -507,9 +513,12 @@ public class LightAnimation {
 				}
 
 				if (segment == LightStrands.SEGMENT_D.strand && !orb.forward) {
-					if (SimInfo.trC > SimInfo.trE) {
+                    final float c = -Math.min(getFlow(LightStrands.SEGMENT_C), 0f);
+                    final float e = Math.max(getFlow(LightStrands.SEGMENT_E), 0f);
+                    final int dir = Junctions.CDE.advance(c, 0f, e);
+                    if (dir == 1) {
 						nextSegment = (Segment) LightStrands.SEGMENT_C.strand;
-					} else {
+					} else if (dir == 3) {
 						nextSegment = (Segment) LightStrands.SEGMENT_E.strand;
 						orb.forward = true;
 					}
@@ -536,17 +545,18 @@ public class LightAnimation {
 					continue;
 				}
 
-				if ((segment == LightStrands.SEGMENT_D_BRANCH_1.strand
-						|| segment == LightStrands.SEGMENT_D_BRANCH_2.strand || segment == LightStrands.SEGMENT_D_BRANCH_3.strand)
-						&& !orb.forward) {
+				if (segment == LightStrands.SEGMENT_D_BRANCH_1.strand && !orb.forward) {
 					nextSegment = (Segment) LightStrands.SEGMENT_D.strand;
 				}
 
+                if ((segment == LightStrands.SEGMENT_D_BRANCH_2.strand || segment == LightStrands.SEGMENT_D_BRANCH_3.strand)
+                        && !orb.forward) {
+                    nextSegment = (Segment) LightStrands.SEGMENT_D_2.strand;
+                }
+
 				if (segment == LightStrands.SEGMENT_E.strand && orb.forward) {
-					final float f = SimInfo.Load3 > 0.0 ? (float) SimInfo.trF
-							: 0f;
-					final float g = SimInfo.trG > OFF_THRESHOLD ? (float) SimInfo.trG
-							: 0f;
+					final float f = Math.max(getFlow(LightStrands.SEGMENT_F), 0f);
+					final float g = Math.max(getFlow(LightStrands.SEGMENT_G), 0f);
 					final int dir = Junctions.EFG.advance(0f, f, g);
 					if (dir == 2) {
 						nextSegment = (Segment) LightStrands.SEGMENT_F.strand;
@@ -556,10 +566,8 @@ public class LightAnimation {
 				}
 
 				if (segment == LightStrands.SEGMENT_E.strand && !orb.forward) {
-					final float c = SimInfo.Load1 > 0.0 ? (float) SimInfo.trC
-							: 0f;
-					final float d = SimInfo.Load2 > 0.0 ? (float) SimInfo.trD
-							: 0f;
+					final float c = -Math.min(getFlow(LightStrands.SEGMENT_C), 0f);
+					final float d = Math.max(getFlow(LightStrands.SEGMENT_D), 0f);
 					final int dir = Junctions.CDE.advance(c, d, 0f);
 					if (dir == 1) {
 						nextSegment = (Segment) LightStrands.SEGMENT_C.strand;
@@ -580,12 +588,15 @@ public class LightAnimation {
 				}
 
 				if (segment == LightStrands.SEGMENT_F.strand && !orb.forward) {
-					if (SimInfo.trE > SimInfo.trG) {
-						nextSegment = (Segment) LightStrands.SEGMENT_E.strand;
-					} else {
-						nextSegment = (Segment) LightStrands.SEGMENT_G.strand;
-						orb.forward = true;
-					}
+                    final float e = -Math.min(getFlow(LightStrands.SEGMENT_E), 0f);
+                    final float g = Math.max(getFlow(LightStrands.SEGMENT_G), 0f);
+                    final int dir = Junctions.EFG.advance(e, 0f, g);
+                    if (dir == 1) {
+                        nextSegment = (Segment) LightStrands.SEGMENT_E.strand;
+                    } else if (dir == 3) {
+                        nextSegment = (Segment) LightStrands.SEGMENT_G.strand;
+                        orb.forward = true;
+                    }
 				}
 
 				if (segment == LightStrands.SEGMENT_F_2.strand && orb.forward) {
@@ -609,16 +620,18 @@ public class LightAnimation {
 					continue;
 				}
 
-				if ((segment == LightStrands.SEGMENT_F_BRANCH_1.strand
-						|| segment == LightStrands.SEGMENT_F_BRANCH_2.strand || segment == LightStrands.SEGMENT_F_BRANCH_3.strand)
-						&& !orb.forward) {
+				if (segment == LightStrands.SEGMENT_F_BRANCH_1.strand && !orb.forward) {
 					nextSegment = (Segment) LightStrands.SEGMENT_F.strand;
 				}
 
+                if ((segment == LightStrands.SEGMENT_F_BRANCH_2.strand || segment == LightStrands.SEGMENT_F_BRANCH_3.strand)
+                        && !orb.forward) {
+                    nextSegment = (Segment) LightStrands.SEGMENT_F_2.strand;
+                }
+
 				if (segment == LightStrands.SEGMENT_G.strand && orb.forward) {
-					final float i = (float) SimInfo.trI;
-					final float h = SimInfo.Load4 > 0.0 ? (float) SimInfo.trH
-							: 0f;
+					final float i = -Math.min(getFlow(LightStrands.SEGMENT_I), 0f);
+					final float h = Math.max(getFlow(LightStrands.SEGMENT_H), 0f);
 					final int dir = Junctions.IHG.advance(i, h, 0f);
 					if (dir == 1) {
 						nextSegment = (Segment) LightStrands.SEGMENT_I.strand;
@@ -629,9 +642,8 @@ public class LightAnimation {
 				}
 
 				if (segment == LightStrands.SEGMENT_G.strand && !orb.forward) {
-					final float e = (float) SimInfo.trE;
-					final float f = SimInfo.Load3 > 0.0 ? (float) SimInfo.trF
-							: 0f;
+					final float e = -Math.min(getFlow(LightStrands.SEGMENT_E), 0f);
+					final float f = Math.max(getFlow(LightStrands.SEGMENT_F), 0f);
 					final int dir = Junctions.EFG.advance(e, f, 0f);
 					if (dir == 1) {
 						nextSegment = (Segment) LightStrands.SEGMENT_E.strand;
@@ -652,11 +664,14 @@ public class LightAnimation {
 				}
 
 				if (segment == LightStrands.SEGMENT_H.strand && !orb.forward) {
-					if (SimInfo.trI > SimInfo.trG) {
-						nextSegment = (Segment) LightStrands.SEGMENT_I.strand;
-					} else {
-						nextSegment = (Segment) LightStrands.SEGMENT_G.strand;
-					}
+                    final float i = -Math.min(getFlow(LightStrands.SEGMENT_I), 0f);
+                    final float g = -Math.min(getFlow(LightStrands.SEGMENT_G), 0f);
+                    final int dir = Junctions.IHG.advance(i, 0f, g);
+                    if (dir == 1) {
+                        nextSegment = (Segment) LightStrands.SEGMENT_I.strand;
+                    } else if (dir == 3) {
+                        nextSegment = (Segment) LightStrands.SEGMENT_G.strand;
+                    }
 				}
 
 				if ((segment == LightStrands.SEGMENT_H_BRANCH_1.strand || segment == LightStrands.SEGMENT_H_BRANCH_2.strand)
@@ -671,10 +686,8 @@ public class LightAnimation {
 				}
 
 				if (segment == LightStrands.SEGMENT_I.strand && orb.forward) {
-					final float h = SimInfo.Load4 > 0.0 ? (float) SimInfo.trH
-							: 0f;
-					final float g = SimInfo.trG > OFF_THRESHOLD ? (float) SimInfo.trG
-							: 0f;
+					final float h = Math.max(getFlow(LightStrands.SEGMENT_H), 0f);
+					final float g = -Math.min(getFlow(LightStrands.SEGMENT_G), 0f);
 					final int dir = Junctions.IHG.advance(0f, h, g);
 					if (dir == 2) {
 						nextSegment = (Segment) LightStrands.SEGMENT_H.strand;
@@ -685,10 +698,8 @@ public class LightAnimation {
 				}
 
 				if (segment == LightStrands.SEGMENT_I.strand && !orb.forward) {
-					final float k = SimInfo.Load6 > 0.0 ? (float) SimInfo.trK
-							: 0f;
-					final float j = SimInfo.Load5 > 0.0 ? (float) SimInfo.trJ
-							: 0f;
+					final float k = -Math.min(getFlow(LightStrands.SEGMENT_K), 0f);
+					final float j = Math.max(getFlow(LightStrands.SEGMENT_J), 0f);
 					final int dir = Junctions.KJI.advance(k, j, 0f);
 					if (dir == 1) {
 						nextSegment = (Segment) LightStrands.SEGMENT_K.strand;
@@ -709,12 +720,15 @@ public class LightAnimation {
 				}
 
 				if (segment == LightStrands.SEGMENT_J.strand && !orb.forward) {
-					if (SimInfo.trK > SimInfo.trI) {
-						nextSegment = (Segment) LightStrands.SEGMENT_K.strand;
-					} else {
-						nextSegment = (Segment) LightStrands.SEGMENT_I.strand;
-						orb.forward = true;
-					}
+                    final float k = -Math.min(getFlow(LightStrands.SEGMENT_K), 0f);
+                    final float i = Math.max(getFlow(LightStrands.SEGMENT_I), 0f);
+                    final int dir = Junctions.KJI.advance(k, 0f, i);
+                    if (dir == 1) {
+                        nextSegment = (Segment) LightStrands.SEGMENT_K.strand;
+                    } else if (dir == 3) {
+                        nextSegment = (Segment) LightStrands.SEGMENT_I.strand;
+                        orb.forward = true;
+                    }
 				}
 
 				if ((segment == LightStrands.SEGMENT_J_BRANCH_1.strand || segment == LightStrands.SEGMENT_J_BRANCH_2.strand)
@@ -729,10 +743,8 @@ public class LightAnimation {
 				}
 
 				if (segment == LightStrands.SEGMENT_K.strand && orb.forward) {
-					final float j = SimInfo.Load5 > 0.0 ? (float) SimInfo.trJ
-							: 0f;
-					final float i = SimInfo.trI + OFF_THRESHOLD >= SimInfo.trH
-							+ SimInfo.trG ? (float) SimInfo.trI : 0f;
+					final float j = Math.max(getFlow(LightStrands.SEGMENT_J), 0f);
+					final float i = Math.max(getFlow(LightStrands.SEGMENT_I), 0f);
 					final int dir = Junctions.KJI.advance(0f, j, i);
 					if (dir == 2) {
 						nextSegment = (Segment) LightStrands.SEGMENT_J.strand;
@@ -742,7 +754,7 @@ public class LightAnimation {
 				}
 
 				if (segment == LightStrands.SEGMENT_K.strand && !orb.forward) {
-					if (SimInfo.trL > OFF_THRESHOLD) {
+					if (getFlow(LightStrands.SEGMENT_L) > OFF_THRESHOLD) {
 						nextSegment = (Segment) LightStrands.SEGMENT_L.strand;
 						orb.forward = true;
 					} else {
@@ -762,7 +774,7 @@ public class LightAnimation {
 				}
 
 				if (segment == LightStrands.SEGMENT_L.strand && !orb.forward) {
-					if (SimInfo.trK > OFF_THRESHOLD) {
+					if (getFlow(LightStrands.SEGMENT_K) > OFF_THRESHOLD) {
 						nextSegment = (Segment) LightStrands.SEGMENT_K.strand;
 						orb.forward = true;
 					} else {
@@ -783,10 +795,8 @@ public class LightAnimation {
 				}
 
 				if (segment == LightStrands.SEGMENT_M.strand && orb.forward) {
-					final float l = SimInfo.Load6 > 0.0 ? (float) SimInfo.trL
-							: 0f;
-					final float k = SimInfo.trK + OFF_THRESHOLD >= SimInfo.trJ
-							+ SimInfo.trI ? (float) SimInfo.trK : 0f;
+					final float l = Math.max(getFlow(LightStrands.SEGMENT_L), 0f);
+					final float k = Math.max(getFlow(LightStrands.SEGMENT_K), 0f);
 					final int dir = Junctions.MLK.advance(l, k, 0f);
 					if (dir == 1) {
 						nextSegment = (Segment) LightStrands.SEGMENT_L.strand;
@@ -813,13 +823,12 @@ public class LightAnimation {
 				if (nextSegment != null) {
 					orb.setSegment(nextSegment);
 					if (orb.forward) {
-						orb.setFrom(nextSegment.getLEDs().get(0));
-						orb.setTo(nextSegment.getLEDs().get(1));
+						orb.setFrom(orb.getTo());
+						orb.setTo(nextSegment.getLEDs().get(0));
 					} else {
-						orb.setFrom(nextSegment.getLEDs().get(
-								nextSegment.getLEDs().size() - 1));
+						orb.setFrom(orb.getTo());
 						orb.setTo(nextSegment.getLEDs().get(
-								nextSegment.getLEDs().size() - 2));
+								nextSegment.getLEDs().size() - 1));
 					}
 				} else {
                     orb.fading = true;
@@ -836,7 +845,7 @@ public class LightAnimation {
 			final float blueFlow = flow - greenFlow;
 
 			final Segment strand = (Segment) LightStrands.SEGMENT_A.strand;
-			strand.setFlow((float) SimInfo.trA);
+			strand.setFlow(getFlow(LightStrands.SEGMENT_A));
 
 			final int type = strand.advance(blueFlow, greenFlow);
 			final OrbTypes orbType;
@@ -850,225 +859,95 @@ public class LightAnimation {
 				orbs.add(new Orb(orbType, strand, strand.getLEDs().get(0),
 						strand.getLEDs().get(1)));
 			}
-		} else {
-			final List<Integer> leds = LightStrands.SEGMENT_A.modelLEDs;
-
-			for (Orb orb : orbs) {
-				if (leds.contains(orb.getTo())) {
-					orb.fading = true;
-				}
-			}
 		}
 
 		if ((float) SimInfo.trB > OFF_THRESHOLD) {
 			Segment strand = (Segment) LightStrands.SEGMENT_B.strand;
-			strand.setFlow((float) SimInfo.trB);
+			strand.setFlow(getFlow(LightStrands.SEGMENT_B));
 			strand = (Segment) LightStrands.SEGMENT_B_BRANCH_1.strand;
-			strand.setFlow((float) SimInfo.trB / 3f);
+			strand.setFlow(getFlow(LightStrands.SEGMENT_B_BRANCH_1));
 			strand = (Segment) LightStrands.SEGMENT_B_BRANCH_2.strand;
-			strand.setFlow((float) SimInfo.trB / 3f);
+			strand.setFlow(getFlow(LightStrands.SEGMENT_B_BRANCH_2));
 			strand = (Segment) LightStrands.SEGMENT_B_BRANCH_3.strand;
-			strand.setFlow((float) SimInfo.trB / 3f);
-		} else {
-			final List<Integer> leds = LightStrands.SEGMENT_B.modelLEDs;
-			final List<Integer> ledsBranch1 = LightStrands.SEGMENT_B_BRANCH_1.modelLEDs;
-			final List<Integer> ledsBranch2 = LightStrands.SEGMENT_B_BRANCH_2.modelLEDs;
-			final List<Integer> ledsBranch3 = LightStrands.SEGMENT_B_BRANCH_3.modelLEDs;
-
-			for (Orb orb : orbs) {
-				if (leds.contains(orb.getTo())
-						|| ledsBranch1.contains(orb.getTo())
-						|| ledsBranch2.contains(orb.getTo())
-						|| ledsBranch3.contains(orb.getTo())) {
-					orb.fading = true;
-				}
-			}
+			strand.setFlow(getFlow(LightStrands.SEGMENT_B_BRANCH_3));
 		}
 
 		if ((float) SimInfo.trC > OFF_THRESHOLD) {
 			final Segment strand = (Segment) LightStrands.SEGMENT_C.strand;
-			strand.setFlow((float) SimInfo.trC);
-		} else {
-			final List<Integer> leds = LightStrands.SEGMENT_C.modelLEDs;
-
-			for (Orb orb : orbs) {
-				if (leds.contains(orb.getTo())) {
-					orb.fading = true;
-				}
-			}
+			strand.setFlow(getFlow(LightStrands.SEGMENT_C));
 		}
 
 		if ((float) SimInfo.trD > OFF_THRESHOLD) {
             Segment strand = (Segment) LightStrands.SEGMENT_D.strand;
-            strand.setFlow((float) SimInfo.trD);
+            strand.setFlow(getFlow(LightStrands.SEGMENT_D));
             strand = (Segment) LightStrands.SEGMENT_D_2.strand;
-            strand.setFlow((float) SimInfo.trD * (2f/3f));
+            strand.setFlow(getFlow(LightStrands.SEGMENT_D_2));
 			strand = (Segment) LightStrands.SEGMENT_D_BRANCH_1.strand;
-			strand.setFlow((float) SimInfo.trD / 3f);
+			strand.setFlow(getFlow(LightStrands.SEGMENT_D_BRANCH_1));
 			strand = (Segment) LightStrands.SEGMENT_D_BRANCH_2.strand;
-			strand.setFlow((float) SimInfo.trD / 3f);
+			strand.setFlow(getFlow(LightStrands.SEGMENT_D_BRANCH_2));
 			strand = (Segment) LightStrands.SEGMENT_D_BRANCH_3.strand;
-			strand.setFlow((float) SimInfo.trD / 3f);
-		} else {
-			final List<Integer> leds = LightStrands.SEGMENT_D.modelLEDs;
-            final List<Integer> leds2 = LightStrands.SEGMENT_D_2.modelLEDs;
-			final List<Integer> ledsBranch1 = LightStrands.SEGMENT_D_BRANCH_1.modelLEDs;
-			final List<Integer> ledsBranch2 = LightStrands.SEGMENT_D_BRANCH_2.modelLEDs;
-			final List<Integer> ledsBranch3 = LightStrands.SEGMENT_D_BRANCH_3.modelLEDs;
-
-			for (Orb orb : orbs) {
-				if (leds.contains(orb.getTo())
-                        || leds2.contains(orb.getTo())
-						|| ledsBranch1.contains(orb.getTo())
-						|| ledsBranch2.contains(orb.getTo())
-						|| ledsBranch3.contains(orb.getTo())) {
-					orb.fading = true;
-				}
-			}
+			strand.setFlow(getFlow(LightStrands.SEGMENT_D_BRANCH_3));
 		}
 
 		if ((float) SimInfo.trE > OFF_THRESHOLD) {
 			final Segment strand = (Segment) LightStrands.SEGMENT_E.strand;
-			strand.setFlow((float) SimInfo.trE);
-		} else {
-			final List<Integer> leds = LightStrands.SEGMENT_E.modelLEDs;
-
-			for (Orb orb : orbs) {
-				if (leds.contains(orb.getTo())) {
-					orb.fading = true;
-				}
-			}
+			strand.setFlow(getFlow(LightStrands.SEGMENT_E));
 		}
 
 		if ((float) SimInfo.trF > OFF_THRESHOLD) {
 			Segment strand = (Segment) LightStrands.SEGMENT_F.strand;
-			strand.setFlow((float) SimInfo.trF);
+			strand.setFlow(getFlow(LightStrands.SEGMENT_F));
             strand = (Segment) LightStrands.SEGMENT_F_2.strand;
-            strand.setFlow((float) SimInfo.trF * (2f/3f));
+            strand.setFlow(getFlow(LightStrands.SEGMENT_F_2));
 			strand = (Segment) LightStrands.SEGMENT_F_BRANCH_1.strand;
-			strand.setFlow((float) SimInfo.trF / 3f);
+			strand.setFlow(getFlow(LightStrands.SEGMENT_F_BRANCH_1));
 			strand = (Segment) LightStrands.SEGMENT_F_BRANCH_2.strand;
-			strand.setFlow((float) SimInfo.trF / 3f);
+			strand.setFlow(getFlow(LightStrands.SEGMENT_F_BRANCH_2));
 			strand = (Segment) LightStrands.SEGMENT_F_BRANCH_3.strand;
-			strand.setFlow((float) SimInfo.trF / 3f);
-		} else {
-			final List<Integer> leds = LightStrands.SEGMENT_F.modelLEDs;
-            final List<Integer> leds2 = LightStrands.SEGMENT_F_2.modelLEDs;
-			final List<Integer> ledsBranch1 = LightStrands.SEGMENT_F_BRANCH_1.modelLEDs;
-			final List<Integer> ledsBranch2 = LightStrands.SEGMENT_F_BRANCH_2.modelLEDs;
-			final List<Integer> ledsBranch3 = LightStrands.SEGMENT_F_BRANCH_3.modelLEDs;
-
-			for (Orb orb : orbs) {
-				if (leds.contains(orb.getTo())
-                        || leds2.contains(orb.getTo())
-						|| ledsBranch1.contains(orb.getTo())
-						|| ledsBranch2.contains(orb.getTo())
-						|| ledsBranch3.contains(orb.getTo())) {
-					orb.fading = true;
-				}
-			}
+			strand.setFlow(getFlow(LightStrands.SEGMENT_F_BRANCH_3));
 		}
 
 		if ((float) SimInfo.trG > OFF_THRESHOLD) {
 			final Segment strand = (Segment) LightStrands.SEGMENT_G.strand;
-			strand.setFlow((float) SimInfo.trG);
-		} else {
-			final List<Integer> leds = LightStrands.SEGMENT_G.modelLEDs;
-
-			for (Orb orb : orbs) {
-				if (leds.contains(orb.getTo())) {
-					orb.fading = true;
-				}
-			}
+			strand.setFlow(getFlow(LightStrands.SEGMENT_G));
 		}
 
 		if ((float) SimInfo.trH > OFF_THRESHOLD) {
 			Segment strand = (Segment) LightStrands.SEGMENT_H.strand;
-			strand.setFlow((float) SimInfo.trH);
+			strand.setFlow(getFlow(LightStrands.SEGMENT_H));
 			strand = (Segment) LightStrands.SEGMENT_H_BRANCH_1.strand;
-			strand.setFlow((float) SimInfo.trH / 2f);
+			strand.setFlow(getFlow(LightStrands.SEGMENT_H_BRANCH_1));
 			strand = (Segment) LightStrands.SEGMENT_H_BRANCH_2.strand;
-			strand.setFlow((float) SimInfo.trH / 2f);
-		} else {
-			final List<Integer> leds = LightStrands.SEGMENT_H.modelLEDs;
-			final List<Integer> ledsBranch1 = LightStrands.SEGMENT_H_BRANCH_1.modelLEDs;
-			final List<Integer> ledsBranch2 = LightStrands.SEGMENT_H_BRANCH_2.modelLEDs;
-
-			for (Orb orb : orbs) {
-				if (leds.contains(orb.getTo())
-						|| ledsBranch1.contains(orb.getTo())
-						|| ledsBranch2.contains(orb.getTo())) {
-					orb.fading = true;
-				}
-			}
+			strand.setFlow(getFlow(LightStrands.SEGMENT_H_BRANCH_2));
 		}
 
 		if ((float) SimInfo.trI > OFF_THRESHOLD) {
 			final Segment strand = (Segment) LightStrands.SEGMENT_I.strand;
-			strand.setFlow((float) SimInfo.trI);
-		} else {
-			final List<Integer> leds = LightStrands.SEGMENT_I.modelLEDs;
-
-			for (Orb orb : orbs) {
-				if (leds.contains(orb.getTo())) {
-					orb.fading = true;
-				}
-			}
+			strand.setFlow(getFlow(LightStrands.SEGMENT_I));
 		}
 
 		if ((float) SimInfo.trJ > OFF_THRESHOLD) {
 			Segment strand = (Segment) LightStrands.SEGMENT_J.strand;
-			strand.setFlow((float) SimInfo.trJ);
+			strand.setFlow(getFlow(LightStrands.SEGMENT_J));
 			strand = (Segment) LightStrands.SEGMENT_J_BRANCH_1.strand;
-			strand.setFlow((float) SimInfo.trJ / 2f);
+			strand.setFlow(getFlow(LightStrands.SEGMENT_J_BRANCH_1));
 			strand = (Segment) LightStrands.SEGMENT_J_BRANCH_2.strand;
-			strand.setFlow((float) SimInfo.trJ / 2f);
-		} else {
-			final List<Integer> leds = LightStrands.SEGMENT_J.modelLEDs;
-			final List<Integer> ledsBranch1 = LightStrands.SEGMENT_J_BRANCH_1.modelLEDs;
-			final List<Integer> ledsBranch2 = LightStrands.SEGMENT_J_BRANCH_2.modelLEDs;
-
-			for (Orb orb : orbs) {
-				if (leds.contains(orb.getTo())
-						|| ledsBranch1.contains(orb.getTo())
-						|| ledsBranch2.contains(orb.getTo())) {
-					orb.fading = true;
-				}
-			}
+			strand.setFlow(getFlow(LightStrands.SEGMENT_J_BRANCH_2));
 		}
 
 		if ((float) SimInfo.trK > OFF_THRESHOLD) {
 			final Segment strand = (Segment) LightStrands.SEGMENT_K.strand;
-			strand.setFlow((float) SimInfo.trK);
-		} else {
-			final List<Integer> leds = LightStrands.SEGMENT_K.modelLEDs;
-
-			for (Orb orb : orbs) {
-				if (leds.contains(orb.getTo())) {
-					orb.fading = true;
-				}
-			}
+			strand.setFlow(getFlow(LightStrands.SEGMENT_K));
 		}
 
 		if ((float) SimInfo.trL > OFF_THRESHOLD) {
 			Segment strand = (Segment) LightStrands.SEGMENT_L.strand;
-			strand.setFlow((float) SimInfo.trL);
+			strand.setFlow(getFlow(LightStrands.SEGMENT_L));
 			strand = (Segment) LightStrands.SEGMENT_L_BRANCH_1.strand;
-			strand.setFlow((float) SimInfo.trL / 2f);
+			strand.setFlow(getFlow(LightStrands.SEGMENT_L_BRANCH_1));
 			strand = (Segment) LightStrands.SEGMENT_L_BRANCH_2.strand;
-			strand.setFlow((float) SimInfo.trL / 2f);
-		} else {
-			final List<Integer> leds = LightStrands.SEGMENT_L.modelLEDs;
-			final List<Integer> ledsBranch1 = LightStrands.SEGMENT_L_BRANCH_1.modelLEDs;
-			final List<Integer> ledsBranch2 = LightStrands.SEGMENT_L_BRANCH_2.modelLEDs;
-
-			for (Orb orb : orbs) {
-				if (leds.contains(orb.getTo())
-						|| ledsBranch1.contains(orb.getTo())
-						|| ledsBranch2.contains(orb.getTo())) {
-					orb.fading = true;
-				}
-			}
+			strand.setFlow(getFlow(LightStrands.SEGMENT_L_BRANCH_2));
 		}
 
 		if ((float) SimInfo.trM > OFF_THRESHOLD) {
@@ -1079,7 +958,7 @@ public class LightAnimation {
 			final float blueFlow = flow - greenFlow;
 
 			final Segment strand = (Segment) LightStrands.SEGMENT_M.strand;
-			strand.setFlow((float) SimInfo.trM);
+			strand.setFlow(getFlow(LightStrands.SEGMENT_M));
 
 			final int type = strand.advance(blueFlow, greenFlow);
 			final OrbTypes orbType;
@@ -1092,14 +971,6 @@ public class LightAnimation {
 			if (type > 0) {
 				orbs.add(new Orb(orbType, strand, strand.getLEDs().get(0),
 						strand.getLEDs().get(1)));
-			}
-		} else {
-			final List<Integer> leds = LightStrands.SEGMENT_M.modelLEDs;
-
-			for (Orb orb : orbs) {
-				if (leds.contains(orb.getTo())) {
-					orb.fading = true;
-				}
 			}
 		}
 
@@ -1111,7 +982,7 @@ public class LightAnimation {
 			final float blueFlow = flow - greenFlow;
 
 			final Segment strand = (Segment) LightStrands.SEGMENT_W.strand;
-			strand.setFlow(((float) SimInfo.PowPlant + (float) SimInfo.BatteryStorage) * (float) SimInfo.GenScale);
+			strand.setFlow(getFlow(LightStrands.SEGMENT_W));
 
 			final int type = strand.advance(blueFlow, greenFlow);
 			final OrbTypes orbType;
@@ -1132,7 +1003,7 @@ public class LightAnimation {
             final float blueFlow = flow - greenFlow;
 
             final Segment strand = (Segment) LightStrands.SEGMENT_W.strand;
-            strand.setFlow(-((float) SimInfo.PowPlant + (float) SimInfo.BatteryStorage)  * (float) SimInfo.GenScale);
+            strand.setFlow(getFlow(LightStrands.SEGMENT_W));
 
             final int type = strand.advance(blueFlow, greenFlow);
             final OrbTypes orbType;
@@ -1159,8 +1030,7 @@ public class LightAnimation {
 			final float blueFlow = flow - greenFlow;
 
 			final Segment strand = (Segment) LightStrands.SEGMENT_X.strand;
-			strand.setFlow((float) SimInfo.WindTurbines
-                    * (float) SimInfo.GenScale);
+			strand.setFlow(getFlow(LightStrands.SEGMENT_X));
 
 			final int type = strand.advance(blueFlow, greenFlow);
 			final OrbTypes orbType;
@@ -1173,14 +1043,6 @@ public class LightAnimation {
 			if (type > 0) {
 				orbs.add(new Orb(orbType, strand, strand.getLEDs().get(0),
 						strand.getLEDs().get(1)));
-			}
-		} else {
-			final List<Integer> leds = LightStrands.SEGMENT_X.modelLEDs;
-
-			for (Orb orb : orbs) {
-				if (leds.contains(orb.getTo())) {
-					orb.fading = true;
-				}
 			}
 		}
 
@@ -1364,4 +1226,170 @@ public class LightAnimation {
 			}
 		}
 	}
+
+    private float getFlow(final LightStrands strand) {
+        double flow = 0.0;
+        switch (strand) {
+            case SEGMENT_A: {
+                flow = SimInfo.trA;
+                break;
+            }
+            case SEGMENT_B: {
+                flow = SimInfo.trB;
+                if (SimInfo.Load1 < 0.0) {
+                    flow *= -1.0;
+                }
+                break;
+            }
+            case SEGMENT_B_BRANCH_1:
+            case SEGMENT_B_BRANCH_2:
+            case SEGMENT_B_BRANCH_3: {
+                flow = SimInfo.trB / 3.0;
+                if (SimInfo.Load1 < 0.0) {
+                    flow *= -1.0;
+                }
+                break;
+            }
+            case SEGMENT_C: {
+                flow = SimInfo.trC;
+                if (SimInfo.trA + SimInfo.trB < SimInfo.trD + SimInfo.trE) {
+                    flow *= -1.0;
+                }
+                break;
+            }
+            case SEGMENT_D: {
+                flow = SimInfo.trD;
+                if (SimInfo.Load2 < 0.0) {
+                    flow *= -1.0;
+                }
+                break;
+            }
+            case SEGMENT_D_2: {
+                flow = SimInfo.trD * 2.0 / 3.0;
+                if (SimInfo.Load2 < 0.0) {
+                    flow *= -1.0;
+                }
+                break;
+            }
+            case SEGMENT_D_BRANCH_1:
+            case SEGMENT_D_BRANCH_2:
+            case SEGMENT_D_BRANCH_3: {
+                flow = SimInfo.trD / 3.0;
+                if (SimInfo.Load2 < 0.0) {
+                    flow *= -1.0;
+                }
+                break;
+            }
+            case SEGMENT_E: {
+                flow = SimInfo.trE;
+                if (SimInfo.trC + SimInfo.trD < SimInfo.trF + SimInfo.trG) {
+                    flow *= -1.0;
+                }
+                break;
+            }
+            case SEGMENT_F: {
+                flow = SimInfo.trF;
+                if (SimInfo.Load3 < 0.0) {
+                    flow *= -1.0;
+                }
+                break;
+            }
+            case SEGMENT_F_2: {
+                flow = SimInfo.trF * 2.0 / 3.0;
+                if (SimInfo.Load3 < 0.0) {
+                    flow *= -1.0;
+                }
+                break;
+            }
+            case SEGMENT_F_BRANCH_1:
+            case SEGMENT_F_BRANCH_2:
+            case SEGMENT_F_BRANCH_3: {
+                flow = SimInfo.trF / 3.0;
+                if (SimInfo.Load3 < 0.0) {
+                    flow *= -1.0;
+                }
+                break;
+            }
+            case SEGMENT_G: {
+                flow = SimInfo.trG;
+                if (SimInfo.trE + SimInfo.trF < SimInfo.trH + SimInfo.trI) {
+                    flow *= -1.0;
+                }
+                break;
+            }
+            case SEGMENT_H: {
+                flow = SimInfo.trH;
+                if (SimInfo.Load4 < 0.0) {
+                    flow *= -1.0;
+                }
+                break;
+            }
+            case SEGMENT_H_BRANCH_1:
+            case SEGMENT_H_BRANCH_2: {
+                flow = SimInfo.trH / 2.0;
+                if (SimInfo.Load4 < 0.0) {
+                    flow *= -1.0;
+                }
+                break;
+            }
+            case SEGMENT_I: {
+                flow = SimInfo.trI;
+                if (SimInfo.trK + SimInfo.trJ < SimInfo.trH + SimInfo.trG) {
+                    flow *= -1.0;
+                }
+                break;
+            }
+            case SEGMENT_J:{
+                flow = SimInfo.trJ;
+                if (SimInfo.Load5 < 0.0) {
+                    flow *= -1.0;
+                }
+                break;
+            }
+            case SEGMENT_J_BRANCH_1:
+            case SEGMENT_J_BRANCH_2: {
+                flow = SimInfo.trJ / 2.0;
+                if (SimInfo.Load5 < 0.0) {
+                    flow *= -1.0;
+                }
+                break;
+            }
+            case SEGMENT_K: {
+                flow = SimInfo.trK;
+                if (SimInfo.trM + SimInfo.trL < SimInfo.trJ + SimInfo.trI) {
+                    flow *= -1.0;
+                }
+                break;
+            }
+            case SEGMENT_L: {
+                flow = SimInfo.trL;
+                if (SimInfo.Load6 < 0.0) {
+                    flow *= -1.0;
+                }
+                break;
+            }
+            case SEGMENT_L_BRANCH_1:
+            case SEGMENT_L_BRANCH_2: {
+                flow = SimInfo.trL / 2.0;
+                if (SimInfo.Load6 < 0.0) {
+                    flow *= -1.0;
+                }
+                break;
+            }
+            case SEGMENT_M: {
+                flow = SimInfo.trM;
+                break;
+            }
+            case SEGMENT_W: {
+                flow = (SimInfo.PowPlant + SimInfo.BatteryStorage) * SimInfo.GenScale;
+                break;
+            }
+            case SEGMENT_X: {
+                flow = SimInfo.WindTurbines * SimInfo.GenScale;
+                break;
+            }
+            default:
+        }
+        return (float) flow;
+    }
 }
