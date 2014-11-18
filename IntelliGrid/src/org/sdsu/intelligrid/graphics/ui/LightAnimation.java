@@ -234,9 +234,9 @@ public class LightAnimation {
 
 			final Color color;
 			if (type == OrbTypes.BLUE) {
-				color = new Color(100, 150, 255);
+				color = new Color(70, 255, 244);
 			} else {
-				color = new Color(125, 255, 125);
+				color = new Color(111, 255, 0);
 			}
 
 			sprite = new Sprite(MainUI.ledPositionMap.get(from), 0, 0f,
@@ -374,7 +374,7 @@ public class LightAnimation {
 	private static final float OFF_THRESHOLD = 0.0001f;
 
 	private static final float GEN_SCALE = 40f;
-	private static final float FLOW_SCALE = 20f;
+	private static final float FLOW_SCALE = 5f;
 
 	private final List<Orb> orbs = new ArrayList<>();
 
