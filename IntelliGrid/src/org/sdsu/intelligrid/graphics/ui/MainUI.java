@@ -209,16 +209,16 @@ public class MainUI {
                 new Color(255, 255, 255), R.drawable.intelligrid);
         Global.getRenderer().addDrawable(intelligrid);
 
-        Sprite settings = new Sprite(pixelsToCoords(2485, 75), 1, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.settings);
+        ClickableSprite settings = new ClickableSprite(pixelsToCoords(2485, 75), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.settings, pixelsToCoords(2485,55), pixelsToCoords(2505,75), "settings");
         Global.getRenderer().addDrawable(settings);
 
-        Sprite info = new Sprite(pixelsToCoords(2335, 75), 1, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.info);
+        ClickableSprite info = new ClickableSprite(pixelsToCoords(2335, 75), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.info, pixelsToCoords(2335,55), pixelsToCoords(2355,75), "info");
         Global.getRenderer().addDrawable(info);
 
-        Sprite faults = new Sprite(pixelsToCoords(2185, 75), 1, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.faults);
+        ClickableSprite faults = new ClickableSprite(pixelsToCoords(2185, 75), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.faults, pixelsToCoords(2185,55), pixelsToCoords(2205,75), "faults");
         Global.getRenderer().addDrawable(faults);
 
         Sprite play = new Sprite(pixelsToCoords(2210, 1550), 1, 0f, new Vector2f(1f, 1f),
