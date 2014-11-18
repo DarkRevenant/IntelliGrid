@@ -30,22 +30,197 @@ public class MainUI {
     static {
         // Use this format; just have 177 lines placing the pixel locations for
         // each of the LEDs
-        ledPositionMap.put(1, pixelsToCoords(123, 456));
-        ledPositionMap.put(2, pixelsToCoords(789, 666));
+        ledPositionMap.put(1, pixelsToCoords(1500, 1150));
+        ledPositionMap.put(2, pixelsToCoords(1450, 1150));
+        ledPositionMap.put(3, pixelsToCoords(1450, 1140));
+        ledPositionMap.put(4, pixelsToCoords(1450, 1130));
+        ledPositionMap.put(5, pixelsToCoords(1450, 1120));
+        ledPositionMap.put(6, pixelsToCoords(1450, 1110));
+        ledPositionMap.put(7, pixelsToCoords(1440, 1110));
+        ledPositionMap.put(8, pixelsToCoords(1430, 1110));
+        ledPositionMap.put(9, pixelsToCoords(1420, 1110));
+        ledPositionMap.put(10, pixelsToCoords(1410, 1110));
+        ledPositionMap.put(11, pixelsToCoords(1410, 1120));
+        ledPositionMap.put(12, pixelsToCoords(1410, 1130));
+        ledPositionMap.put(13, pixelsToCoords(1400, 1110));
+        ledPositionMap.put(14, pixelsToCoords(1390, 1110));
+        ledPositionMap.put(15, pixelsToCoords(1410, 1100));
+        ledPositionMap.put(16, pixelsToCoords(1410, 1090));
+        ledPositionMap.put(17, pixelsToCoords(1450, 1100));
+        ledPositionMap.put(18, pixelsToCoords(1450, 1090));
+        ledPositionMap.put(19, pixelsToCoords(1450, 1080));
+        ledPositionMap.put(20, pixelsToCoords(1450, 1070));
+        ledPositionMap.put(21, pixelsToCoords(1450, 1060));
+        ledPositionMap.put(22, pixelsToCoords(1440, 1140));
+        ledPositionMap.put(23, pixelsToCoords(1430, 1130));
+        ledPositionMap.put(24, pixelsToCoords(1420, 1120));
+        ledPositionMap.put(25, pixelsToCoords(1410, 1110));
+        ledPositionMap.put(26, pixelsToCoords(1400, 1100));
+        ledPositionMap.put(27, pixelsToCoords(1390, 1090));
+        ledPositionMap.put(28, pixelsToCoords(1380, 1080));
+        ledPositionMap.put(29, pixelsToCoords(1370, 1070));
+        ledPositionMap.put(30, pixelsToCoords(1360, 1060));
+        ledPositionMap.put(31, pixelsToCoords(1350, 1050));
+        ledPositionMap.put(32, pixelsToCoords(1340, 1040));
+        ledPositionMap.put(33, pixelsToCoords(1330, 1030));
+        ledPositionMap.put(34, pixelsToCoords(1320, 1020));
+        ledPositionMap.put(35, pixelsToCoords(1310, 1010));
+        ledPositionMap.put(36, pixelsToCoords(1300, 1000));
+        ledPositionMap.put(37, pixelsToCoords(1290, 1090));
+        ledPositionMap.put(38, pixelsToCoords(1280, 1080));
+        ledPositionMap.put(39, pixelsToCoords(1270, 1070));
+        ledPositionMap.put(40, pixelsToCoords(1260, 1060));
+        ledPositionMap.put(41, pixelsToCoords(1250, 1050));
+        ledPositionMap.put(42, pixelsToCoords(1240, 1040));
+        ledPositionMap.put(43, pixelsToCoords(1230, 1030));
+        ledPositionMap.put(44, pixelsToCoords(1220, 1020));
+        ledPositionMap.put(45, pixelsToCoords(1210, 1010));
+        ledPositionMap.put(46, pixelsToCoords(1200, 1000));
+        ledPositionMap.put(47, pixelsToCoords(1190, 1090));
+        ledPositionMap.put(48, pixelsToCoords(1180, 1080));
+        ledPositionMap.put(49, pixelsToCoords(1170, 1070));
+        ledPositionMap.put(50, pixelsToCoords(1160, 1060));
+        ledPositionMap.put(51, pixelsToCoords(1150, 1050));
+        ledPositionMap.put(52, pixelsToCoords(1140, 1040));
+        ledPositionMap.put(53, pixelsToCoords(1130, 1030));
+        ledPositionMap.put(54, pixelsToCoords(1120, 1020));
+        ledPositionMap.put(55, pixelsToCoords(1110, 1010));
+        ledPositionMap.put(56, pixelsToCoords(1100, 1000));
+        ledPositionMap.put(57, pixelsToCoords(1090, 990));
+        ledPositionMap.put(58, pixelsToCoords(1080, 980));
+        ledPositionMap.put(59, pixelsToCoords(1070, 970));
+        ledPositionMap.put(60, pixelsToCoords(1060, 960));
+        ledPositionMap.put(61, pixelsToCoords(1050, 950));
+        ledPositionMap.put(62, pixelsToCoords(1040, 940));
+        ledPositionMap.put(63, pixelsToCoords(1030, 930));
+        ledPositionMap.put(64, pixelsToCoords(1020, 920));
+        ledPositionMap.put(65, pixelsToCoords(1010, 910));
+        ledPositionMap.put(66, pixelsToCoords(1000, 900));
+        ledPositionMap.put(67, pixelsToCoords(990, 890));
+        ledPositionMap.put(68, pixelsToCoords(980, 880));
+        ledPositionMap.put(69, pixelsToCoords(970, 870));
+        ledPositionMap.put(70, pixelsToCoords(960, 860));
+        ledPositionMap.put(71, pixelsToCoords(950, 850));
+        ledPositionMap.put(72, pixelsToCoords(940, 840));
+        ledPositionMap.put(73, pixelsToCoords(930, 830));
+        ledPositionMap.put(74, pixelsToCoords(920, 820));
+        ledPositionMap.put(75, pixelsToCoords(910, 810));
+        ledPositionMap.put(76, pixelsToCoords(900, 800));
+        ledPositionMap.put(77, pixelsToCoords(890, 790));
+        ledPositionMap.put(78, pixelsToCoords(880, 780));
+        ledPositionMap.put(79, pixelsToCoords(870, 770));
+        ledPositionMap.put(80, pixelsToCoords(860, 760));
+        ledPositionMap.put(81, pixelsToCoords(850, 750));
+        ledPositionMap.put(82, pixelsToCoords(840, 740));
+        ledPositionMap.put(83, pixelsToCoords(10, 1150));
+        ledPositionMap.put(84, pixelsToCoords(20, 1150));
+        ledPositionMap.put(85, pixelsToCoords(30, 1150));
+        ledPositionMap.put(86, pixelsToCoords(40, 1150));
+        ledPositionMap.put(87, pixelsToCoords(50, 1150));
+        ledPositionMap.put(88, pixelsToCoords(60, 1150));
+        ledPositionMap.put(89, pixelsToCoords(70, 1150));
+        ledPositionMap.put(90, pixelsToCoords(80, 1150));
+        ledPositionMap.put(91, pixelsToCoords(90, 1150));
+        ledPositionMap.put(92, pixelsToCoords(100, 1150));
+        ledPositionMap.put(93, pixelsToCoords(110, 1150));
+        ledPositionMap.put(94, pixelsToCoords(120, 1150));
+        ledPositionMap.put(95, pixelsToCoords(130, 1150));
+        ledPositionMap.put(96, pixelsToCoords(140, 1150));
+        ledPositionMap.put(97, pixelsToCoords(150, 1150));
+        ledPositionMap.put(98, pixelsToCoords(160, 1150));
+        ledPositionMap.put(99, pixelsToCoords(170, 1150));
+        ledPositionMap.put(100, pixelsToCoords(180, 1150));
+        ledPositionMap.put(101, pixelsToCoords(190, 1150));
+        ledPositionMap.put(102, pixelsToCoords(200, 1150));
+        ledPositionMap.put(103, pixelsToCoords(210, 1150));
+        ledPositionMap.put(104, pixelsToCoords(220, 1150));
+        ledPositionMap.put(105, pixelsToCoords(230, 1150));
+        ledPositionMap.put(106, pixelsToCoords(240, 1150));
+        ledPositionMap.put(107, pixelsToCoords(250, 1150));
+        ledPositionMap.put(108, pixelsToCoords(260, 1150));
+        ledPositionMap.put(109, pixelsToCoords(270, 1150));
+        ledPositionMap.put(110, pixelsToCoords(280, 1150));
+        ledPositionMap.put(111, pixelsToCoords(290, 1150));
+        ledPositionMap.put(112, pixelsToCoords(300, 1150));
+        ledPositionMap.put(113, pixelsToCoords(310, 1150));
+        ledPositionMap.put(114, pixelsToCoords(320, 1150));
+        ledPositionMap.put(115, pixelsToCoords(330, 1150));
+        ledPositionMap.put(116, pixelsToCoords(340, 1150));
+        ledPositionMap.put(117, pixelsToCoords(350, 1150));
+        ledPositionMap.put(118, pixelsToCoords(360, 1150));
+        ledPositionMap.put(119, pixelsToCoords(370, 1150));
+        ledPositionMap.put(120, pixelsToCoords(380, 1150));
+        ledPositionMap.put(121, pixelsToCoords(390, 1150));
+        ledPositionMap.put(122, pixelsToCoords(400, 1150));
+        ledPositionMap.put(123, pixelsToCoords(410, 1150));
+        ledPositionMap.put(124, pixelsToCoords(420, 1150));
+        ledPositionMap.put(125, pixelsToCoords(730, 1150));
+        ledPositionMap.put(126, pixelsToCoords(740, 1150));
+        ledPositionMap.put(127, pixelsToCoords(750, 1150));
+        ledPositionMap.put(128, pixelsToCoords(760, 1150));
+        ledPositionMap.put(129, pixelsToCoords(770, 1150));
+        ledPositionMap.put(130, pixelsToCoords(780, 1150));
+        ledPositionMap.put(131, pixelsToCoords(790, 1150));
+        ledPositionMap.put(132, pixelsToCoords(800, 1150));
+        ledPositionMap.put(133, pixelsToCoords(810, 1150));
+        ledPositionMap.put(134, pixelsToCoords(820, 1150));
+        ledPositionMap.put(135, pixelsToCoords(830, 1150));
+        ledPositionMap.put(136, pixelsToCoords(840, 1150));
+        ledPositionMap.put(137, pixelsToCoords(850, 1150));
+        ledPositionMap.put(138, pixelsToCoords(860, 1150));
+        ledPositionMap.put(139, pixelsToCoords(870, 1150));
+        ledPositionMap.put(140, pixelsToCoords(880, 1150));
+        ledPositionMap.put(141, pixelsToCoords(890, 1150));
+        ledPositionMap.put(142, pixelsToCoords(900, 1150));
+        ledPositionMap.put(143, pixelsToCoords(910, 1150));
+        ledPositionMap.put(144, pixelsToCoords(920, 1150));
+        ledPositionMap.put(145, pixelsToCoords(930, 1150));
+        ledPositionMap.put(146, pixelsToCoords(940, 1150));
+        ledPositionMap.put(147, pixelsToCoords(950, 1150));
+        ledPositionMap.put(148, pixelsToCoords(960, 1150));
+        ledPositionMap.put(149, pixelsToCoords(970, 1150));
+        ledPositionMap.put(150, pixelsToCoords(980, 1150));
+        ledPositionMap.put(151, pixelsToCoords(990, 1150));
+        ledPositionMap.put(152, pixelsToCoords(1000, 1150));
+        ledPositionMap.put(153, pixelsToCoords(1010, 1150));
+        ledPositionMap.put(154, pixelsToCoords(1020, 1150));
+        ledPositionMap.put(155, pixelsToCoords(1030, 1150));
+        ledPositionMap.put(156, pixelsToCoords(1040, 1150));
+        ledPositionMap.put(157, pixelsToCoords(1050, 1150));
+        ledPositionMap.put(158, pixelsToCoords(1060, 1150));
+        ledPositionMap.put(159, pixelsToCoords(1070, 1150));
+        ledPositionMap.put(160, pixelsToCoords(1080, 1150));
+        ledPositionMap.put(161, pixelsToCoords(1090, 1150));
+        ledPositionMap.put(162, pixelsToCoords(1100, 1150));
+        ledPositionMap.put(163, pixelsToCoords(1110, 1150));
+        ledPositionMap.put(164, pixelsToCoords(1120, 1150));
+        ledPositionMap.put(165, pixelsToCoords(1130, 1150));
+        ledPositionMap.put(166, pixelsToCoords(1140, 1150));
+        ledPositionMap.put(167, pixelsToCoords(1150, 1150));
+        ledPositionMap.put(168, pixelsToCoords(1160, 1150));
+        ledPositionMap.put(169, pixelsToCoords(1170, 1150));
+        ledPositionMap.put(170, pixelsToCoords(1180, 1150));
+        ledPositionMap.put(171, pixelsToCoords(1190, 1150));
+        ledPositionMap.put(172, pixelsToCoords(1200, 1150));
+        ledPositionMap.put(173, pixelsToCoords(1210, 1150));
+        ledPositionMap.put(174, pixelsToCoords(1220, 1150));
+        ledPositionMap.put(175, pixelsToCoords(1230, 1150));
+        ledPositionMap.put(176, pixelsToCoords(1240, 1150));
+        ledPositionMap.put(177, pixelsToCoords(1250, 1150));
 
         // Delete below once you've placed them in the right spots. The
         // animation will look wrong if they're in the wrong spots, so it should
         // be easy to test.
-        float a = -1.6f;
-        float b = -1f;
-        for (int i = 1; i <= 177; i++) {
-            ledPositionMap.put(i, new Vector2f(a, b));
-            a += 0.1f;
-            if (a >= 1.6f) {
-                a = -1.6f;
-                b += 0.1f;
-            }
-        }
+//        float a = -1.6f;
+//        float b = -1f;
+//        for (int i = 1; i <= 177; i++) {
+//            ledPositionMap.put(i, new Vector2f(a, b));
+//            a += 0.1f;
+//            if (a >= 1.6f) {
+//                a = -1.6f;
+//                b += 0.1f;
+//            }
+//        }
     }
 
     /**
@@ -378,62 +553,62 @@ public class MainUI {
         Global.getRenderer().addDrawable(trackhoe);
 
         UIInfo.Load1 = new TextSprite("",
-                pixelsToCoords(1080, 1045), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(1080, 1020), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load1);
 
         UIInfo.Load2 = new TextSprite("",
-                pixelsToCoords(305, 700), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(305, 670), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load2);
 
         UIInfo.Load3 = new TextSprite("",
-                pixelsToCoords(500, 80), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(500, 50), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load3);
 
         UIInfo.Load4 = new TextSprite("",
-                pixelsToCoords(1700, 350), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(1730, 350), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load4);
 
         UIInfo.Load5 = new TextSprite("",
-                pixelsToCoords(1980, 855), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(1980, 825), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load5);
 
         UIInfo.Load6 = new TextSprite("",
-                pixelsToCoords(2070, 1200), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(2070, 1175), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load6);
 
         UIInfo.trA = new TextSprite("",
-                pixelsToCoords(1450, 990), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(1390, 990), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trA);
 
         UIInfo.trB = new TextSprite("",
-                pixelsToCoords(1250, 945), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(1210, 945), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trB);
 
         UIInfo.trC = new TextSprite("",
-                pixelsToCoords(1015, 450), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(950, 440), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trC);
 
         UIInfo.trD = new TextSprite("",
-                pixelsToCoords(675, 640), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(610, 630), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trD);
 
         UIInfo.trE = new TextSprite("",
-                pixelsToCoords(930, 150), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(930, 110), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trE);
 
         UIInfo.trF = new TextSprite("",
-                pixelsToCoords(850, 60), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(810, 55), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trF);
 
@@ -443,32 +618,32 @@ public class MainUI {
         Global.getRenderer().addDrawable(UIInfo.trG);
 
         UIInfo.trH = new TextSprite("",
-                pixelsToCoords(1410, 285), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(1390, 280), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trH);
 
         UIInfo.trI = new TextSprite("",
-                pixelsToCoords(1140, 320), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(1200, 320), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trI);
 
         UIInfo.trJ = new TextSprite("",
-                pixelsToCoords(1880, 750), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(1850, 740), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trJ);
 
         UIInfo.trK = new TextSprite("",
-                pixelsToCoords(1580, 780), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(1640, 780), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trK);
 
         UIInfo.trL = new TextSprite("",
-                pixelsToCoords(1885, 1100), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(1850, 1090), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trL);
 
         UIInfo.trM = new TextSprite("",
-                pixelsToCoords(1760, 1185), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(1740, 1185), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trM);
 
@@ -487,10 +662,10 @@ public class MainUI {
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.transTotal);
 
-        UIInfo.SDGE = new TextSprite("",
-                pixelsToCoords(1530, 1480), 20, Typeface.DEFAULT, 1000f, 0, 0,
-                new Vector2f(1f, 1f), new Color(0, 0, 0));
-        Global.getRenderer().addDrawable(UIInfo.SDGE);
+//        UIInfo.SDGE = new TextSprite("",
+//                pixelsToCoords(1530, 1480), 20, Typeface.DEFAULT, 1000f, 0, 0,
+//                new Vector2f(1f, 1f), new Color(0, 0, 0));
+//        Global.getRenderer().addDrawable(UIInfo.SDGE);
 
         UIInfo.currentTime = new TextSprite("",
                 pixelsToCoords(1000, 1550), 40, Typeface.DEFAULT, 1000f, 0, 0,
@@ -636,10 +811,10 @@ public class MainUI {
                         UIInfo.transTotal.getFontSize(), UIInfo.transTotal.getFont(),
                         UIInfo.transTotal.getMaxLineWidth());
 
-            if (Math.random() < textUpdateChance)
-                UIInfo.SDGE.setText("" + String.format("%.2f", Simulation.SimInfo.SDGE) + " MW",
-                        UIInfo.SDGE.getFontSize(), UIInfo.SDGE.getFont(),
-                        UIInfo.SDGE.getMaxLineWidth());
+//            if (Math.random() < textUpdateChance)
+//                UIInfo.SDGE.setText("" + String.format("%.2f", Simulation.SimInfo.SDGE) + " MW",
+//                        UIInfo.SDGE.getFontSize(), UIInfo.SDGE.getFont(),
+//                        UIInfo.SDGE.getMaxLineWidth());
 
             UIInfo.currentTime.setText("Time: " + "" + String.format("%.2f", Simulation.SimInfo.currentTime),
                     UIInfo.currentTime.getFontSize(), UIInfo.currentTime.getFont(),
