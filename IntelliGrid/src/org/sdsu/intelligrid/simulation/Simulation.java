@@ -40,7 +40,7 @@ public class Simulation {
         public static double[] comm2 =
                 {3.35552, 3.334, 3.33536, 3.1845, 3.36, 3.458, 3.778, 5.489, 6.1376, 5.895, 6.21376, 6.0158, 6.36608,
                         6.284, 5.845, 6.458, 6.36608, 5.89, 6.015, 3.9872, 3.602, 3.598, 3.5616, 3.4496};
-        public static double[] ind1 =
+        public static double[] comm3 =
                 {5.25, 5.03, 4.81, 4.69, 4.59, 5.031, 5.46, 5.9, 6.34, 6.78, 7.43, 7.65, 7.87, 8.31,
                         8.75, 9.18, 9.623, 9.618, 9.622, 8.96, 7.87, 6.78, 6.12, 5.25};
 
@@ -61,7 +61,7 @@ public class Simulation {
         public static double[] comm2r =
                 {1.625153289, 1.614730672, 1.615389351, 1.542324483, 1.627323053, 1.674786642, 1.82976979, 2.658445309, 2.972576777, 2.855080178, 3.009462766, 2.913586316,
                         3.083234744, 3.043481567, 2.830864061, 3.127753654, 3.083234744, 2.852658566, 2.913198858, 1.931090023, 1.744529059, 1.742591769, 1.724962436, 1.670718334};
-        public static double[] ind1r =
+        public static double[] comm3r =
                 {2.54269227, 2.436141356, 2.329590442, 2.271471761, 2.223039528, 2.436625678, 2.644399961, 2.857501789, 3.070603618, 3.283705446, 3.598514965, 3.705065879,
                         3.811616794, 4.024718622, 4.23782045, 4.446079055, 4.660633851, 4.658212239, 4.660149528, 4.339528141, 3.811616794, 3.283705446, 2.964052704, 2.54269227};
         //Electric Vehicles
@@ -78,13 +78,13 @@ public class Simulation {
 
         //Electric Vehicle & Solar Panel Enables
         //On = 1 Off = 0
-        double L1EV = 0;
-        double L2EV = 0;
+        //double L1EV = 0;
+        //double L2EV = 0;
         double L3EV = 0;
         //Solar Panel
-        double L1SL = 1;
+        //double L1SL = 1;
         double L2SL = 1;
-        double L3SL = 0;
+        double L3SL = 1;
 
         //Fault Selection
         String fault = "";
@@ -132,26 +132,26 @@ public class Simulation {
 
 
 
-        double Load1 = linear(data.res1, time) + (data.L1EV * (data.numEV * data.EV)) - (data.L1SL * (linear(data.Solar, time) * linear(data.weather, data.w)));
-        double Load2 = linear(data.res2, time) + (data.L2EV * (data.numEV * data.EV)) - (data.L2SL * (linear(data.Solar, time) * linear(data.weather, data.w)));
+        double Load1 = linear(data.res1, time);
+        double Load2 = linear(data.res2, time) - (data.L2SL * (linear(data.Solar, time) * linear(data.weather, data.w)));
         double Load3 = linear(data.res3, time) + (data.L3EV * (data.numEV * data.EV)) - (data.L3SL * (linear(data.Solar, time) * linear(data.weather, data.w)));
         double Load4 = linear(data.comm2, time);
         double Load5 = linear(data.comm1, time);
-        double Load6 = linear(data.ind1, time);
+        double Load6 = linear(data.comm3, time);
 
         double Load1r = linear(data.res1r, time);
         double Load2r = linear(data.res2r, time);
         double Load3r = linear(data.res3r, time);
         double Load4r = linear(data.comm2r, time);
         double Load5r = linear(data.comm1r, time);
-        double Load6r = linear(data.ind1r, time);
+        double Load6r = linear(data.comm3r, time);
 
         double Load1a = Math.sqrt((Load1 * Load1) + (linear(data.res1r, time) * linear(data.res1r, time)));
         double Load2a = Math.sqrt((Load2 * Load2) + (linear(data.res2r, time) * linear(data.res2r, time)));
         double Load3a = Math.sqrt((Load3 * Load3) + (linear(data.res3r, time) * linear(data.res3r, time)));
         double Load4a = Math.sqrt((Load4 * Load4) + (linear(data.comm2r, time) * linear(data.comm2r, time)));
         double Load5a = Math.sqrt((Load5 * Load5) + (linear(data.comm1r, time) * linear(data.comm1r, time)));
-        double Load6a = Math.sqrt((Load6 * Load6) + (linear(data.ind1r, time) * linear(data.ind1r, time)));
+        double Load6a = Math.sqrt((Load6 * Load6) + (linear(data.comm3r, time) * linear(data.comm3r, time)));
 
 
         double trB = Load1a / data.capacity;
