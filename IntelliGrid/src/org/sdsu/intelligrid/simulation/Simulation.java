@@ -132,26 +132,26 @@ public class Simulation {
 
 
 
-        double Load1 = linear(data.res1, time);
-        double Load2 = linear(data.res2, time) - (data.L2SL * (linear(data.Solar, time) * linear(data.weather, data.w)));
-        double Load3 = linear(data.res3, time) + (data.L3EV * (data.numEV * data.EV)) - (data.L3SL * (linear(data.Solar, time) * linear(data.weather, data.w)));
-        double Load4 = linear(data.comm2, time);
-        double Load5 = linear(data.comm1, time);
-        double Load6 = linear(data.comm3, time);
+        double Load1 = linear(SimulationData.res1, time);
+        double Load2 = linear(SimulationData.res2, time) - (data.L2SL * (linear(SimulationData.Solar, time) * linear(data.weather, data.w)));
+        double Load3 = linear(SimulationData.res3, time) + (data.L3EV * (data.numEV * data.EV)) - (data.L3SL * (linear(SimulationData.Solar, time) * linear(data.weather, data.w)));
+        double Load4 = linear(SimulationData.comm2, time);
+        double Load5 = linear(SimulationData.comm1, time);
+        double Load6 = linear(SimulationData.comm3, time);
 
-        double Load1r = linear(data.res1r, time);
-        double Load2r = linear(data.res2r, time);
-        double Load3r = linear(data.res3r, time);
-        double Load4r = linear(data.comm2r, time);
-        double Load5r = linear(data.comm1r, time);
-        double Load6r = linear(data.comm3r, time);
+        double Load1r = linear(SimulationData.res1r, time);
+        double Load2r = linear(SimulationData.res2r, time);
+        double Load3r = linear(SimulationData.res3r, time);
+        double Load4r = linear(SimulationData.comm2r, time);
+        double Load5r = linear(SimulationData.comm1r, time);
+        double Load6r = linear(SimulationData.comm3r, time);
 
-        double Load1a = Math.sqrt((Load1 * Load1) + (linear(data.res1r, time) * linear(data.res1r, time)));
-        double Load2a = Math.sqrt((Load2 * Load2) + (linear(data.res2r, time) * linear(data.res2r, time)));
-        double Load3a = Math.sqrt((Load3 * Load3) + (linear(data.res3r, time) * linear(data.res3r, time)));
-        double Load4a = Math.sqrt((Load4 * Load4) + (linear(data.comm2r, time) * linear(data.comm2r, time)));
-        double Load5a = Math.sqrt((Load5 * Load5) + (linear(data.comm1r, time) * linear(data.comm1r, time)));
-        double Load6a = Math.sqrt((Load6 * Load6) + (linear(data.comm3r, time) * linear(data.comm3r, time)));
+        double Load1a = Math.sqrt((Load1 * Load1) + (linear(SimulationData.res1r, time) * linear(SimulationData.res1r, time)));
+        double Load2a = Math.sqrt((Load2 * Load2) + (linear(SimulationData.res2r, time) * linear(SimulationData.res2r, time)));
+        double Load3a = Math.sqrt((Load3 * Load3) + (linear(SimulationData.res3r, time) * linear(SimulationData.res3r, time)));
+        double Load4a = Math.sqrt((Load4 * Load4) + (linear(SimulationData.comm2r, time) * linear(SimulationData.comm2r, time)));
+        double Load5a = Math.sqrt((Load5 * Load5) + (linear(SimulationData.comm1r, time) * linear(SimulationData.comm1r, time)));
+        double Load6a = Math.sqrt((Load6 * Load6) + (linear(SimulationData.comm3r, time) * linear(SimulationData.comm3r, time)));
 
 
         double trB = Load1a / data.capacity;
@@ -170,6 +170,20 @@ public class Simulation {
         double trK = trI + trJ;
         double trM = trK + trL;
         double transTotal = (trA + trM) * data.capacity;
+        
+        int swiABC = 0;
+        int swiCDE = 0;
+        int swiEFG = 0;
+        int swiIHG = 0;
+        int swiKJI = 0;
+        int swiMLK = 0;
+        boolean traB = false;
+        boolean traD = false;
+        boolean traF = false;
+        boolean traH = false;
+        boolean traJ = false;
+        boolean traL = false;
+        boolean tieG = true;
 
        //Fault between Substation and Load1/Residential1
         if (data.fault.equals("A")) {
@@ -180,6 +194,8 @@ public class Simulation {
             trI = trH + trG;
             trK = trI + trJ;
             trM = trK + trL;
+            swiABC = 1;
+            tieG = false;
         }
         //Fault at Load1/Residential1
         if (data.fault.equals("B")) {
@@ -191,6 +207,8 @@ public class Simulation {
             trK = trI + trJ;
             trM = trK + trL;
             transTotal = (trA + trM) * data.capacity;
+            swiABC = 2;
+            traB = true;
         }
         //Fault between Load1/Residential1 and Load2/Residential2
         if (data.fault.equals("C")) {
@@ -201,6 +219,9 @@ public class Simulation {
             trI = trH + trG;
             trK = trI + trJ;
             trM = trK + trL;
+            swiABC = 3;
+            swiCDE = 1;
+            tieG = false;
         }
         //Fault at Load2/Residential2
         if (data.fault.equals("D")) {
@@ -212,6 +233,8 @@ public class Simulation {
             trK = trI + trJ;
             trM = trK + trL;
             transTotal = (trA + trM) * data.capacity;
+            swiCDE = 2;
+            traD = true;
         }
         //Fault between Load2/Residential2 and Load3/Residential3
         if (data.fault.equals("E")) {
@@ -222,6 +245,9 @@ public class Simulation {
             trI = trH + trG;
             trK = trI + trJ;
             trM = trK + trL;
+            swiCDE = 3;
+            swiEFG = 1;
+            tieG = false;
         }
         //Fault at Load3/Residential3
         if (data.fault.equals("F")) {
@@ -233,6 +259,8 @@ public class Simulation {
             trK = trI + trJ;
             trM = trK + trL;
             transTotal = (trA + trM) * data.capacity;
+            swiEFG = 2;
+            traF = true;
         }
         //Fault at Load4/Commercial2
         if (data.fault.equals("H")) {
@@ -244,6 +272,8 @@ public class Simulation {
             trK = trI + trJ;
             trM = trK + trL;
             transTotal = (trA + trM) * data.capacity;
+            swiIHG = 2;
+            traH = true;
         }
         //Fault between Load4/Commercial1 and Load5/Commercial2
         if (data.fault.equals("I")) {
@@ -254,6 +284,9 @@ public class Simulation {
             trA = trB + trC;
             trK = trJ;
             trM = trK + trL;
+            swiKJI = 3;
+            swiIHG = 1;
+            tieG = false;
         }
         //Fault at Load5/Commercial1
         if (data.fault.equals("J")) {
@@ -265,6 +298,8 @@ public class Simulation {
             trK = trI + trJ;
             trM = trK + trL;
             transTotal = (trA + trM) * data.capacity;
+            swiKJI = 2;
+            traJ = true;
         }
         //Fault between Load5/Commercial1 and Load6/Industrial1
         if (data.fault.equals("K")) {
@@ -276,6 +311,9 @@ public class Simulation {
             trI = trJ;
             trK = 0;
             trM = trK + trL;
+            swiMLK = 3;
+            swiKJI = 1;
+            tieG = false;
         }
         //Fault at Load6/Industrial1
         if (data.fault.equals("L")) {
@@ -287,6 +325,8 @@ public class Simulation {
             trK = trI + trJ;
             trM = trK + trL;
             transTotal = (trA + trM) * data.capacity;
+            swiMLK = 2;
+            traL = true;
         }
         //Fault between Load6/Industrial1 and Substation
         if (data.fault.equals("M")) {
@@ -298,11 +338,13 @@ public class Simulation {
             trI = trJ + trK;
             trK = trL;
             trM = 0;
+            swiMLK = 1;
+            tieG = false;
         }
 
-        double PowPlant = linear(data.PowerPlant, time) * linear(data.weather, data.w);
-        double WindTurbines = linear(data.WindFarm, time) * linear(data.turbineLevel, data.turbineSpeed);
-        double BatteryStorage = linear(data.Battery, time);
+        double PowPlant = linear(SimulationData.PowerPlant, time) * linear(data.weather, data.w);
+        double WindTurbines = linear(SimulationData.WindFarm, time) * linear(data.turbineLevel, data.turbineSpeed);
+        double BatteryStorage = linear(SimulationData.Battery, time);
 
         //Total SDGE Power
         double SDGE = transTotal - PowPlant - WindTurbines + BatteryStorage;
@@ -351,6 +393,20 @@ public class Simulation {
         SimInfo.SDGE = SDGE;
         SimInfo.GenScale = 1.0 / data.capacity;
         SimInfo.currentTime = currentTime;
+        
+        SimInfo.swiABC = swiABC;
+        SimInfo.swiCDE = swiCDE;
+        SimInfo.swiEFG = swiEFG;
+        SimInfo.swiIHG = swiIHG;
+        SimInfo.swiKJI = swiKJI;
+        SimInfo.swiMLK = swiMLK;
+        SimInfo.traB = traB;
+        SimInfo.traD = traD;
+        SimInfo.traF = traF;
+        SimInfo.traH = traH;
+        SimInfo.traJ = traJ;
+        SimInfo.traL = traL;
+        SimInfo.tieG = tieG;
     }
 
     public static class SimInfo {
@@ -396,9 +452,19 @@ public class Simulation {
         public static double SDGE;
         public static double GenScale;
         public static double currentTime;
-
+        
+        public static int swiABC;
+        public static int swiCDE;
+        public static int swiEFG;
+        public static int swiIHG;
+        public static int swiKJI;
+        public static int swiMLK;
+        public static boolean traB;
+        public static boolean traD;
+        public static boolean traF;
+        public static boolean traH;
+        public static boolean traJ;
+        public static boolean traL;
+        public static boolean tieG;
     }
-
 }
-
-
