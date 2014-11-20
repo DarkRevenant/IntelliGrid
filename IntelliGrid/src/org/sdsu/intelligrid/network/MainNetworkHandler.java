@@ -3,6 +3,7 @@
 package org.sdsu.intelligrid.network;
 
 import org.sdsu.intelligrid.Global;
+import org.sdsu.intelligrid.graphics.ui.LightAnimation;
 
 /**
  * Main network handler class for the application.
@@ -11,19 +12,20 @@ public class MainNetworkHandler {
 
 	private NetworkInterface network;
 
-	private static enum PacketPrefices {
+	public static enum PacketTypes {
 
-		SOLAR_PANEL("S", new SolarPanelHandler()), WIND_TURBINE("W",
-				new WindTurbineHandler()), BATTERY("B", new BatteryHandler()), ELECTRIC_CAR(
-				"E", new ElectricCarHandler()), MYLAR_BALLOON("M",
-				new MylarBalloonHandler()), DIG_FAULT("D",
-				new DigFaultHandler()), LED("L", new LEDHandler()), LCD_DISPLAY(
-				"C", new LCDHandler());
+		SOLAR_GENERATION_LEVEL("S", new SolarGenHandler()), WIND_GENERATION_LEVEL(
+				"W", new WindTurbineHandler()), BATTERY_STORAGE_LEVEL("B",
+				new BatteryHandler()), TIME_OF_DAY("T", new TimeHandler()), CAR_DETECT(
+				"E", new ElectricCarHandler()), SOLAR_DETECT("R",
+				new SolarPanelHandler()), BALLOON_DETECT_RESET("M",
+				new MylarBalloonHandler()), DIG_DETECT_RESET("D",
+				new DigFaultHandler()), LIGHT_ANIMATION("L", new LEDHandler());
 
 		private final String prefix;
 		private final PacketHandler handler;
 
-		private PacketPrefices(final String prefix, final PacketHandler handler) {
+		private PacketTypes(final String prefix, final PacketHandler handler) {
 			this.prefix = prefix;
 			this.handler = handler;
 		}
@@ -36,8 +38,8 @@ public class MainNetworkHandler {
 			handler.input(message);
 		}
 
-		public String output() {
-			return handler.output();
+		public String output(final Object param) {
+			return handler.output(param);
 		}
 	}
 
@@ -45,10 +47,10 @@ public class MainNetworkHandler {
 
 		public void input(final String message);
 
-		public String output();
+		public String output(final Object param);
 	}
 
-	private static final class SolarPanelHandler implements PacketHandler {
+	private static final class SolarGenHandler implements PacketHandler {
 
 		@Override
 		public void input(final String message) {
@@ -56,7 +58,7 @@ public class MainNetworkHandler {
 		}
 
 		@Override
-		public String output() {
+		public String output(final Object param) {
 			return null;
 		}
 	}
@@ -69,7 +71,7 @@ public class MainNetworkHandler {
 		}
 
 		@Override
-		public String output() {
+		public String output(final Object param) {
 			// Stub
 			return " ";
 		}
@@ -82,7 +84,20 @@ public class MainNetworkHandler {
 		}
 
 		@Override
-		public String output() {
+		public String output(final Object param) {
+			// Stub
+			return " ";
+		}
+	}
+
+	private static final class TimeHandler implements PacketHandler {
+
+		@Override
+		public void input(final String message) {
+		}
+
+		@Override
+		public String output(final Object param) {
 			// Stub
 			return " ";
 		}
@@ -96,8 +111,22 @@ public class MainNetworkHandler {
 		}
 
 		@Override
-		public String output() {
+		public String output(final Object param) {
 			return null;
+		}
+	}
+
+	private static final class SolarPanelHandler implements PacketHandler {
+
+		@Override
+		public void input(final String message) {
+			// Stub
+		}
+
+		@Override
+		public String output(final Object param) {
+			// Stub
+			return " ";
 		}
 	}
 
@@ -109,7 +138,7 @@ public class MainNetworkHandler {
 		}
 
 		@Override
-		public String output() {
+		public String output(final Object param) {
 			// Stub
 			return " ";
 		}
@@ -123,7 +152,7 @@ public class MainNetworkHandler {
 		}
 
 		@Override
-		public String output() {
+		public String output(final Object param) {
 			// Stub
 			return " ";
 		}
@@ -136,22 +165,12 @@ public class MainNetworkHandler {
 		}
 
 		@Override
-		public String output() {
-			// Stub
-			return " ";
-		}
-	}
-
-	private static final class LCDHandler implements PacketHandler {
-
-		@Override
-		public void input(final String message) {
-		}
-
-		@Override
-		public String output() {
-			// Stub
-			return " ";
+		public String output(final Object param) {
+			String out = PacketTypes.LIGHT_ANIMATION.getPrefix();
+			for (int i = 1; i <= 177; i++) {
+				out = out + LightAnimation.getState(i).signal;
+			}
+			return out;
 		}
 	}
 
@@ -180,8 +199,8 @@ public class MainNetworkHandler {
 
 			String message = null;
 			String pre = "";
-			PacketPrefices type = null;
-			for (PacketPrefices prefix : PacketPrefices.values()) {
+			PacketTypes type = null;
+			for (PacketTypes prefix : PacketTypes.values()) {
 				if (packet.message.startsWith(prefix.getPrefix())
 						&& prefix.getPrefix().length() > pre.length()) {
 					message = packet.message.substring(prefix.getPrefix()
@@ -195,6 +214,23 @@ public class MainNetworkHandler {
 			}
 
 			type.input(message);
+		}
+	}
+
+	/**
+	 * Constructs a packet for the network to send to the model.
+	 * 
+	 * @param type
+	 *            the type of packet to be sending
+	 * @param param
+	 *            custom parameters for the packet; define individual packet
+	 *            code accordingly
+	 */
+	public static void constructAndSendPacket(final PacketTypes type,
+			final Object param) {
+		final String out = type.output(param);
+		if (out != null && !out.isEmpty()) {
+			Global.getNetworkInterface().sendMessage(out);
 		}
 	}
 }

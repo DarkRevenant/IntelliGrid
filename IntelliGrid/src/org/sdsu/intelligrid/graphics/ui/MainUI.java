@@ -14,6 +14,8 @@ import org.sdsu.intelligrid.Global;
 import org.sdsu.intelligrid.R;
 import org.sdsu.intelligrid.graphics.Sprite;
 import org.sdsu.intelligrid.graphics.TextSprite;
+import org.sdsu.intelligrid.network.MainNetworkHandler;
+import org.sdsu.intelligrid.network.MainNetworkHandler.PacketTypes;
 import org.sdsu.intelligrid.simulation.Simulation;
 import org.sdsu.intelligrid.util.Color;
 import org.sdsu.intelligrid.util.Vector2f;
@@ -26,26 +28,6 @@ public class MainUI {
     private final List<Clickable> clickableList = new ArrayList<>();
 
     public final static Map<Integer, Vector2f> ledPositionMap = new HashMap<>();
-
-//    static {
-//        // Use this format; just have 177 lines placing the pixel locations for
-//        // each of the LEDs
-//
-//
-//        // Delete below once you've placed them in the right spots. The
-//        // animation will look wrong if they're in the wrong spots, so it should
-//        // be easy to test.
-//        float a = -1.6f;
-//        float b = -1f;
-//        for (int i = 1; i <= 177; i++) {
-//            ledPositionMap.put(i, new Vector2f(a, b));
-//            a += 0.1f;
-//            if (a >= 1.6f) {
-//                a = -1.6f;
-//                b += 0.1f;
-//            }
-//        }
-//    }
 
     /**
      * Returns the on-screen openGL coordinates of the position returned from a
@@ -94,6 +76,11 @@ public class MainUI {
                 * (float) Global.getRenderer().getScreenWidth()
                 / (float) Global.getRenderer().getScreenHeight(), y
                 / (float) Global.getRenderer().getScreenHeight() * 2f - 1f);
+    }
+
+    public static Vector2f sizeToCoords(final float x, final float y) {
+        return new Vector2f(x / (float) Global.getRenderer().getScreenHeight(), y
+                / (float) Global.getRenderer().getScreenHeight());
     }
 
     /**
@@ -221,7 +208,7 @@ public class MainUI {
         Global.getRenderer().addDrawable(faults);
 
         ClickableSprite play = new ClickableSprite(pixelsToCoords(2210, 1550), 1, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.play, pixelsToCoords(2210, 1530),pixelsToCoords(2230, 1550), "play");
+                new Color(255, 255, 255), R.drawable.play, pixelsToCoords(2210, 1530), pixelsToCoords(2230, 1550), "play");
         Global.getRenderer().addDrawable(play);
 
         ClickableSprite play2 = new ClickableSprite(pixelsToCoords(2300, 1550), 1, 0f, new Vector2f(1f, 1f),
@@ -826,6 +813,8 @@ public class MainUI {
         }
 
         lightAnimation.advance(amount);
+        lightAnimation.advanceState(amount);
+        MainNetworkHandler.constructAndSendPacket(PacketTypes.LIGHT_ANIMATION, null);
 
         textUpdateChance = TEXT_UPDATE_CHANCE;
     }
