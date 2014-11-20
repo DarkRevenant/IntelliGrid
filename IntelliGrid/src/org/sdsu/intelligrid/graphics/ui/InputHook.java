@@ -114,7 +114,7 @@ public class InputHook {
 	public static synchronized void reportDown(final Vector2f coords,
 			final MotionEvent e, final int id) {
 		currentFault++;
-		if (currentFault == 14) {
+		if (currentFault == 13) {
 			currentFault = 0;
 		}
 		String fault;
@@ -138,24 +138,21 @@ public class InputHook {
 			fault = "F";
 			break;
 		case 7:
-			fault = "G";
-			break;
-		case 8:
 			fault = "H";
 			break;
-		case 9:
+		case 8:
 			fault = "I";
 			break;
-		case 10:
+		case 9:
 			fault = "J";
 			break;
-		case 11:
+		case 10:
 			fault = "K";
 			break;
-		case 12:
+		case 11:
 			fault = "L";
 			break;
-		case 13:
+		case 12:
 			fault = "M";
 			break;
 		default:

@@ -23,6 +23,8 @@ import android.opengl.GLUtils;
 class TextTextureManager {
 
 	private static final Map<String, Texture> textureMap = new LinkedHashMap<>();
+	
+	private static final int MAX_BUFFERED_TEXTURES = 5000;
 
 	private static int measureHeight(final String text, final int fontSize,
 			final Typeface font, final float maxLineWidth) {
@@ -130,48 +132,47 @@ class TextTextureManager {
 			currentStart += chars + skip;
 		}
 
-        final Bitmap bitmap;
-        if (fullRect != null) {
-            bitmap = Bitmap.createBitmap(
-                    getPowerOfTwo(fullRect.width()),
-                    getPowerOfTwo(fullRect.height()), Bitmap.Config.ARGB_8888);
-            final Canvas canvas = new Canvas(bitmap);
-            bitmap.eraseColor(0);
+		final Bitmap bitmap;
+		if (fullRect != null) {
+			bitmap = Bitmap.createBitmap(getPowerOfTwo(fullRect.width()),
+					getPowerOfTwo(fullRect.height()), Bitmap.Config.ARGB_8888);
+			final Canvas canvas = new Canvas(bitmap);
+			bitmap.eraseColor(0);
 
-            iterations = 0;
-            currentStart = 0;
-            while (currentStart < text.length()) {
-                iterations++;
-                int chars = textPaint.breakText(text.substring(currentStart), true,
-                        maxLineWidth, null);
-                int skip = 0;
-                for (int i = currentStart; i < currentStart + chars; i++) {
-                    if (text.charAt(i) == '\n') {
-                        chars = i - currentStart;
-                        skip++;
-                        break;
-                    }
-                }
-                if (skip == 0 && text.length() > currentStart + chars
-                        && text.charAt(currentStart + chars) != '\n'
-                        && text.charAt(currentStart + chars) != ' ') {
-                    for (int i = currentStart + chars - 1; i >= currentStart; i--) {
-                        if (text.charAt(i) == ' ') {
-                            chars = i - currentStart;
-                            skip++;
-                            break;
-                        }
-                    }
-                }
-                canvas.drawText(text.substring(currentStart, currentStart + chars),
-                        0, (int) (lineSpacing * (float) iterations), textPaint);
-                currentStart += chars + skip;
-            }
-        } else {
-            bitmap = Bitmap.createBitmap(
-                    getPowerOfTwo(0),
-                    getPowerOfTwo(0), Bitmap.Config.ARGB_8888);
-        }
+			iterations = 0;
+			currentStart = 0;
+			while (currentStart < text.length()) {
+				iterations++;
+				int chars = textPaint.breakText(text.substring(currentStart),
+						true, maxLineWidth, null);
+				int skip = 0;
+				for (int i = currentStart; i < currentStart + chars; i++) {
+					if (text.charAt(i) == '\n') {
+						chars = i - currentStart;
+						skip++;
+						break;
+					}
+				}
+				if (skip == 0 && text.length() > currentStart + chars
+						&& text.charAt(currentStart + chars) != '\n'
+						&& text.charAt(currentStart + chars) != ' ') {
+					for (int i = currentStart + chars - 1; i >= currentStart; i--) {
+						if (text.charAt(i) == ' ') {
+							chars = i - currentStart;
+							skip++;
+							break;
+						}
+					}
+				}
+				canvas.drawText(
+						text.substring(currentStart, currentStart + chars), 0,
+						(int) (lineSpacing * (float) iterations), textPaint);
+				currentStart += chars + skip;
+			}
+		} else {
+			bitmap = Bitmap.createBitmap(getPowerOfTwo(0), getPowerOfTwo(0),
+					Bitmap.Config.ARGB_8888);
+		}
 
 		final IntBuffer buffer = IntBuffer.allocate(1);
 		glGenTextures(1, buffer);
@@ -185,9 +186,12 @@ class TextTextureManager {
 
 		GLUtils.texImage2D(GL_TEXTURE_2D, 0, bitmap, 0);
 
+		final Texture tex = new Texture(-1, texture, bitmap.getWidth(),
+				bitmap.getHeight());
+
 		bitmap.recycle();
 
-		return new Texture(-1, texture, bitmap.getWidth(), bitmap.getHeight());
+		return tex;
 	}
 
 	private static int count = 0;
@@ -202,7 +206,7 @@ class TextTextureManager {
 			final Texture texture = buildTexture(text, fontSize, font,
 					maxLineWidth);
 			count++;
-			if (count > 100) {
+			if (count > MAX_BUFFERED_TEXTURES) {
 				count = 0;
 				flushUnusedTextTextures();
 			}
@@ -214,7 +218,7 @@ class TextTextureManager {
 	}
 
 	private static void flushUnusedTextTextures() {
-		Set<Integer> stillUsedTextures = new HashSet<>();
+		final Set<Integer> stillUsedTextures = new HashSet<>();
 		for (Drawable drawable : Global.getRenderer().drawableSet) {
 			if (drawable instanceof TextSprite) {
 				TextSprite text = (TextSprite) drawable;
@@ -222,8 +226,8 @@ class TextTextureManager {
 			}
 		}
 
-		Set<Integer> unusedTextures = new LinkedHashSet<>();
-		Iterator<Map.Entry<String, Texture>> iter = textureMap.entrySet()
+		final Set<Integer> unusedTextures = new LinkedHashSet<>();
+		final Iterator<Map.Entry<String, Texture>> iter = textureMap.entrySet()
 				.iterator();
 		while (iter.hasNext()) {
 			Map.Entry<String, Texture> entry = iter.next();
@@ -234,13 +238,15 @@ class TextTextureManager {
 			}
 		}
 
-		int[] toRemove = new int[unusedTextures.size()];
+		final int[] toRemove = new int[unusedTextures.size()];
 		int count = 0;
 		for (int i : unusedTextures) {
 			toRemove[count] = i;
 			count++;
 		}
 
+		//Logger.getGlobal().log(Level.SEVERE, "Removing " + count + " textures");
+		//Logger.getGlobal().log(Level.SEVERE, "Still has " + textureMap.size() + " textures");
 		glDeleteTextures(count, toRemove, 0);
 	}
 }

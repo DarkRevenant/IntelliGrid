@@ -21,12 +21,15 @@ import java.util.logging.Logger;
  */
 public class NetworkInterface implements Runnable {
 
-	private static final int BUFFER_CAPACITY = 10000;
+	private static final int INPUT_BUFFER_CAPACITY = 10000;
+	private static final int OUTPUT_BUFFER_CAPACITY = 10;
+
+	private static final boolean ENABLE_NETWORK = false;
 
 	private final Queue<IntelliGridPacket> outputBuffer = new ArrayBlockingQueue<>(
-			BUFFER_CAPACITY);
+			OUTPUT_BUFFER_CAPACITY);
 	private final Queue<IntelliGridPacket> inputBuffer = new ArrayBlockingQueue<>(
-			BUFFER_CAPACITY);
+			INPUT_BUFFER_CAPACITY);
 
 	/**
 	 * NETWORK CONFIGURATION
@@ -58,7 +61,7 @@ public class NetworkInterface implements Runnable {
 		if (clientSocket == null) {
 			return;
 		}
-		if (outputBuffer.size() == BUFFER_CAPACITY) {
+		if (outputBuffer.size() == OUTPUT_BUFFER_CAPACITY) {
 			outputBuffer.remove();
 		}
 		outputBuffer.add(new IntelliGridPacket(message, new Date()));
@@ -127,7 +130,7 @@ public class NetworkInterface implements Runnable {
 				if (in != null) {
 					Logger.getGlobal()
 							.log(Level.SEVERE, "Read: \"" + in + "\"");
-					if (inputBuffer.size() == BUFFER_CAPACITY) {
+					if (inputBuffer.size() == INPUT_BUFFER_CAPACITY) {
 						inputBuffer.remove();
 					}
 					inputBuffer.add(new IntelliGridPacket(in, new Date()));
@@ -138,6 +141,10 @@ public class NetworkInterface implements Runnable {
 
 	@Override
 	public void run() {
+		if (!ENABLE_NETWORK) {
+			return;
+		}
+
 		new Thread(new XBeeReader()).start();
 
 		while (!Thread.currentThread().isInterrupted() && !failed) {

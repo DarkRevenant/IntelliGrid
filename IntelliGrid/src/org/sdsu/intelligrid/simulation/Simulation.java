@@ -95,7 +95,7 @@ public class Simulation {
         public double capacity = 30;
 
         //Time Scale
-        public double timeScale = 100.0; // ex. timeScale 100 = 1 second of application time is 100 seconds of simulation
+        public double timeScale = 500.0; // ex. timeScale 100 = 1 second of application time is 100 seconds of simulation
         public double time = 0; // in Hours
 
         //Global Solar Multiplier (set by model if connected)
@@ -193,9 +193,10 @@ public class Simulation {
         final double amt = (double) amount;
 
         data.time += amt * data.timeScale / 3600.0;
-        final double time = data.time;
+        double time = data.time;
         if (data.time >= 24.0) {
             data.time -= 24.0;
+            time = data.time;
         }
         
         // Time of Day packet (sent on day/night switch)
@@ -243,22 +244,21 @@ public class Simulation {
         double Load6a = Math.sqrt((Load6 * Load6) + (linear(SimulationData.comm3r, time) * linear(SimulationData.comm3r, time)));
 
 
-        double trB = Load1a / data.capacity;
-        double trD = Load2a / data.capacity;
-        double trE = Load3a / data.capacity;
-        double trF = Load3a / data.capacity;
-        double trH = Load4a / data.capacity;
-        double trI = Load4a / data.capacity;
-        double trJ = Load5a / data.capacity;
-        double trL = Load6a / data.capacity;
+        double trB = Load1a / data.capacity * Math.signum(Load1);
+        double trD = Load2a / data.capacity * Math.signum(Load2);
+        double trF = Load3a / data.capacity * Math.signum(Load3);
+        double trH = Load4a / data.capacity * Math.signum(Load4);
+        double trJ = Load5a / data.capacity * Math.signum(Load5);
+        double trL = Load6a / data.capacity * Math.signum(Load6);
 
         double trG = 0;
 
+        double trE = trF;
+        double trI = trJ;
         double trC = trD + trE;
         double trA = trB + trC;
         double trK = trI + trJ;
         double trM = trK + trL;
-        double transTotal = (trA + trM) * data.capacity;
         
         int swiABC = 0;
         int swiCDE = 0;
@@ -273,14 +273,25 @@ public class Simulation {
         boolean traJ = false;
         boolean traL = false;
         boolean tieG = true;
+        
+        if (data.fault.isEmpty() || data.fault.equals("")) {
+        	if (trB <= 0 && trD <= 0 && trF <= 0) {
+        		trA = 0;
+        		trB = 0;
+        		trC = 0;
+        		trD = 0;
+        		trE = 0;
+        		trF = 0;
+        	}
+        }
 
        //Fault between Substation and Load1/Residential1
         if (data.fault.equals("A")) {
-            trG = trE + trF;
-            trC = trB;
-            trE = trD + trC;
+            trG = -trE - trF;
+            trC = -trB;
+            trE = -trD + trC;
             trA = 0;
-            trI = trH + trG;
+            trI = trH - trG;
             trK = trI + trJ;
             trM = trK + trL;
             swiABC = 1;
@@ -290,22 +301,31 @@ public class Simulation {
         if (data.fault.equals("B")) {
             Load1 = 0;
             Load1r = 0;
+            Load1a = 0;
             trB = 0;
             trC = trD + trE;
-            trA = trB + trC;
-            trK = trI + trJ;
-            trM = trK + trL;
-            transTotal = (trA + trM) * data.capacity;
+            if (trC <= 0) {
+            	trC = 0;
+            }
+            trA = trC;
+            if (trD <= 0 && trF <= 0) {
+            	trD = 0;
+            	trE = 0;
+            	trF = 0;
+            }
             swiABC = 2;
             traB = true;
         }
         //Fault between Load1/Residential1 and Load2/Residential2
         if (data.fault.equals("C")) {
-            trG = trE + trF;
+            trG = -trE - trF;
             trC = 0;
-            trE = trD;
-            trA = trB + trC;
-            trI = trH + trG;
+            trE = -trD;
+            if (trB <= 0) {
+                trB = 0;
+            }
+            trA = trB;
+            trI = trH - trG;
             trK = trI + trJ;
             trM = trK + trL;
             swiABC = 3;
@@ -316,19 +336,26 @@ public class Simulation {
         if (data.fault.equals("D")) {
             Load2 = 0;
             Load2r = 0;
+            Load2a = 0;
             trD = 0;
-            trC = trD + trE;
+            if (trB <= 0 && trF <= 0) {
+            	trB = 0;
+            	trE = 0;
+            	trF = 0;
+            }
+            trC = trE;
             trA = trB + trC;
-            trK = trI + trJ;
-            trM = trK + trL;
-            transTotal = (trA + trM) * data.capacity;
             swiCDE = 2;
             traD = true;
         }
         //Fault between Load2/Residential2 and Load3/Residential3
         if (data.fault.equals("E")) {
             trE = 0;
-            trG = trE + trF;
+            trG = -trF;
+            if (trB <= 0 && trD <= 0) {
+            	trB = 0;
+            	trD = 0;
+            }
             trC = trD;
             trA = trB + trC;
             trI = trH + trG;
@@ -342,12 +369,15 @@ public class Simulation {
         if (data.fault.equals("F")) {
             Load3 = 0;
             Load3r = 0;
+            Load3a = 0;
             trF = 0;
-            trC = trD + trE;
+            trE = 0;
+            if (trB <= 0 && trD <= 0) {
+            	trB = 0;
+            	trD = 0;
+            }
+            trC = trD;
             trA = trB + trC;
-            trK = trI + trJ;
-            trM = trK + trL;
-            transTotal = (trA + trM) * data.capacity;
             swiEFG = 2;
             traF = true;
         }
@@ -355,12 +385,19 @@ public class Simulation {
         if (data.fault.equals("H")) {
             Load4 = 0;
             Load4r = 0;
+            Load4a = 0;
             trH = 0;
-            trC = trD + trE;
-            trA = trB + trC;
+            trI = 0;
+        	if (trB <= 0 && trD <= 0 && trF <= 0) {
+        		trA = 0;
+        		trB = 0;
+        		trC = 0;
+        		trD = 0;
+        		trE = 0;
+        		trF = 0;
+        	}
             trK = trI + trJ;
             trM = trK + trL;
-            transTotal = (trA + trM) * data.capacity;
             swiIHG = 2;
             traH = true;
         }
@@ -381,25 +418,30 @@ public class Simulation {
         if (data.fault.equals("J")) {
             Load5 = 0;
             Load5r = 0;
+            Load5a = 0;
             trJ = 0;
-            trC = trD + trE;
-            trA = trB + trC;
-            trK = trI + trJ;
+        	if (trB <= 0 && trD <= 0 && trF <= 0) {
+        		trA = 0;
+        		trB = 0;
+        		trC = 0;
+        		trD = 0;
+        		trE = 0;
+        		trF = 0;
+        	}
+            trK = trI;
             trM = trK + trL;
-            transTotal = (trA + trM) * data.capacity;
             swiKJI = 2;
             traJ = true;
         }
         //Fault between Load5/Commercial1 and Load6/Industrial1
         if (data.fault.equals("K")) {
-
-            trG = trI + trH;
+            trI = -trJ;
+            trG = -trI + trH;
             trE = trF + trG;
             trC = trD + trE;
             trA = trB + trC;
-            trI = trJ;
             trK = 0;
-            trM = trK + trL;
+            trM = trL;
             swiMLK = 3;
             swiKJI = 1;
             tieG = false;
@@ -408,28 +450,35 @@ public class Simulation {
         if (data.fault.equals("L")) {
             Load6 = 0;
             Load6r = 0;
+            Load6a = 0;
             trL = 0;
-            trC = trD + trE;
-            trA = trB + trC;
+        	if (trB <= 0 && trD <= 0 && trF <= 0) {
+        		trA = 0;
+        		trB = 0;
+        		trC = 0;
+        		trD = 0;
+        		trE = 0;
+        		trF = 0;
+        	}
             trK = trI + trJ;
-            trM = trK + trL;
-            transTotal = (trA + trM) * data.capacity;
+            trM = trK;
             swiMLK = 2;
             traL = true;
         }
         //Fault between Load6/Industrial1 and Substation
         if (data.fault.equals("M")) {
-
-            trG = trH + trI;
+            trK = -trL;
+            trI = -trJ + trK;
+            trG = trH - trI;
             trE = trF + trG;
             trC = trD + trE;
             trA = trB + trC;
-            trI = trJ + trK;
-            trK = trL;
             trM = 0;
             swiMLK = 1;
             tieG = false;
         }
+
+        double transTotal = (trA + trM) * data.capacity;
 
         double PowPlant = linear(SimulationData.PowerPlant, time) * linear(SimulationData.weather, data.w) * data.solarGenerationLevel.get();
         double WindTurbines = linear(SimulationData.WindFarm, time) * data.windGenerationLevel.get();

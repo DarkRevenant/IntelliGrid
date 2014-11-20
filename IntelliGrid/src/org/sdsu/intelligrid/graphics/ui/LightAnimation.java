@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.sdsu.intelligrid.Global;
 import org.sdsu.intelligrid.R;
@@ -355,11 +357,11 @@ public class LightAnimation {
 			gen += (blueFlow + greenFlow) * GEN_SCALE * orbFlowScale;
 			genGreen += greenFlow * GEN_SCALE * orbFlowScale;
 
-			if (gen >= 1f && genGreen >= 1f) {
+			if (gen >= 1f && genGreen >= 1f && greenFlow > OFF_THRESHOLD) {
 				gen -= 1f;
 				genGreen -= 1f;
 				return 2;
-			} else if (gen >= 1f && genGreen < 1f) {
+			} else if (gen >= 1f) {
 				gen -= 1f;
 				return 1;
 			} else {
@@ -382,8 +384,8 @@ public class LightAnimation {
 
 	private static final float OFF_THRESHOLD = 0.0001f;
 
-	private static final float GEN_SCALE = 4f;
-	private static final float FLOW_SCALE = 0.5f;
+	private static final float GEN_SCALE = 40f;
+	private static final float FLOW_SCALE = 5f;
 
 	private final List<Orb> orbs = new ArrayList<>();
 
@@ -412,11 +414,12 @@ public class LightAnimation {
 				if ((segment.getFlow() < 0f && orb.forward)
 						|| (segment.getFlow() > 0f && !orb.forward)) {
 					orb.forward = !orb.forward;
-					int previous = orb.getFrom();
+					final int previous = orb.getFrom();
+					final float progress = orb.progress;
 					orb.setFrom(orb.getTo());
 					orb.setTo(previous);
-					orb.progress = 1f - orb.progress;
-					// Update this maybe
+					orb.progress = 1f - progress;
+					break;
 				}
 				if (first) {
 					adv = orb.advance(Math.abs(segment.getFlow()) * amount
@@ -462,14 +465,12 @@ public class LightAnimation {
 					} else if (dir == 2) {
 						nextSegment = (Segment) LightStrands.SEGMENT_C.strand;
 					}
-				}
-
-				if (segment == LightStrands.SEGMENT_A.strand && !orb.forward) {
+				} else if (segment == LightStrands.SEGMENT_A.strand
+						&& !orb.forward) {
 					orb.fading = true;
 					continue;
-				}
-
-				if (segment == LightStrands.SEGMENT_B.strand && orb.forward) {
+				} else if (segment == LightStrands.SEGMENT_B.strand
+						&& orb.forward) {
 					final int dir = Junctions.B_BRANCH.advance(1f + jitter(),
 							1f + jitter(), 1f + jitter());
 					if (dir == 1) {
@@ -479,9 +480,8 @@ public class LightAnimation {
 					} else {
 						nextSegment = (Segment) LightStrands.SEGMENT_B_BRANCH_3.strand;
 					}
-				}
-
-				if (segment == LightStrands.SEGMENT_B.strand && !orb.forward) {
+				} else if (segment == LightStrands.SEGMENT_B.strand
+						&& !orb.forward) {
 					if (getFlow(LightStrands.SEGMENT_C) > OFF_THRESHOLD) {
 						nextSegment = (Segment) LightStrands.SEGMENT_C.strand;
 						orb.forward = true;
@@ -489,22 +489,17 @@ public class LightAnimation {
 						orb.fading = true; // sanity
 						continue;
 					}
-				}
-
-				if ((segment == LightStrands.SEGMENT_B_BRANCH_1.strand
+				} else if ((segment == LightStrands.SEGMENT_B_BRANCH_1.strand
 						|| segment == LightStrands.SEGMENT_B_BRANCH_2.strand || segment == LightStrands.SEGMENT_B_BRANCH_3.strand)
 						&& orb.forward) {
 					orb.fading = true;
 					continue;
-				}
-
-				if ((segment == LightStrands.SEGMENT_B_BRANCH_1.strand
+				} else if ((segment == LightStrands.SEGMENT_B_BRANCH_1.strand
 						|| segment == LightStrands.SEGMENT_B_BRANCH_2.strand || segment == LightStrands.SEGMENT_B_BRANCH_3.strand)
 						&& !orb.forward) {
 					nextSegment = (Segment) LightStrands.SEGMENT_B.strand;
-				}
-
-				if (segment == LightStrands.SEGMENT_C.strand && orb.forward) {
+				} else if (segment == LightStrands.SEGMENT_C.strand
+						&& orb.forward) {
 					final float d = Math.max(getFlow(LightStrands.SEGMENT_D),
 							0f);
 					final float e = Math.max(getFlow(LightStrands.SEGMENT_E),
@@ -515,9 +510,8 @@ public class LightAnimation {
 					} else if (dir == 3) {
 						nextSegment = (Segment) LightStrands.SEGMENT_E.strand;
 					}
-				}
-
-				if (segment == LightStrands.SEGMENT_C.strand && !orb.forward) {
+				} else if (segment == LightStrands.SEGMENT_C.strand
+						&& !orb.forward) {
 					if (getFlow(LightStrands.SEGMENT_B) > OFF_THRESHOLD) {
 						nextSegment = (Segment) LightStrands.SEGMENT_B.strand;
 						orb.forward = true;
@@ -525,9 +519,8 @@ public class LightAnimation {
 						orb.fading = true; // sanity
 						continue;
 					}
-				}
-
-				if (segment == LightStrands.SEGMENT_D.strand && orb.forward) {
+				} else if (segment == LightStrands.SEGMENT_D.strand
+						&& orb.forward) {
 					final int dir = Junctions.D_BRANCH.advance(1f + jitter(),
 							1f + jitter(), 1f + jitter());
 					if (dir == 1) {
@@ -535,9 +528,8 @@ public class LightAnimation {
 					} else {
 						nextSegment = (Segment) LightStrands.SEGMENT_D_2.strand;
 					}
-				}
-
-				if (segment == LightStrands.SEGMENT_D.strand && !orb.forward) {
+				} else if (segment == LightStrands.SEGMENT_D.strand
+						&& !orb.forward) {
 					final float c = -Math.min(getFlow(LightStrands.SEGMENT_C),
 							0f);
 					final float e = Math.max(getFlow(LightStrands.SEGMENT_E),
@@ -549,9 +541,8 @@ public class LightAnimation {
 						nextSegment = (Segment) LightStrands.SEGMENT_E.strand;
 						orb.forward = true;
 					}
-				}
-
-				if (segment == LightStrands.SEGMENT_D_2.strand && orb.forward) {
+				} else if (segment == LightStrands.SEGMENT_D_2.strand
+						&& orb.forward) {
 					final int dir = Junctions.D_BRANCH_2.advance(1f + jitter(),
 							1f + jitter(), 0f);
 					if (dir == 1) {
@@ -559,30 +550,22 @@ public class LightAnimation {
 					} else {
 						nextSegment = (Segment) LightStrands.SEGMENT_D_BRANCH_3.strand;
 					}
-				}
-
-				if (segment == LightStrands.SEGMENT_D_2.strand && !orb.forward) {
+				} else if (segment == LightStrands.SEGMENT_D_2.strand
+						&& !orb.forward) {
 					nextSegment = (Segment) LightStrands.SEGMENT_D.strand;
-				}
-
-				if ((segment == LightStrands.SEGMENT_D_BRANCH_1.strand
+				} else if ((segment == LightStrands.SEGMENT_D_BRANCH_1.strand
 						|| segment == LightStrands.SEGMENT_D_BRANCH_2.strand || segment == LightStrands.SEGMENT_D_BRANCH_3.strand)
 						&& orb.forward) {
 					orb.fading = true;
 					continue;
-				}
-
-				if (segment == LightStrands.SEGMENT_D_BRANCH_1.strand
+				} else if (segment == LightStrands.SEGMENT_D_BRANCH_1.strand
 						&& !orb.forward) {
 					nextSegment = (Segment) LightStrands.SEGMENT_D.strand;
-				}
-
-				if ((segment == LightStrands.SEGMENT_D_BRANCH_2.strand || segment == LightStrands.SEGMENT_D_BRANCH_3.strand)
+				} else if ((segment == LightStrands.SEGMENT_D_BRANCH_2.strand || segment == LightStrands.SEGMENT_D_BRANCH_3.strand)
 						&& !orb.forward) {
 					nextSegment = (Segment) LightStrands.SEGMENT_D_2.strand;
-				}
-
-				if (segment == LightStrands.SEGMENT_E.strand && orb.forward) {
+				} else if (segment == LightStrands.SEGMENT_E.strand
+						&& orb.forward) {
 					final float f = Math.max(getFlow(LightStrands.SEGMENT_F),
 							0f);
 					final float g = Math.max(getFlow(LightStrands.SEGMENT_G),
@@ -593,9 +576,8 @@ public class LightAnimation {
 					} else if (dir == 3) {
 						nextSegment = (Segment) LightStrands.SEGMENT_G.strand;
 					}
-				}
-
-				if (segment == LightStrands.SEGMENT_E.strand && !orb.forward) {
+				} else if (segment == LightStrands.SEGMENT_E.strand
+						&& !orb.forward) {
 					final float c = -Math.min(getFlow(LightStrands.SEGMENT_C),
 							0f);
 					final float d = Math.max(getFlow(LightStrands.SEGMENT_D),
@@ -607,9 +589,8 @@ public class LightAnimation {
 						nextSegment = (Segment) LightStrands.SEGMENT_D.strand;
 						orb.forward = true;
 					}
-				}
-
-				if (segment == LightStrands.SEGMENT_F.strand && orb.forward) {
+				} else if (segment == LightStrands.SEGMENT_F.strand
+						&& orb.forward) {
 					final int dir = Junctions.F_BRANCH.advance(1f + jitter(),
 							1f + jitter(), 1f + jitter());
 					if (dir == 1) {
@@ -617,9 +598,8 @@ public class LightAnimation {
 					} else {
 						nextSegment = (Segment) LightStrands.SEGMENT_F_BRANCH_1.strand;
 					}
-				}
-
-				if (segment == LightStrands.SEGMENT_F.strand && !orb.forward) {
+				} else if (segment == LightStrands.SEGMENT_F.strand
+						&& !orb.forward) {
 					final float e = -Math.min(getFlow(LightStrands.SEGMENT_E),
 							0f);
 					final float g = Math.max(getFlow(LightStrands.SEGMENT_G),
@@ -631,9 +611,8 @@ public class LightAnimation {
 						nextSegment = (Segment) LightStrands.SEGMENT_G.strand;
 						orb.forward = true;
 					}
-				}
-
-				if (segment == LightStrands.SEGMENT_F_2.strand && orb.forward) {
+				} else if (segment == LightStrands.SEGMENT_F_2.strand
+						&& orb.forward) {
 					final int dir = Junctions.F_BRANCH_2.advance(1f + jitter(),
 							1f + jitter(), 0f);
 					if (dir == 1) {
@@ -641,30 +620,22 @@ public class LightAnimation {
 					} else {
 						nextSegment = (Segment) LightStrands.SEGMENT_F_BRANCH_3.strand;
 					}
-				}
-
-				if (segment == LightStrands.SEGMENT_F_2.strand && !orb.forward) {
+				} else if (segment == LightStrands.SEGMENT_F_2.strand
+						&& !orb.forward) {
 					nextSegment = (Segment) LightStrands.SEGMENT_F.strand;
-				}
-
-				if ((segment == LightStrands.SEGMENT_F_BRANCH_1.strand
+				} else if ((segment == LightStrands.SEGMENT_F_BRANCH_1.strand
 						|| segment == LightStrands.SEGMENT_F_BRANCH_2.strand || segment == LightStrands.SEGMENT_F_BRANCH_3.strand)
 						&& orb.forward) {
 					orb.fading = true;
 					continue;
-				}
-
-				if (segment == LightStrands.SEGMENT_F_BRANCH_1.strand
+				} else if (segment == LightStrands.SEGMENT_F_BRANCH_1.strand
 						&& !orb.forward) {
 					nextSegment = (Segment) LightStrands.SEGMENT_F.strand;
-				}
-
-				if ((segment == LightStrands.SEGMENT_F_BRANCH_2.strand || segment == LightStrands.SEGMENT_F_BRANCH_3.strand)
+				} else if ((segment == LightStrands.SEGMENT_F_BRANCH_2.strand || segment == LightStrands.SEGMENT_F_BRANCH_3.strand)
 						&& !orb.forward) {
 					nextSegment = (Segment) LightStrands.SEGMENT_F_2.strand;
-				}
-
-				if (segment == LightStrands.SEGMENT_G.strand && orb.forward) {
+				} else if (segment == LightStrands.SEGMENT_G.strand
+						&& orb.forward) {
 					final float i = -Math.min(getFlow(LightStrands.SEGMENT_I),
 							0f);
 					final float h = Math.max(getFlow(LightStrands.SEGMENT_H),
@@ -676,9 +647,8 @@ public class LightAnimation {
 					} else if (dir == 2) {
 						nextSegment = (Segment) LightStrands.SEGMENT_H.strand;
 					}
-				}
-
-				if (segment == LightStrands.SEGMENT_G.strand && !orb.forward) {
+				} else if (segment == LightStrands.SEGMENT_G.strand
+						&& !orb.forward) {
 					final float e = -Math.min(getFlow(LightStrands.SEGMENT_E),
 							0f);
 					final float f = Math.max(getFlow(LightStrands.SEGMENT_F),
@@ -690,9 +660,8 @@ public class LightAnimation {
 						nextSegment = (Segment) LightStrands.SEGMENT_F.strand;
 						orb.forward = true;
 					}
-				}
-
-				if (segment == LightStrands.SEGMENT_H.strand && orb.forward) {
+				} else if (segment == LightStrands.SEGMENT_H.strand
+						&& orb.forward) {
 					final int dir = Junctions.H_BRANCH.advance(1f + jitter(),
 							1f + jitter(), 0f);
 					if (dir == 1) {
@@ -700,9 +669,8 @@ public class LightAnimation {
 					} else {
 						nextSegment = (Segment) LightStrands.SEGMENT_H_BRANCH_2.strand;
 					}
-				}
-
-				if (segment == LightStrands.SEGMENT_H.strand && !orb.forward) {
+				} else if (segment == LightStrands.SEGMENT_H.strand
+						&& !orb.forward) {
 					final float i = -Math.min(getFlow(LightStrands.SEGMENT_I),
 							0f);
 					final float g = -Math.min(getFlow(LightStrands.SEGMENT_G),
@@ -713,20 +681,15 @@ public class LightAnimation {
 					} else if (dir == 3) {
 						nextSegment = (Segment) LightStrands.SEGMENT_G.strand;
 					}
-				}
-
-				if ((segment == LightStrands.SEGMENT_H_BRANCH_1.strand || segment == LightStrands.SEGMENT_H_BRANCH_2.strand)
+				} else if ((segment == LightStrands.SEGMENT_H_BRANCH_1.strand || segment == LightStrands.SEGMENT_H_BRANCH_2.strand)
 						&& orb.forward) {
 					orb.fading = true;
 					continue;
-				}
-
-				if ((segment == LightStrands.SEGMENT_H_BRANCH_1.strand || segment == LightStrands.SEGMENT_H_BRANCH_2.strand)
+				} else if ((segment == LightStrands.SEGMENT_H_BRANCH_1.strand || segment == LightStrands.SEGMENT_H_BRANCH_2.strand)
 						&& !orb.forward) {
 					nextSegment = (Segment) LightStrands.SEGMENT_H.strand;
-				}
-
-				if (segment == LightStrands.SEGMENT_I.strand && orb.forward) {
+				} else if (segment == LightStrands.SEGMENT_I.strand
+						&& orb.forward) {
 					final float h = Math.max(getFlow(LightStrands.SEGMENT_H),
 							0f);
 					final float g = -Math.min(getFlow(LightStrands.SEGMENT_G),
@@ -738,9 +701,8 @@ public class LightAnimation {
 						nextSegment = (Segment) LightStrands.SEGMENT_G.strand;
 						orb.forward = false;
 					}
-				}
-
-				if (segment == LightStrands.SEGMENT_I.strand && !orb.forward) {
+				} else if (segment == LightStrands.SEGMENT_I.strand
+						&& !orb.forward) {
 					final float k = -Math.min(getFlow(LightStrands.SEGMENT_K),
 							0f);
 					final float j = Math.max(getFlow(LightStrands.SEGMENT_J),
@@ -752,9 +714,8 @@ public class LightAnimation {
 						nextSegment = (Segment) LightStrands.SEGMENT_J.strand;
 						orb.forward = true;
 					}
-				}
-
-				if (segment == LightStrands.SEGMENT_J.strand && orb.forward) {
+				} else if (segment == LightStrands.SEGMENT_J.strand
+						&& orb.forward) {
 					final int dir = Junctions.J_BRANCH.advance(1f + jitter(),
 							1f + jitter(), 0f);
 					if (dir == 1) {
@@ -762,9 +723,8 @@ public class LightAnimation {
 					} else {
 						nextSegment = (Segment) LightStrands.SEGMENT_J_BRANCH_2.strand;
 					}
-				}
-
-				if (segment == LightStrands.SEGMENT_J.strand && !orb.forward) {
+				} else if (segment == LightStrands.SEGMENT_J.strand
+						&& !orb.forward) {
 					final float k = -Math.min(getFlow(LightStrands.SEGMENT_K),
 							0f);
 					final float i = Math.max(getFlow(LightStrands.SEGMENT_I),
@@ -776,20 +736,15 @@ public class LightAnimation {
 						nextSegment = (Segment) LightStrands.SEGMENT_I.strand;
 						orb.forward = true;
 					}
-				}
-
-				if ((segment == LightStrands.SEGMENT_J_BRANCH_1.strand || segment == LightStrands.SEGMENT_J_BRANCH_2.strand)
+				} else if ((segment == LightStrands.SEGMENT_J_BRANCH_1.strand || segment == LightStrands.SEGMENT_J_BRANCH_2.strand)
 						&& orb.forward) {
 					orb.fading = true;
 					continue;
-				}
-
-				if ((segment == LightStrands.SEGMENT_J_BRANCH_1.strand || segment == LightStrands.SEGMENT_J_BRANCH_2.strand)
+				} else if ((segment == LightStrands.SEGMENT_J_BRANCH_1.strand || segment == LightStrands.SEGMENT_J_BRANCH_2.strand)
 						&& !orb.forward) {
 					nextSegment = (Segment) LightStrands.SEGMENT_J.strand;
-				}
-
-				if (segment == LightStrands.SEGMENT_K.strand && orb.forward) {
+				} else if (segment == LightStrands.SEGMENT_K.strand
+						&& orb.forward) {
 					final float j = Math.max(getFlow(LightStrands.SEGMENT_J),
 							0f);
 					final float i = Math.max(getFlow(LightStrands.SEGMENT_I),
@@ -800,9 +755,8 @@ public class LightAnimation {
 					} else if (dir == 3) {
 						nextSegment = (Segment) LightStrands.SEGMENT_I.strand;
 					}
-				}
-
-				if (segment == LightStrands.SEGMENT_K.strand && !orb.forward) {
+				} else if (segment == LightStrands.SEGMENT_K.strand
+						&& !orb.forward) {
 					if (getFlow(LightStrands.SEGMENT_L) > OFF_THRESHOLD) {
 						nextSegment = (Segment) LightStrands.SEGMENT_L.strand;
 						orb.forward = true;
@@ -810,9 +764,8 @@ public class LightAnimation {
 						orb.fading = true; // sanity
 						continue;
 					}
-				}
-
-				if (segment == LightStrands.SEGMENT_L.strand && orb.forward) {
+				} else if (segment == LightStrands.SEGMENT_L.strand
+						&& orb.forward) {
 					final int dir = Junctions.L_BRANCH.advance(1f + jitter(),
 							1f + jitter(), 0f);
 					if (dir == 1) {
@@ -820,9 +773,8 @@ public class LightAnimation {
 					} else {
 						nextSegment = (Segment) LightStrands.SEGMENT_L_BRANCH_2.strand;
 					}
-				}
-
-				if (segment == LightStrands.SEGMENT_L.strand && !orb.forward) {
+				} else if (segment == LightStrands.SEGMENT_L.strand
+						&& !orb.forward) {
 					if (getFlow(LightStrands.SEGMENT_K) > OFF_THRESHOLD) {
 						nextSegment = (Segment) LightStrands.SEGMENT_K.strand;
 						orb.forward = true;
@@ -830,20 +782,15 @@ public class LightAnimation {
 						orb.fading = true; // sanity
 						continue;
 					}
-				}
-
-				if ((segment == LightStrands.SEGMENT_L_BRANCH_1.strand || segment == LightStrands.SEGMENT_L_BRANCH_2.strand)
+				} else if ((segment == LightStrands.SEGMENT_L_BRANCH_1.strand || segment == LightStrands.SEGMENT_L_BRANCH_2.strand)
 						&& orb.forward) {
 					orb.fading = true;
 					continue;
-				}
-
-				if ((segment == LightStrands.SEGMENT_L_BRANCH_1.strand || segment == LightStrands.SEGMENT_L_BRANCH_2.strand)
+				} else if ((segment == LightStrands.SEGMENT_L_BRANCH_1.strand || segment == LightStrands.SEGMENT_L_BRANCH_2.strand)
 						&& !orb.forward) {
 					nextSegment = (Segment) LightStrands.SEGMENT_L.strand;
-				}
-
-				if (segment == LightStrands.SEGMENT_M.strand && orb.forward) {
+				} else if (segment == LightStrands.SEGMENT_M.strand
+						&& orb.forward) {
 					final float l = Math.max(getFlow(LightStrands.SEGMENT_L),
 							0f);
 					final float k = Math.max(getFlow(LightStrands.SEGMENT_K),
@@ -854,19 +801,14 @@ public class LightAnimation {
 					} else if (dir == 2) {
 						nextSegment = (Segment) LightStrands.SEGMENT_K.strand;
 					}
-				}
-
-				if (segment == LightStrands.SEGMENT_M.strand && !orb.forward) {
+				} else if (segment == LightStrands.SEGMENT_M.strand
+						&& !orb.forward) {
 					orb.fading = true;
 					continue;
-				}
-
-				if (segment == LightStrands.SEGMENT_X.strand) {
+				} else if (segment == LightStrands.SEGMENT_X.strand) {
 					orb.fading = true;
 					continue;
-				}
-
-				if (segment == LightStrands.SEGMENT_W.strand) {
+				} else if (segment == LightStrands.SEGMENT_W.strand) {
 					orb.fading = true;
 					continue;
 				}
@@ -1110,8 +1052,8 @@ public class LightAnimation {
 			strand.setFlow(getFlow(LightStrands.SEGMENT_X));
 		}
 
-		if ((float) SimInfo.trB > OFF_THRESHOLD && SimInfo.Load1 < 0.0) {
-			final float greenFlow = (float) SimInfo.trB * amount;
+		if (SimInfo.Load1 < 0.0) {
+			final float greenFlow = (float) -SimInfo.trB * amount;
 
 			final int dir = Junctions.B_GEN.advance(1f + jitter(),
 					1f + jitter(), 1f + jitter());
@@ -1141,8 +1083,8 @@ public class LightAnimation {
 			}
 		}
 
-		if ((float) SimInfo.trD > OFF_THRESHOLD && SimInfo.Load2 < 0.0) {
-			final float greenFlow = (float) SimInfo.trD * amount;
+		if (SimInfo.Load2 < 0.0) {
+			final float greenFlow = (float) -SimInfo.trD * amount;
 
 			final int dir = Junctions.D_GEN.advance(1f + jitter(),
 					1f + jitter(), 1f + jitter());
@@ -1172,8 +1114,8 @@ public class LightAnimation {
 			}
 		}
 
-		if ((float) SimInfo.trF > OFF_THRESHOLD && SimInfo.Load3 < 0.0) {
-			final float greenFlow = (float) SimInfo.trB * amount;
+		if (SimInfo.Load3 < 0.0) {
+			final float greenFlow = (float) -SimInfo.trF * amount;
 
 			final int dir = Junctions.F_GEN.advance(1f + jitter(),
 					1f + jitter(), 1f + jitter());
@@ -1203,8 +1145,8 @@ public class LightAnimation {
 			}
 		}
 
-		if ((float) SimInfo.trH > OFF_THRESHOLD && SimInfo.Load4 < 0.0) {
-			final float greenFlow = (float) SimInfo.trH * amount;
+		if (SimInfo.Load4 < 0.0) {
+			final float greenFlow = (float) -SimInfo.trH * amount;
 
 			final int dir = Junctions.H_GEN.advance(1f + jitter(),
 					1f + jitter(), 0f);
@@ -1232,8 +1174,8 @@ public class LightAnimation {
 			}
 		}
 
-		if ((float) SimInfo.trJ > OFF_THRESHOLD && SimInfo.Load5 < 0.0) {
-			final float greenFlow = (float) SimInfo.trJ * amount;
+		if (SimInfo.Load5 < 0.0) {
+			final float greenFlow = (float) -SimInfo.trJ * amount;
 
 			final int dir = Junctions.J_GEN.advance(1f + jitter(),
 					1f + jitter(), 0f);
@@ -1261,8 +1203,8 @@ public class LightAnimation {
 			}
 		}
 
-		if ((float) SimInfo.trL > OFF_THRESHOLD && SimInfo.Load6 < 0.0) {
-			final float greenFlow = (float) SimInfo.trL * amount;
+		if (SimInfo.Load6 < 0.0) {
+			final float greenFlow = (float) -SimInfo.trL * amount;
 
 			final int dir = Junctions.L_GEN.advance(1f + jitter(),
 					1f + jitter(), 0f);
@@ -1300,149 +1242,87 @@ public class LightAnimation {
 		}
 		case SEGMENT_B: {
 			flow = SimInfo.trB;
-			if (SimInfo.Load1 < 0.0) {
-				flow *= -1.0;
-			}
 			break;
 		}
 		case SEGMENT_B_BRANCH_1:
 		case SEGMENT_B_BRANCH_2:
 		case SEGMENT_B_BRANCH_3: {
 			flow = SimInfo.trB / 3.0;
-			if (SimInfo.Load1 < 0.0) {
-				flow *= -1.0;
-			}
 			break;
 		}
 		case SEGMENT_C: {
 			flow = SimInfo.trC;
-			if (SimInfo.trA + getFlow(LightStrands.SEGMENT_B) < getFlow(LightStrands.SEGMENT_D)
-					+ SimInfo.trE) {
-				flow *= -1.0;
-			}
 			break;
 		}
 		case SEGMENT_D: {
 			flow = SimInfo.trD;
-			if (SimInfo.Load2 < 0.0) {
-				flow *= -1.0;
-			}
 			break;
 		}
 		case SEGMENT_D_2: {
 			flow = SimInfo.trD * 2.0 / 3.0;
-			if (SimInfo.Load2 < 0.0) {
-				flow *= -1.0;
-			}
 			break;
 		}
 		case SEGMENT_D_BRANCH_1:
 		case SEGMENT_D_BRANCH_2:
 		case SEGMENT_D_BRANCH_3: {
 			flow = SimInfo.trD / 3.0;
-			if (SimInfo.Load2 < 0.0) {
-				flow *= -1.0;
-			}
 			break;
 		}
 		case SEGMENT_E: {
 			flow = SimInfo.trE;
-			if (SimInfo.trC + getFlow(LightStrands.SEGMENT_D) < getFlow(LightStrands.SEGMENT_F)
-					+ SimInfo.trG) {
-				flow *= -1.0;
-			}
 			break;
 		}
 		case SEGMENT_F: {
 			flow = SimInfo.trF;
-			if (SimInfo.Load3 < 0.0) {
-				flow *= -1.0;
-			}
 			break;
 		}
 		case SEGMENT_F_2: {
 			flow = SimInfo.trF * 2.0 / 3.0;
-			if (SimInfo.Load3 < 0.0) {
-				flow *= -1.0;
-			}
 			break;
 		}
 		case SEGMENT_F_BRANCH_1:
 		case SEGMENT_F_BRANCH_2:
 		case SEGMENT_F_BRANCH_3: {
 			flow = SimInfo.trF / 3.0;
-			if (SimInfo.Load3 < 0.0) {
-				flow *= -1.0;
-			}
 			break;
 		}
 		case SEGMENT_G: {
 			flow = SimInfo.trG;
-			if (SimInfo.trE + getFlow(LightStrands.SEGMENT_F) < getFlow(LightStrands.SEGMENT_H)
-					+ SimInfo.trI) {
-				flow *= -1.0;
-			}
 			break;
 		}
 		case SEGMENT_H: {
 			flow = SimInfo.trH;
-			if (SimInfo.Load4 < 0.0) {
-				flow *= -1.0;
-			}
 			break;
 		}
 		case SEGMENT_H_BRANCH_1:
 		case SEGMENT_H_BRANCH_2: {
 			flow = SimInfo.trH / 2.0;
-			if (SimInfo.Load4 < 0.0) {
-				flow *= -1.0;
-			}
 			break;
 		}
 		case SEGMENT_I: {
 			flow = SimInfo.trI;
-			if (SimInfo.trK + getFlow(LightStrands.SEGMENT_J) < getFlow(LightStrands.SEGMENT_H)
-					+ SimInfo.trG) {
-				flow *= -1.0;
-			}
 			break;
 		}
 		case SEGMENT_J: {
 			flow = SimInfo.trJ;
-			if (SimInfo.Load5 < 0.0) {
-				flow *= -1.0;
-			}
 			break;
 		}
 		case SEGMENT_J_BRANCH_1:
 		case SEGMENT_J_BRANCH_2: {
 			flow = SimInfo.trJ / 2.0;
-			if (SimInfo.Load5 < 0.0) {
-				flow *= -1.0;
-			}
 			break;
 		}
 		case SEGMENT_K: {
 			flow = SimInfo.trK;
-			if (SimInfo.trM + getFlow(LightStrands.SEGMENT_L) < getFlow(LightStrands.SEGMENT_J)
-					+ SimInfo.trI) {
-				flow *= -1.0;
-			}
 			break;
 		}
 		case SEGMENT_L: {
 			flow = SimInfo.trL;
-			if (SimInfo.Load6 < 0.0) {
-				flow *= -1.0;
-			}
 			break;
 		}
 		case SEGMENT_L_BRANCH_1:
 		case SEGMENT_L_BRANCH_2: {
 			flow = SimInfo.trL / 2.0;
-			if (SimInfo.Load6 < 0.0) {
-				flow *= -1.0;
-			}
 			break;
 		}
 		case SEGMENT_M: {
@@ -1463,16 +1343,7 @@ public class LightAnimation {
 		return (float) flow;
 	}
 
-	private float interval = 1f / 60f;
-
 	public void advanceState(final float amount) {
-		interval -= amount;
-		if (interval <= 0f) {
-			interval += 1f / 60f;
-		} else {
-			return;
-		}
-
 		for (int i = 1; i <= 177; i++) {
 			LightStates currentState = states.get(i);
 			switch (currentState) {
@@ -1500,7 +1371,7 @@ public class LightAnimation {
 		}
 
 		for (Orb orb : orbs) {
-			if (orb.alpha < 0.5f) {
+			if (orb.alpha < 0.9f) {
 				continue;
 			}
 

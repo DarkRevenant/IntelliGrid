@@ -667,7 +667,7 @@ public class MainUI {
     private LightAnimation lightAnimation;
 
     private static final float TEXT_UPDATE_INTERVAL = 0.1f;
-    private static final double TEXT_UPDATE_CHANCE = 0.1;
+    private static final double TEXT_UPDATE_CHANCE = 0.25;
 
     private double textUpdateChance = 1.0;
     private float textUpdateTimer = TEXT_UPDATE_INTERVAL;
@@ -689,7 +689,6 @@ public class MainUI {
 
         textUpdateTimer -= amount;
         if (textUpdateTimer <= 0f) {
-
             if (Math.random() < textUpdateChance)
                 UIInfo.Load1.setText("" + String.format("%.2f", Simulation.SimInfo.Load1) + " MW"
                                 + "\n" + String.format("%.2f", Simulation.SimInfo.Load1r) + " MVAR"
@@ -791,7 +790,7 @@ public class MainUI {
                         UIInfo.WindTurbines.getMaxLineWidth());
 
             if (Math.random() < textUpdateChance)
-                UIInfo.PowPlant.setText("" + String.format("%.2f", Simulation.SimInfo.PowPlant) + " MW",
+                UIInfo.PowPlant.setText("" + String.format("%.2f", Simulation.SimInfo.PowPlant + Simulation.SimInfo.BatteryStorage) + " MW",
                         UIInfo.PowPlant.getFontSize(), UIInfo.PowPlant.getFont(),
                         UIInfo.PowPlant.getMaxLineWidth());
 
