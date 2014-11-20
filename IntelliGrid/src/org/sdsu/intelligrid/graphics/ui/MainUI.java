@@ -204,23 +204,23 @@ public class MainUI {
         Global.getRenderer().addDrawable(info);
 
         ClickableSprite faults = new ClickableSprite(pixelsToCoords(2185, 75), 1, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.faults, pixelsToCoords(2185, 55), pixelsToCoords(2205, 75), "faults");
+                new Color(255, 255, 255), R.drawable.faults, sizeToCoords(1,1), sizeToCoords(1,1), "faults");
         Global.getRenderer().addDrawable(faults);
 
         ClickableSprite play = new ClickableSprite(pixelsToCoords(2210, 1550), 1, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.play, pixelsToCoords(2210, 1530), pixelsToCoords(2230, 1550), "play");
+                new Color(255, 255, 255), R.drawable.play, sizeToCoords(1,1), sizeToCoords(1,1), "play");
         Global.getRenderer().addDrawable(play);
 
         ClickableSprite play2 = new ClickableSprite(pixelsToCoords(2300, 1550), 1, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.play2, pixelsToCoords(2300, 1530), pixelsToCoords(2320,1550), "play2");
+                new Color(255, 255, 255), R.drawable.play2, sizeToCoords(1,1), sizeToCoords(1,1), "play2");
         Global.getRenderer().addDrawable(play2);
 
         ClickableSprite play3 = new ClickableSprite(pixelsToCoords(2400, 1550), 1, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.play3, pixelsToCoords(2400, 1530), pixelsToCoords(2420, 1550), "play3");
+                new Color(255, 255, 255), R.drawable.play3, sizeToCoords(1,1), sizeToCoords(1,1), "play3");
         Global.getRenderer().addDrawable(play3);
 
         ClickableSprite pause = new ClickableSprite(pixelsToCoords(2500, 1550), 1, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.pause, pixelsToCoords(2500, 1530), pixelsToCoords(2520, 1550), "pause");
+                new Color(255, 255, 255), R.drawable.pause, sizeToCoords(1,1), sizeToCoords(1,1), "pause");
         Global.getRenderer().addDrawable(pause);
 
         Sprite house1 = new Sprite(pixelsToCoords(155, 120), 0, 0f, new Vector2f(1f, 1f),
