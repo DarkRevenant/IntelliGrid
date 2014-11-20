@@ -1,13 +1,9 @@
 package org.sdsu.intelligrid.graphics.ui;
 
 import org.sdsu.intelligrid.Global;
-import org.sdsu.intelligrid.graphics.TextSprite;
-import org.sdsu.intelligrid.util.Color;
 import org.sdsu.intelligrid.util.Vector2f;
 
-import android.graphics.Typeface;
 import android.view.MotionEvent;
-import org.sdsu.intelligrid.simulation.Simulation.SimInfo;
 
 /**
  * A hook containing static methods that are called when input events happen.
@@ -102,6 +98,8 @@ public class InputHook {
 			final int id) {
 	}
 
+	static int currentFault = 0;
+
 	/**
 	 * This function is called when a pointer goes down and touches the screen.
 	 * 
@@ -115,12 +113,67 @@ public class InputHook {
 	 */
 	public static synchronized void reportDown(final Vector2f coords,
 			final MotionEvent e, final int id) {
+		currentFault++;
+		if (currentFault == 14) {
+			currentFault = 0;
+		}
+		String fault;
+		switch (currentFault) {
+		case 1:
+			fault = "A";
+			break;
+		case 2:
+			fault = "B";
+			break;
+		case 3:
+			fault = "C";
+			break;
+		case 4:
+			fault = "D";
+			break;
+		case 5:
+			fault = "E";
+			break;
+		case 6:
+			fault = "F";
+			break;
+		case 7:
+			fault = "G";
+			break;
+		case 8:
+			fault = "H";
+			break;
+		case 9:
+			fault = "I";
+			break;
+		case 10:
+			fault = "J";
+			break;
+		case 11:
+			fault = "K";
+			break;
+		case 12:
+			fault = "L";
+			break;
+		case 13:
+			fault = "M";
+			break;
+		default:
+			fault = "";
+		}
+		try {
+			Global.getGlobalSimulation().data.fault = fault;
+		} catch (Exception ex) {
+			// do nothing
+		}
 		// Test
-/*		final TextSprite text = new TextSprite(
-			"This is a test paragraph designed to demonstrate the multi-line capabilities of the text rendering system.\nThere are few word-processor features for this system; carriage returns and wrap does work, but that's about it. Please note that this system is slow to initialize new strings; do not change them too often. Do not vary font, size, or line width on strings that do change, such as power readouts.",
-                new Vector2f(0f, 0f), 60, Typeface.DEFAULT, 1000f, 0, 0,
-				new Vector2f(1f, 1f), new Color(255, 255, 255));
-		Global.getRenderer().addDrawable(text); */
+		/*
+		 * final TextSprite text = new TextSprite(
+		 * "This is a test paragraph designed to demonstrate the multi-line capabilities of the text rendering system.\nThere are few word-processor features for this system; carriage returns and wrap does work, but that's about it. Please note that this system is slow to initialize new strings; do not change them too often. Do not vary font, size, or line width on strings that do change, such as power readouts."
+		 * , new Vector2f(0f, 0f), 60, Typeface.DEFAULT, 1000f, 0, 0, new
+		 * Vector2f(1f, 1f), new Color(255, 255, 255));
+		 * Global.getRenderer().addDrawable(text);
+		 */
 	}
 
 	/**

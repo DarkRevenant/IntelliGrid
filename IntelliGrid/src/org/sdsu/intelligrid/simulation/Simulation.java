@@ -95,7 +95,7 @@ public class Simulation {
         public double capacity = 30;
 
         //Time Scale
-        public double timeScale = 2000.0; // ex. timeScale 100 = 1 second of application time is 100 seconds of simulation
+        public double timeScale = 100.0; // ex. timeScale 100 = 1 second of application time is 100 seconds of simulation
         public double time = 0; // in Hours
 
         //Global Solar Multiplier (set by model if connected)
