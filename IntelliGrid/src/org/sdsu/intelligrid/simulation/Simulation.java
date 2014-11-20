@@ -1,6 +1,10 @@
-// Copyright 2014 Harrison Snodgrass, all rights reserved
+// Copyright 2014 Edmond Basilan, all rights reserved
 
 package org.sdsu.intelligrid.simulation;
+
+import org.sdsu.intelligrid.Global;
+import org.sdsu.intelligrid.network.MainNetworkHandler;
+import org.sdsu.intelligrid.network.MainNetworkHandler.PacketTypes;
 
 
 /**
@@ -23,6 +27,8 @@ public class Simulation {
         // Battery Charge
         public static double[] Battery = {-0.133, -0.267, -0.35, -0.3, -0.25, -0.2, -0.15, -0.1, -0.05, -0.01, -0.01, -0.01,
                 -0.01, -0.01, -0.01, -0.01, -0.01, 0.5, 1.3, -0.01, -0.01, -0.01, -0.01, -0.01};
+        
+        // Need battery storage level array
 
         //REAL POWER
         public static double[] res1 =
@@ -65,36 +71,96 @@ public class Simulation {
                 {2.54269227, 2.436141356, 2.329590442, 2.271471761, 2.223039528, 2.436625678, 2.644399961, 2.857501789, 3.070603618, 3.283705446, 3.598514965, 3.705065879,
                         3.811616794, 4.024718622, 4.23782045, 4.446079055, 4.660633851, 4.658212239, 4.660149528, 4.339528141, 3.811616794, 3.283705446, 2.964052704, 2.54269227};
         //Electric Vehicles
-        double numEV = 1; //number of electric vehicles
-        double EV = 1;  //sample number
+        public double numEV = 1; //number of electric vehicles
+        public double EV = 1;  //sample number
 
         //Weather for Solar Panels
-        double[] weather = {1, .8, .6, .4, .2}; //Sunny to cloudy
-        double w = 0;
-
-        //Wind Turbine Multiplier
-        double[] turbineLevel = {1, .6, .3, 0};  //Fastest to off
-        int turbineSpeed = 0;
+        public static double[] weather = {1, .8, .6, .4, .2}; //Sunny to cloudy
+        public double w = 0;
 
         //Electric Vehicle & Solar Panel Enables
         //On = 1 Off = 0
-        //double L1EV = 0;
-        //double L2EV = 0;
-        double L3EV = 0;
+        //public double L1EV = 0;
+        //public double L2EV = 0;
+        public double L3EV = 0;
         //Solar Panel
-        //double L1SL = 1;
-        double L2SL = 1;
-        double L3SL = 1;
+        //public double L1SL = 1;
+        public double L2SL = 1;
+        public double L3SL = 1;
 
         //Fault Selection
-        String fault = "";
+        public String fault = "";
 
         //Transformer Capacity
-        double capacity = 30;
+        public double capacity = 30;
 
         //Time Scale
-        double timeScale = 2000.0; // ex. timeScale 100 = 1 second of application time is 100 seconds of simulation
-        double time = 0; // in Hours
+        public double timeScale = 2000.0; // ex. timeScale 100 = 1 second of application time is 100 seconds of simulation
+        public double time = 0; // in Hours
+
+        //Global Solar Multiplier (set by model if connected)
+        public MutableValue solarGenerationLevel = new MutableValue(1.0);
+        //Wind Turbine Multiplier (can be set by model)
+        public MutableValue windGenerationLevel = new MutableValue(1.0);
+    }
+
+	/**
+	 * This allows values to change over time after a one-time function call.
+	 * Should be used by the network and the UI. Can be extended to have other
+	 * time-based effects.
+	 */
+	public static class MutableValue {
+    	
+    	private double time;
+    	private double value;
+    	
+    	private double interpolateStart;
+    	private double interpolateEnd;
+    	private double interpolateEndTime;
+    	private boolean isInterpolating = false;
+    	private boolean simulationTimeInterpolation;
+    	
+    	public MutableValue(final double value) {
+    		this.value = value;
+    	}
+    	
+    	public double get() {
+    		return value;
+    	}
+    	
+    	public void set(final double value) {
+    		this.value = value;
+    	}
+    	
+    	public void changeOverTime(final double toValue, final double time, final boolean simulationTimeInterpolation) {
+    		interpolateEndTime = time;
+    		this.time = 0f;
+    		interpolateStart = value;
+    		interpolateEnd = toValue;
+    		this.simulationTimeInterpolation = simulationTimeInterpolation;
+    		
+    		isInterpolating = true;
+    	}
+    	
+    	protected void advance(final double amount, final double days) {
+    		if (!isInterpolating) {
+    			return;
+    		}
+    		
+    		if (simulationTimeInterpolation) {
+    			time += days;
+    		} else {
+    			time += amount;
+    		}
+    		
+    		if (time >= interpolateEndTime) {
+    			value = interpolateEnd;
+    			isInterpolating = false;
+    		} else {
+    			final double progress = time / interpolateEndTime;
+    			value = interpolateStart * (1.0 - progress) + interpolateEnd * progress;
+    		}
+    	}
     }
 
     public static double linear(final double[] array, double d) {
@@ -105,6 +171,8 @@ public class Simulation {
     }
 
     public SimulationData data;
+    
+    private boolean hasConnectionBeenMade = false;
 
     /**
      * This is the initialization function for the simulation.
@@ -129,12 +197,33 @@ public class Simulation {
         if (data.time >= 24.0) {
             data.time -= 24.0;
         }
+        
+        // Time of Day packet (sent on day/night switch)
+        if (data.time >= 6.0 && data.time - amt * data.timeScale / 3600.0 < 6.0) {
+        	MainNetworkHandler.constructAndSendPacket(PacketTypes.TIME_OF_DAY, false);
+        } else if (data.time >= 18.0 && data.time - amt * data.timeScale / 3600.0 < 18.0) {
+        	MainNetworkHandler.constructAndSendPacket(PacketTypes.TIME_OF_DAY, true);
+        }
 
+        // Time of Day packet (sent on connect)
+        if (Global.getNetworkInterface().isConnected() && !hasConnectionBeenMade) {
+        	hasConnectionBeenMade = true;
+            if (data.time >= 6.0 && data.time < 18.0) {
+            	MainNetworkHandler.constructAndSendPacket(PacketTypes.TIME_OF_DAY, false);
+            } else {
+            	MainNetworkHandler.constructAndSendPacket(PacketTypes.TIME_OF_DAY, true);
+            }
+        } else if (!Global.getNetworkInterface().isConnected() && hasConnectionBeenMade) {
+        	hasConnectionBeenMade = false;
+        }
 
+        // Update mutable values (do not touch)
+        data.solarGenerationLevel.advance(amount, amt);
+        data.windGenerationLevel.advance(amount, amt);
 
         double Load1 = linear(SimulationData.res1, time);
-        double Load2 = linear(SimulationData.res2, time) - (data.L2SL * (linear(SimulationData.Solar, time) * linear(data.weather, data.w)));
-        double Load3 = linear(SimulationData.res3, time) + (data.L3EV * (data.numEV * data.EV)) - (data.L3SL * (linear(SimulationData.Solar, time) * linear(data.weather, data.w)));
+        double Load2 = linear(SimulationData.res2, time) - (data.L2SL * (linear(SimulationData.Solar, time) * data.solarGenerationLevel.get() * linear(SimulationData.weather, data.w)));
+        double Load3 = linear(SimulationData.res3, time) + (data.L3EV * (data.numEV * data.EV)) - (data.L3SL * (linear(SimulationData.Solar, time) * data.solarGenerationLevel.get() * linear(SimulationData.weather, data.w)));
         double Load4 = linear(SimulationData.comm2, time);
         double Load5 = linear(SimulationData.comm1, time);
         double Load6 = linear(SimulationData.comm3, time);
@@ -342,8 +431,8 @@ public class Simulation {
             tieG = false;
         }
 
-        double PowPlant = linear(SimulationData.PowerPlant, time) * linear(data.weather, data.w);
-        double WindTurbines = linear(SimulationData.WindFarm, time) * linear(data.turbineLevel, data.turbineSpeed);
+        double PowPlant = linear(SimulationData.PowerPlant, time) * linear(SimulationData.weather, data.w) * data.solarGenerationLevel.get();
+        double WindTurbines = linear(SimulationData.WindFarm, time) * data.windGenerationLevel.get();
         double BatteryStorage = linear(SimulationData.Battery, time);
 
         //Total SDGE Power

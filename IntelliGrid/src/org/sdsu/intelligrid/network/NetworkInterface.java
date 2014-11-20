@@ -48,6 +48,8 @@ public class NetworkInterface implements Runnable {
 	 * Pushes a network message to the output buffer to be sent at the earliest
 	 * opportunity. Will overwrite old messages if the buffer is full (such as
 	 * when the connection is down).
+	 * <p>
+	 * Does nothing if the network is not connected.
 	 * 
 	 * @param message
 	 *            the message to send in the packet
@@ -77,6 +79,14 @@ public class NetworkInterface implements Runnable {
 		} else {
 			return packet;
 		}
+	}
+
+	/**
+	 * Returns <tt>true</tt> if the model is connected to the application.
+	 * Returns <tt>false</tt> otherwise.
+	 */
+	public boolean isConnected() {
+		return clientSocket != null;
 	}
 
 	private Socket connect() {

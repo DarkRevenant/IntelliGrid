@@ -50,11 +50,10 @@ public class MainNetworkHandler {
 		public String output(final Object param);
 	}
 
-	private static final class SolarGenHandler implements PacketHandler {
+	private static class BasePacketHandler implements PacketHandler {
 
 		@Override
 		public void input(final String message) {
-			// Stub
 		}
 
 		@Override
@@ -63,7 +62,148 @@ public class MainNetworkHandler {
 		}
 	}
 
-	private static final class WindTurbineHandler implements PacketHandler {
+	private static final class SolarGenHandler extends BasePacketHandler {
+
+		@Override
+		public void input(final String message) {
+			if (message.length() < 1) {
+				return;
+			}
+
+			final char code = message.charAt(0);
+			final float solarLevel;
+			switch (code) {
+			case 0:
+				solarLevel = 0f;
+				break;
+			case 1:
+				solarLevel = 0.3333333f;
+				break;
+			case 2:
+				solarLevel = 0.6666667f;
+				break;
+			case 3:
+				solarLevel = 1f;
+				break;
+			default:
+				return;
+			}
+
+			Global.getGlobalSimulation().data.solarGenerationLevel
+					.changeOverTime(solarLevel, 2.0, false);
+		}
+	}
+
+	private static final class WindTurbineHandler extends BasePacketHandler {
+
+		@Override
+		public void input(final String message) {
+			if (message.length() < 1) {
+				return;
+			}
+
+			final char code = message.charAt(0);
+			final double windLevel;
+			switch (code) {
+			case 0:
+				windLevel = 0.0;
+				break;
+			case 1:
+				windLevel = 1.0 / 3.0;
+				break;
+			case 2:
+				windLevel = 2.0 / 3.0;
+				break;
+			case 3:
+				windLevel = 1.0;
+				break;
+			default:
+				return;
+			}
+
+			Global.getGlobalSimulation().data.windGenerationLevel
+					.changeOverTime(windLevel, 2.0, false);
+		}
+
+		// param == integer representing the wind generation level
+		@Override
+		public String output(final Object param) {
+			// This is not called anywhere yet
+
+			final int val = (int) param;
+			final String out;
+			switch (val) {
+			case 0:
+				out = "0";
+				break;
+			case 1:
+				out = "1";
+				break;
+			case 2:
+				out = "2";
+				break;
+			case 3:
+				out = "3";
+				break;
+			default:
+				return null;
+			}
+
+			return out;
+		}
+	}
+
+	private static final class BatteryHandler extends BasePacketHandler {
+
+		// param == integer representing the battery storage level
+		@Override
+		public String output(final Object param) {
+			// This is not called anywhere yet
+
+			final int val = (int) param;
+			final String out;
+			switch (val) {
+			case 0:
+				out = "0";
+				break;
+			case 1:
+				out = "1";
+				break;
+			case 2:
+				out = "2";
+				break;
+			case 3:
+				out = "3";
+				break;
+			default:
+				return null;
+			}
+
+			return out;
+		}
+	}
+
+	private static final class TimeHandler extends BasePacketHandler {
+
+		// param == boolean; true means night
+		@Override
+		public String output(final Object param) {
+			final boolean night = (boolean) param;
+			final String out = night ? "1" : "0";
+
+			return out;
+		}
+	}
+
+	private static final class ElectricCarHandler extends BasePacketHandler {
+
+		@Override
+		public void input(final String message) {
+			// Stub
+		}
+	}
+
+	private static final class SolarPanelHandler extends BasePacketHandler {
 
 		@Override
 		public void input(final String message) {
@@ -77,46 +217,7 @@ public class MainNetworkHandler {
 		}
 	}
 
-	private static final class BatteryHandler implements PacketHandler {
-
-		@Override
-		public void input(final String message) {
-		}
-
-		@Override
-		public String output(final Object param) {
-			// Stub
-			return " ";
-		}
-	}
-
-	private static final class TimeHandler implements PacketHandler {
-
-		@Override
-		public void input(final String message) {
-		}
-
-		@Override
-		public String output(final Object param) {
-			// Stub
-			return " ";
-		}
-	}
-
-	private static final class ElectricCarHandler implements PacketHandler {
-
-		@Override
-		public void input(final String message) {
-			// Stub
-		}
-
-		@Override
-		public String output(final Object param) {
-			return null;
-		}
-	}
-
-	private static final class SolarPanelHandler implements PacketHandler {
+	private static final class MylarBalloonHandler extends BasePacketHandler {
 
 		@Override
 		public void input(final String message) {
@@ -130,7 +231,7 @@ public class MainNetworkHandler {
 		}
 	}
 
-	private static final class MylarBalloonHandler implements PacketHandler {
+	private static final class DigFaultHandler extends BasePacketHandler {
 
 		@Override
 		public void input(final String message) {
@@ -144,29 +245,12 @@ public class MainNetworkHandler {
 		}
 	}
 
-	private static final class DigFaultHandler implements PacketHandler {
+	private static final class LEDHandler extends BasePacketHandler {
 
-		@Override
-		public void input(final String message) {
-			// Stub
-		}
-
+		// param == null
 		@Override
 		public String output(final Object param) {
-			// Stub
-			return " ";
-		}
-	}
-
-	private static final class LEDHandler implements PacketHandler {
-
-		@Override
-		public void input(final String message) {
-		}
-
-		@Override
-		public String output(final Object param) {
-			String out = PacketTypes.LIGHT_ANIMATION.getPrefix();
+			String out = "";
 			for (int i = 1; i <= 177; i++) {
 				out = out + LightAnimation.getState(i).signal;
 			}
@@ -230,7 +314,7 @@ public class MainNetworkHandler {
 			final Object param) {
 		final String out = type.output(param);
 		if (out != null && !out.isEmpty()) {
-			Global.getNetworkInterface().sendMessage(out);
+			Global.getNetworkInterface().sendMessage(type.getPrefix() + out);
 		}
 	}
 }
