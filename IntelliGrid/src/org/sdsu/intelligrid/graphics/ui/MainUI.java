@@ -202,6 +202,7 @@ public class MainUI {
         ClickableSprite info = new ClickableSprite(pixelsToCoords(2335, 75), 1, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.info, sizeToCoords(-64,-64), sizeToCoords(64,64), "info");
         Global.getRenderer().addDrawable(info);
+        addClickable(info);
 
         ClickableSprite faults = new ClickableSprite(pixelsToCoords(2185, 75), 1, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.faults, sizeToCoords(1,1), sizeToCoords(1,1), "faults");

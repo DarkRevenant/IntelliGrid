@@ -46,7 +46,7 @@ public class InputHook {
 	public static synchronized void reportDownOnObject(final Clickable object,
 			final Vector2f coords, final MotionEvent e, final int id) {
 
-        ClickableSprite info = new ClickableSprite(pixelsToCoords(500, 500), 1, 0f, new Vector2f(1f, 1f),
+        ClickableSprite info = new ClickableSprite(pixelsToCoords(500, 500), -1, 0f, new Vector2f(4f, 4f),
                 new Color(255, 255, 255), R.drawable.info, sizeToCoords(-64,-64), sizeToCoords(64,64), "info");
         Global.getRenderer().addDrawable(info);
 	}
