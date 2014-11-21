@@ -1,6 +1,9 @@
 package org.sdsu.intelligrid.graphics.ui;
 
 import org.sdsu.intelligrid.Global;
+import org.sdsu.intelligrid.R;
+import org.sdsu.intelligrid.graphics.Sprite;
+import org.sdsu.intelligrid.util.Color;
 import org.sdsu.intelligrid.util.Vector2f;
 
 import android.view.MotionEvent;
@@ -9,6 +12,20 @@ import android.view.MotionEvent;
  * A hook containing static methods that are called when input events happen.
  */
 public class InputHook {
+
+
+    public static Vector2f pixelsToCoords(final float x, final float y) {
+        return new Vector2f((x / (float) Global.getRenderer().getScreenWidth()
+                * 2f - 1f)
+                * (float) Global.getRenderer().getScreenWidth()
+                / (float) Global.getRenderer().getScreenHeight(), y
+                / (float) Global.getRenderer().getScreenHeight() * 2f - 1f);
+    }
+
+    public static Vector2f sizeToCoords(final float x, final float y) {
+        return new Vector2f(x / (float) Global.getRenderer().getScreenHeight(), y
+                / (float) Global.getRenderer().getScreenHeight());
+    }
 
 	/**
 	 * This function is called when a pointer goes down and touches the screen
@@ -29,6 +46,11 @@ public class InputHook {
 	 */
 	public static synchronized void reportDownOnObject(final Clickable object,
 			final Vector2f coords, final MotionEvent e, final int id) {
+
+//        ClickableSprite info = new ClickableSprite(pixelsToCoords(2335, 75), 1, 0f, new Vector2f(1f, 1f),
+//                new Color(255, 255, 255), R.drawable.intelligrid, sizeToCoords(1,1), sizeToCoords(1,1), "info");
+//        Global.getRenderer().addDrawable(info);
+
 	}
 
 	/**
@@ -163,6 +185,11 @@ public class InputHook {
 		} catch (Exception ex) {
 			// do nothing
 		}
+
+//        ClickableSprite info = new ClickableSprite(pixelsToCoords(2335, 75), 1, 0f, new Vector2f(1f, 1f),
+//                new Color(255, 255, 255), R.drawable.intelligrid, sizeToCoords(1,1), sizeToCoords(1,1), "info");
+//        Global.getRenderer().addDrawable(info);
+
 		// Test
 		/*
 		 * final TextSprite text = new TextSprite(

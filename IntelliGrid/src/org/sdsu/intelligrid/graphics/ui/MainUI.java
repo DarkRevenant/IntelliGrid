@@ -55,6 +55,13 @@ public class MainUI {
         if (!clickableList.contains(clickable)) {
             clickableList.add(clickable);
         }
+//        ClickableSprite settings = new ClickableSprite(pixelsToCoords(2485, 75), 1, 0f, new Vector2f(1f, 1f),
+//                new Color(255, 255, 255), R.drawable.settings, sizeToCoords(1,1), sizeToCoords(1,1), "settings");
+//        Global.getRenderer().addDrawable(settings);
+//
+//        ClickableSprite info = new ClickableSprite(pixelsToCoords(2335, 75), 1, 0f, new Vector2f(1f, 1f),
+//                new Color(255, 255, 255), R.drawable.info, sizeToCoords(1,1), sizeToCoords(1,1), "info");
+//        Global.getRenderer().addDrawable(info);
     }
 
     /**
@@ -98,12 +105,12 @@ public class MainUI {
         resources.add(R.drawable.play2);
         resources.add(R.drawable.play3);
         resources.add(R.drawable.pause);
-        resources.add(R.drawable.house1);
-        resources.add(R.drawable.house1copy);
-        resources.add(R.drawable.house1copy2);
-        resources.add(R.drawable.house2);
-        resources.add(R.drawable.house2copy);
-        resources.add(R.drawable.house2copy2);
+        resources.add(R.drawable.house1solar);
+        resources.add(R.drawable.house1solar2);
+        resources.add(R.drawable.house1solar3);
+        resources.add(R.drawable.house2solar);
+        resources.add(R.drawable.house2solar2);
+        resources.add(R.drawable.house2solar3);
         resources.add(R.drawable.business1);
         resources.add(R.drawable.business1copy);
         resources.add(R.drawable.business2);
@@ -223,29 +230,29 @@ public class MainUI {
                 new Color(255, 255, 255), R.drawable.pause, sizeToCoords(1,1), sizeToCoords(1,1), "pause");
         Global.getRenderer().addDrawable(pause);
 
-        Sprite house1 = new Sprite(pixelsToCoords(155, 120), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house1);
-        Global.getRenderer().addDrawable(house1);
+        Sprite house1solar = new Sprite(pixelsToCoords(155, 120), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.house1solar);
+        Global.getRenderer().addDrawable(house1solar);
 
-        Sprite house1copy = new Sprite(pixelsToCoords(375, 270), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house1copy);
-        Global.getRenderer().addDrawable(house1copy);
+        Sprite house1solar2 = new Sprite(pixelsToCoords(375, 270), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.house1solar2);
+        Global.getRenderer().addDrawable(house1solar2);
 
-        Sprite house1copy2 = new Sprite(pixelsToCoords(615, 270), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house1copy2);
-        Global.getRenderer().addDrawable(house1copy2);
+        Sprite house1solar3 = new Sprite(pixelsToCoords(615, 270), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.house1solar3);
+        Global.getRenderer().addDrawable(house1solar3);
 
-        Sprite house2 = new Sprite(pixelsToCoords(135, 500), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house2);
-        Global.getRenderer().addDrawable(house2);
+        Sprite house2solar = new Sprite(pixelsToCoords(135, 500), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.house2solar);
+        Global.getRenderer().addDrawable(house2solar);
 
-        Sprite house2copy = new Sprite(pixelsToCoords(135, 830), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house2copy);
-        Global.getRenderer().addDrawable(house2copy);
+        Sprite house2solar2 = new Sprite(pixelsToCoords(135, 830), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.house2solar2);
+        Global.getRenderer().addDrawable(house2solar2);
 
-        Sprite house2copy2 = new Sprite(pixelsToCoords(430, 830), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house2copy2);
-        Global.getRenderer().addDrawable(house2copy2);
+        Sprite house2solar3 = new Sprite(pixelsToCoords(430, 830), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.house2solar3);
+        Global.getRenderer().addDrawable(house2solar3);
 
         Sprite business1 = new Sprite(pixelsToCoords(1500, 480), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.business1);
