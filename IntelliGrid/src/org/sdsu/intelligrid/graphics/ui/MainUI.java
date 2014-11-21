@@ -55,13 +55,6 @@ public class MainUI {
         if (!clickableList.contains(clickable)) {
             clickableList.add(clickable);
         }
-//        ClickableSprite settings = new ClickableSprite(pixelsToCoords(2485, 75), 1, 0f, new Vector2f(1f, 1f),
-//                new Color(255, 255, 255), R.drawable.settings, sizeToCoords(1,1), sizeToCoords(1,1), "settings");
-//        Global.getRenderer().addDrawable(settings);
-//
-//        ClickableSprite info = new ClickableSprite(pixelsToCoords(2335, 75), 1, 0f, new Vector2f(1f, 1f),
-//                new Color(255, 255, 255), R.drawable.info, sizeToCoords(1,1), sizeToCoords(1,1), "info");
-//        Global.getRenderer().addDrawable(info);
     }
 
     /**
@@ -203,11 +196,11 @@ public class MainUI {
         Global.getRenderer().addDrawable(intelligrid);
 
         ClickableSprite settings = new ClickableSprite(pixelsToCoords(2485, 75), 1, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.settings, sizeToCoords(1,1), sizeToCoords(1,1), "settings");
+                new Color(255, 255, 255), R.drawable.settings, sizeToCoords(-64,-64), sizeToCoords(64,64), "settings");
         Global.getRenderer().addDrawable(settings);
 
         ClickableSprite info = new ClickableSprite(pixelsToCoords(2335, 75), 1, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.info, sizeToCoords(1,1), sizeToCoords(1,1), "info");
+                new Color(255, 255, 255), R.drawable.info, sizeToCoords(-64,-64), sizeToCoords(64,64), "info");
         Global.getRenderer().addDrawable(info);
 
         ClickableSprite faults = new ClickableSprite(pixelsToCoords(2185, 75), 1, 0f, new Vector2f(1f, 1f),

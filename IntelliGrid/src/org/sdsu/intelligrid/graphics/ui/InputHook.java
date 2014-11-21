@@ -13,7 +13,6 @@ import android.view.MotionEvent;
  */
 public class InputHook {
 
-
     public static Vector2f pixelsToCoords(final float x, final float y) {
         return new Vector2f((x / (float) Global.getRenderer().getScreenWidth()
                 * 2f - 1f)
@@ -47,10 +46,9 @@ public class InputHook {
 	public static synchronized void reportDownOnObject(final Clickable object,
 			final Vector2f coords, final MotionEvent e, final int id) {
 
-//        ClickableSprite info = new ClickableSprite(pixelsToCoords(2335, 75), 1, 0f, new Vector2f(1f, 1f),
-//                new Color(255, 255, 255), R.drawable.intelligrid, sizeToCoords(1,1), sizeToCoords(1,1), "info");
-//        Global.getRenderer().addDrawable(info);
-
+        ClickableSprite info = new ClickableSprite(pixelsToCoords(500, 500), 1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.info, sizeToCoords(-64,-64), sizeToCoords(64,64), "info");
+        Global.getRenderer().addDrawable(info);
 	}
 
 	/**
@@ -186,7 +184,7 @@ public class InputHook {
 			// do nothing
 		}
 
-//        ClickableSprite info = new ClickableSprite(pixelsToCoords(2335, 75), 1, 0f, new Vector2f(1f, 1f),
+//        ClickableSprite info = new ClickableSprite(pixelsToCoords(500, 500), 1, 0f, new Vector2f(1f, 1f),
 //                new Color(255, 255, 255), R.drawable.intelligrid, sizeToCoords(1,1), sizeToCoords(1,1), "info");
 //        Global.getRenderer().addDrawable(info);
 
