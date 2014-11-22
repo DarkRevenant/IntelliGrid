@@ -219,7 +219,7 @@ class TextTextureManager {
 
 	private static void flushUnusedTextTextures() {
 		final Set<Integer> stillUsedTextures = new HashSet<>();
-		for (Drawable drawable : Global.getRenderer().drawableSet) {
+		for (Drawable drawable : Global.getRenderer().drawableList) {
 			if (drawable instanceof TextSprite) {
 				TextSprite text = (TextSprite) drawable;
 				stillUsedTextures.add(text.texture);

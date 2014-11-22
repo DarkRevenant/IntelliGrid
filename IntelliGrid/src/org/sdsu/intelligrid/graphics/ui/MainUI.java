@@ -181,7 +181,7 @@ public class MainUI {
      * This runs on the first frame.
      */
     public void postInit() {
-        Sprite background = new Sprite(new Vector2f(), Integer.MAX_VALUE, 0f, new Vector2f(1.28f, 1.28f),
+        Sprite background = new Sprite(new Vector2f(), 10, 0f, new Vector2f(1.28f, 1.28f),
                 new Color(255, 255, 255), R.drawable.background);
         background.setRelativeScale();
         Global.getRenderer().addDrawable(background);
