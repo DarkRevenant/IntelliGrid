@@ -109,9 +109,9 @@ public class MainUI {
         resources.add(R.drawable.business2);
         resources.add(R.drawable.business2copy);
         resources.add(R.drawable.business2copy2);
-        resources.add(R.drawable.condo);
-        resources.add(R.drawable.condo2);
-        resources.add(R.drawable.store);
+        resources.add(R.drawable.house3);
+        resources.add(R.drawable.house3copy);
+        resources.add(R.drawable.house3copy2);
         resources.add(R.drawable.museum);
         resources.add(R.drawable.stadium);
         resources.add(R.drawable.midway);
@@ -134,6 +134,8 @@ public class MainUI {
         resources.add(R.drawable.tie);
         resources.add(R.drawable.trackhoe);
         resources.add(R.drawable.orb);
+        resources.add(R.drawable.infopage);
+        resources.add(R.drawable.exit);
         Global.getRenderer().loadTextures(resources);
     }
 
@@ -177,12 +179,17 @@ public class MainUI {
         public static TextSprite currentTime;
     }
 
+    public static class ClickableObjects {
+        public static ClickableSprite exitinfo;
+        public static ClickableSprite infopage;
+    }
+
     /**
      * This runs on the first frame.
      */
     public void postInit() {
-        Sprite background = new Sprite(new Vector2f(), Integer.MAX_VALUE, 0f, new Vector2f(1.28f, 1.28f),
-                new Color(255, 255, 255), R.drawable.background);
+        ClickableSprite background = new ClickableSprite(new Vector2f(), 10, 0f, new Vector2f(1.28f, 1.28f),
+                new Color(255, 255, 255), R.drawable.background, sizeToCoords(-1280,-800), sizeToCoords(1280,800), "background");
         background.setRelativeScale();
         Global.getRenderer().addDrawable(background);
 
@@ -195,33 +202,45 @@ public class MainUI {
                 new Color(255, 255, 255), R.drawable.intelligrid);
         Global.getRenderer().addDrawable(intelligrid);
 
-        ClickableSprite settings = new ClickableSprite(pixelsToCoords(2485, 75), 1, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.settings, sizeToCoords(-64,-64), sizeToCoords(64,64), "settings");
+        ClickableSprite settings = new ClickableSprite(pixelsToCoords(2485, 75), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.settings, sizeToCoords(-50,-50), sizeToCoords(50,50), "settings");
         Global.getRenderer().addDrawable(settings);
+        addClickable(settings);
 
-        ClickableSprite info = new ClickableSprite(pixelsToCoords(2335, 75), 1, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.info, sizeToCoords(-64,-64), sizeToCoords(64,64), "info");
+        ClickableSprite info = new ClickableSprite(pixelsToCoords(2335, 75), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.info, sizeToCoords(-50,-50), sizeToCoords(50,50), "info");
         Global.getRenderer().addDrawable(info);
         addClickable(info);
 
-        ClickableSprite faults = new ClickableSprite(pixelsToCoords(2185, 75), 1, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.faults, sizeToCoords(1,1), sizeToCoords(1,1), "faults");
+        ClickableObjects.infopage = new ClickableSprite(pixelsToCoords(1280, 800), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.infopage, sizeToCoords(0,0), sizeToCoords(0,0), "infopage");
+        Global.getRenderer().addDrawable(ClickableObjects.infopage);
+        addClickable(ClickableObjects.infopage);
+
+        ClickableObjects.exitinfo = new ClickableSprite(pixelsToCoords(2280, 1380), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.exit, sizeToCoords(-30,-30), sizeToCoords(30,30), "exitinfo");
+        Global.getRenderer().addDrawable(ClickableObjects.exitinfo);
+        addClickable(ClickableObjects.exitinfo);
+
+        ClickableSprite faults = new ClickableSprite(pixelsToCoords(2185, 75), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.faults, sizeToCoords(-53,-48), sizeToCoords(53,48), "faults");
         Global.getRenderer().addDrawable(faults);
 
-        ClickableSprite play = new ClickableSprite(pixelsToCoords(2210, 1550), 1, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.play, sizeToCoords(1,1), sizeToCoords(1,1), "play");
+        ClickableSprite play = new ClickableSprite(pixelsToCoords(2210, 1550), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.play, sizeToCoords(-14,-20), sizeToCoords(14,20), "play");
         Global.getRenderer().addDrawable(play);
+        addClickable(play);
 
-        ClickableSprite play2 = new ClickableSprite(pixelsToCoords(2300, 1550), 1, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.play2, sizeToCoords(1,1), sizeToCoords(1,1), "play2");
+        ClickableSprite play2 = new ClickableSprite(pixelsToCoords(2300, 1550), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.play2, sizeToCoords(-19,-20), sizeToCoords(19,20), "play2");
         Global.getRenderer().addDrawable(play2);
 
-        ClickableSprite play3 = new ClickableSprite(pixelsToCoords(2400, 1550), 1, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.play3, sizeToCoords(1,1), sizeToCoords(1,1), "play3");
+        ClickableSprite play3 = new ClickableSprite(pixelsToCoords(2400, 1550), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.play3, sizeToCoords(-33,-20), sizeToCoords(33,20), "play3");
         Global.getRenderer().addDrawable(play3);
 
-        ClickableSprite pause = new ClickableSprite(pixelsToCoords(2500, 1550), 1, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.pause, sizeToCoords(1,1), sizeToCoords(1,1), "pause");
+        ClickableSprite pause = new ClickableSprite(pixelsToCoords(2500, 1550), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.pause, sizeToCoords(-17,-20), sizeToCoords(17,20), "pause");
         Global.getRenderer().addDrawable(pause);
 
         Sprite house1solar = new Sprite(pixelsToCoords(155, 120), 0, 0f, new Vector2f(1f, 1f),
@@ -268,17 +287,17 @@ public class MainUI {
                 new Color(255, 255, 255), R.drawable.business2copy2);
         Global.getRenderer().addDrawable(business2copy2);
 
-        Sprite condo = new Sprite(pixelsToCoords(870, 1070), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.condo);
-        Global.getRenderer().addDrawable(condo);
+        Sprite house3 = new Sprite(pixelsToCoords(845, 1023), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.house3);
+        Global.getRenderer().addDrawable(house3);
 
-        Sprite condo2 = new Sprite(pixelsToCoords(1080, 1190), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.condo2);
-        Global.getRenderer().addDrawable(condo2);
+        Sprite house3copy = new Sprite(pixelsToCoords(1061, 1152), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.house3copy);
+        Global.getRenderer().addDrawable(house3copy);
 
-        Sprite store = new Sprite(pixelsToCoords(1070, 860), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.store);
-        Global.getRenderer().addDrawable(store);
+        Sprite house3copy2 = new Sprite(pixelsToCoords(1060, 856), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.house3copy2);
+        Global.getRenderer().addDrawable(house3copy2);
 
         Sprite museum = new Sprite(pixelsToCoords(310, 1280), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.museum);

@@ -46,10 +46,15 @@ public class InputHook {
 	public static synchronized void reportDownOnObject(final Clickable object,
 			final Vector2f coords, final MotionEvent e, final int id) {
 
-        ClickableSprite info = new ClickableSprite(pixelsToCoords(500, 500), -1, 0f, new Vector2f(4f, 4f),
-                new Color(255, 255, 255), R.drawable.info, sizeToCoords(-64,-64), sizeToCoords(64,64), "info");
-        Global.getRenderer().addDrawable(info);
-	}
+        if(object.getId().equals("info")) {
+            MainUI.ClickableObjects.infopage.setDepth(-1);
+            MainUI.ClickableObjects.exitinfo.setDepth(-2);
+        }
+        if(object.getId().equals("exitinfo")) {
+            MainUI.ClickableObjects.infopage.setDepth(11);
+            MainUI.ClickableObjects.exitinfo.setDepth(11);
+        }
+    }
 
 	/**
 	 * This function is called when a pointer moves over a clickable object.
@@ -183,10 +188,6 @@ public class InputHook {
 		} catch (Exception ex) {
 			// do nothing
 		}
-
-//        ClickableSprite info = new ClickableSprite(pixelsToCoords(500, 500), 1, 0f, new Vector2f(1f, 1f),
-//                new Color(255, 255, 255), R.drawable.intelligrid, sizeToCoords(1,1), sizeToCoords(1,1), "info");
-//        Global.getRenderer().addDrawable(info);
 
 		// Test
 		/*
