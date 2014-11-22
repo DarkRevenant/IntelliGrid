@@ -54,6 +54,22 @@ public class InputHook {
             MainUI.ClickableObjects.infopage.setDepth(11);
             MainUI.ClickableObjects.exitinfo.setDepth(11);
         }
+        if(object.getId().equals("graphs")) {
+            MainUI.ClickableObjects.graphspage.setDepth(-1);
+            MainUI.ClickableObjects.exitgraphs.setDepth(-2);
+        }
+        if(object.getId().equals("exitgraphs")) {
+            MainUI.ClickableObjects.graphspage.setDepth(11);
+            MainUI.ClickableObjects.exitgraphs.setDepth(11);
+        }
+        if(object.getId().equals("faults")) {
+            MainUI.ClickableObjects.faultspage.setDepth(-1);
+            MainUI.ClickableObjects.exitfaults.setDepth(-2);
+        }
+        if(object.getId().equals("exitfaults")) {
+            MainUI.ClickableObjects.faultspage.setDepth(11);
+            MainUI.ClickableObjects.exitfaults.setDepth(11);
+        }
     }
 
 	/**

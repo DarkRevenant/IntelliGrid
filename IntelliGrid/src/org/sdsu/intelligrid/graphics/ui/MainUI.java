@@ -89,11 +89,16 @@ public class MainUI {
     public void init() {
         final List<Integer> resources = new ArrayList<>();
         resources.add(R.drawable.background);
+        resources.add(R.drawable.backgroundnight);
         resources.add(R.drawable.paths);
         resources.add(R.drawable.intelligrid);
-        resources.add(R.drawable.settings);
-        resources.add(R.drawable.info);
         resources.add(R.drawable.faults);
+        resources.add(R.drawable.faultspage);
+        resources.add(R.drawable.graphs);
+        resources.add(R.drawable.graphspage);
+        resources.add(R.drawable.info);
+        resources.add(R.drawable.infopage);
+        resources.add(R.drawable.exit);
         resources.add(R.drawable.play);
         resources.add(R.drawable.play2);
         resources.add(R.drawable.play3);
@@ -116,6 +121,7 @@ public class MainUI {
         resources.add(R.drawable.stadium);
         resources.add(R.drawable.midway);
         resources.add(R.drawable.solarpanel);
+        resources.add(R.drawable.battery);
         resources.add(R.drawable.turbine);
         resources.add(R.drawable.turbine2);
         resources.add(R.drawable.substation);
@@ -134,8 +140,6 @@ public class MainUI {
         resources.add(R.drawable.tie);
         resources.add(R.drawable.trackhoe);
         resources.add(R.drawable.orb);
-        resources.add(R.drawable.infopage);
-        resources.add(R.drawable.exit);
         Global.getRenderer().loadTextures(resources);
     }
 
@@ -180,9 +184,20 @@ public class MainUI {
     }
 
     public static class ClickableObjects {
-        public static ClickableSprite exitinfo;
+        public static ClickableSprite backgroundnight;
         public static ClickableSprite infopage;
+        public static ClickableSprite exitinfo;
+        public static ClickableSprite graphspage;
+        public static ClickableSprite exitgraphs;
+        public static ClickableSprite faultspage;
+        public static ClickableSprite exitfaults;
     }
+
+//    public void nighttime(){
+//        if(Simulation.SimInfo.currentTime >= 5.00) {
+//            ClickableObjects.backgroundnight.setDepth(9);
+//        }
+//    }
 
     /**
      * This runs on the first frame.
@@ -192,6 +207,13 @@ public class MainUI {
                 new Color(255, 255, 255), R.drawable.background, sizeToCoords(-1280,-800), sizeToCoords(1280,800), "background");
         background.setRelativeScale();
         Global.getRenderer().addDrawable(background);
+        addClickable(background);
+
+        ClickableSprite backgroundnight = new ClickableSprite(new Vector2f(), 11, 0f, new Vector2f(1.28f, 1.28f),
+                new Color(255, 255, 255), R.drawable.backgroundnight, sizeToCoords(-1280,-800), sizeToCoords(1280,800), "backgroundnight");
+        background.setRelativeScale();
+        Global.getRenderer().addDrawable(backgroundnight);
+        addClickable(backgroundnight);
 
         Sprite paths = new Sprite(new Vector2f(), 2, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.paths);
@@ -202,12 +224,37 @@ public class MainUI {
                 new Color(255, 255, 255), R.drawable.intelligrid);
         Global.getRenderer().addDrawable(intelligrid);
 
-        ClickableSprite settings = new ClickableSprite(pixelsToCoords(2485, 75), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.settings, sizeToCoords(-50,-50), sizeToCoords(50,50), "settings");
-        Global.getRenderer().addDrawable(settings);
-        addClickable(settings);
+        ClickableSprite faults = new ClickableSprite(pixelsToCoords(2185, 75), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.faults, sizeToCoords(-64,-64), sizeToCoords(64,64), "faults");
+        Global.getRenderer().addDrawable(faults);
+        addClickable(faults);
 
-        ClickableSprite info = new ClickableSprite(pixelsToCoords(2335, 75), 0, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.faultspage = new ClickableSprite(pixelsToCoords(1280, 800), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.faultspage, sizeToCoords(0,0), sizeToCoords(0,0), "faultspage");
+        Global.getRenderer().addDrawable(ClickableObjects.faultspage);
+        addClickable(ClickableObjects.faultspage);
+
+        ClickableObjects.exitfaults = new ClickableSprite(pixelsToCoords(2280, 1380), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.exit, sizeToCoords(-50,-50), sizeToCoords(50,50), "exitfaults");
+        Global.getRenderer().addDrawable(ClickableObjects.exitfaults);
+        addClickable(ClickableObjects.exitfaults);
+
+        ClickableSprite graphs = new ClickableSprite(pixelsToCoords(2335, 75), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.graphs, sizeToCoords(-64,-64), sizeToCoords(64,64), "graphs");
+        Global.getRenderer().addDrawable(graphs);
+        addClickable(graphs);
+
+        ClickableObjects.graphspage = new ClickableSprite(pixelsToCoords(1280, 800), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.graphspage, sizeToCoords(0,0), sizeToCoords(0,0), "graphspage");
+        Global.getRenderer().addDrawable(ClickableObjects.graphspage);
+        addClickable(ClickableObjects.graphspage);
+
+        ClickableObjects.exitgraphs = new ClickableSprite(pixelsToCoords(2280, 1380), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.exit, sizeToCoords(-40,-40), sizeToCoords(40,40), "exitgraphs");
+        Global.getRenderer().addDrawable(ClickableObjects.exitgraphs);
+        addClickable(ClickableObjects.exitgraphs);
+
+        ClickableSprite info = new ClickableSprite(pixelsToCoords(2485, 75), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.info, sizeToCoords(-50,-50), sizeToCoords(50,50), "info");
         Global.getRenderer().addDrawable(info);
         addClickable(info);
@@ -218,13 +265,9 @@ public class MainUI {
         addClickable(ClickableObjects.infopage);
 
         ClickableObjects.exitinfo = new ClickableSprite(pixelsToCoords(2280, 1380), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.exit, sizeToCoords(-30,-30), sizeToCoords(30,30), "exitinfo");
+                new Color(255, 255, 255), R.drawable.exit, sizeToCoords(-40,-40), sizeToCoords(40,40), "exitinfo");
         Global.getRenderer().addDrawable(ClickableObjects.exitinfo);
         addClickable(ClickableObjects.exitinfo);
-
-        ClickableSprite faults = new ClickableSprite(pixelsToCoords(2185, 75), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.faults, sizeToCoords(-53,-48), sizeToCoords(53,48), "faults");
-        Global.getRenderer().addDrawable(faults);
 
         ClickableSprite play = new ClickableSprite(pixelsToCoords(2210, 1550), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.play, sizeToCoords(-14,-20), sizeToCoords(14,20), "play");
@@ -234,14 +277,17 @@ public class MainUI {
         ClickableSprite play2 = new ClickableSprite(pixelsToCoords(2300, 1550), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.play2, sizeToCoords(-19,-20), sizeToCoords(19,20), "play2");
         Global.getRenderer().addDrawable(play2);
+        addClickable(play2);
 
         ClickableSprite play3 = new ClickableSprite(pixelsToCoords(2400, 1550), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.play3, sizeToCoords(-33,-20), sizeToCoords(33,20), "play3");
         Global.getRenderer().addDrawable(play3);
+        addClickable(play3);
 
         ClickableSprite pause = new ClickableSprite(pixelsToCoords(2500, 1550), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.pause, sizeToCoords(-17,-20), sizeToCoords(17,20), "pause");
         Global.getRenderer().addDrawable(pause);
+        addClickable(pause);
 
         Sprite house1solar = new Sprite(pixelsToCoords(155, 120), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.house1solar);
@@ -319,7 +365,11 @@ public class MainUI {
                 new Color(255, 255, 255), R.drawable.turbine2);
         Global.getRenderer().addDrawable(turbine2);
 
-        Sprite solarpanel = new Sprite(pixelsToCoords(2270, 1440), 0, 0f, new Vector2f(1f, 1f),
+        Sprite battery = new Sprite(pixelsToCoords(2120, 1440), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.battery);
+        Global.getRenderer().addDrawable(battery);
+
+        Sprite solarpanel = new Sprite(pixelsToCoords(2330, 1440), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.solarpanel);
         Global.getRenderer().addDrawable(solarpanel);
 
@@ -706,6 +756,8 @@ public class MainUI {
             lightAnimation = new LightAnimation();
             return;
         }
+
+//        nighttime();
 
         textUpdateTimer -= amount;
         if (textUpdateTimer <= 0f) {
