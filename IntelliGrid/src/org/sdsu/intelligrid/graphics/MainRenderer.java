@@ -9,8 +9,6 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,7 +31,7 @@ import android.opengl.Matrix;
 public class MainRenderer implements GLSurfaceView.Renderer {
 
 	private final Map<Integer, Texture> textureTable = new HashMap<>();
-	final Set<Drawable> drawableSet = new TreeSet<>(DEPTH_DESCENDING);
+	final List<Drawable> drawableList = new ArrayList<>();
 	private final List<Integer> toLoad = Collections
 			.synchronizedList(new ArrayList<Integer>());
 	private final List<Drawable> toDraw = Collections
@@ -75,10 +73,10 @@ public class MainRenderer implements GLSurfaceView.Renderer {
 			leftms = 5;
 		}
 
-        // avoid catchup
-        if (leftms > 1000) {
-            leftms = 1000;
-        }
+		// avoid catchup
+		if (leftms > 1000) {
+			leftms = 1000;
+		}
 
 		try {
 			TimeUnit.MILLISECONDS.sleep(leftms);
@@ -274,7 +272,8 @@ public class MainRenderer implements GLSurfaceView.Renderer {
 		}
 
 		// Call each Drawable's advance function
-		for (Drawable drawable : drawableSet) {
+		Collections.sort(drawableList, DEPTH_DESCENDING);
+		for (Drawable drawable : drawableList) {
 			drawable.advance(amount);
 		}
 	}
@@ -294,7 +293,7 @@ public class MainRenderer implements GLSurfaceView.Renderer {
 		glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 
 		// Call each Drawable's draw function
-		for (Drawable drawable : drawableSet) {
+		for (Drawable drawable : drawableList) {
 			drawable.draw(amount, viewMatrix, projectionMatrix);
 		}
 	}
@@ -384,7 +383,7 @@ public class MainRenderer implements GLSurfaceView.Renderer {
 
 		synchronized (toDraw) {
 			for (Drawable drawable : toDraw) {
-				drawableSet.add(drawable);
+				drawableList.add(drawable);
 			}
 		}
 
@@ -398,7 +397,7 @@ public class MainRenderer implements GLSurfaceView.Renderer {
 
 		synchronized (toRemove) {
 			for (Drawable drawable : toRemove) {
-				drawableSet.remove(drawable);
+				drawableList.remove(drawable);
 			}
 		}
 
