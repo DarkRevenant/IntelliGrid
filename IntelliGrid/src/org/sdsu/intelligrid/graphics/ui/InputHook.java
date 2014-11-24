@@ -3,6 +3,7 @@ package org.sdsu.intelligrid.graphics.ui;
 import org.sdsu.intelligrid.Global;
 import org.sdsu.intelligrid.R;
 import org.sdsu.intelligrid.graphics.Sprite;
+import org.sdsu.intelligrid.simulation.Simulation;
 import org.sdsu.intelligrid.util.Color;
 import org.sdsu.intelligrid.util.Vector2f;
 
@@ -45,6 +46,28 @@ public class InputHook {
 	 */
 	public static synchronized void reportDownOnObject(final Clickable object,
 			final Vector2f coords, final MotionEvent e, final int id) {
+
+        if(object.getId().equals("play")) {
+            Simulation.SimulationData.timeScale = 288;
+        }
+        if(object.getId().equals("play2")) {
+            Simulation.SimulationData.timeScale = 720;
+        }
+        if(object.getId().equals("play3")) {
+            Simulation.SimulationData.timeScale = 1920;
+        }
+        if(object.getId().equals("pause")) {
+            Simulation.SimulationData.timeScale = 0;
+        }
+
+        if(object.getId().equals("background")) {
+            MainUI.ClickableObjects.graphspage.setDepth(11);
+            MainUI.ClickableObjects.exitgraphs.setDepth(11);
+            MainUI.ClickableObjects.infopage.setDepth(11);
+            MainUI.ClickableObjects.exitinfo.setDepth(11);
+            MainUI.ClickableObjects.faultspage.setDepth(11);
+            MainUI.ClickableObjects.exitfaults.setDepth(11);
+        }
 
         if(object.getId().equals("info")) {
             MainUI.ClickableObjects.infopage.setDepth(-1);

@@ -85,7 +85,7 @@ public class Simulation {
         public double capacity = 30;
 
         //Time Scale
-        public double timeScale = 500.0; // ex. timeScale 100 = 1 second of application time is 100 seconds of simulation
+        public static double timeScale = 0.0; // ex. timeScale 100 = 1 second of application time is 100 seconds of simulation
         public double time = 0; // in Hours
 
         //Solar Multipliers (set by model)
@@ -112,6 +112,8 @@ public class Simulation {
         public MutableValue electricVehicleL1 = new MutableValue(0.0);
         public MutableValue electricVehicleL2 = new MutableValue(0.0);
         public MutableValue electricVehicleL3 = new MutableValue(0.0);
+
+
     }
 
 	/**
@@ -779,6 +781,7 @@ public class Simulation {
         SimInfo.SDGE = SDGE;
         SimInfo.GenScale = 1.0 / data.capacity;
         SimInfo.currentTime = currentTime;
+        SimInfo.timeScale = data.timeScale;
         
         SimInfo.swiABC = swiABC;
         SimInfo.swiCDE = swiCDE;
@@ -838,6 +841,7 @@ public class Simulation {
         public static double SDGE;
         public static double GenScale;
         public static double currentTime;
+        public static double timeScale;
         
         public static int swiABC;
         public static int swiCDE;

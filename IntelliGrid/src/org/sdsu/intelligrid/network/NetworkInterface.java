@@ -24,7 +24,7 @@ public class NetworkInterface implements Runnable {
 	private static final int INPUT_BUFFER_CAPACITY = 10000;
 	private static final int OUTPUT_BUFFER_CAPACITY = 10;
 
-	private static final boolean ENABLE_NETWORK = true;
+	private static final boolean ENABLE_NETWORK = false;
 
 	private final Queue<IntelliGridPacket> outputBuffer = new ArrayBlockingQueue<>(
 			OUTPUT_BUFFER_CAPACITY);
