@@ -272,7 +272,6 @@ public class MainRenderer implements GLSurfaceView.Renderer {
 		}
 
 		// Call each Drawable's advance function
-		Collections.sort(drawableList, DEPTH_DESCENDING);
 		for (Drawable drawable : drawableList) {
 			drawable.advance(amount);
 		}
@@ -293,6 +292,7 @@ public class MainRenderer implements GLSurfaceView.Renderer {
 		glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 
 		// Call each Drawable's draw function
+		Collections.sort(drawableList, DEPTH_DESCENDING);
 		for (Drawable drawable : drawableList) {
 			drawable.draw(amount, viewMatrix, projectionMatrix);
 		}
