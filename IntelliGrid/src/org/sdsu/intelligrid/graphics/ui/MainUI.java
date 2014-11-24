@@ -79,7 +79,7 @@ public class MainUI {
     }
 
     public static Vector2f sizeToCoords(final float x, final float y) {
-        return new Vector2f(x / (float) Global.getRenderer().getScreenHeight(), y
+        return new Vector2f(2f * x / (float) Global.getRenderer().getScreenHeight(), 2f * y
                 / (float) Global.getRenderer().getScreenHeight());
     }
 
