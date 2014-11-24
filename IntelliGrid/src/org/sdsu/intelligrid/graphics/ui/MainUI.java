@@ -732,6 +732,55 @@ public class MainUI {
         ledPositionMap.put(177, pixelsToCoords(1508, 1230));
     }
 
+    /**
+     * Called when the model starts a mylar balloon fault.
+     */
+    public void reportBalloonFaultStarted() {
+    	
+    }
+
+    /**
+     * Called when the simulation ends the mylar balloon fault (time-out).
+     */
+    public void reportBalloonFaultEnded() {
+    	
+    }
+
+    /**
+     * Called when the model starts a dig fault.
+     */
+    public void reportDigFaultStarted() {
+    	
+    }
+
+    /**
+     * Called when the simulation ends the dig fault (time-out).
+     */
+    public void reportDigFaultEnded() {
+    	
+    }
+
+    /**
+     * Called when the simulation ends the generic fault (time-out).
+     */
+    public void reportGenericFaultEnded(final String fault) {
+    	
+    }
+
+    /**
+     * Called when the simulation detects a fault automatically.
+     */
+    public void reportAutomaticFaultStarted(final String fault) {
+    	
+    }
+
+    /**
+     * Called when the simulation ends an automatically-detected fault (time-out).
+     */
+    public void reportAutomaticFaultEnded(final String fault) {
+    	
+    }
+
     private boolean first = true;
 
     private LightAnimation lightAnimation;

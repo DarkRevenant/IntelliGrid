@@ -66,31 +66,46 @@ public class MainNetworkHandler {
 
 		@Override
 		public void input(final String message) {
-			if (message.length() < 1) {
+			if (message.length() < 2) {
 				return;
 			}
 
-			final char code = message.charAt(0);
-			final float solarLevel;
+			char code = message.charAt(1);
+			final double solarLevel;
 			switch (code) {
-			case 0:
-				solarLevel = 0f;
+			case '0':
+				solarLevel = 0.0;
 				break;
-			case 1:
-				solarLevel = 0.3333333f;
+			case '1':
+				solarLevel = 1.0 / 3.0;
 				break;
-			case 2:
-				solarLevel = 0.6666667f;
+			case '2':
+				solarLevel = 2.0 / 3.0;
 				break;
-			case 3:
-				solarLevel = 1f;
+			case '3':
+				solarLevel = 1.0;
 				break;
 			default:
 				return;
 			}
 
-			Global.getGlobalSimulation().data.solarGenerationLevel
-					.changeOverTime(solarLevel, 2.0, false);
+			code = message.charAt(0);
+			switch (code) {
+			case '0':
+				Global.getGlobalSimulation().data.lowerSolarLevel
+						.changeOverTime(solarLevel, 2.0, false);
+				break;
+			case '1':
+				Global.getGlobalSimulation().data.middleSolarLevel
+						.changeOverTime(solarLevel, 2.0, false);
+				break;
+			case '2':
+				Global.getGlobalSimulation().data.renewableSolarLevel
+						.changeOverTime(solarLevel, 2.0, false);
+				break;
+			default:
+				return;
+			}
 		}
 	}
 
@@ -105,16 +120,16 @@ public class MainNetworkHandler {
 			final char code = message.charAt(0);
 			final double windLevel;
 			switch (code) {
-			case 0:
+			case '0':
 				windLevel = 0.0;
 				break;
-			case 1:
+			case '1':
 				windLevel = 1.0 / 3.0;
 				break;
-			case 2:
+			case '2':
 				windLevel = 2.0 / 3.0;
 				break;
-			case 3:
+			case '3':
 				windLevel = 1.0;
 				break;
 			default:
@@ -144,6 +159,12 @@ public class MainNetworkHandler {
 				break;
 			case 3:
 				out = "3";
+				break;
+			case 4:
+				out = "4";
+				break;
+			case 5:
+				out = "5";
 				break;
 			default:
 				return null;
@@ -185,7 +206,7 @@ public class MainNetworkHandler {
 
 	private static final class TimeHandler extends BasePacketHandler {
 
-		// param == boolean; true means night
+		// param == boolean; true means night, false means day
 		@Override
 		public String output(final Object param) {
 			final boolean night = (boolean) param;
@@ -199,7 +220,40 @@ public class MainNetworkHandler {
 
 		@Override
 		public void input(final String message) {
-			// Stub
+			if (message.length() < 2) {
+				return;
+			}
+
+			char code = message.charAt(1);
+			final double state;
+			switch (code) {
+			case '0':
+				state = 0.0;
+				break;
+			case '1':
+				state = 1.0;
+				break;
+			default:
+				return;
+			}
+
+			code = message.charAt(0);
+			switch (code) {
+			case '0':
+				Global.getGlobalSimulation().data.electricVehicleL1
+						.changeOverTime(state, 1.0, false);
+				break;
+			case '1':
+				Global.getGlobalSimulation().data.electricVehicleL2
+						.changeOverTime(state, 1.0, false);
+				break;
+			case '2':
+				Global.getGlobalSimulation().data.electricVehicleL3
+						.changeOverTime(state, 1.0, false);
+				break;
+			default:
+				return;
+			}
 		}
 	}
 
@@ -207,13 +261,48 @@ public class MainNetworkHandler {
 
 		@Override
 		public void input(final String message) {
-			// Stub
-		}
+			if (message.length() < 2) {
+				return;
+			}
 
-		@Override
-		public String output(final Object param) {
-			// Stub
-			return " ";
+			char code = message.charAt(1);
+			final double state;
+			switch (code) {
+			case '0':
+				state = 0.0;
+				break;
+			case '1':
+				state = 1.0;
+				break;
+			default:
+				return;
+			}
+
+			code = message.charAt(0);
+			switch (code) {
+			case '0':
+				Global.getGlobalSimulation().data.solarPanelM1.changeOverTime(
+						state, 1.0, false);
+				break;
+			case '1':
+				Global.getGlobalSimulation().data.solarPanelM2.changeOverTime(
+						state, 1.0, false);
+				break;
+			case '2':
+				Global.getGlobalSimulation().data.solarPanelL1.changeOverTime(
+						state, 1.0, false);
+				break;
+			case '3':
+				Global.getGlobalSimulation().data.solarPanelL2.changeOverTime(
+						state, 1.0, false);
+				break;
+			case '4':
+				Global.getGlobalSimulation().data.solarPanelL3.changeOverTime(
+						state, 1.0, false);
+				break;
+			default:
+				return;
+			}
 		}
 	}
 
@@ -221,13 +310,18 @@ public class MainNetworkHandler {
 
 		@Override
 		public void input(final String message) {
-			// Stub
+			Global.getGlobalSimulation().faultManager.startBalloonFault();
 		}
 
+		// param == boolean; true means start fault, false means end fault
 		@Override
 		public String output(final Object param) {
-			// Stub
-			return " ";
+			// This is not called by the UI yet
+
+			final boolean start = (boolean) param;
+			final String out = start ? "1" : "0";
+
+			return out;
 		}
 	}
 
@@ -235,13 +329,18 @@ public class MainNetworkHandler {
 
 		@Override
 		public void input(final String message) {
-			// Stub
+			Global.getGlobalSimulation().faultManager.startDigFault();
 		}
 
+		// param == boolean; true means start fault, false means end fault
 		@Override
 		public String output(final Object param) {
-			// Stub
-			return " ";
+			// This is not called by the UI yet
+
+			final boolean start = (boolean) param;
+			final String out = start ? "1" : "0";
+
+			return out;
 		}
 	}
 

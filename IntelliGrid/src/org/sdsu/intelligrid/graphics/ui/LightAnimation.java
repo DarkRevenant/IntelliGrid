@@ -8,8 +8,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.sdsu.intelligrid.Global;
 import org.sdsu.intelligrid.R;
@@ -1476,6 +1474,9 @@ public class LightAnimation {
 				setRed.add(strand.modelLEDs.get(0));
 				setRed.add(strand.modelLEDs.get(1));
 				setGreen.add(strand.modelLEDs.get(2));
+				break;
+			case 4:
+				setGreen.addAll(strand.modelLEDs);
 				break;
 			default:
 			}

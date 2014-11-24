@@ -70,23 +70,13 @@ public class Simulation {
         public static double[] comm3r =
                 {2.54269227, 2.436141356, 2.329590442, 2.271471761, 2.223039528, 2.436625678, 2.644399961, 2.857501789, 3.070603618, 3.283705446, 3.598514965, 3.705065879,
                         3.811616794, 4.024718622, 4.23782045, 4.446079055, 4.660633851, 4.658212239, 4.660149528, 4.339528141, 3.811616794, 3.283705446, 2.964052704, 2.54269227};
+        
         //Electric Vehicles
-        public double numEV = 1; //number of electric vehicles
-        public double EV = 1;  //sample number
+        public double EV = 1;  //electric vehicle load (per vehicle)
 
         //Weather for Solar Panels
         public static double[] weather = {1, .8, .6, .4, .2}; //Sunny to cloudy
         public double w = 0;
-
-        //Electric Vehicle & Solar Panel Enables
-        //On = 1 Off = 0
-        //public double L1EV = 0;
-        //public double L2EV = 0;
-        public double L3EV = 0;
-        //Solar Panel
-        //public double L1SL = 1;
-        public double L2SL = 1;
-        public double L3SL = 1;
 
         //Fault Selection
         public String fault = "";
@@ -98,10 +88,30 @@ public class Simulation {
         public double timeScale = 500.0; // ex. timeScale 100 = 1 second of application time is 100 seconds of simulation
         public double time = 0; // in Hours
 
-        //Global Solar Multiplier (set by model if connected)
-        public MutableValue solarGenerationLevel = new MutableValue(1.0);
-        //Wind Turbine Multiplier (can be set by model)
+        //Solar Multipliers (set by model)
+        public MutableValue renewableSolarLevel = new MutableValue(1.0);
+        public MutableValue lowerSolarLevel = new MutableValue(1.0);
+        public MutableValue middleSolarLevel = new MutableValue(1.0);
+        
+        //Solar Enables (set by model)
+        // todo: add UI control to add/remove (only if model is not connected)
+        public MutableValue solarPanelM1 = new MutableValue(1.0);
+        public MutableValue solarPanelM2 = new MutableValue(0.0);
+        public MutableValue solarPanelL1 = new MutableValue(1.0);
+        public MutableValue solarPanelL2 = new MutableValue(0.0);
+        public MutableValue solarPanelL3 = new MutableValue(0.0);
+        
+        //Wind Turbine Multiplier (set by model)
+        // todo: add UI control
+        // todo: make model override UI control for a certain period of time
+        // todo: make UI control override model for a certain period of time
         public MutableValue windGenerationLevel = new MutableValue(1.0);
+        
+        //Electric Vehicle Enables (set by model)
+        // todo: add UI control (only if model is not connected)
+        public MutableValue electricVehicleL1 = new MutableValue(0.0);
+        public MutableValue electricVehicleL2 = new MutableValue(0.0);
+        public MutableValue electricVehicleL3 = new MutableValue(0.0);
     }
 
 	/**
@@ -142,13 +152,13 @@ public class Simulation {
     		isInterpolating = true;
     	}
     	
-    	protected void advance(final double amount, final double days) {
+    	protected void advance(final double amount, final double hours) {
     		if (!isInterpolating) {
     			return;
     		}
     		
     		if (simulationTimeInterpolation) {
-    			time += days;
+    			time += hours;
     		} else {
     			time += amount;
     		}
@@ -162,6 +172,157 @@ public class Simulation {
     		}
     	}
     }
+	
+	public static final class FaultManager {
+		
+		public static final double BALLOON_FAULT_TIME = 1.0;
+		public static final double DIG_FAULT_TIME = 6.0;
+		public static final double GENERIC_FAULT_TIME = 6.0;
+		
+		public static final double AUTOMATIC_FAULT_TIME = 0.5;
+		
+		private static final double LOAD_THRESHOLD = 0.95;
+		private static final double DESIRED_BUFFER = 0.05;
+		
+		private String currentFault = "";
+		private String genericFault = "";
+		private String automaticFault = "";
+		private double balloonFaultTimeOut = 0.0;
+		private double digFaultTimeOut = 0.0;
+		private double genericFaultTimeOut = 0.0;
+		
+		private double automaticFaultTimeOut = 0.0;
+		private boolean automaticFaultOn = false;
+		
+		private void advance(final double hours) {
+			if (balloonFaultTimeOut > 0.0) {
+				balloonFaultTimeOut -= hours;
+				if (balloonFaultTimeOut <= 0.0) {
+					Global.getMainUI().reportBalloonFaultEnded();
+					MainNetworkHandler.constructAndSendPacket(PacketTypes.BALLOON_DETECT_RESET, false);
+				}
+			}
+			if (digFaultTimeOut > 0.0) {
+				digFaultTimeOut -= hours;
+				if (digFaultTimeOut <= 0.0) {
+					Global.getMainUI().reportDigFaultEnded();
+					MainNetworkHandler.constructAndSendPacket(PacketTypes.DIG_DETECT_RESET, false);
+				}
+			}
+			if (genericFaultTimeOut > 0.0) {
+				genericFaultTimeOut -= hours;
+				if (genericFaultTimeOut <= 0.0) {
+					Global.getMainUI().reportGenericFaultEnded(genericFault);
+				}
+			}
+			if (automaticFaultTimeOut > 0.0) {
+				automaticFaultTimeOut -= hours;
+			}
+			refreshFaultState();
+		}
+		
+		private void refreshFaultState() {
+			if (balloonFaultTimeOut > 0.0 && digFaultTimeOut <= 0.0) {
+				currentFault = "D";
+			} else if (balloonFaultTimeOut <= 0.0 && digFaultTimeOut > 0.0) {
+				currentFault = "I";
+			} else if (balloonFaultTimeOut > 0.0 && digFaultTimeOut > 0.0) {
+				currentFault = "DI";
+			} else if (genericFaultTimeOut > 0.0) {
+				currentFault = genericFault;
+			} else if (currentFault.equals("")) {
+				// Check to see if a feeder is overloading
+				if (SimInfo.trM > LOAD_THRESHOLD) {
+					final double neededPower = (SimInfo.trM - LOAD_THRESHOLD) + DESIRED_BUFFER;
+					if (SimInfo.Load6 >= neededPower && SimInfo.Load6 >= SimInfo.Load4 && SimInfo.Load6 >= SimInfo.Load5) {
+						// Less important
+						currentFault = "L";
+					} else if (SimInfo.Load5 >= neededPower && SimInfo.Load5 >= SimInfo.Load4 && SimInfo.Load5 >= SimInfo.Load6) {
+						currentFault = "J";
+					} else if (SimInfo.Load4 >= neededPower && SimInfo.Load4 >= SimInfo.Load5 && SimInfo.Load4 >= SimInfo.Load6) {
+						// More important
+						currentFault = "H";
+					} else {
+						// The line is well and truly screwed
+						// Can't open a tie because that will just strain the other line to the breaking point
+						// Just have to shut down the commercial line; power outage!
+						currentFault = "LKI";
+					}
+					automaticFaultTimeOut = AUTOMATIC_FAULT_TIME;
+					automaticFault = currentFault;
+					automaticFaultOn = true;
+					Global.getMainUI().reportAutomaticFaultStarted(automaticFault);
+				} else if (SimInfo.trA > LOAD_THRESHOLD) {
+					final double neededPower = (SimInfo.trA - LOAD_THRESHOLD) + DESIRED_BUFFER;
+					if (SimInfo.Load3 >= neededPower && SimInfo.Load3 >= SimInfo.Load1 && SimInfo.Load3 >= SimInfo.Load2) {
+						// Less important
+						currentFault = "F";
+					} else if (SimInfo.Load2 >= neededPower && SimInfo.Load2 >= SimInfo.Load1 && SimInfo.Load2 >= SimInfo.Load3) {
+						currentFault = "D";
+					} else if (SimInfo.Load1 >= neededPower && SimInfo.Load1 >= SimInfo.Load2 && SimInfo.Load1 >= SimInfo.Load3) {
+						// More important
+						currentFault = "B";
+					} else {
+						// The line is well and truly screwed
+						// Can't open a tie because that will just strain the other line to the breaking point
+						// Just have to shut down the residential line; power outage!
+						currentFault = "ACE";
+					}
+					automaticFaultTimeOut = AUTOMATIC_FAULT_TIME;
+					automaticFault = currentFault;
+					automaticFaultOn = true;
+					Global.getMainUI().reportAutomaticFaultStarted(automaticFault);
+				} else {
+					// In this scenario, it's impossible for any particular node to draw more power than the two feeders from the substation
+					// Therefore, if neither A or M are at the threshold, no automatic fault can occur
+					currentFault = "";
+					if (automaticFaultOn) {
+						automaticFaultOn = false;
+						Global.getMainUI().reportAutomaticFaultEnded(automaticFault);
+					}
+				}
+			} else {
+				// Simplify matters by periodically testing the waters to see what happens
+				if (automaticFaultTimeOut <= 0.0) {
+					currentFault = "";
+				}
+			}
+		}
+		
+		public String getCurrentFault() {
+			return currentFault;
+		}
+		
+		public void startBalloonFault() {
+			balloonFaultTimeOut = BALLOON_FAULT_TIME;
+			Global.getMainUI().reportBalloonFaultStarted();
+			refreshFaultState();
+		}
+		
+		public void startDigFault() {
+			digFaultTimeOut = DIG_FAULT_TIME;
+			Global.getMainUI().reportDigFaultStarted();
+			refreshFaultState();
+		}
+		
+		public void startGenericFault(final String location) {
+			genericFaultTimeOut = GENERIC_FAULT_TIME;
+			genericFault = location;
+			refreshFaultState();
+		}
+		
+		public boolean isBalloonFaultOngoing() {
+			return balloonFaultTimeOut > 0.0;
+		}
+		
+		public boolean isDigFaultOngoing() {
+			return digFaultTimeOut > 0.0;
+		}
+		
+		public boolean isGenericFaultOngoing() {
+			return genericFaultTimeOut > 0.0;
+		}
+	}
 
     public static double linear(final double[] array, double d) {
         final int ceil = (int) Math.ceil(d) % array.length;
@@ -171,6 +332,7 @@ public class Simulation {
     }
 
     public SimulationData data;
+    public FaultManager faultManager;
     
     private boolean hasConnectionBeenMade = false;
 
@@ -179,6 +341,7 @@ public class Simulation {
      */
     public void init() {
         data = new SimulationData();
+        faultManager = new FaultManager();
     }
 
     /**
@@ -190,19 +353,23 @@ public class Simulation {
      *            in seconds
      */
     public void advance(final float amount) {
-        final double amt = (double) amount;
+        final double hours = (double) amount * data.timeScale / 3600.0;
 
-        data.time += amt * data.timeScale / 3600.0;
+        data.time += hours;
         double time = data.time;
         if (data.time >= 24.0) {
             data.time -= 24.0;
             time = data.time;
         }
         
+        // Fault management
+    	faultManager.advance(amount);
+        data.fault = faultManager.getCurrentFault();
+        
         // Time of Day packet (sent on day/night switch)
-        if (data.time >= 6.0 && data.time - amt * data.timeScale / 3600.0 < 6.0) {
+        if (data.time >= 6.0 && data.time - hours < 6.0) {
         	MainNetworkHandler.constructAndSendPacket(PacketTypes.TIME_OF_DAY, false);
-        } else if (data.time >= 18.0 && data.time - amt * data.timeScale / 3600.0 < 18.0) {
+        } else if (data.time >= 18.0 && data.time - hours < 18.0) {
         	MainNetworkHandler.constructAndSendPacket(PacketTypes.TIME_OF_DAY, true);
         }
 
@@ -219,12 +386,22 @@ public class Simulation {
         }
 
         // Update mutable values (do not touch)
-        data.solarGenerationLevel.advance(amount, amt);
-        data.windGenerationLevel.advance(amount, amt);
+        data.renewableSolarLevel.advance(amount, hours);
+        data.lowerSolarLevel.advance(amount, hours);
+        data.middleSolarLevel.advance(amount, hours);
+        data.solarPanelM1.advance(amount, hours);
+        data.solarPanelM2.advance(amount, hours);
+        data.solarPanelL1.advance(amount, hours);
+        data.solarPanelL2.advance(amount, hours);
+        data.solarPanelL3.advance(amount, hours);
+        data.windGenerationLevel.advance(amount, hours);
+        data.electricVehicleL1.advance(amount, hours);
+        data.electricVehicleL2.advance(amount, hours);
+        data.electricVehicleL3.advance(amount, hours);
 
         double Load1 = linear(SimulationData.res1, time);
-        double Load2 = linear(SimulationData.res2, time) - (data.L2SL * (linear(SimulationData.Solar, time) * data.solarGenerationLevel.get() * linear(SimulationData.weather, data.w)));
-        double Load3 = linear(SimulationData.res3, time) + (data.L3EV * (data.numEV * data.EV)) - (data.L3SL * (linear(SimulationData.Solar, time) * data.solarGenerationLevel.get() * linear(SimulationData.weather, data.w)));
+        double Load2 = linear(SimulationData.res2, time) - ((data.solarPanelM1.get() + data.solarPanelM2.get()) * (linear(SimulationData.Solar, time) * data.middleSolarLevel.get() * linear(SimulationData.weather, data.w)));
+        double Load3 = linear(SimulationData.res3, time) + ((data.electricVehicleL1.get() + data.electricVehicleL2.get() + data.electricVehicleL3.get()) * data.EV) - ((data.solarPanelL1.get() + data.solarPanelL2.get() + data.solarPanelL3.get()) * (linear(SimulationData.Solar, time) * data.lowerSolarLevel.get() * linear(SimulationData.weather, data.w)));
         double Load4 = linear(SimulationData.comm2, time);
         double Load5 = linear(SimulationData.comm1, time);
         double Load6 = linear(SimulationData.comm3, time);
@@ -262,8 +439,8 @@ public class Simulation {
         
         int swiABC = 0;
         int swiCDE = 0;
-        int swiEFG = 0;
-        int swiIHG = 0;
+        int swiEFG = 3;
+        int swiIHG = 3;
         int swiKJI = 0;
         int swiMLK = 0;
         boolean traB = false;
@@ -295,6 +472,8 @@ public class Simulation {
             trK = trI + trJ;
             trM = trK + trL;
             swiABC = 1;
+            swiEFG = 0;
+            swiIHG = 0;
             tieG = false;
         }
         //Fault at Load1/Residential1
@@ -330,6 +509,8 @@ public class Simulation {
             trM = trK + trL;
             swiABC = 3;
             swiCDE = 1;
+            swiEFG = 0;
+            swiIHG = 0;
             tieG = false;
         }
         //Fault at Load2/Residential2
@@ -348,6 +529,25 @@ public class Simulation {
             swiCDE = 2;
             traD = true;
         }
+        //Mylar balloon and dig fault together
+        if (data.fault.equals("DI")) {
+            Load2 = 0;
+            Load2r = 0;
+            Load2a = 0;
+            trD = 0;
+            trI = 0;
+            trG = trH;
+            trE = trF + trG;
+            trC = trE;
+            trA = trB + trC;
+            trK = trJ;
+            trM = trK + trL;
+            swiCDE = 2;
+            swiKJI = 3;
+            swiIHG = 1;
+            traD = true;
+            tieG = false;
+        }
         //Fault between Load2/Residential2 and Load3/Residential3
         if (data.fault.equals("E")) {
             trE = 0;
@@ -363,6 +563,7 @@ public class Simulation {
             trM = trK + trL;
             swiCDE = 3;
             swiEFG = 1;
+            swiIHG = 0;
             tieG = false;
         }
         //Fault at Load3/Residential3
@@ -380,6 +581,27 @@ public class Simulation {
             trA = trB + trC;
             swiEFG = 2;
             traF = true;
+        }
+        //Residential line off
+        if (data.fault.equals("ACE")) {
+            Load1 = 0;
+            Load1r = 0;
+            Load1a = 0;
+            Load2 = 0;
+            Load2r = 0;
+            Load2a = 0;
+            Load3 = 0;
+            Load3r = 0;
+            Load3a = 0;
+			trA = 0;
+			trB = 0;
+			trC = 0;
+			trD = 0;
+			trE = 0;
+			trF = 0;
+			swiABC = 4;
+			swiCDE = 4;
+			swiEFG = 4;
         }
         //Fault at Load4/Commercial2
         if (data.fault.equals("H")) {
@@ -410,6 +632,7 @@ public class Simulation {
             trA = trB + trC;
             trK = trJ;
             trM = trK + trL;
+            swiEFG = 0;
             swiKJI = 3;
             swiIHG = 1;
             tieG = false;
@@ -442,6 +665,8 @@ public class Simulation {
             trA = trB + trC;
             trK = 0;
             trM = trL;
+            swiEFG = 0;
+            swiIHG = 0;
             swiMLK = 3;
             swiKJI = 1;
             tieG = false;
@@ -474,13 +699,36 @@ public class Simulation {
             trC = trD + trE;
             trA = trB + trC;
             trM = 0;
+            swiEFG = 0;
+            swiIHG = 0;
             swiMLK = 1;
             tieG = false;
+        }
+        //Commercial line off
+        if (data.fault.equals("MKI")) {
+            Load4 = 0;
+            Load4r = 0;
+            Load4a = 0;
+            Load5 = 0;
+            Load5r = 0;
+            Load5a = 0;
+            Load6 = 0;
+            Load6r = 0;
+            Load6a = 0;
+			trM = 0;
+			trL = 0;
+			trK = 0;
+			trJ = 0;
+			trI = 0;
+			trH = 0;
+			swiMLK = 4;
+			swiKJI = 4;
+			swiIHG = 4;
         }
 
         double transTotal = (trA + trM) * data.capacity;
 
-        double PowPlant = linear(SimulationData.PowerPlant, time) * linear(SimulationData.weather, data.w) * data.solarGenerationLevel.get();
+        double PowPlant = linear(SimulationData.PowerPlant, time) * linear(SimulationData.weather, data.w) * data.renewableSolarLevel.get();
         double WindTurbines = linear(SimulationData.WindFarm, time) * data.windGenerationLevel.get();
         double BatteryStorage = linear(SimulationData.Battery, time);
 
