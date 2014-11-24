@@ -49,26 +49,118 @@ public class InputHook {
         if(object.getId().equals("info")) {
             MainUI.ClickableObjects.infopage.setDepth(-1);
             MainUI.ClickableObjects.exitinfo.setDepth(-2);
+            MainUI.ClickableObjects.load1stats.setDepth(11);
+            MainUI.UIInfo.Load1.setDepth(11);
+            MainUI.ClickableObjects.load2stats.setDepth(11);
+            MainUI.UIInfo.Load2.setDepth(11);
+            MainUI.ClickableObjects.load3stats.setDepth(11);
+            MainUI.UIInfo.Load3.setDepth(11);
+            MainUI.ClickableObjects.load4stats.setDepth(11);
+            MainUI.UIInfo.Load4.setDepth(11);
+            MainUI.ClickableObjects.load5stats.setDepth(11);
+            MainUI.UIInfo.Load5.setDepth(11);
+            MainUI.ClickableObjects.load6stats.setDepth(11);
+            MainUI.UIInfo.Load6.setDepth(11);
         }
         if(object.getId().equals("exitinfo")) {
             MainUI.ClickableObjects.infopage.setDepth(11);
             MainUI.ClickableObjects.exitinfo.setDepth(11);
         }
+
         if(object.getId().equals("graphs")) {
             MainUI.ClickableObjects.graphspage.setDepth(-1);
             MainUI.ClickableObjects.exitgraphs.setDepth(-2);
+            MainUI.ClickableObjects.load1stats.setDepth(11);
+            MainUI.UIInfo.Load1.setDepth(11);
+            MainUI.ClickableObjects.load2stats.setDepth(11);
+            MainUI.UIInfo.Load2.setDepth(11);
+            MainUI.ClickableObjects.load3stats.setDepth(11);
+            MainUI.UIInfo.Load3.setDepth(11);
+            MainUI.ClickableObjects.load4stats.setDepth(11);
+            MainUI.UIInfo.Load4.setDepth(11);
+            MainUI.ClickableObjects.load5stats.setDepth(11);
+            MainUI.UIInfo.Load5.setDepth(11);
+            MainUI.ClickableObjects.load6stats.setDepth(11);
+            MainUI.UIInfo.Load6.setDepth(11);
         }
         if(object.getId().equals("exitgraphs")) {
             MainUI.ClickableObjects.graphspage.setDepth(11);
             MainUI.ClickableObjects.exitgraphs.setDepth(11);
         }
+
         if(object.getId().equals("faults")) {
             MainUI.ClickableObjects.faultspage.setDepth(-1);
             MainUI.ClickableObjects.exitfaults.setDepth(-2);
+            MainUI.ClickableObjects.load1stats.setDepth(11);
+            MainUI.UIInfo.Load1.setDepth(11);
+            MainUI.ClickableObjects.load2stats.setDepth(11);
+            MainUI.UIInfo.Load2.setDepth(11);
+            MainUI.ClickableObjects.load3stats.setDepth(11);
+            MainUI.UIInfo.Load3.setDepth(11);
+            MainUI.ClickableObjects.load4stats.setDepth(11);
+            MainUI.UIInfo.Load4.setDepth(11);
+            MainUI.ClickableObjects.load5stats.setDepth(11);
+            MainUI.UIInfo.Load5.setDepth(11);
+            MainUI.ClickableObjects.load6stats.setDepth(11);
+            MainUI.UIInfo.Load6.setDepth(11);
         }
         if(object.getId().equals("exitfaults")) {
             MainUI.ClickableObjects.faultspage.setDepth(11);
             MainUI.ClickableObjects.exitfaults.setDepth(11);
+        }
+
+        if(object.getId().equals("load1statsclick")) {
+            MainUI.ClickableObjects.load1stats.setDepth(-1);
+            MainUI.UIInfo.Load1.setDepth(-2);
+        }
+        if(object.getId().equals("load1stats")) {
+            MainUI.ClickableObjects.load1stats.setDepth(11);
+            MainUI.UIInfo.Load1.setDepth(11);
+        }
+
+        if(object.getId().equals("load2statsclick")) {
+            MainUI.ClickableObjects.load2stats.setDepth(-1);
+            MainUI.UIInfo.Load2.setDepth(-2);
+        }
+        if(object.getId().equals("load2stats")) {
+            MainUI.ClickableObjects.load2stats.setDepth(11);
+            MainUI.UIInfo.Load2.setDepth(11);
+        }
+
+        if(object.getId().equals("load3statsclick")) {
+            MainUI.ClickableObjects.load3stats.setDepth(-1);
+            MainUI.UIInfo.Load3.setDepth(-2);
+        }
+        if(object.getId().equals("load3stats")) {
+            MainUI.ClickableObjects.load3stats.setDepth(11);
+            MainUI.UIInfo.Load3.setDepth(11);
+        }
+
+        if(object.getId().equals("load4statsclick")) {
+            MainUI.ClickableObjects.load4stats.setDepth(-1);
+            MainUI.UIInfo.Load4.setDepth(-2);
+        }
+        if(object.getId().equals("load4stats")) {
+            MainUI.ClickableObjects.load4stats.setDepth(11);
+            MainUI.UIInfo.Load4.setDepth(11);
+        }
+
+        if(object.getId().equals("load5statsclick")) {
+            MainUI.ClickableObjects.load5stats.setDepth(-1);
+            MainUI.UIInfo.Load5.setDepth(-2);
+        }
+        if(object.getId().equals("load5stats")) {
+            MainUI.ClickableObjects.load5stats.setDepth(11);
+            MainUI.UIInfo.Load5.setDepth(11);
+        }
+
+        if(object.getId().equals("load6statsclick")) {
+            MainUI.ClickableObjects.load6stats.setDepth(-1);
+            MainUI.UIInfo.Load6.setDepth(-2);
+        }
+        if(object.getId().equals("load6stats")) {
+            MainUI.ClickableObjects.load6stats.setDepth(11);
+            MainUI.UIInfo.Load6.setDepth(11);
         }
     }
 

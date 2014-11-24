@@ -140,6 +140,13 @@ public class MainUI {
         resources.add(R.drawable.tie);
         resources.add(R.drawable.trackhoe);
         resources.add(R.drawable.orb);
+        resources.add(R.drawable.loadstats);
+        resources.add(R.drawable.load1statsclick);
+        resources.add(R.drawable.load2statsclick);
+        resources.add(R.drawable.load3statsclick);
+        resources.add(R.drawable.load4statsclick);
+        resources.add(R.drawable.load5statsclick);
+        resources.add(R.drawable.load6statsclick);
         Global.getRenderer().loadTextures(resources);
     }
 
@@ -191,13 +198,13 @@ public class MainUI {
         public static ClickableSprite exitgraphs;
         public static ClickableSprite faultspage;
         public static ClickableSprite exitfaults;
+        public static ClickableSprite load1stats;
+        public static ClickableSprite load2stats;
+        public static ClickableSprite load3stats;
+        public static ClickableSprite load4stats;
+        public static ClickableSprite load5stats;
+        public static ClickableSprite load6stats;
     }
-
-//    public void nighttime(){
-//        if(Simulation.SimInfo.currentTime >= 5.00) {
-//            ClickableObjects.backgroundnight.setDepth(9);
-//        }
-//    }
 
     /**
      * This runs on the first frame.
@@ -211,7 +218,7 @@ public class MainUI {
 
         ClickableSprite backgroundnight = new ClickableSprite(new Vector2f(), 11, 0f, new Vector2f(1.28f, 1.28f),
                 new Color(255, 255, 255), R.drawable.backgroundnight, sizeToCoords(-1280,-800), sizeToCoords(1280,800), "backgroundnight");
-        background.setRelativeScale();
+        backgroundnight.setRelativeScale();
         Global.getRenderer().addDrawable(backgroundnight);
         addClickable(backgroundnight);
 
@@ -434,97 +441,157 @@ public class MainUI {
         Global.getRenderer().addDrawable(trackhoe);
 
         UIInfo.Load1 = new TextSprite("",
-                pixelsToCoords(1080, 1020), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(1000, 1000), 20, Typeface.DEFAULT, 1000f, 11, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load1);
 
+        ClickableSprite load1statsclick = new ClickableSprite(pixelsToCoords(980, 1000), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255, 0), R.drawable.load1statsclick, sizeToCoords(-312,-313), sizeToCoords(312,313), "load1statsclick");
+        Global.getRenderer().addDrawable(load1statsclick);
+        addClickable(load1statsclick);
+
+        ClickableObjects.load1stats = new ClickableSprite(pixelsToCoords(1000, 1000), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.loadstats, sizeToCoords(-211,-140), sizeToCoords(211,140), "load1stats");
+        Global.getRenderer().addDrawable(ClickableObjects.load1stats);
+        addClickable(ClickableObjects.load1stats);
+
         UIInfo.Load2 = new TextSprite("",
-                pixelsToCoords(305, 670), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(295, 675), 20, Typeface.DEFAULT, 1000f, 11, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load2);
 
+        ClickableSprite load2statsclick = new ClickableSprite(pixelsToCoords(295, 655), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255, 0), R.drawable.load2statsclick, sizeToCoords(-76,-80), sizeToCoords(76,80), "load2statsclick");
+        Global.getRenderer().addDrawable(load2statsclick);
+        addClickable(load2statsclick);
+
+        ClickableObjects.load2stats = new ClickableSprite(pixelsToCoords(295, 675), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.loadstats, sizeToCoords(-211,-140), sizeToCoords(211,140), "load2stats");
+        Global.getRenderer().addDrawable(ClickableObjects.load2stats);
+        addClickable(ClickableObjects.load2stats);
+
         UIInfo.Load3 = new TextSprite("",
-                pixelsToCoords(500, 50), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(400, 190), 20, Typeface.DEFAULT, 1000f, 11, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load3);
 
+        ClickableSprite load3statsclick = new ClickableSprite(pixelsToCoords(400, 190), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255, 0), R.drawable.load3statsclick, sizeToCoords(-119,-52), sizeToCoords(119,52), "load3statsclick");
+        Global.getRenderer().addDrawable(load3statsclick);
+        addClickable(load3statsclick);
+
+        ClickableObjects.load3stats = new ClickableSprite(pixelsToCoords(400, 190), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.loadstats, sizeToCoords(-211,-140), sizeToCoords(211,140), "load3stats");
+        Global.getRenderer().addDrawable(ClickableObjects.load3stats);
+        addClickable(ClickableObjects.load3stats);
+
         UIInfo.Load4 = new TextSprite("",
-                pixelsToCoords(1730, 350), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(1530, 420), 20, Typeface.DEFAULT, 1000f, 11, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load4);
 
+        ClickableSprite load4statsclick = new ClickableSprite(pixelsToCoords(1550, 310), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255, 0), R.drawable.load4statsclick, sizeToCoords(-225,-330), sizeToCoords(225,330), "load4statsclick");
+        Global.getRenderer().addDrawable(load4statsclick);
+        addClickable(load4statsclick);
+
+        ClickableObjects.load4stats = new ClickableSprite(pixelsToCoords(1530, 420), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.loadstats, sizeToCoords(-211,-140), sizeToCoords(211,140), "load4stats");
+        Global.getRenderer().addDrawable(ClickableObjects.load4stats);
+        addClickable(ClickableObjects.load4stats);
+
         UIInfo.Load5 = new TextSprite("",
-                pixelsToCoords(1980, 825), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(1980, 720), 20, Typeface.DEFAULT, 1000f, 11, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load5);
 
+        ClickableSprite load5statsclick = new ClickableSprite(pixelsToCoords(2100, 600), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255, 0), R.drawable.load5statsclick, sizeToCoords(-310,-250), sizeToCoords(310,250), "load5statsclick");
+        Global.getRenderer().addDrawable(load5statsclick);
+        addClickable(load5statsclick);
+
+        ClickableObjects.load5stats = new ClickableSprite(pixelsToCoords(1980, 720), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.loadstats, sizeToCoords(-211,-140), sizeToCoords(211,140), "load5stats");
+        Global.getRenderer().addDrawable(ClickableObjects.load5stats);
+        addClickable(ClickableObjects.load5stats);
+
         UIInfo.Load6 = new TextSprite("",
-                pixelsToCoords(2070, 1175), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(2010, 1140), 20, Typeface.DEFAULT, 1000f, 11, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load6);
 
+        ClickableSprite load6statsclick = new ClickableSprite(pixelsToCoords(2170, 1090), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255, 0), R.drawable.load6statsclick, sizeToCoords(-370,-110), sizeToCoords(370,110), "load6statsclick");
+        Global.getRenderer().addDrawable(load6statsclick);
+        addClickable(load6statsclick);
+
+        ClickableObjects.load6stats = new ClickableSprite(pixelsToCoords(2010, 1140), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.loadstats, sizeToCoords(-211,-140), sizeToCoords(211,140), "load6stats");
+        Global.getRenderer().addDrawable(ClickableObjects.load6stats);
+        addClickable(ClickableObjects.load6stats);
+
         UIInfo.trA = new TextSprite("",
-                pixelsToCoords(1390, 990), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(1370, 1200), 30, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trA);
 
         UIInfo.trB = new TextSprite("",
-                pixelsToCoords(1210, 945), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(1230, 945), 30, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trB);
 
         UIInfo.trC = new TextSprite("",
-                pixelsToCoords(930, 440), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(960, 670), 30, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trC);
 
         UIInfo.trD = new TextSprite("",
-                pixelsToCoords(590, 630), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(620, 640), 30, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trD);
 
         UIInfo.trE = new TextSprite("",
-                pixelsToCoords(930, 110), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(960, 300), 30, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trE);
 
         UIInfo.trF = new TextSprite("",
-                pixelsToCoords(790, 55), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(800, 60), 30, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trF);
 
         UIInfo.trG = new TextSprite("",
-                pixelsToCoords(1105, 100), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(1145, 110), 30, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trG);
 
         UIInfo.trH = new TextSprite("",
-                pixelsToCoords(1390, 280), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(1370, 280), 30, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trH);
 
         UIInfo.trI = new TextSprite("",
-                pixelsToCoords(1220, 320), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(1500, 650), 30, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trI);
 
         UIInfo.trJ = new TextSprite("",
-                pixelsToCoords(1840, 740), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(1820, 745), 30, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trJ);
 
         UIInfo.trK = new TextSprite("",
-                pixelsToCoords(1670, 780), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(1635, 965), 30, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trK);
 
         UIInfo.trL = new TextSprite("",
-                pixelsToCoords(1840, 1090), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(1820, 1095), 30, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trL);
 
         UIInfo.trM = new TextSprite("",
-                pixelsToCoords(1740, 1185), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(1680, 1200), 30, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trM);
 
@@ -534,7 +601,7 @@ public class MainUI {
         Global.getRenderer().addDrawable(UIInfo.WindTurbines);
 
         UIInfo.PowPlant = new TextSprite("",
-                pixelsToCoords(1950, 1400), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(1930, 1400), 20, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.PowPlant);
 
@@ -806,7 +873,9 @@ public class MainUI {
             return;
         }
 
-//        nighttime();
+//        if(Simulation.SimInfo.currentTime > 1.50) {
+//            ClickableObjects.backgroundnight.setDepth(9);
+//        }
 
         textUpdateTimer -= amount;
         if (textUpdateTimer <= 0f) {
