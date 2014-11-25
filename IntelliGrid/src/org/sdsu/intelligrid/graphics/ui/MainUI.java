@@ -1091,13 +1091,47 @@ public class MainUI {
             ClickableObjects.background.setResource(R.drawable.backgroundnight);
             Objects.battery.setResource(R.drawable.batterynight);
             Objects.business1.setResource(R.drawable.business1night);
+            Objects.business1copy.setResource(R.drawable.business1copynight);
+            Objects.business2.setResource(R.drawable.business2night);
+            Objects.business2copy.setResource(R.drawable.business2copynight);
+            Objects.business2copy2.setResource(R.drawable.business2copy2night);
+            Objects.graphs.setResource(R.drawable.graphsnight);
+            Objects.house1solar.setResource(R.drawable.house1solarnight);
+            Objects.house1solar2.setResource(R.drawable.house1solar2night);
+            Objects.house1solar3.setResource(R.drawable.house1solar3night);
+            Objects.house2solar.setResource(R.drawable.house2solarnight);
+            Objects.house2solar2.setResource(R.drawable.house2solar2night);
+            Objects.house2solar3.setResource(R.drawable.house2solar3night);
+            Objects.house3.setResource(R.drawable.house3night);
+            Objects.house3copy.setResource(R.drawable.house3copynight);
+            Objects.house3copy2.setResource(R.drawable.house3copy2night);
+            Objects.info.setResource(R.drawable.infonight);
+            Objects.midway.setResource(R.drawable.midwaynight);
+            Objects.museum.setResource(R.drawable.museumnight);
+            Objects.solarpanel.setResource(R.drawable.solarpanelnight);
+            Objects.stadium.setResource(R.drawable.stadiumnight);
+            Objects.substation.setResource(R.drawable.substationnight);
+            Objects.switch1.setResource(R.drawable.switch1night);
+            Objects.switch2.setResource(R.drawable.switch2night);
+            Objects.switch3.setResource(R.drawable.switch3night);
+            Objects.switch4.setResource(R.drawable.switch4night);
+            Objects.switch5.setResource(R.drawable.switch5night);
+            Objects.switch6.setResource(R.drawable.switch6night);
+            Objects.tie.setResource(R.drawable.tienight);
+            Objects.transformer.setResource(R.drawable.transformernight);
+            Objects.transformer2.setResource(R.drawable.transformer2night);
+            Objects.transformer3.setResource(R.drawable.transformer3night);
+            Objects.transformer4.setResource(R.drawable.transformer4night);
+            Objects.transformer5.setResource(R.drawable.transformer5night);
+            Objects.transformer6.setResource(R.drawable.transformer6night);
+            Objects.turbine.setResource(R.drawable.turbinenight);
+            Objects.turbine2.setResource(R.drawable.turbine2night);
 
 
-            public static Sprite battery;
-            public static Sprite business1;
-            public static Sprite business1copy;
-            public static Sprite business2;
-            public static Sprite business2copy;
+
+
+
+/*
             public static Sprite business2copy2;
             public static Sprite graphs;
             public static Sprite house1solar;
@@ -1130,6 +1164,7 @@ public class MainUI {
             public static Sprite transformer6;
             public static Sprite turbine;
             public static Sprite turbine2;
+            */
         }
 
         textUpdateTimer -= amount;
