@@ -48,6 +48,7 @@ public class InputHook {
 			final Vector2f coords, final MotionEvent e, final int id) {
 
         if(object.getId().equals("play")) {
+        	LightAnimation.setPaused(false);
             Simulation.SimulationData.timeScale = 288;
             MainUI.Objects.playdown.setDepth(-1);
             MainUI.Objects.play2down.setDepth(11);
@@ -55,6 +56,7 @@ public class InputHook {
             MainUI.Objects.pausedown.setDepth(11);
         }
         if(object.getId().equals("play2")) {
+        	LightAnimation.setPaused(false);
             Simulation.SimulationData.timeScale = 720;
             MainUI.Objects.playdown.setDepth(11);
             MainUI.Objects.play2down.setDepth(-1);
@@ -62,6 +64,7 @@ public class InputHook {
             MainUI.Objects.pausedown.setDepth(11);
         }
         if(object.getId().equals("play3")) {
+        	LightAnimation.setPaused(false);
             Simulation.SimulationData.timeScale = 1920;
             MainUI.Objects.playdown.setDepth(11);
             MainUI.Objects.play2down.setDepth(11);
@@ -69,6 +72,7 @@ public class InputHook {
             MainUI.Objects.pausedown.setDepth(11);
         }
         if(object.getId().equals("pause")) {
+        	LightAnimation.setPaused(true);
             Simulation.SimulationData.timeScale = 0;
             MainUI.Objects.playdown.setDepth(11);
             MainUI.Objects.play2down.setDepth(11);

@@ -34,7 +34,7 @@ public class LightAnimation {
 	}
 
 	private static enum Junctions {
-		ABC, B_BRANCH, B_GEN, CDE, D_BRANCH, D_BRANCH_2, D_GEN, EFG, F_BRANCH, F_BRANCH_2, F_GEN, IHG, H_BRANCH, H_GEN, KJI, J_BRANCH, J_GEN, MLK, L_BRANCH, L_GEN;
+		ABC, B_BRANCH, B_GEN, CDE, D_BRANCH, D_BRANCH_2, D_GEN, EFG, F_BRANCH, F_BRANCH_2, F_GEN, IHG, H_BRANCH, H_GEN, KJI, J_BRANCH, J_GEN, MLK, L_BRANCH, L_GEN, S_GEN;
 
 		private float path1 = 0f;
 		private float path2 = 0f;
@@ -91,7 +91,9 @@ public class LightAnimation {
 				LEDLayout.segmentLbranch1, 1f)), SEGMENT_L_BRANCH_2(
 				new Segment(LEDLayout.segmentLbranch2, 1f)), SEGMENT_M(
 				new Segment(LEDLayout.segmentM, 1f)), SEGMENT_W(new Segment(
-				LEDLayout.segmentYW, 1f)), SEGMENT_X(new Segment(
+				LEDLayout.segmentYW, 1f)), SEGMENT_S1(new Segment(
+				LEDLayout.segmentS1, 1f)), SEGMENT_S2(new Segment(
+				LEDLayout.segmentS2, 1f)), SEGMENT_X(new Segment(
 				LEDLayout.segmentX, 1f)), SWITCH_ABC(new BaseStrand(
 				LEDLayout.switchABC)), SWITCH_CDE(new BaseStrand(
 				LEDLayout.switchCDE)), SWITCH_EFG(new BaseStrand(
@@ -194,10 +196,14 @@ public class LightAnimation {
 				149, 150, 151);
 		private static final List<Integer> segmentM = Arrays.asList(154, 153,
 				152, 137, 136);
+		private static final List<Integer> segmentS1 = Arrays.asList(175, 176,
+				177);
+		private static final List<Integer> segmentS2 = Arrays.asList(157, 156,
+				155);
 		private static final List<Integer> segmentYW = Arrays.asList(167, 166,
-				165, 164, 163, 162, 161, 160, 159, 158, 157, 156, 155);
+				165, 164, 163, 162, 161, 160, 159, 158);
 		private static final List<Integer> segmentX = Arrays.asList(174, 173,
-				172, 171, 170, 169, 168, 175, 176, 177);
+				172, 171, 170, 169, 168);
 	}
 
 	protected static final Map<Integer, LightStates> states = new HashMap<>();
@@ -380,15 +386,24 @@ public class LightAnimation {
 		return (float) Math.random() * 0.05f;
 	}
 
+	public static void setPaused(final boolean p) {
+		paused = p;
+	}
+
 	private static final float OFF_THRESHOLD = 0.0001f;
 
 	private static final float GEN_SCALE = 40f;
 	private static final float FLOW_SCALE = 5f;
 
+	private static boolean paused = false;
+
 	private final List<Orb> orbs = new ArrayList<>();
 
 	public void advance(final float amount) {
 		// Logger.getGlobal().log(Level.SEVERE, "" + orbs.size() + " orbs");
+		if (paused) {
+			return;
+		}
 		Iterator<Orb> iter = orbs.iterator();
 		while (iter.hasNext()) {
 			final Orb orb = iter.next();
@@ -398,6 +413,7 @@ public class LightAnimation {
 			float prevFlow = 0f;
 			while (true) {
 				if (orb.fading) {
+					orb.advance(0f);
 					if (orb.fade(amount)) {
 						iter.remove();
 					}
@@ -407,6 +423,7 @@ public class LightAnimation {
 				final Segment segment = orb.getSegment();
 				if (Math.abs(segment.getFlow()) <= OFF_THRESHOLD) {
 					orb.fading = true;
+					orb.progress = 1f;
 					continue;
 				}
 				if ((segment.getFlow() < 0f && orb.forward)
@@ -466,6 +483,7 @@ public class LightAnimation {
 				} else if (segment == LightStrands.SEGMENT_A.strand
 						&& !orb.forward) {
 					orb.fading = true;
+					orb.progress = 1f;
 					continue;
 				} else if (segment == LightStrands.SEGMENT_B.strand
 						&& orb.forward) {
@@ -485,6 +503,7 @@ public class LightAnimation {
 						orb.forward = true;
 					} else {
 						orb.fading = true; // sanity
+						orb.progress = 1f;
 						continue;
 					}
 				} else if ((segment == LightStrands.SEGMENT_B_BRANCH_1.strand
@@ -515,6 +534,7 @@ public class LightAnimation {
 						orb.forward = true;
 					} else {
 						orb.fading = true; // sanity
+						orb.progress = 1f;
 						continue;
 					}
 				} else if (segment == LightStrands.SEGMENT_D.strand
@@ -555,6 +575,7 @@ public class LightAnimation {
 						|| segment == LightStrands.SEGMENT_D_BRANCH_2.strand || segment == LightStrands.SEGMENT_D_BRANCH_3.strand)
 						&& orb.forward) {
 					orb.fading = true;
+					orb.progress = 1f;
 					continue;
 				} else if (segment == LightStrands.SEGMENT_D_BRANCH_1.strand
 						&& !orb.forward) {
@@ -625,6 +646,7 @@ public class LightAnimation {
 						|| segment == LightStrands.SEGMENT_F_BRANCH_2.strand || segment == LightStrands.SEGMENT_F_BRANCH_3.strand)
 						&& orb.forward) {
 					orb.fading = true;
+					orb.progress = 1f;
 					continue;
 				} else if (segment == LightStrands.SEGMENT_F_BRANCH_1.strand
 						&& !orb.forward) {
@@ -682,6 +704,7 @@ public class LightAnimation {
 				} else if ((segment == LightStrands.SEGMENT_H_BRANCH_1.strand || segment == LightStrands.SEGMENT_H_BRANCH_2.strand)
 						&& orb.forward) {
 					orb.fading = true;
+					orb.progress = 1f;
 					continue;
 				} else if ((segment == LightStrands.SEGMENT_H_BRANCH_1.strand || segment == LightStrands.SEGMENT_H_BRANCH_2.strand)
 						&& !orb.forward) {
@@ -737,6 +760,7 @@ public class LightAnimation {
 				} else if ((segment == LightStrands.SEGMENT_J_BRANCH_1.strand || segment == LightStrands.SEGMENT_J_BRANCH_2.strand)
 						&& orb.forward) {
 					orb.fading = true;
+					orb.progress = 1f;
 					continue;
 				} else if ((segment == LightStrands.SEGMENT_J_BRANCH_1.strand || segment == LightStrands.SEGMENT_J_BRANCH_2.strand)
 						&& !orb.forward) {
@@ -760,6 +784,7 @@ public class LightAnimation {
 						orb.forward = true;
 					} else {
 						orb.fading = true; // sanity
+						orb.progress = 1f;
 						continue;
 					}
 				} else if (segment == LightStrands.SEGMENT_L.strand
@@ -778,11 +803,13 @@ public class LightAnimation {
 						orb.forward = true;
 					} else {
 						orb.fading = true; // sanity
+						orb.progress = 1f;
 						continue;
 					}
 				} else if ((segment == LightStrands.SEGMENT_L_BRANCH_1.strand || segment == LightStrands.SEGMENT_L_BRANCH_2.strand)
 						&& orb.forward) {
 					orb.fading = true;
+					orb.progress = 1f;
 					continue;
 				} else if ((segment == LightStrands.SEGMENT_L_BRANCH_1.strand || segment == LightStrands.SEGMENT_L_BRANCH_2.strand)
 						&& !orb.forward) {
@@ -802,12 +829,20 @@ public class LightAnimation {
 				} else if (segment == LightStrands.SEGMENT_M.strand
 						&& !orb.forward) {
 					orb.fading = true;
+					orb.progress = 1f;
+					continue;
+				} else if (segment == LightStrands.SEGMENT_S1.strand
+						|| segment == LightStrands.SEGMENT_S2.strand) {
+					orb.fading = true;
+					orb.progress = 1f;
 					continue;
 				} else if (segment == LightStrands.SEGMENT_X.strand) {
 					orb.fading = true;
+					orb.progress = 1f;
 					continue;
 				} else if (segment == LightStrands.SEGMENT_W.strand) {
 					orb.fading = true;
+					orb.progress = 1f;
 					continue;
 				}
 
@@ -946,6 +981,13 @@ public class LightAnimation {
 			strand.setFlow(getFlow(LightStrands.SEGMENT_L_BRANCH_2));
 		}
 
+		if (true) {
+			Segment strand = (Segment) LightStrands.SEGMENT_S1.strand;
+			strand.setFlow(getFlow(LightStrands.SEGMENT_S1));
+			strand = (Segment) LightStrands.SEGMENT_S2.strand;
+			strand.setFlow(getFlow(LightStrands.SEGMENT_S2));
+		}
+
 		if ((float) SimInfo.trM > OFF_THRESHOLD) {
 			final float flow = (float) SimInfo.trM * amount;
 			final float greenFlow = (float) (SimInfo.PowPlant + SimInfo.WindTurbines)
@@ -975,11 +1017,41 @@ public class LightAnimation {
 			strand.setFlow(getFlow(LightStrands.SEGMENT_M));
 		}
 
-		if (SimInfo.PowPlant + SimInfo.BatteryStorage > 0.0) {
-			final float flow = ((float) SimInfo.PowPlant + (float) SimInfo.BatteryStorage)
-					* amount * (float) SimInfo.GenScale;
-			final float greenFlow = ((float) SimInfo.PowPlant + (float) SimInfo.BatteryStorage)
-					* amount * (float) SimInfo.GenScale;
+		if ((float) SimInfo.transTotal * SimInfo.GenScale > OFF_THRESHOLD) {
+			final float flow = (float) (SimInfo.transTotal * SimInfo.GenScale)
+					* amount;
+			final float greenFlow = (float) (SimInfo.PowPlant + SimInfo.WindTurbines)
+					* (float) SimInfo.GenScale * amount;
+			final float blueFlow = flow - greenFlow;
+
+			final int dir = Junctions.S_GEN.advance(1f + jitter(),
+					1f + jitter(), 0f);
+			final Segment strand;
+			if (dir == 1) {
+				strand = (Segment) LightStrands.SEGMENT_S1.strand;
+			} else {
+				strand = (Segment) LightStrands.SEGMENT_S2.strand;
+			}
+
+			final int type = strand.advance(blueFlow, greenFlow);
+			final OrbTypes orbType;
+			if (type == 2) {
+				orbType = OrbTypes.GREEN;
+			} else {
+				orbType = OrbTypes.BLUE;
+			}
+
+			if (type > 0) {
+				orbs.add(new Orb(orbType, strand, strand.getLEDs().get(0),
+						strand.getLEDs().get(1)));
+			}
+		}
+
+		if ((float) SimInfo.PowPlant * (float) SimInfo.GenScale > OFF_THRESHOLD) {
+			final float flow = (float) SimInfo.PowPlant * amount
+					* (float) SimInfo.GenScale;
+			final float greenFlow = (float) SimInfo.PowPlant * amount
+					* (float) SimInfo.GenScale;
 			final float blueFlow = flow - greenFlow;
 
 			final Segment strand = (Segment) LightStrands.SEGMENT_W.strand;
@@ -998,29 +1070,8 @@ public class LightAnimation {
 						strand.getLEDs().get(1)));
 			}
 		} else {
-			final float flow = -((float) SimInfo.PowPlant + (float) SimInfo.BatteryStorage)
-					* amount * (float) SimInfo.GenScale;
-			final float greenFlow = 0f;
-			final float blueFlow = flow - greenFlow;
-
 			final Segment strand = (Segment) LightStrands.SEGMENT_W.strand;
 			strand.setFlow(getFlow(LightStrands.SEGMENT_W));
-
-			final int type = strand.advance(blueFlow, greenFlow);
-			final OrbTypes orbType;
-			if (type == 2) {
-				orbType = OrbTypes.GREEN;
-			} else {
-				orbType = OrbTypes.BLUE;
-			}
-
-			if (type > 0) {
-				Orb orb = new Orb(orbType, strand, strand.getLEDs().get(
-						strand.getLEDs().size() - 1), strand.getLEDs().get(
-						strand.getLEDs().size() - 2));
-				orb.forward = false;
-				orbs.add(orb);
-			}
 		}
 
 		if ((float) SimInfo.WindTurbines * (float) SimInfo.GenScale > OFF_THRESHOLD) {
@@ -1084,8 +1135,11 @@ public class LightAnimation {
 		if (SimInfo.Load2 < 0.0) {
 			final float greenFlow = (float) -SimInfo.trD * amount;
 
-			final int dir = Junctions.D_GEN.advance((float) Global.getGlobalSimulation().data.solarPanelM1.get() * (1f + jitter()),
-                    (float) Global.getGlobalSimulation().data.solarPanelM2.get() * (1f + jitter()), 0f);
+			final int dir = Junctions.D_GEN.advance(
+					(float) Global.getGlobalSimulation().data.solarPanelM1
+							.get() * (1f + jitter()),
+					(float) Global.getGlobalSimulation().data.solarPanelM2
+							.get() * (1f + jitter()), 0f);
 			final Segment strand;
 			if (dir == 1) {
 				strand = (Segment) LightStrands.SEGMENT_D_BRANCH_1.strand;
@@ -1113,8 +1167,13 @@ public class LightAnimation {
 		if (SimInfo.Load3 < 0.0) {
 			final float greenFlow = (float) -SimInfo.trF * amount;
 
-			final int dir = Junctions.F_GEN.advance((float) Global.getGlobalSimulation().data.solarPanelL1.get() * (1f + jitter()),
-                    (float) Global.getGlobalSimulation().data.solarPanelL2.get() * (1f + jitter()), (float) Global.getGlobalSimulation().data.solarPanelL3.get() * (1f + jitter()));
+			final int dir = Junctions.F_GEN.advance(
+					(float) Global.getGlobalSimulation().data.solarPanelL1
+							.get() * (1f + jitter()),
+					(float) Global.getGlobalSimulation().data.solarPanelL2
+							.get() * (1f + jitter()),
+					(float) Global.getGlobalSimulation().data.solarPanelL3
+							.get() * (1f + jitter()));
 			final Segment strand;
 			if (dir == 1) {
 				strand = (Segment) LightStrands.SEGMENT_F_BRANCH_1.strand;
@@ -1255,37 +1314,45 @@ public class LightAnimation {
 			break;
 		}
 		case SEGMENT_D_2: {
-            if (SimInfo.trD > 0.0) {
-                flow = SimInfo.trD * 2.0 / 3.0;
-            } else {
-                flow = SimInfo.trD / 2.0;
-            }
+			if (SimInfo.trD > 0.0) {
+				flow = SimInfo.trD * 2.0 / 3.0;
+			} else {
+				flow = SimInfo.trD / 2.0;
+			}
 			break;
 		}
 		case SEGMENT_D_BRANCH_1: {
-            if (SimInfo.trD > 0.0) {
-                flow = SimInfo.trD / 3.0;
-            } else {
-                final double totalSolar = Global.getGlobalSimulation().data.solarPanelM1.get() + Global.getGlobalSimulation().data.solarPanelM2.get();
-                flow = SimInfo.trD * Global.getGlobalSimulation().data.solarPanelM1.get() / totalSolar;
-            }
-            break;
-        }
+			if (SimInfo.trD > 0.0) {
+				flow = SimInfo.trD / 3.0;
+			} else {
+				final double totalSolar = Global.getGlobalSimulation().data.solarPanelM1
+						.get()
+						+ Global.getGlobalSimulation().data.solarPanelM2.get();
+				flow = SimInfo.trD
+						* Global.getGlobalSimulation().data.solarPanelM1.get()
+						/ totalSolar;
+			}
+			break;
+		}
 		case SEGMENT_D_BRANCH_2: {
-            if (SimInfo.trD > 0.0) {
-                flow = SimInfo.trD / 3.0;
-            } else {
-                final double totalSolar = Global.getGlobalSimulation().data.solarPanelM1.get() + Global.getGlobalSimulation().data.solarPanelM2.get();
-                flow = SimInfo.trD * Global.getGlobalSimulation().data.solarPanelM2.get() / totalSolar;
-            }
-            break;
-        }
+			if (SimInfo.trD > 0.0) {
+				flow = SimInfo.trD / 3.0;
+			} else {
+				final double totalSolar = Global.getGlobalSimulation().data.solarPanelM1
+						.get()
+						+ Global.getGlobalSimulation().data.solarPanelM2.get();
+				flow = SimInfo.trD
+						* Global.getGlobalSimulation().data.solarPanelM2.get()
+						/ totalSolar;
+			}
+			break;
+		}
 		case SEGMENT_D_BRANCH_3: {
-            if (SimInfo.trD > 0.0) {
-                flow = SimInfo.trD / 3.0;
-            } else {
-                flow = 0.0;
-            }
+			if (SimInfo.trD > 0.0) {
+				flow = SimInfo.trD / 3.0;
+			} else {
+				flow = 0.0;
+			}
 			break;
 		}
 		case SEGMENT_E: {
@@ -1301,30 +1368,45 @@ public class LightAnimation {
 			break;
 		}
 		case SEGMENT_F_BRANCH_1: {
-            if  (SimInfo.trF > 0.0) {
-                flow = SimInfo.trF / 3.0;
-            } else {
-                final double totalSolar = Global.getGlobalSimulation().data.solarPanelL1.get() + Global.getGlobalSimulation().data.solarPanelL2.get() + Global.getGlobalSimulation().data.solarPanelL3.get();
-                flow = SimInfo.trF * Global.getGlobalSimulation().data.solarPanelL1.get() / totalSolar;
-            }
-            break;
-        }
+			if (SimInfo.trF > 0.0) {
+				flow = SimInfo.trF / 3.0;
+			} else {
+				final double totalSolar = Global.getGlobalSimulation().data.solarPanelL1
+						.get()
+						+ Global.getGlobalSimulation().data.solarPanelL2.get()
+						+ Global.getGlobalSimulation().data.solarPanelL3.get();
+				flow = SimInfo.trF
+						* Global.getGlobalSimulation().data.solarPanelL1.get()
+						/ totalSolar;
+			}
+			break;
+		}
 		case SEGMENT_F_BRANCH_2: {
-            if  (SimInfo.trF > 0.0) {
-                flow = SimInfo.trF / 3.0;
-            } else {
-                final double totalSolar = Global.getGlobalSimulation().data.solarPanelL1.get() + Global.getGlobalSimulation().data.solarPanelL2.get() + Global.getGlobalSimulation().data.solarPanelL3.get();
-                flow = SimInfo.trF * Global.getGlobalSimulation().data.solarPanelL2.get() / totalSolar;
-            }
-            break;
-        }
+			if (SimInfo.trF > 0.0) {
+				flow = SimInfo.trF / 3.0;
+			} else {
+				final double totalSolar = Global.getGlobalSimulation().data.solarPanelL1
+						.get()
+						+ Global.getGlobalSimulation().data.solarPanelL2.get()
+						+ Global.getGlobalSimulation().data.solarPanelL3.get();
+				flow = SimInfo.trF
+						* Global.getGlobalSimulation().data.solarPanelL2.get()
+						/ totalSolar;
+			}
+			break;
+		}
 		case SEGMENT_F_BRANCH_3: {
-            if  (SimInfo.trF > 0.0) {
-                flow = SimInfo.trF / 3.0;
-            } else {
-                final double totalSolar = Global.getGlobalSimulation().data.solarPanelL1.get() + Global.getGlobalSimulation().data.solarPanelL2.get() + Global.getGlobalSimulation().data.solarPanelL3.get();
-                flow = SimInfo.trF * Global.getGlobalSimulation().data.solarPanelL3.get() / totalSolar;
-            }
+			if (SimInfo.trF > 0.0) {
+				flow = SimInfo.trF / 3.0;
+			} else {
+				final double totalSolar = Global.getGlobalSimulation().data.solarPanelL1
+						.get()
+						+ Global.getGlobalSimulation().data.solarPanelL2.get()
+						+ Global.getGlobalSimulation().data.solarPanelL3.get();
+				flow = SimInfo.trF
+						* Global.getGlobalSimulation().data.solarPanelL3.get()
+						/ totalSolar;
+			}
 			break;
 		}
 		case SEGMENT_G: {
@@ -1370,9 +1452,13 @@ public class LightAnimation {
 			flow = SimInfo.trM;
 			break;
 		}
+		case SEGMENT_S1:
+		case SEGMENT_S2: {
+			flow = SimInfo.transTotal * SimInfo.GenScale;
+			break;
+		}
 		case SEGMENT_W: {
-			flow = (SimInfo.PowPlant + SimInfo.BatteryStorage)
-					* SimInfo.GenScale;
+			flow = SimInfo.PowPlant * SimInfo.GenScale;
 			break;
 		}
 		case SEGMENT_X: {

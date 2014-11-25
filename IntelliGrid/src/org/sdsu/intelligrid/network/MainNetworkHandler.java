@@ -16,8 +16,9 @@ public class MainNetworkHandler {
 
 		SOLAR_GENERATION_LEVEL("S", new SolarGenHandler()), WIND_GENERATION_LEVEL(
 				"W", new WindTurbineHandler()), BATTERY_STORAGE_LEVEL("B",
-				new BatteryHandler()), TIME_OF_DAY("T", new TimeHandler()), CAR_DETECT(
-				"E", new ElectricCarHandler()), SOLAR_DETECT("R",
+				new BatteryHandler()), TIME_OF_DAY("T", new TimeHandler()), POWER_OUTAGE(
+				"P", new OutageHandler()), CAR_DETECT("E",
+				new ElectricCarHandler()), SOLAR_DETECT("R",
 				new SolarPanelHandler()), BALLOON_DETECT_RESET("M",
 				new MylarBalloonHandler()), DIG_DETECT_RESET("D",
 				new DigFaultHandler()), LIGHT_ANIMATION("L", new LEDHandler());
@@ -211,6 +212,51 @@ public class MainNetworkHandler {
 		public String output(final Object param) {
 			final boolean night = (boolean) param;
 			final String out = night ? "1" : "0";
+
+			return out;
+		}
+	}
+
+	public static final class OutageData {
+
+		int load;
+		boolean on;
+
+		public OutageData(final int load, final boolean on) {
+			this.load = load;
+			this.on = on;
+		}
+	}
+
+	private static final class OutageHandler extends BasePacketHandler {
+
+		// param == OutageData object
+		@Override
+		public String output(final Object param) {
+			final OutageData data = (OutageData) param;
+			String out = "";
+			if (data.on) {
+				out = out + "1";
+			} else {
+				out = out + "0";
+			}
+			
+			switch (data.load) {
+			case 0:
+				out = out + "0";
+				break;
+			case 1:
+				out = out + "1";
+				break;
+			case 2:
+				out = out + "2";
+				break;
+			case 3:
+				out = out + "3";
+				break;
+			default:
+				return null;
+			}
 
 			return out;
 		}
@@ -412,7 +458,7 @@ public class MainNetworkHandler {
 	public static void constructAndSendPacket(final PacketTypes type,
 			final Object param) {
 		final String out = type.output(param);
-		if (out != null && !out.isEmpty()) {
+		if (out != null && !out.isEmpty() && Global.getNetworkInterface().isConnected()) {
 			Global.getNetworkInterface().sendMessage(type.getPrefix() + out);
 		}
 	}

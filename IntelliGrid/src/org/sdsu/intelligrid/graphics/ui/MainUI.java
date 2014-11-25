@@ -111,16 +111,8 @@ public class MainUI {
         resources.add(R.drawable.pausedown);
         resources.add(R.drawable.house1solar);
         resources.add(R.drawable.house1solarnight);
-        resources.add(R.drawable.house1solar2);
-        resources.add(R.drawable.house1solar2night);
-        resources.add(R.drawable.house1solar3);
-        resources.add(R.drawable.house1solar3night);
         resources.add(R.drawable.house2solar);
         resources.add(R.drawable.house2solarnight);
-        resources.add(R.drawable.house2solar2);
-        resources.add(R.drawable.house2solar2night);
-        resources.add(R.drawable.house2solar3);
-        resources.add(R.drawable.house2solar3night);
         resources.add(R.drawable.business1);
         resources.add(R.drawable.business1night);
         resources.add(R.drawable.business2);
@@ -139,34 +131,12 @@ public class MainUI {
         resources.add(R.drawable.batterynight);
         resources.add(R.drawable.turbine);
         resources.add(R.drawable.turbinenight);
-        resources.add(R.drawable.turbine2);
-        resources.add(R.drawable.turbine2night);
         resources.add(R.drawable.substation);
         resources.add(R.drawable.substationnight);
         resources.add(R.drawable.transformer);
         resources.add(R.drawable.transformernight);
-        resources.add(R.drawable.transformer2);
-        resources.add(R.drawable.transformer2night);
-        resources.add(R.drawable.transformer3);
-        resources.add(R.drawable.transformer3night);
-        resources.add(R.drawable.transformer4);
-        resources.add(R.drawable.transformer4night);
-        resources.add(R.drawable.transformer5);
-        resources.add(R.drawable.transformer5night);
-        resources.add(R.drawable.transformer6);
-        resources.add(R.drawable.transformer6night);
         resources.add(R.drawable.switch1);
         resources.add(R.drawable.switch1night);
-        resources.add(R.drawable.switch2);
-        resources.add(R.drawable.switch2night);
-        resources.add(R.drawable.switch3);
-        resources.add(R.drawable.switch3night);
-        resources.add(R.drawable.switch4);
-        resources.add(R.drawable.switch4night);
-        resources.add(R.drawable.switch5);
-        resources.add(R.drawable.switch5night);
-        resources.add(R.drawable.switch6);
-        resources.add(R.drawable.switch6night);
         resources.add(R.drawable.tie);
         resources.add(R.drawable.tienight);
         resources.add(R.drawable.trackhoe);
@@ -388,12 +358,12 @@ public class MainUI {
         addClickable(ClickableObjects.house1solar1);
 
         ClickableObjects.house1solar2 = new ClickableSprite(pixelsToCoords(375, 270), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house1solar2, sizeToCoords(-60,-62), sizeToCoords(60,62), "house1solar2");
+                new Color(255, 255, 255), R.drawable.house1solar, sizeToCoords(-60,-62), sizeToCoords(60,62), "house1solar2");
         Global.getRenderer().addDrawable(ClickableObjects.house1solar2);
         addClickable(ClickableObjects.house1solar2);
 
         ClickableObjects.house1solar3 = new ClickableSprite(pixelsToCoords(615, 270), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house1solar3, sizeToCoords(-60,-62), sizeToCoords(60,62), "house1solar3");
+                new Color(255, 255, 255), R.drawable.house1solar, sizeToCoords(-60,-62), sizeToCoords(60,62), "house1solar3");
         Global.getRenderer().addDrawable(ClickableObjects.house1solar3);
         addClickable(ClickableObjects.house1solar3);
 
@@ -403,12 +373,12 @@ public class MainUI {
         addClickable(ClickableObjects.house2solar1);
 
         ClickableObjects.house2solar2 = new ClickableSprite(pixelsToCoords(135, 830), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house2solar2, sizeToCoords(-69,-68), sizeToCoords(69,68), "house2solar2");
+                new Color(255, 255, 255), R.drawable.house2solar, sizeToCoords(-69,-68), sizeToCoords(69,68), "house2solar2");
         Global.getRenderer().addDrawable(ClickableObjects.house2solar2);
         addClickable(ClickableObjects.house2solar2);
 
         ClickableObjects.house2solar3 = new ClickableSprite(pixelsToCoords(430, 830), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house2solar3, sizeToCoords(-69,-68), sizeToCoords(69,68), "house2solar3");
+                new Color(255, 255, 255), R.drawable.house2solar, sizeToCoords(-69,-68), sizeToCoords(69,68), "house2solar3");
         Global.getRenderer().addDrawable(ClickableObjects.house2solar3);
         addClickable(ClickableObjects.house2solar3);
 
@@ -469,7 +439,7 @@ public class MainUI {
         Global.getRenderer().addDrawable(Objects.turbine);
 
         Objects.turbine2 = new Sprite(pixelsToCoords(1040, 1435), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.turbine2);
+                new Color(255, 255, 255), R.drawable.turbine);
         Global.getRenderer().addDrawable(Objects.turbine2);
 
         Objects.battery = new Sprite(pixelsToCoords(2120, 1440), 0, 0f, new Vector2f(1f, 1f),
@@ -493,23 +463,23 @@ public class MainUI {
         Global.getRenderer().addDrawable(Objects.transformer);
 
         Objects.transformer2 = new Sprite(pixelsToCoords(520, 640), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.transformer2);
+                new Color(255, 255, 255), R.drawable.transformer);
         Global.getRenderer().addDrawable(Objects.transformer2);
 
         Objects.transformer3 = new Sprite(pixelsToCoords(770, 115), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.transformer3);
+                new Color(255, 255, 255), R.drawable.transformer);
         Global.getRenderer().addDrawable(Objects.transformer3);
 
         Objects.transformer4 = new Sprite(pixelsToCoords(1350, 335), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.transformer4);
+                new Color(255, 255, 255), R.drawable.transformer);
         Global.getRenderer().addDrawable(Objects.transformer4);
 
         Objects.transformer5 = new Sprite(pixelsToCoords(1800, 800), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.transformer5);
+                new Color(255, 255, 255), R.drawable.transformer);
         Global.getRenderer().addDrawable(Objects.transformer5);
 
         Objects.transformer6 = new Sprite(pixelsToCoords(1800, 1150), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.transformer6);
+                new Color(255, 255, 255), R.drawable.transformer);
         Global.getRenderer().addDrawable(Objects.transformer6);
 
         Objects.switch1 = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
@@ -517,23 +487,23 @@ public class MainUI {
         Global.getRenderer().addDrawable(Objects.switch1);
 
         Objects.switch2 = new Sprite(pixelsToCoords(870, 450), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switch2);
+                new Color(255, 255, 255), R.drawable.switch1);
         Global.getRenderer().addDrawable(Objects.switch2);
 
         Objects.switch3 = new Sprite(pixelsToCoords(870, 115), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switch3);
+                new Color(255, 255, 255), R.drawable.switch1);
         Global.getRenderer().addDrawable(Objects.switch3);
 
         Objects.switch4 = new Sprite(pixelsToCoords(1250, 335), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switch4);
+                new Color(255, 255, 255), R.drawable.switch1);
         Global.getRenderer().addDrawable(Objects.switch4);
 
         Objects.switch5 = new Sprite(pixelsToCoords(1700, 800), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switch5);
+                new Color(255, 255, 255), R.drawable.switch1);
         Global.getRenderer().addDrawable(Objects.switch5);
 
         Objects.switch6 = new Sprite(pixelsToCoords(1700, 1150), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switch6);
+                new Color(255, 255, 255), R.drawable.switch1);
         Global.getRenderer().addDrawable(Objects.switch6);
 
         Objects.trackhoe = new Sprite(pixelsToCoords(1310, 550), 0, 0f, new Vector2f(1f, 1f),
@@ -958,6 +928,9 @@ public class MainUI {
 
     private double textUpdateChance = 1.0;
     private float textUpdateTimer = TEXT_UPDATE_INTERVAL;
+    
+    private static final float LIGHT_PACKET_INTERVAL = 1f / 1f;
+    private float lightPacketInterval = LIGHT_PACKET_INTERVAL;
 
     /**
      * This is the primary step driver for the interface. Call all time-based
@@ -985,11 +958,11 @@ public class MainUI {
             ClickableObjects.business2c.setResource(R.drawable.business2night);
             ClickableObjects.graphs.setResource(R.drawable.graphsnight);
             ClickableObjects.house1solar1.setResource(R.drawable.house1solarnight);
-            ClickableObjects.house1solar2.setResource(R.drawable.house1solar2night);
-            ClickableObjects.house1solar3.setResource(R.drawable.house1solar3night);
+            ClickableObjects.house1solar2.setResource(R.drawable.house1solarnight);
+            ClickableObjects.house1solar3.setResource(R.drawable.house1solarnight);
             ClickableObjects.house2solar1.setResource(R.drawable.house2solarnight);
-            ClickableObjects.house2solar2.setResource(R.drawable.house2solar2night);
-            ClickableObjects.house2solar3.setResource(R.drawable.house2solar3night);
+            ClickableObjects.house2solar2.setResource(R.drawable.house2solarnight);
+            ClickableObjects.house2solar3.setResource(R.drawable.house2solarnight);
             ClickableObjects.house3a.setResource(R.drawable.house3night);
             ClickableObjects.house3b.setResource(R.drawable.house3night);
             ClickableObjects.house3c.setResource(R.drawable.house3night);
@@ -1001,20 +974,20 @@ public class MainUI {
             Objects.stadium.setResource(R.drawable.stadiumnight);
             Objects.substation.setResource(R.drawable.substationnight);
             Objects.switch1.setResource(R.drawable.switch1night);
-            Objects.switch2.setResource(R.drawable.switch2night);
-            Objects.switch3.setResource(R.drawable.switch3night);
-            Objects.switch4.setResource(R.drawable.switch4night);
-            Objects.switch5.setResource(R.drawable.switch5night);
-            Objects.switch6.setResource(R.drawable.switch6night);
+            Objects.switch2.setResource(R.drawable.switch1night);
+            Objects.switch3.setResource(R.drawable.switch1night);
+            Objects.switch4.setResource(R.drawable.switch1night);
+            Objects.switch5.setResource(R.drawable.switch1night);
+            Objects.switch6.setResource(R.drawable.switch1night);
             Objects.tie.setResource(R.drawable.tienight);
             Objects.transformer.setResource(R.drawable.transformernight);
-            Objects.transformer2.setResource(R.drawable.transformer2night);
-            Objects.transformer3.setResource(R.drawable.transformer3night);
-            Objects.transformer4.setResource(R.drawable.transformer4night);
-            Objects.transformer5.setResource(R.drawable.transformer5night);
-            Objects.transformer6.setResource(R.drawable.transformer6night);
+            Objects.transformer2.setResource(R.drawable.transformernight);
+            Objects.transformer3.setResource(R.drawable.transformernight);
+            Objects.transformer4.setResource(R.drawable.transformernight);
+            Objects.transformer5.setResource(R.drawable.transformernight);
+            Objects.transformer6.setResource(R.drawable.transformernight);
             Objects.turbine.setResource(R.drawable.turbinenight);
-            Objects.turbine2.setResource(R.drawable.turbine2night);
+            Objects.turbine2.setResource(R.drawable.turbinenight);
             UIInfo.trA.setColor(new Color(255, 255, 255));
             UIInfo.trB.setColor(new Color(255, 255, 255));
             UIInfo.trC.setColor(new Color(255, 255, 255));
@@ -1041,11 +1014,11 @@ public class MainUI {
             ClickableObjects.business2c.setResource(R.drawable.business2);
             ClickableObjects.graphs.setResource(R.drawable.graphs);
             ClickableObjects.house1solar1.setResource(R.drawable.house1solar);
-            ClickableObjects.house1solar2.setResource(R.drawable.house1solar2);
-            ClickableObjects.house1solar3.setResource(R.drawable.house1solar3);
+            ClickableObjects.house1solar2.setResource(R.drawable.house1solar);
+            ClickableObjects.house1solar3.setResource(R.drawable.house1solar);
             ClickableObjects.house2solar1.setResource(R.drawable.house2solar);
-            ClickableObjects.house2solar2.setResource(R.drawable.house2solar2);
-            ClickableObjects.house2solar3.setResource(R.drawable.house2solar3);
+            ClickableObjects.house2solar2.setResource(R.drawable.house2solar);
+            ClickableObjects.house2solar3.setResource(R.drawable.house2solar);
             ClickableObjects.house3a.setResource(R.drawable.house3);
             ClickableObjects.house3b.setResource(R.drawable.house3);
             ClickableObjects.house3c.setResource(R.drawable.house3);
@@ -1057,20 +1030,20 @@ public class MainUI {
             Objects.stadium.setResource(R.drawable.stadium);
             Objects.substation.setResource(R.drawable.substation);
             Objects.switch1.setResource(R.drawable.switch1);
-            Objects.switch2.setResource(R.drawable.switch2);
-            Objects.switch3.setResource(R.drawable.switch3);
-            Objects.switch4.setResource(R.drawable.switch4);
-            Objects.switch5.setResource(R.drawable.switch5);
-            Objects.switch6.setResource(R.drawable.switch6);
+            Objects.switch2.setResource(R.drawable.switch1);
+            Objects.switch3.setResource(R.drawable.switch1);
+            Objects.switch4.setResource(R.drawable.switch1);
+            Objects.switch5.setResource(R.drawable.switch1);
+            Objects.switch6.setResource(R.drawable.switch1);
             Objects.tie.setResource(R.drawable.tie);
             Objects.transformer.setResource(R.drawable.transformer);
-            Objects.transformer2.setResource(R.drawable.transformer2);
-            Objects.transformer3.setResource(R.drawable.transformer3);
-            Objects.transformer4.setResource(R.drawable.transformer4);
-            Objects.transformer5.setResource(R.drawable.transformer5);
-            Objects.transformer6.setResource(R.drawable.transformer6);
+            Objects.transformer2.setResource(R.drawable.transformer);
+            Objects.transformer3.setResource(R.drawable.transformer);
+            Objects.transformer4.setResource(R.drawable.transformer);
+            Objects.transformer5.setResource(R.drawable.transformer);
+            Objects.transformer6.setResource(R.drawable.transformer);
             Objects.turbine.setResource(R.drawable.turbine);
-            Objects.turbine2.setResource(R.drawable.turbine2);
+            Objects.turbine2.setResource(R.drawable.turbine);
             UIInfo.trA.setColor(new Color(0, 0, 0));
             UIInfo.trB.setColor(new Color(0, 0, 0));
             UIInfo.trC.setColor(new Color(0, 0, 0));
@@ -1215,8 +1188,12 @@ public class MainUI {
         }
 
         lightAnimation.advance(amount);
-        lightAnimation.advanceState(amount);
-        MainNetworkHandler.constructAndSendPacket(PacketTypes.LIGHT_ANIMATION, null);
+        lightPacketInterval -= amount;
+        if (lightPacketInterval < 0f) {
+        	lightPacketInterval = LIGHT_PACKET_INTERVAL;
+            lightAnimation.advanceState(amount);
+            MainNetworkHandler.constructAndSendPacket(PacketTypes.LIGHT_ANIMATION, null);
+        }
 
         textUpdateChance = TEXT_UPDATE_CHANCE;
     }
