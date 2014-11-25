@@ -196,7 +196,7 @@ public class InputHook {
         }
 
         if(object.getId().equals("faults")) {
-            MainUI.ClickableObjects.faultspage.setDepth(-1);
+            /*MainUI.ClickableObjects.faultspage.setDepth(-1);
             MainUI.ClickableObjects.exitfaults.setDepth(-2);
             MainUI.ClickableObjects.load1stats.setDepth(11);
             MainUI.ClickableObjects.load1statsclick.setDepth(11);
@@ -215,7 +215,66 @@ public class InputHook {
             MainUI.UIInfo.Load5.setDepth(11);
             MainUI.ClickableObjects.load6stats.setDepth(11);
             MainUI.ClickableObjects.load6statsclick.setDepth(11);
-            MainUI.UIInfo.Load6.setDepth(11);
+            MainUI.UIInfo.Load6.setDepth(11);*/
+            		currentFault++;
+		if (currentFault == 16) {
+			currentFault = 0;
+		}
+		String fault;
+		switch (currentFault) {
+		case 1:
+			fault = "A";
+			break;
+		case 2:
+			fault = "B";
+			break;
+		case 3:
+			fault = "C";
+			break;
+		case 4:
+			fault = "D";
+			break;
+		case 5:
+			fault = "E";
+			break;
+		case 6:
+			fault = "F";
+			break;
+		case 7:
+			fault = "H";
+			break;
+		case 8:
+			fault = "I";
+			break;
+		case 9:
+			fault = "J";
+			break;
+		case 10:
+			fault = "K";
+			break;
+		case 11:
+			fault = "L";
+			break;
+		case 12:
+			fault = "M";
+			break;
+            case 13:
+                fault = "DI";
+                break;
+            case 14:
+                fault = "ACE";
+                break;
+            case 15:
+                fault = "MKI";
+                break;
+		default:
+			fault = "";
+		}
+		try {
+			Global.getGlobalSimulation().data.fault = fault;
+		} catch (Exception ex) {
+			// do nothing
+		}
         }
         if(object.getId().equals("exitfaults")) {
             MainUI.ClickableObjects.faultspage.setDepth(11);
@@ -236,15 +295,15 @@ public class InputHook {
             MainUI.ClickableObjects.load1stats.setDepth(11);
             MainUI.UIInfo.Load1.setDepth(11);
         }
-        if(object.getId().equals("house3")) {
+        if(object.getId().equals("house3a")) {
             MainUI.ClickableObjects.load1stats.setDepth(-1);
             MainUI.UIInfo.Load1.setDepth(-2);
         }
-        if(object.getId().equals("house3copy")) {
+        if(object.getId().equals("house3b")) {
             MainUI.ClickableObjects.load1stats.setDepth(-1);
             MainUI.UIInfo.Load1.setDepth(-2);
         }
-        if(object.getId().equals("house3copy2")) {
+        if(object.getId().equals("house3c")) {
             MainUI.ClickableObjects.load1stats.setDepth(-1);
             MainUI.UIInfo.Load1.setDepth(-2);
         }
@@ -257,7 +316,7 @@ public class InputHook {
             MainUI.ClickableObjects.load2stats.setDepth(11);
             MainUI.UIInfo.Load2.setDepth(11);
         }
-        if(object.getId().equals("house2solar")) {
+        if(object.getId().equals("house2solar1")) {
             MainUI.ClickableObjects.load2stats.setDepth(-1);
             MainUI.UIInfo.Load2.setDepth(-2);
         }
@@ -278,7 +337,7 @@ public class InputHook {
             MainUI.ClickableObjects.load3stats.setDepth(11);
             MainUI.UIInfo.Load3.setDepth(11);
         }
-        if(object.getId().equals("house1solar")) {
+        if(object.getId().equals("house1solar1")) {
             MainUI.ClickableObjects.load3stats.setDepth(-1);
             MainUI.UIInfo.Load3.setDepth(-2);
         }
@@ -333,7 +392,7 @@ public class InputHook {
             MainUI.ClickableObjects.load6stats.setDepth(11);
             MainUI.UIInfo.Load6.setDepth(11);
         }
-        if(object.getId().equals("business1copy")) {
+        if(object.getId().equals("business1a")) {
             MainUI.ClickableObjects.load4stats.setDepth(-1);
             MainUI.UIInfo.Load4.setDepth(-2);
         }

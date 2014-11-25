@@ -85,8 +85,8 @@ public class Simulation {
         public double capacity = 30;
 
         //Time Scale
-        public static double timeScale = 0.0; // ex. timeScale 100 = 1 second of application time is 100 seconds of simulation
-        public double time = 0; // in Hours
+        public static double timeScale = 288.0; // ex. timeScale 100 = 1 second of application time is 100 seconds of simulation
+        public double time = 12; // in Hours
 
         //Solar Multipliers (set by model)
         public MutableValue renewableSolarLevel = new MutableValue(1.0);
@@ -96,10 +96,10 @@ public class Simulation {
         //Solar Enables (set by model)
         // todo: add UI control to add/remove (only if model is not connected)
         public MutableValue solarPanelM1 = new MutableValue(1.0);
-        public MutableValue solarPanelM2 = new MutableValue(0.0);
+        public MutableValue solarPanelM2 = new MutableValue(1.0);
         public MutableValue solarPanelL1 = new MutableValue(1.0);
-        public MutableValue solarPanelL2 = new MutableValue(0.0);
-        public MutableValue solarPanelL3 = new MutableValue(0.0);
+        public MutableValue solarPanelL2 = new MutableValue(1.0);
+        public MutableValue solarPanelL3 = new MutableValue(1.0);
         
         //Wind Turbine Multiplier (set by model)
         // todo: add UI control
@@ -186,7 +186,7 @@ public class Simulation {
 		private static final double LOAD_THRESHOLD = 0.95;
 		private static final double DESIRED_BUFFER = 0.05;
 		
-		private String currentFault = "";
+		public static String currentFault = "";
 		private String genericFault = "";
 		private String automaticFault = "";
 		private double balloonFaultTimeOut = 0.0;
@@ -366,7 +366,9 @@ public class Simulation {
         
         // Fault management
     	faultManager.advance(amount);
-        data.fault = faultManager.getCurrentFault();
+
+        //disabled for meeting
+        //data.fault = faultManager.getCurrentFault();
         
         // Time of Day packet (sent on day/night switch)
         if (data.time >= 6.0 && data.time - hours < 6.0) {
@@ -433,7 +435,7 @@ public class Simulation {
         double trG = 0;
 
         double trE = trF;
-        double trI = trJ;
+        double trI = trH;
         double trC = trD + trE;
         double trA = trB + trC;
         double trK = trI + trJ;

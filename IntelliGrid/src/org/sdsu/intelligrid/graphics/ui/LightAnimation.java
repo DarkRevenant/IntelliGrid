@@ -1084,15 +1084,13 @@ public class LightAnimation {
 		if (SimInfo.Load2 < 0.0) {
 			final float greenFlow = (float) -SimInfo.trD * amount;
 
-			final int dir = Junctions.D_GEN.advance(1f + jitter(),
-					1f + jitter(), 1f + jitter());
+			final int dir = Junctions.D_GEN.advance((float) Global.getGlobalSimulation().data.solarPanelM1.get() * (1f + jitter()),
+                    (float) Global.getGlobalSimulation().data.solarPanelM2.get() * (1f + jitter()), 0f);
 			final Segment strand;
 			if (dir == 1) {
 				strand = (Segment) LightStrands.SEGMENT_D_BRANCH_1.strand;
-			} else if (dir == 2) {
-				strand = (Segment) LightStrands.SEGMENT_D_BRANCH_2.strand;
 			} else {
-				strand = (Segment) LightStrands.SEGMENT_D_BRANCH_3.strand;
+				strand = (Segment) LightStrands.SEGMENT_D_BRANCH_2.strand;
 			}
 
 			final int type = strand.advance(0f, greenFlow);
@@ -1115,8 +1113,8 @@ public class LightAnimation {
 		if (SimInfo.Load3 < 0.0) {
 			final float greenFlow = (float) -SimInfo.trF * amount;
 
-			final int dir = Junctions.F_GEN.advance(1f + jitter(),
-					1f + jitter(), 1f + jitter());
+			final int dir = Junctions.F_GEN.advance((float) Global.getGlobalSimulation().data.solarPanelL1.get() * (1f + jitter()),
+                    (float) Global.getGlobalSimulation().data.solarPanelL2.get() * (1f + jitter()), (float) Global.getGlobalSimulation().data.solarPanelL3.get() * (1f + jitter()));
 			final Segment strand;
 			if (dir == 1) {
 				strand = (Segment) LightStrands.SEGMENT_F_BRANCH_1.strand;
@@ -1257,13 +1255,37 @@ public class LightAnimation {
 			break;
 		}
 		case SEGMENT_D_2: {
-			flow = SimInfo.trD * 2.0 / 3.0;
+            if (SimInfo.trD > 0.0) {
+                flow = SimInfo.trD * 2.0 / 3.0;
+            } else {
+                flow = SimInfo.trD / 2.0;
+            }
 			break;
 		}
-		case SEGMENT_D_BRANCH_1:
-		case SEGMENT_D_BRANCH_2:
+		case SEGMENT_D_BRANCH_1: {
+            if (SimInfo.trD > 0.0) {
+                flow = SimInfo.trD / 3.0;
+            } else {
+                final double totalSolar = Global.getGlobalSimulation().data.solarPanelM1.get() + Global.getGlobalSimulation().data.solarPanelM2.get();
+                flow = SimInfo.trD * Global.getGlobalSimulation().data.solarPanelM1.get() / totalSolar;
+            }
+            break;
+        }
+		case SEGMENT_D_BRANCH_2: {
+            if (SimInfo.trD > 0.0) {
+                flow = SimInfo.trD / 3.0;
+            } else {
+                final double totalSolar = Global.getGlobalSimulation().data.solarPanelM1.get() + Global.getGlobalSimulation().data.solarPanelM2.get();
+                flow = SimInfo.trD * Global.getGlobalSimulation().data.solarPanelM2.get() / totalSolar;
+            }
+            break;
+        }
 		case SEGMENT_D_BRANCH_3: {
-			flow = SimInfo.trD / 3.0;
+            if (SimInfo.trD > 0.0) {
+                flow = SimInfo.trD / 3.0;
+            } else {
+                flow = 0.0;
+            }
 			break;
 		}
 		case SEGMENT_E: {
@@ -1278,10 +1300,31 @@ public class LightAnimation {
 			flow = SimInfo.trF * 2.0 / 3.0;
 			break;
 		}
-		case SEGMENT_F_BRANCH_1:
-		case SEGMENT_F_BRANCH_2:
+		case SEGMENT_F_BRANCH_1: {
+            if  (SimInfo.trF > 0.0) {
+                flow = SimInfo.trF / 3.0;
+            } else {
+                final double totalSolar = Global.getGlobalSimulation().data.solarPanelL1.get() + Global.getGlobalSimulation().data.solarPanelL2.get() + Global.getGlobalSimulation().data.solarPanelL3.get();
+                flow = SimInfo.trF * Global.getGlobalSimulation().data.solarPanelL1.get() / totalSolar;
+            }
+            break;
+        }
+		case SEGMENT_F_BRANCH_2: {
+            if  (SimInfo.trF > 0.0) {
+                flow = SimInfo.trF / 3.0;
+            } else {
+                final double totalSolar = Global.getGlobalSimulation().data.solarPanelL1.get() + Global.getGlobalSimulation().data.solarPanelL2.get() + Global.getGlobalSimulation().data.solarPanelL3.get();
+                flow = SimInfo.trF * Global.getGlobalSimulation().data.solarPanelL2.get() / totalSolar;
+            }
+            break;
+        }
 		case SEGMENT_F_BRANCH_3: {
-			flow = SimInfo.trF / 3.0;
+            if  (SimInfo.trF > 0.0) {
+                flow = SimInfo.trF / 3.0;
+            } else {
+                final double totalSolar = Global.getGlobalSimulation().data.solarPanelL1.get() + Global.getGlobalSimulation().data.solarPanelL2.get() + Global.getGlobalSimulation().data.solarPanelL3.get();
+                flow = SimInfo.trF * Global.getGlobalSimulation().data.solarPanelL3.get() / totalSolar;
+            }
 			break;
 		}
 		case SEGMENT_G: {
