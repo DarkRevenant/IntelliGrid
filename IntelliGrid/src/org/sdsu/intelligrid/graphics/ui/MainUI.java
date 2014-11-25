@@ -100,9 +100,13 @@ public class MainUI {
         resources.add(R.drawable.infopage);
         resources.add(R.drawable.exit);
         resources.add(R.drawable.play);
+        resources.add(R.drawable.playdown);
         resources.add(R.drawable.play2);
+        resources.add(R.drawable.play2down);
         resources.add(R.drawable.play3);
+        resources.add(R.drawable.play3down);
         resources.add(R.drawable.pause);
+        resources.add(R.drawable.pausedown);
         resources.add(R.drawable.house1solar);
         resources.add(R.drawable.house1solarnight);
         resources.add(R.drawable.house1solar2);
@@ -122,7 +126,7 @@ public class MainUI {
         resources.add(R.drawable.business2);
         resources.add(R.drawable.business2night);
         resources.add(R.drawable.business2copy);
-        resources.add(R.drawable.business1copynight);
+        resources.add(R.drawable.business2copynight);
         resources.add(R.drawable.business2copy2);
         resources.add(R.drawable.business2copy2night);
         resources.add(R.drawable.house3);
@@ -192,18 +196,6 @@ public class MainUI {
         public static TextSprite Load4;
         public static TextSprite Load5;
         public static TextSprite Load6;
-        public static TextSprite Load1r;
-        public static TextSprite Load2r;
-        public static TextSprite Load3r;
-        public static TextSprite Load4r;
-        public static TextSprite Load5r;
-        public static TextSprite Load6r;
-        public static TextSprite Load1a;
-        public static TextSprite Load2a;
-        public static TextSprite Load3a;
-        public static TextSprite Load4a;
-        public static TextSprite Load5a;
-        public static TextSprite Load6a;
         public static TextSprite trA;
         public static TextSprite trB;
         public static TextSprite trC;
@@ -234,11 +226,17 @@ public class MainUI {
         public static ClickableSprite faultspage;
         public static ClickableSprite exitfaults;
         public static ClickableSprite load1stats;
+        public static ClickableSprite load1statsclick;
         public static ClickableSprite load2stats;
+        public static ClickableSprite load2statsclick;
         public static ClickableSprite load3stats;
+        public static ClickableSprite load3statsclick;
         public static ClickableSprite load4stats;
+        public static ClickableSprite load4statsclick;
         public static ClickableSprite load5stats;
+        public static ClickableSprite load5statsclick;
         public static ClickableSprite load6stats;
+        public static ClickableSprite load6statsclick;
     }
 
     public static class Objects {
@@ -279,6 +277,11 @@ public class MainUI {
         public static Sprite transformer6;
         public static Sprite turbine;
         public static Sprite turbine2;
+        public static Sprite playdown;
+        public static Sprite play2down;
+        public static Sprite play3down;
+        public static Sprite pausedown;
+        public static Sprite Load1;
     }
 
     /**
@@ -290,12 +293,6 @@ public class MainUI {
         ClickableObjects.background.setRelativeScale();
         Global.getRenderer().addDrawable(ClickableObjects.background);
         addClickable(ClickableObjects.background);
-
-        ClickableSprite backgroundnight = new ClickableSprite(new Vector2f(), 11, 0f, new Vector2f(1.28f, 1.28f),
-                new Color(255, 255, 255), R.drawable.backgroundnight, sizeToCoords(-1280,-800), sizeToCoords(1280,800), "backgroundnight");
-        backgroundnight.setRelativeScale();
-        Global.getRenderer().addDrawable(backgroundnight);
-        addClickable(backgroundnight);
 
         Sprite paths = new Sprite(new Vector2f(), 2, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.paths);
@@ -355,300 +352,189 @@ public class MainUI {
         Global.getRenderer().addDrawable(play);
         addClickable(play);
 
+        Sprite playdown = new Sprite(pixelsToCoords(2210, 1550), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.playdown);
+        Global.getRenderer().addDrawable(playdown);
+
         ClickableSprite play2 = new ClickableSprite(pixelsToCoords(2300, 1550), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.play2, sizeToCoords(-19,-20), sizeToCoords(19,20), "play2");
         Global.getRenderer().addDrawable(play2);
         addClickable(play2);
+
+        Sprite play2down = new Sprite(pixelsToCoords(2300, 1550), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.play2down);
+        Global.getRenderer().addDrawable(play2down);
 
         ClickableSprite play3 = new ClickableSprite(pixelsToCoords(2400, 1550), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.play3, sizeToCoords(-33,-20), sizeToCoords(33,20), "play3");
         Global.getRenderer().addDrawable(play3);
         addClickable(play3);
 
+        Sprite play3down = new Sprite(pixelsToCoords(2400, 1550), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.play3down);
+        Global.getRenderer().addDrawable(play3down);
+
         ClickableSprite pause = new ClickableSprite(pixelsToCoords(2500, 1550), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.pause, sizeToCoords(-17,-20), sizeToCoords(17,20), "pause");
         Global.getRenderer().addDrawable(pause);
         addClickable(pause);
 
-        Sprite house1solar = new Sprite(pixelsToCoords(155, 120), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house1solar);
-        Global.getRenderer().addDrawable(house1solar);
+        Sprite pausedown = new Sprite(pixelsToCoords(2500, 1550), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.pausedown);
+        Global.getRenderer().addDrawable(pausedown);
 
-        Sprite house1solarnight = new Sprite(pixelsToCoords(155, 120), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house1solarnight);
-        Global.getRenderer().addDrawable(house1solarnight);
+        ClickableSprite house1solar = new ClickableSprite(pixelsToCoords(155, 120), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.house1solar, sizeToCoords(-60,-62), sizeToCoords(60,62), "house1solar");
+        Global.getRenderer().addDrawable(house1solar);        addClickable(house1solar);
 
-        Sprite house1solar2 = new Sprite(pixelsToCoords(375, 270), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house1solar2);
+
+        ClickableSprite house1solar2 = new ClickableSprite(pixelsToCoords(375, 270), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.house1solar2, sizeToCoords(-60,-62), sizeToCoords(60,62), "house1solar2");
         Global.getRenderer().addDrawable(house1solar2);
+        addClickable(house1solar2);
 
-        Sprite house1solar2night = new Sprite(pixelsToCoords(375, 270), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house1solar2night);
-        Global.getRenderer().addDrawable(house1solar2night);
-
-        Sprite house1solar3 = new Sprite(pixelsToCoords(615, 270), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house1solar3);
+        ClickableSprite house1solar3 = new ClickableSprite(pixelsToCoords(615, 270), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.house1solar3, sizeToCoords(-60,-62), sizeToCoords(60,62), "house1solar3");
         Global.getRenderer().addDrawable(house1solar3);
+        addClickable(house1solar3);
 
-        Sprite house1solar3night = new Sprite(pixelsToCoords(615, 270), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house1solar3night);
-        Global.getRenderer().addDrawable(house1solar3night);
-
-        Sprite house2solar = new Sprite(pixelsToCoords(135, 500), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house2solar);
+        ClickableSprite house2solar = new ClickableSprite(pixelsToCoords(135, 500), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.house2solar, sizeToCoords(-69,-68), sizeToCoords(69,68), "house2solar");
         Global.getRenderer().addDrawable(house2solar);
+        addClickable(house2solar);
 
-        Sprite house2solarnight = new Sprite(pixelsToCoords(135, 500), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house2solarnight);
-        Global.getRenderer().addDrawable(house2solarnight);
-
-        Sprite house2solar2 = new Sprite(pixelsToCoords(135, 830), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house2solar2);
+        ClickableSprite house2solar2 = new ClickableSprite(pixelsToCoords(135, 830), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.house2solar2, sizeToCoords(-69,-68), sizeToCoords(69,68), "house2solar2");
         Global.getRenderer().addDrawable(house2solar2);
+        addClickable(house2solar2);
 
-        Sprite house2solar2night = new Sprite(pixelsToCoords(135, 830), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house2solar2night);
-        Global.getRenderer().addDrawable(house2solar2night);
-
-        Sprite house2solar3 = new Sprite(pixelsToCoords(430, 830), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house2solar3);
+        ClickableSprite house2solar3 = new ClickableSprite(pixelsToCoords(430, 830), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.house2solar3, sizeToCoords(-69,-68), sizeToCoords(69,68), "house2solar3");
         Global.getRenderer().addDrawable(house2solar3);
+        addClickable(house2solar3);
 
-        Sprite house2solar3night = new Sprite(pixelsToCoords(430, 830), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house2solar3night);
-        Global.getRenderer().addDrawable(house2solar3night);
-
-        Sprite business1 = new Sprite(pixelsToCoords(1500, 480), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.business1);
+        ClickableSprite business1 = new ClickableSprite(pixelsToCoords(1500, 480), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.business1, sizeToCoords(-101,-100), sizeToCoords(101,100), "business1");
         Global.getRenderer().addDrawable(business1);
+        addClickable(business1);
 
-        Sprite business1night = new Sprite(pixelsToCoords(1500, 480), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.business1night);
-        Global.getRenderer().addDrawable(business1night);
-
-        Sprite business1copy = new Sprite(pixelsToCoords(1920, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.business1copy);
+        ClickableSprite business1copy = new ClickableSprite(pixelsToCoords(1920, 1000), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.business1copy, sizeToCoords(-101,-100), sizeToCoords(101,100), "business1copy");
         Global.getRenderer().addDrawable(business1copy);
+        addClickable(business1copy);
 
-        Sprite business1copynight = new Sprite(pixelsToCoords(1920, 1000), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.business1copynight);
-        Global.getRenderer().addDrawable(business1copynight);
-
-        Sprite business2 = new Sprite(pixelsToCoords(1900, 580), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.business2);
+        ClickableSprite business2 = new ClickableSprite(pixelsToCoords(1900, 580), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.business2, sizeToCoords(-71,-118), sizeToCoords(71,118), "business2");
         Global.getRenderer().addDrawable(business2);
+        addClickable(business2);
 
-        Sprite business2night = new Sprite(pixelsToCoords(1900, 580), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.business2night);
-        Global.getRenderer().addDrawable(business2night);
-
-        Sprite business2copy = new Sprite(pixelsToCoords(2145, 775), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.business2copy);
+        ClickableSprite business2copy = new ClickableSprite(pixelsToCoords(2145, 775), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.business2copy, sizeToCoords(-71,-118), sizeToCoords(71,118), "business2copy");
         Global.getRenderer().addDrawable(business2copy);
+        addClickable(business2copy);
 
-        Sprite business2copynight = new Sprite(pixelsToCoords(2145, 775), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.business2copynight);
-        Global.getRenderer().addDrawable(business2copynight);
-
-        Sprite business2copy2 = new Sprite(pixelsToCoords(2300, 900), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.business2copy2);
+        ClickableSprite business2copy2 = new ClickableSprite(pixelsToCoords(2300, 900), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.business2copy2, sizeToCoords(-71,-118), sizeToCoords(71,118), "business2copy2");
         Global.getRenderer().addDrawable(business2copy2);
+        addClickable(business2copy2);
 
-        Sprite business2copy2night = new Sprite(pixelsToCoords(2300, 900), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.business2copy2night);
-        Global.getRenderer().addDrawable(business2copy2night);
-
-        Sprite house3 = new Sprite(pixelsToCoords(845, 1023), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house3);
+        ClickableSprite house3 = new ClickableSprite(pixelsToCoords(845, 1023), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.house3, sizeToCoords(-94,-70), sizeToCoords(94,70), "house3");
         Global.getRenderer().addDrawable(house3);
+        addClickable(house3);
 
-        Sprite house3night = new Sprite(pixelsToCoords(845, 1023), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house3night);
-        Global.getRenderer().addDrawable(house3night);
-
-        Sprite house3copy = new Sprite(pixelsToCoords(1061, 1152), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house3copy);
+        ClickableSprite house3copy = new ClickableSprite(pixelsToCoords(1061, 1152), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.house3copy, sizeToCoords(-94,-70), sizeToCoords(94,70), "house3copy");
         Global.getRenderer().addDrawable(house3copy);
+        addClickable(house3copy);
 
-        Sprite house3copynight = new Sprite(pixelsToCoords(1061, 1152), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house3copynight);
-        Global.getRenderer().addDrawable(house3copynight);
-
-        Sprite house3copy2 = new Sprite(pixelsToCoords(1060, 856), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house3copy2);
+        ClickableSprite house3copy2 = new ClickableSprite(pixelsToCoords(1060, 856), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.house3copy2, sizeToCoords(-94,-70), sizeToCoords(94,70), "house3copy2");
         Global.getRenderer().addDrawable(house3copy2);
-
-        Sprite house3copy2night = new Sprite(pixelsToCoords(1060, 856), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house3copy2night);
-        Global.getRenderer().addDrawable(house3copy2night);
+        addClickable(house3copy2);
 
         Sprite museum = new Sprite(pixelsToCoords(310, 1280), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.museum);
         Global.getRenderer().addDrawable(museum);
 
-        Sprite museumnight = new Sprite(pixelsToCoords(310, 1280), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.museumnight);
-        Global.getRenderer().addDrawable(museumnight);
-
         Sprite stadium = new Sprite(pixelsToCoords(2350, 1180), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.stadium);
         Global.getRenderer().addDrawable(stadium);
-
-        Sprite stadiumnight = new Sprite(pixelsToCoords(2350, 1180), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.stadiumnight);
-        Global.getRenderer().addDrawable(stadiumnight);
 
         Sprite midway = new Sprite(pixelsToCoords(1722, 125), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.midway);
         Global.getRenderer().addDrawable(midway);
 
-        Sprite midwaynight = new Sprite(pixelsToCoords(1722, 125), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.midwaynight);
-        Global.getRenderer().addDrawable(midwaynight);
-
         Sprite turbine = new Sprite(pixelsToCoords(900, 1420), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.turbine);
         Global.getRenderer().addDrawable(turbine);
-
-        Sprite turbinenight = new Sprite(pixelsToCoords(900, 1420), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.turbinenight);
-        Global.getRenderer().addDrawable(turbinenight);
 
         Sprite turbine2 = new Sprite(pixelsToCoords(1040, 1435), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.turbine2);
         Global.getRenderer().addDrawable(turbine2);
 
-        Sprite turbine2night = new Sprite(pixelsToCoords(1040, 1435), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.turbine2night);
-        Global.getRenderer().addDrawable(turbine2night);
-
         Sprite battery = new Sprite(pixelsToCoords(2120, 1440), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.battery);
         Global.getRenderer().addDrawable(battery);
-
-        Sprite batterynight = new Sprite(pixelsToCoords(2120, 1440), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.batterynight);
-        Global.getRenderer().addDrawable(batterynight);
 
         Sprite solarpanel = new Sprite(pixelsToCoords(2330, 1440), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.solarpanel);
         Global.getRenderer().addDrawable(solarpanel);
 
-        Sprite solarpanelnight = new Sprite(pixelsToCoords(2330, 1440), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.solarpanelnight);
-        Global.getRenderer().addDrawable(solarpanelnight);
-
         Sprite substation = new Sprite(pixelsToCoords(1500, 1150), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.substation);
         Global.getRenderer().addDrawable(substation);
-
-        Sprite substationnight = new Sprite(pixelsToCoords(1500, 1150), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.substationnight);
-        Global.getRenderer().addDrawable(substationnight);
 
         Sprite tie = new Sprite(pixelsToCoords(1050, 115), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.tie);
         Global.getRenderer().addDrawable(tie);
 
-        Sprite tienight = new Sprite(pixelsToCoords(1050, 115), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.tienight);
-        Global.getRenderer().addDrawable(tienight);
-
         Sprite transformer = new Sprite(pixelsToCoords(1200, 1000), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.transformer);
         Global.getRenderer().addDrawable(transformer);
-
-        Sprite transformernight = new Sprite(pixelsToCoords(1200, 1000), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.transformernight);
-        Global.getRenderer().addDrawable(transformernight);
 
         Sprite transformer2 = new Sprite(pixelsToCoords(520, 640), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.transformer2);
         Global.getRenderer().addDrawable(transformer2);
 
-        Sprite transformer2night = new Sprite(pixelsToCoords(520, 640), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.transformer2night);
-        Global.getRenderer().addDrawable(transformer2night);
-
         Sprite transformer3 = new Sprite(pixelsToCoords(770, 115), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.transformer3);
         Global.getRenderer().addDrawable(transformer3);
-
-        Sprite transformer3night = new Sprite(pixelsToCoords(770, 115), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.transformer3night);
-        Global.getRenderer().addDrawable(transformer3night);
-
         Sprite transformer4 = new Sprite(pixelsToCoords(1350, 335), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.transformer4);
         Global.getRenderer().addDrawable(transformer4);
-
-        Sprite transformer4night = new Sprite(pixelsToCoords(1350, 335), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.transformer4night);
-        Global.getRenderer().addDrawable(transformer4night);
 
         Sprite transformer5 = new Sprite(pixelsToCoords(1800, 800), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.transformer5);
         Global.getRenderer().addDrawable(transformer5);
 
-        Sprite transformer5night = new Sprite(pixelsToCoords(1800, 800), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.transformer5night);
-        Global.getRenderer().addDrawable(transformer5night);
-
         Sprite transformer6 = new Sprite(pixelsToCoords(1800, 1150), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.transformer6);
         Global.getRenderer().addDrawable(transformer6);
-
-        Sprite transformer6night = new Sprite(pixelsToCoords(1800, 1150), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.transformer6night);
-        Global.getRenderer().addDrawable(transformer6night);
 
         Sprite switch1 = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.switch1);
         Global.getRenderer().addDrawable(switch1);
 
-        Sprite switch1night = new Sprite(pixelsToCoords(1300, 1000), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switch1night);
-        Global.getRenderer().addDrawable(switch1night);
-
         Sprite switch2 = new Sprite(pixelsToCoords(870, 450), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.switch2);
         Global.getRenderer().addDrawable(switch2);
-
-        Sprite switch2night = new Sprite(pixelsToCoords(870, 450), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switch2night);
-        Global.getRenderer().addDrawable(switch2night);
 
         Sprite switch3 = new Sprite(pixelsToCoords(870, 115), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.switch3);
         Global.getRenderer().addDrawable(switch3);
 
-        Sprite switch3night = new Sprite(pixelsToCoords(870, 115), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switch3night);
-        Global.getRenderer().addDrawable(switch3night);
-
         Sprite switch4 = new Sprite(pixelsToCoords(1250, 335), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.switch4);
         Global.getRenderer().addDrawable(switch4);
-
-        Sprite switch4night = new Sprite(pixelsToCoords(1250, 335), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switch4night);
-        Global.getRenderer().addDrawable(switch4night);
 
         Sprite switch5 = new Sprite(pixelsToCoords(1700, 800), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.switch5);
         Global.getRenderer().addDrawable(switch5);
 
-        Sprite switch5night = new Sprite(pixelsToCoords(1700, 800), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switch5night);
-        Global.getRenderer().addDrawable(switch5night);
-
         Sprite switch6 = new Sprite(pixelsToCoords(1700, 1150), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.switch6);
         Global.getRenderer().addDrawable(switch6);
-
-        Sprite switch6night = new Sprite(pixelsToCoords(1700, 1150), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switch6night);
-        Global.getRenderer().addDrawable(switch6night);
 
         Sprite trackhoe = new Sprite(pixelsToCoords(1310, 550), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.trackhoe);
@@ -659,10 +545,10 @@ public class MainUI {
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load1);
 
-        ClickableSprite load1statsclick = new ClickableSprite(pixelsToCoords(980, 1000), 0, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.load1statsclick = new ClickableSprite(pixelsToCoords(980, 1000), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255, 0), R.drawable.load1statsclick, sizeToCoords(-312,-313), sizeToCoords(312,313), "load1statsclick");
-        Global.getRenderer().addDrawable(load1statsclick);
-        addClickable(load1statsclick);
+        Global.getRenderer().addDrawable(ClickableObjects.load1statsclick);
+        addClickable(ClickableObjects.load1statsclick);
 
         ClickableObjects.load1stats = new ClickableSprite(pixelsToCoords(1000, 1000), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.loadstats, sizeToCoords(-211,-140), sizeToCoords(211,140), "load1stats");
@@ -674,10 +560,10 @@ public class MainUI {
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load2);
 
-        ClickableSprite load2statsclick = new ClickableSprite(pixelsToCoords(295, 655), 0, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.load2statsclick = new ClickableSprite(pixelsToCoords(295, 655), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255, 0), R.drawable.load2statsclick, sizeToCoords(-76,-80), sizeToCoords(76,80), "load2statsclick");
-        Global.getRenderer().addDrawable(load2statsclick);
-        addClickable(load2statsclick);
+        Global.getRenderer().addDrawable(ClickableObjects.load2statsclick);
+        addClickable(ClickableObjects.load2statsclick);
 
         ClickableObjects.load2stats = new ClickableSprite(pixelsToCoords(295, 675), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.loadstats, sizeToCoords(-211,-140), sizeToCoords(211,140), "load2stats");
@@ -689,10 +575,10 @@ public class MainUI {
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load3);
 
-        ClickableSprite load3statsclick = new ClickableSprite(pixelsToCoords(400, 190), 0, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.load3statsclick = new ClickableSprite(pixelsToCoords(400, 190), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255, 0), R.drawable.load3statsclick, sizeToCoords(-119,-52), sizeToCoords(119,52), "load3statsclick");
-        Global.getRenderer().addDrawable(load3statsclick);
-        addClickable(load3statsclick);
+        Global.getRenderer().addDrawable(ClickableObjects.load3statsclick);
+        addClickable(ClickableObjects.load3statsclick);
 
         ClickableObjects.load3stats = new ClickableSprite(pixelsToCoords(400, 190), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.loadstats, sizeToCoords(-211,-140), sizeToCoords(211,140), "load3stats");
@@ -704,10 +590,10 @@ public class MainUI {
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load4);
 
-        ClickableSprite load4statsclick = new ClickableSprite(pixelsToCoords(1550, 310), 0, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.load4statsclick = new ClickableSprite(pixelsToCoords(1550, 310), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255, 0), R.drawable.load4statsclick, sizeToCoords(-225,-330), sizeToCoords(225,330), "load4statsclick");
-        Global.getRenderer().addDrawable(load4statsclick);
-        addClickable(load4statsclick);
+        Global.getRenderer().addDrawable(ClickableObjects.load4statsclick);
+        addClickable(ClickableObjects.load4statsclick);
 
         ClickableObjects.load4stats = new ClickableSprite(pixelsToCoords(1530, 420), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.loadstats, sizeToCoords(-211,-140), sizeToCoords(211,140), "load4stats");
@@ -719,10 +605,10 @@ public class MainUI {
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load5);
 
-        ClickableSprite load5statsclick = new ClickableSprite(pixelsToCoords(2100, 600), 0, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.load5statsclick = new ClickableSprite(pixelsToCoords(2100, 600), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255, 0), R.drawable.load5statsclick, sizeToCoords(-310,-250), sizeToCoords(310,250), "load5statsclick");
-        Global.getRenderer().addDrawable(load5statsclick);
-        addClickable(load5statsclick);
+        Global.getRenderer().addDrawable(ClickableObjects.load5statsclick);
+        addClickable(ClickableObjects.load5statsclick);
 
         ClickableObjects.load5stats = new ClickableSprite(pixelsToCoords(1980, 720), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.loadstats, sizeToCoords(-211,-140), sizeToCoords(211,140), "load5stats");
@@ -734,10 +620,10 @@ public class MainUI {
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load6);
 
-        ClickableSprite load6statsclick = new ClickableSprite(pixelsToCoords(2170, 1090), 0, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.load6statsclick = new ClickableSprite(pixelsToCoords(2170, 1090), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255, 0), R.drawable.load6statsclick, sizeToCoords(-370,-110), sizeToCoords(370,110), "load6statsclick");
-        Global.getRenderer().addDrawable(load6statsclick);
-        addClickable(load6statsclick);
+        Global.getRenderer().addDrawable(ClickableObjects.load6statsclick);
+        addClickable(ClickableObjects.load6statsclick);
 
         ClickableObjects.load6stats = new ClickableSprite(pixelsToCoords(2010, 1140), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.loadstats, sizeToCoords(-211,-140), sizeToCoords(211,140), "load6stats");
@@ -1052,7 +938,7 @@ public class MainUI {
      * Called when the simulation detects a fault automatically.
      */
     public void reportAutomaticFaultStarted(final String fault) {
-    	
+
     }
 
     /**
@@ -1087,7 +973,8 @@ public class MainUI {
             return;
         }
 
-        if(Simulation.SimInfo.currentTime < 6.00 && Simulation.SimInfo.currentTime > 18.00) {
+        // Night Time Mode
+        if(Simulation.SimInfo.currentTime > 0.00 && Simulation.SimInfo.currentTime < 6.00) {
             ClickableObjects.background.setResource(R.drawable.backgroundnight);
             Objects.battery.setResource(R.drawable.batterynight);
             Objects.business1.setResource(R.drawable.business1night);
@@ -1126,54 +1013,22 @@ public class MainUI {
             Objects.transformer6.setResource(R.drawable.transformer6night);
             Objects.turbine.setResource(R.drawable.turbinenight);
             Objects.turbine2.setResource(R.drawable.turbine2night);
-
-
-
-
-
-/*
-            public static Sprite business2copy2;
-            public static Sprite graphs;
-            public static Sprite house1solar;
-            public static Sprite house1solar2;
-            public static Sprite house1solar3;
-            public static Sprite house2solar;
-            public static Sprite house2solar2;
-            public static Sprite house2solar3;
-            public static Sprite house3;
-            public static Sprite house3copy;
-            public static Sprite house3copy2;
-            public static Sprite info;
-            public static Sprite midway;
-            public static Sprite museum;
-            public static Sprite solarpanel;
-            public static Sprite stadium;
-            public static Sprite substation;
-            public static Sprite switch1;
-            public static Sprite switch2;
-            public static Sprite switch3;
-            public static Sprite switch4;
-            public static Sprite switch5;
-            public static Sprite switch6;
-            public static Sprite tie;
-            public static Sprite transformer;
-            public static Sprite transformer2;
-            public static Sprite transformer3;
-            public static Sprite transformer4;
-            public static Sprite transformer5;
-            public static Sprite transformer6;
-            public static Sprite turbine;
-            public static Sprite turbine2;
-            */
+            //Objects.Load1.setColor(255, 255, 255);
+        }
+        else if(Simulation.SimInfo.currentTime > 6.00 && Simulation.SimInfo.currentTime < 18.00) {
+            ClickableObjects.background.setResource(R.drawable.background);
+        }
+        else if(Simulation.SimInfo.currentTime > 18.00 && Simulation.SimInfo.currentTime < 24.00) {
+            ClickableObjects.background.setResource(R.drawable.backgroundnight);
         }
 
         textUpdateTimer -= amount;
         if (textUpdateTimer <= 0f) {
             if (Math.random() < textUpdateChance)
-                UIInfo.Load1.setText("Residential 1" + "\n" +
-                                "Real Power: " + "" + String.format("%.2f", Simulation.SimInfo.Load1) + " MW"
-                                + "\n" + "Reactive Power: " + String.format("%.2f", Simulation.SimInfo.Load1r) + " MVAR"
-                                + "\n" + "Apparent Power: " + String.format("%.2f", Simulation.SimInfo.Load1a) + " MVA",
+                UIInfo.Load1.setText("Residential 1" + "\n"
+                                + "Real Power: " + "" + String.format("%.2f", Simulation.SimInfo.Load1) + " MW" + "\n"
+                                + "Reactive Power: " + String.format("%.2f", Simulation.SimInfo.Load1r) + " MVAR" + "\n"
+                                + "Apparent Power: " + String.format("%.2f", Simulation.SimInfo.Load1a) + " MVA",
                         UIInfo.Load1.getFontSize(), UIInfo.Load1.getFont(),
                         UIInfo.Load1.getMaxLineWidth());
 
