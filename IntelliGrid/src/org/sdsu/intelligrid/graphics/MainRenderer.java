@@ -59,29 +59,27 @@ public class MainRenderer implements GLSurfaceView.Renderer {
 
 		float amount = (float) (beginms - lastms) / 1000f;
 
-		advance(amount);
-		draw(amount);
-
 		lastms = beginms;
 
 		endms = System.currentTimeMillis() - beginms;
 
 		leftms = (1000L / FRAME_RATE) - endms;
 
-		// avoid spinning
-		if (leftms < 5) {
-			leftms = 5;
-		}
-
 		// avoid catchup
 		if (leftms > 1000) {
 			leftms = 1000;
 		}
+		if (amount > 0.1f) {
+			amount = 0.1f;
+		}
 
-		try {
+		advance(amount);
+		draw(amount);
+
+		/*try {
 			TimeUnit.MILLISECONDS.sleep(leftms);
 		} catch (InterruptedException e) {
-		}
+		}*/
 	}
 
 	/**

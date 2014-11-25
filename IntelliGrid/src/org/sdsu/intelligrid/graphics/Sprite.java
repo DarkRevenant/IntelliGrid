@@ -325,6 +325,10 @@ public class Sprite implements Drawable {
 	@Override
 	public void draw(final float amount, final float[] viewMatrix,
 			final float[] projectionMatrix) {
+		if (depth > 10) {
+			return;
+		}
+
 		// Update scaling factor to keep the sprite at a consistent size
 		if (absoluteScale) {
 			final int screenHeight = Global.getRenderer().getScreenHeight();
