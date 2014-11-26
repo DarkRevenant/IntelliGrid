@@ -25,6 +25,9 @@ public class Simulation {
         // Battery Charge
         public static double[] Battery = {-0.1830, -0.3170, -0.4000, -0.3500, -0.3000, -0.2500, -0.0100, 0.8000, 0.8000, 0.2000, -0.0100, -0.3000, -0.1000, -0.2000, -0.6000, -0.4000, -0.2000, 0.8000, 1.0000, -0.0100, -0.0100, -0.0100, -0.0100, -0.0100};
 
+        // Battery Charge Level
+        public static double[] BatteryLevel = {1,1,2,2,2,3,3,3,2,1,1,1,2,2,2,3,3,2,1,1,1,1,1};
+
         // Need battery storage level array
 
         //REAL POWER
