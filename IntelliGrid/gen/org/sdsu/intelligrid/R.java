@@ -35,7 +35,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int faults=0x7f02000a;
         public static final int faultspage=0x7f02000b;
         public static final int faultspushdown=0x7f02000c;
-        public static final int graphpage=0x7f02000d;
+        public static final int graphspage =0x7f02000d;
         public static final int graphs=0x7f02000e;
         public static final int graphsnight=0x7f02000f;
         public static final int graphspage=0x7f020010;

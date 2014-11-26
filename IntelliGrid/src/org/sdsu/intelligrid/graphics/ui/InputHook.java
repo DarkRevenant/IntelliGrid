@@ -112,28 +112,6 @@ public class InputHook {
 			MainUI.ClickableObjects.load6statsclick.setDepth(11);
 			MainUI.UIInfo.Load6.setDepth(11);
 		}
-		if (object.getId().equals("infonight")) {
-			MainUI.ClickableObjects.infopage.setDepth(-1);
-			MainUI.ClickableObjects.exitinfo.setDepth(-2);
-			MainUI.ClickableObjects.load1stats.setDepth(11);
-			MainUI.ClickableObjects.load1statsclick.setDepth(11);
-			MainUI.UIInfo.Load1.setDepth(11);
-			MainUI.ClickableObjects.load2stats.setDepth(11);
-			MainUI.ClickableObjects.load2statsclick.setDepth(11);
-			MainUI.UIInfo.Load2.setDepth(11);
-			MainUI.ClickableObjects.load3stats.setDepth(11);
-			MainUI.ClickableObjects.load3statsclick.setDepth(11);
-			MainUI.UIInfo.Load3.setDepth(11);
-			MainUI.ClickableObjects.load4stats.setDepth(11);
-			MainUI.ClickableObjects.load4statsclick.setDepth(11);
-			MainUI.UIInfo.Load4.setDepth(11);
-			MainUI.ClickableObjects.load5stats.setDepth(11);
-			MainUI.ClickableObjects.load5statsclick.setDepth(11);
-			MainUI.UIInfo.Load5.setDepth(11);
-			MainUI.ClickableObjects.load6stats.setDepth(11);
-			MainUI.ClickableObjects.load6statsclick.setDepth(11);
-			MainUI.UIInfo.Load6.setDepth(11);
-		}
 		if (object.getId().equals("exitinfo")) {
 			MainUI.ClickableObjects.infopage.setDepth(11);
 			MainUI.ClickableObjects.exitinfo.setDepth(11);
@@ -304,7 +282,7 @@ public class InputHook {
 			MainUI.ClickableObjects.load2stats.setDepth(-1);
 			MainUI.UIInfo.Load2.setDepth(-2);
 		}
-		if (object.getId().equals("house2solar3")) {
+		if (object.getId().equals("store")) {
 			MainUI.ClickableObjects.load2stats.setDepth(-1);
 			MainUI.UIInfo.Load2.setDepth(-2);
 		}
@@ -338,10 +316,14 @@ public class InputHook {
 			MainUI.ClickableObjects.load4stats.setDepth(11);
 			MainUI.UIInfo.Load4.setDepth(11);
 		}
-		if (object.getId().equals("business1")) {
+		if (object.getId().equals("business1a")) {
 			MainUI.ClickableObjects.load4stats.setDepth(-1);
 			MainUI.UIInfo.Load4.setDepth(-2);
 		}
+        if (object.getId().equals("midway")) {
+            MainUI.ClickableObjects.load4stats.setDepth(-1);
+            MainUI.UIInfo.Load4.setDepth(-2);
+        }
 
 		if (object.getId().equals("load5statsclick")) {
 			MainUI.ClickableObjects.load5stats.setDepth(-1);
@@ -351,15 +333,15 @@ public class InputHook {
 			MainUI.ClickableObjects.load5stats.setDepth(11);
 			MainUI.UIInfo.Load5.setDepth(11);
 		}
-		if (object.getId().equals("business2")) {
+		if (object.getId().equals("business2a")) {
 			MainUI.ClickableObjects.load4stats.setDepth(-1);
 			MainUI.UIInfo.Load4.setDepth(-2);
 		}
-		if (object.getId().equals("business2copy")) {
+		if (object.getId().equals("business2b")) {
 			MainUI.ClickableObjects.load4stats.setDepth(-1);
 			MainUI.UIInfo.Load4.setDepth(-2);
 		}
-		if (object.getId().equals("business2copy2")) {
+		if (object.getId().equals("business2c")) {
 			MainUI.ClickableObjects.load4stats.setDepth(-1);
 			MainUI.UIInfo.Load4.setDepth(-2);
 		}
@@ -372,10 +354,14 @@ public class InputHook {
 			MainUI.ClickableObjects.load6stats.setDepth(11);
 			MainUI.UIInfo.Load6.setDepth(11);
 		}
-		if (object.getId().equals("business1a")) {
+		if (object.getId().equals("business1b")) {
 			MainUI.ClickableObjects.load4stats.setDepth(-1);
 			MainUI.UIInfo.Load4.setDepth(-2);
 		}
+        if (object.getId().equals("stadium")) {
+            MainUI.ClickableObjects.load4stats.setDepth(-1);
+            MainUI.UIInfo.Load4.setDepth(-2);
+        }
 	}
 
 	/**
