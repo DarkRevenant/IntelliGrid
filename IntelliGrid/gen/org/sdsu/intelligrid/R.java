@@ -90,8 +90,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int turbine=0x7f020041;
         public static final int turbinenight=0x7f020042;
     }
+    public static final class id {
+        public static final int button1=0x7f080000;
+    }
     public static final class layout {
         public static final int activity_main=0x7f030000;
+        public static final int graphs=0x7f030001;
     }
     public static final class raw {
         public static final int spritefrag=0x7f040000;
@@ -102,6 +106,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int app_name=0x7f060000;
         public static final int dummy_button=0x7f060001;
         public static final int dummy_content=0x7f060002;
+        public static final int testbutton=0x7f060004;
     }
     public static final class style {
         /** 

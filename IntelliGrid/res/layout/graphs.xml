@@ -5,4 +5,10 @@
     android:background="#0099cc"
     tools:context="org.sdsu.intelligrid.MainActivity" >
 
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="380dp"
+        android:layout_height="305dp"
+        android:text="@string/testbutton" />
+
 </FrameLayout>
