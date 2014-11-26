@@ -5,11 +5,13 @@ package org.sdsu.intelligrid;
 import org.sdsu.intelligrid.graphics.MainRenderer;
 import org.sdsu.intelligrid.graphics.MainSurfaceView;
 import org.sdsu.intelligrid.graphics.ui.MainUI;
+import org.sdsu.intelligrid.graphs.GraphsPage;
 import org.sdsu.intelligrid.network.MainNetworkHandler;
 import org.sdsu.intelligrid.network.NetworkInterface;
 import org.sdsu.intelligrid.simulation.Simulation;
 
 import android.app.Activity;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -38,6 +40,11 @@ public class MainActivity extends Activity {
 		GLView = new MainSurfaceView(this, renderer);
 		getWindow().setContentView(GLView);
 		Global.surface = GLView;
+
+		final GraphsPage graphs = new GraphsPage();
+		FragmentTransaction trans = getFragmentManager().beginTransaction();
+		trans.add(graphs, "graphs").commit();
+		Global.graphs = graphs;
 
 		View decorView = getWindow().getDecorView();
 		int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION

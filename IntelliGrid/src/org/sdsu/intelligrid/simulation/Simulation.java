@@ -71,11 +71,14 @@ public class Simulation {
         public String fault = "";
 
         //Transformer Capacity
-        public double capacity = 13;
+        public double capacity = 16;
 
         //Time Scale
         public static double timeScale = 288.0; // ex. timeScale 100 = 1 second of application time is 100 seconds of simulation
         public double time = 12; // in Hours
+        
+        public double solarCoefficientM = 0.5;
+        public double solarCoefficientL = 1.0 / 3.0;
 
         //Solar Multipliers (set by model)
         public MutableValue renewableSolarLevel = new MutableValue(1.0);
@@ -102,7 +105,12 @@ public class Simulation {
         public MutableValue electricVehicleL2 = new MutableValue(0.0);
         public MutableValue electricVehicleL3 = new MutableValue(0.0);
 
-
+        public boolean load1WasOn = true;
+        public boolean load2WasOn = true;
+        public boolean load3WasOn = true;
+        public boolean load4WasOn = true;
+        public boolean load5WasOn = true;
+        public boolean load6WasOn = true;
     }
 
 	/**
@@ -167,8 +175,8 @@ public class Simulation {
 	public static final class FaultManager {
 		
 		public static final double BALLOON_FAULT_TIME = 1.0;
-		public static final double DIG_FAULT_TIME = 6.0;
-		public static final double GENERIC_FAULT_TIME = 6.0;
+		public static final double DIG_FAULT_TIME = 4.0;
+		public static final double GENERIC_FAULT_TIME = 2.0;
 		
 		public static final double AUTOMATIC_FAULT_TIME = 0.5;
 		
@@ -374,6 +382,36 @@ public class Simulation {
             } else {
             	MainNetworkHandler.constructAndSendPacket(PacketTypes.TIME_OF_DAY, true);
             }
+            if (data.load1WasOn) {
+            	MainNetworkHandler.constructAndSendPacket(PacketTypes.POWER_OUTAGE, new MainNetworkHandler.OutageData(1, true));
+            } else {
+            	MainNetworkHandler.constructAndSendPacket(PacketTypes.POWER_OUTAGE, new MainNetworkHandler.OutageData(1, false));
+            }
+            if (data.load2WasOn) {
+            	MainNetworkHandler.constructAndSendPacket(PacketTypes.POWER_OUTAGE, new MainNetworkHandler.OutageData(2, true));
+            } else {
+            	MainNetworkHandler.constructAndSendPacket(PacketTypes.POWER_OUTAGE, new MainNetworkHandler.OutageData(2, false));
+            }
+            if (data.load3WasOn) {
+            	MainNetworkHandler.constructAndSendPacket(PacketTypes.POWER_OUTAGE, new MainNetworkHandler.OutageData(3, true));
+            } else {
+            	MainNetworkHandler.constructAndSendPacket(PacketTypes.POWER_OUTAGE, new MainNetworkHandler.OutageData(3, false));
+            }
+            if (data.load4WasOn) {
+            	MainNetworkHandler.constructAndSendPacket(PacketTypes.POWER_OUTAGE, new MainNetworkHandler.OutageData(4, true));
+            } else {
+            	MainNetworkHandler.constructAndSendPacket(PacketTypes.POWER_OUTAGE, new MainNetworkHandler.OutageData(4, false));
+            }
+            if (data.load5WasOn) {
+            	MainNetworkHandler.constructAndSendPacket(PacketTypes.POWER_OUTAGE, new MainNetworkHandler.OutageData(5, true));
+            } else {
+            	MainNetworkHandler.constructAndSendPacket(PacketTypes.POWER_OUTAGE, new MainNetworkHandler.OutageData(5, false));
+            }
+            if (data.load6WasOn) {
+            	MainNetworkHandler.constructAndSendPacket(PacketTypes.POWER_OUTAGE, new MainNetworkHandler.OutageData(6, true));
+            } else {
+            	MainNetworkHandler.constructAndSendPacket(PacketTypes.POWER_OUTAGE, new MainNetworkHandler.OutageData(6, false));
+            }
         } else if (!Global.getNetworkInterface().isConnected() && hasConnectionBeenMade) {
         	hasConnectionBeenMade = false;
         }
@@ -393,8 +431,8 @@ public class Simulation {
         data.electricVehicleL3.advance(amount, hours);
 
         double Load1 = linear(SimulationData.res1, time);
-        double Load2 = linear(SimulationData.res2, time) - ((data.solarPanelM1.get() + data.solarPanelM2.get()) * (linear(SimulationData.Solar, time) * data.middleSolarLevel.get() * linear(SimulationData.weather, data.w)));
-        double Load3 = linear(SimulationData.res3, time) + ((data.electricVehicleL1.get() + data.electricVehicleL2.get() + data.electricVehicleL3.get()) * data.EV) - ((data.solarPanelL1.get() + data.solarPanelL2.get() + data.solarPanelL3.get()) * (linear(SimulationData.Solar, time) * data.lowerSolarLevel.get() * linear(SimulationData.weather, data.w)));
+        double Load2 = linear(SimulationData.res2, time) - ((data.solarPanelM1.get() + data.solarPanelM2.get()) * (linear(SimulationData.Solar, time) * data.solarCoefficientM * data.middleSolarLevel.get() * linear(SimulationData.weather, data.w)));
+        double Load3 = linear(SimulationData.res3, time) + ((data.electricVehicleL1.get() + data.electricVehicleL2.get() + data.electricVehicleL3.get()) * data.EV) - ((data.solarPanelL1.get() + data.solarPanelL2.get() + data.solarPanelL3.get()) * (linear(SimulationData.Solar, time) * data.solarCoefficientL * data.lowerSolarLevel.get() * linear(SimulationData.weather, data.w)));
         double Load4 = linear(SimulationData.comm2, time);
         double Load5 = linear(SimulationData.comm1, time);
         double Load6 = linear(SimulationData.comm3, time);
@@ -717,6 +755,73 @@ public class Simulation {
 			swiMLK = 4;
 			swiKJI = 4;
 			swiIHG = 4;
+        }
+        
+        if (trA < 0) {
+        	trC -= trA;
+        	if (trD < 0.0 && trF < 0.0) {
+            	final double ratioD = Math.abs(trD / (trD + trF));
+            	final double ratioF = Math.abs(trF / (trD + trF));
+        		trD -= trA * ratioD;
+        		trE -= trA * ratioF;
+        		trF -= trA * ratioF;
+        	} else if (trD < 0.0) {
+        		trD -= trA;
+        	} else {
+        		trE -= trA;
+        		trF -= trA;
+        	}
+        	trA = 0;
+        }
+        
+        if (Load1a <= 0 && data.load1WasOn) {
+        	data.load1WasOn = false;
+        	MainNetworkHandler.constructAndSendPacket(PacketTypes.POWER_OUTAGE, new MainNetworkHandler.OutageData(1, false));
+        }
+        if (Load2a <= 0 && data.load2WasOn) {
+        	data.load2WasOn = false;
+        	MainNetworkHandler.constructAndSendPacket(PacketTypes.POWER_OUTAGE, new MainNetworkHandler.OutageData(2, false));
+        }
+        if (Load3a <= 0 && data.load3WasOn) {
+        	data.load3WasOn = false;
+        	MainNetworkHandler.constructAndSendPacket(PacketTypes.POWER_OUTAGE, new MainNetworkHandler.OutageData(3, false));
+        }
+        if (Load4a <= 0 && data.load4WasOn) {
+        	data.load4WasOn = false;
+        	MainNetworkHandler.constructAndSendPacket(PacketTypes.POWER_OUTAGE, new MainNetworkHandler.OutageData(4, false));
+        }
+        if (Load5a <= 0 && data.load5WasOn) {
+        	data.load5WasOn = false;
+        	MainNetworkHandler.constructAndSendPacket(PacketTypes.POWER_OUTAGE, new MainNetworkHandler.OutageData(5, false));
+        }
+        if (Load6a <= 0 && data.load6WasOn) {
+        	data.load6WasOn = false;
+        	MainNetworkHandler.constructAndSendPacket(PacketTypes.POWER_OUTAGE, new MainNetworkHandler.OutageData(6, false));
+        }
+        
+        if (Load1a > 0 && !data.load1WasOn) {
+        	data.load1WasOn = true;
+        	MainNetworkHandler.constructAndSendPacket(PacketTypes.POWER_OUTAGE, new MainNetworkHandler.OutageData(1, true));
+        }
+        if (Load2a > 0 && !data.load2WasOn) {
+        	data.load2WasOn = true;
+        	MainNetworkHandler.constructAndSendPacket(PacketTypes.POWER_OUTAGE, new MainNetworkHandler.OutageData(2, true));
+        }
+        if (Load3a > 0 && !data.load3WasOn) {
+        	data.load3WasOn = true;
+        	MainNetworkHandler.constructAndSendPacket(PacketTypes.POWER_OUTAGE, new MainNetworkHandler.OutageData(3, true));
+        }
+        if (Load4a > 0 && !data.load4WasOn) {
+        	data.load4WasOn = true;
+        	MainNetworkHandler.constructAndSendPacket(PacketTypes.POWER_OUTAGE, new MainNetworkHandler.OutageData(4, true));
+        }
+        if (Load5a > 0 && !data.load5WasOn) {
+        	data.load5WasOn = true;
+        	MainNetworkHandler.constructAndSendPacket(PacketTypes.POWER_OUTAGE, new MainNetworkHandler.OutageData(5, true));
+        }
+        if (Load6a > 0 && !data.load6WasOn) {
+        	data.load6WasOn = true;
+        	MainNetworkHandler.constructAndSendPacket(PacketTypes.POWER_OUTAGE, new MainNetworkHandler.OutageData(6, true));
         }
 
         double transTotal = (trA + trM) * data.capacity;

@@ -5,6 +5,7 @@ package org.sdsu.intelligrid;
 import org.sdsu.intelligrid.graphics.MainRenderer;
 import org.sdsu.intelligrid.graphics.MainSurfaceView;
 import org.sdsu.intelligrid.graphics.ui.MainUI;
+import org.sdsu.intelligrid.graphs.GraphsPage;
 import org.sdsu.intelligrid.network.MainNetworkHandler;
 import org.sdsu.intelligrid.network.NetworkInterface;
 import org.sdsu.intelligrid.simulation.Simulation;
@@ -23,6 +24,7 @@ public class Global {
 	static MainSurfaceView surface;
 	static MainRenderer renderer;
 	static MainUI mainUI;
+	static GraphsPage graphs;
 
 	/**
 	 * Returns the primary instance of MainActivity for this application.
@@ -101,5 +103,14 @@ public class Global {
 	 */
 	public static MainUI getMainUI() {
 		return mainUI;
+	}
+
+	/**
+	 * Returns the GraphsPage fragment.
+	 * 
+	 * @return this application's GraphsPage fragment.
+	 */
+	public static GraphsPage getGraphFragment() {
+		return graphs;
 	}
 }

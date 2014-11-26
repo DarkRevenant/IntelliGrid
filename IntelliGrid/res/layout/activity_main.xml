@@ -4,4 +4,5 @@
     android:layout_height="match_parent"
     android:background="#0099cc"
     tools:context="org.sdsu.intelligrid.MainActivity" >
+
 </FrameLayout>

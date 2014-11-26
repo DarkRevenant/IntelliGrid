@@ -111,8 +111,16 @@ public class MainUI {
         resources.add(R.drawable.pausedown);
         resources.add(R.drawable.house1solar);
         resources.add(R.drawable.house1solarnight);
+        resources.add(R.drawable.house1solar2);
+        resources.add(R.drawable.house1solar2night);
+        resources.add(R.drawable.house1solar3);
+        resources.add(R.drawable.house1solar3night);
         resources.add(R.drawable.house2solar);
         resources.add(R.drawable.house2solarnight);
+        resources.add(R.drawable.house2solar2);
+        resources.add(R.drawable.house2solar2night);
+        resources.add(R.drawable.house2solar3);
+        resources.add(R.drawable.house2solar3night);
         resources.add(R.drawable.business1);
         resources.add(R.drawable.business1night);
         resources.add(R.drawable.business2);
@@ -131,22 +139,36 @@ public class MainUI {
         resources.add(R.drawable.batterynight);
         resources.add(R.drawable.turbine);
         resources.add(R.drawable.turbinenight);
+        resources.add(R.drawable.turbine2);
+        resources.add(R.drawable.turbine2night);
         resources.add(R.drawable.substation);
         resources.add(R.drawable.substationnight);
         resources.add(R.drawable.transformer);
-        resources.add(R.drawable.transformer1night);
+        resources.add(R.drawable.transformernight);
+        resources.add(R.drawable.transformer2);
+        resources.add(R.drawable.transformer2night);
+        resources.add(R.drawable.transformer3);
+        resources.add(R.drawable.transformer3night);
+        resources.add(R.drawable.transformer4);
+        resources.add(R.drawable.transformer4night);
+        resources.add(R.drawable.transformer5);
+        resources.add(R.drawable.transformer5night);
+        resources.add(R.drawable.transformer6);
+        resources.add(R.drawable.transformer6night);
         resources.add(R.drawable.switch1);
         resources.add(R.drawable.switch1night);
-        resources.add(R.drawable.switchtop);
-        resources.add(R.drawable.switchtopnight);
-        resources.add(R.drawable.switchmiddle);
-        resources.add(R.drawable.switchmiddlenight);
-        resources.add(R.drawable.switchbottom);
-        resources.add(R.drawable.switchbottomnight);
+        resources.add(R.drawable.switch2);
+        resources.add(R.drawable.switch2night);
+        resources.add(R.drawable.switch3);
+        resources.add(R.drawable.switch3night);
+        resources.add(R.drawable.switch4);
+        resources.add(R.drawable.switch4night);
+        resources.add(R.drawable.switch5);
+        resources.add(R.drawable.switch5night);
+        resources.add(R.drawable.switch6);
+        resources.add(R.drawable.switch6night);
         resources.add(R.drawable.tie);
         resources.add(R.drawable.tienight);
-        resources.add(R.drawable.tieopen);
-        resources.add(R.drawable.tieopennight);
         resources.add(R.drawable.trackhoe);
         resources.add(R.drawable.orb);
         resources.add(R.drawable.loadstats);
@@ -238,69 +260,18 @@ public class MainUI {
         public static Sprite stadium;
         public static Sprite substation;
         public static Sprite switch1;
-        public static Sprite switch1night;
-        public static Sprite switch1top;
-        public static Sprite switch1topnight;
-        public static Sprite switch1middle;
-        public static Sprite switch1middlenight;
-        public static Sprite switch1bottom;
-        public static Sprite switch1bottomnight;
         public static Sprite switch2;
-        public static Sprite switch2night;
-        public static Sprite switch2top;
-        public static Sprite switch2topnight;
-        public static Sprite switch2middle;
-        public static Sprite switch2middlenight;
-        public static Sprite switch2bottom;
-        public static Sprite switch2bottomnight;
         public static Sprite switch3;
-        public static Sprite switch3night;
-        public static Sprite switch3top;
-        public static Sprite switch3topnight;
-        public static Sprite switch3middle;
-        public static Sprite switch3middlenight;
-        public static Sprite switch3bottom;
-        public static Sprite switch3bottomnight;
         public static Sprite switch4;
-        public static Sprite switch4night;
-        public static Sprite switch4top;
-        public static Sprite switch4topnight;
-        public static Sprite switch4middle;
-        public static Sprite switch4middlenight;
-        public static Sprite switch4bottom;
-        public static Sprite switch4bottomnight;
         public static Sprite switch5;
-        public static Sprite switch5night;
-        public static Sprite switch5top;
-        public static Sprite switch5topnight;
-        public static Sprite switch5middle;
-        public static Sprite switch5middlenight;
-        public static Sprite switch5bottom;
-        public static Sprite switch5bottomnight;
         public static Sprite switch6;
-        public static Sprite switch6night;
-        public static Sprite switch6top;
-        public static Sprite switch6topnight;
-        public static Sprite switch6middle;
-        public static Sprite switch6middlenight;
-        public static Sprite switch6bottom;
-        public static Sprite switch6bottomnight;
         public static Sprite tie;
-        public static Sprite tienight;
-        public static Sprite tieopen;
-        public static Sprite tieopennight;
-        public static Sprite transformer1;
-        public static Sprite transformer1night;
+        public static Sprite transformer;
         public static Sprite transformer2;
-        public static Sprite transformer2night;
         public static Sprite transformer3;
-        public static Sprite transformer3night;
         public static Sprite transformer4;
-        public static Sprite transformer4night;
         public static Sprite transformer5;
-        public static Sprite transformer5night;
         public static Sprite transformer6;
-        public static Sprite transformer6night;
         public static Sprite turbine;
         public static Sprite turbine2;
         public static Sprite playdown;
@@ -417,12 +388,12 @@ public class MainUI {
         addClickable(ClickableObjects.house1solar1);
 
         ClickableObjects.house1solar2 = new ClickableSprite(pixelsToCoords(375, 270), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house1solar, sizeToCoords(-60,-62), sizeToCoords(60,62), "house1solar2");
+                new Color(255, 255, 255), R.drawable.house1solar2, sizeToCoords(-60,-62), sizeToCoords(60,62), "house1solar2");
         Global.getRenderer().addDrawable(ClickableObjects.house1solar2);
         addClickable(ClickableObjects.house1solar2);
 
         ClickableObjects.house1solar3 = new ClickableSprite(pixelsToCoords(615, 270), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house1solar, sizeToCoords(-60,-62), sizeToCoords(60,62), "house1solar3");
+                new Color(255, 255, 255), R.drawable.house1solar3, sizeToCoords(-60,-62), sizeToCoords(60,62), "house1solar3");
         Global.getRenderer().addDrawable(ClickableObjects.house1solar3);
         addClickable(ClickableObjects.house1solar3);
 
@@ -432,12 +403,12 @@ public class MainUI {
         addClickable(ClickableObjects.house2solar1);
 
         ClickableObjects.house2solar2 = new ClickableSprite(pixelsToCoords(135, 830), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house2solar, sizeToCoords(-69,-68), sizeToCoords(69,68), "house2solar2");
+                new Color(255, 255, 255), R.drawable.house2solar2, sizeToCoords(-69,-68), sizeToCoords(69,68), "house2solar2");
         Global.getRenderer().addDrawable(ClickableObjects.house2solar2);
         addClickable(ClickableObjects.house2solar2);
 
         ClickableObjects.house2solar3 = new ClickableSprite(pixelsToCoords(430, 830), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house2solar, sizeToCoords(-69,-68), sizeToCoords(69,68), "house2solar3");
+                new Color(255, 255, 255), R.drawable.house2solar3, sizeToCoords(-69,-68), sizeToCoords(69,68), "house2solar3");
         Global.getRenderer().addDrawable(ClickableObjects.house2solar3);
         addClickable(ClickableObjects.house2solar3);
 
@@ -498,7 +469,7 @@ public class MainUI {
         Global.getRenderer().addDrawable(Objects.turbine);
 
         Objects.turbine2 = new Sprite(pixelsToCoords(1040, 1435), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.turbine);
+                new Color(255, 255, 255), R.drawable.turbine2);
         Global.getRenderer().addDrawable(Objects.turbine2);
 
         Objects.battery = new Sprite(pixelsToCoords(2120, 1440), 0, 0f, new Vector2f(1f, 1f),
@@ -517,257 +488,53 @@ public class MainUI {
                 new Color(255, 255, 255), R.drawable.tie);
         Global.getRenderer().addDrawable(Objects.tie);
 
-        Objects.tienight = new Sprite(pixelsToCoords(1050, 115), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.tienight);
-        Global.getRenderer().addDrawable(Objects.tienight);
-
-        Objects.tieopen = new Sprite(pixelsToCoords(1050, 115), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.tieopen);
-        Global.getRenderer().addDrawable(Objects.tieopen);
-
-        Objects.tieopennight = new Sprite(pixelsToCoords(1050, 115), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.tieopennight);
-        Global.getRenderer().addDrawable(Objects.tieopennight);
-
-        Objects.transformer1 = new Sprite(pixelsToCoords(1200, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.transformer1);
-        Global.getRenderer().addDrawable(Objects.transformer1);
-
-        Objects.transformer1night = new Sprite(pixelsToCoords(1200, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.transformer1night);
-        Global.getRenderer().addDrawable(Objects.transformer1night);
+        Objects.transformer = new Sprite(pixelsToCoords(1200, 1000), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.transformer);
+        Global.getRenderer().addDrawable(Objects.transformer);
 
         Objects.transformer2 = new Sprite(pixelsToCoords(520, 640), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.transformer1);
+                new Color(255, 255, 255), R.drawable.transformer2);
         Global.getRenderer().addDrawable(Objects.transformer2);
 
-        Objects.transformer2night = new Sprite(pixelsToCoords(1200, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.transformer1night);
-        Global.getRenderer().addDrawable(Objects.transformer2night);
-
         Objects.transformer3 = new Sprite(pixelsToCoords(770, 115), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.transformer1);
+                new Color(255, 255, 255), R.drawable.transformer3);
         Global.getRenderer().addDrawable(Objects.transformer3);
 
-        Objects.transformer3night = new Sprite(pixelsToCoords(1200, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.transformer1night);
-        Global.getRenderer().addDrawable(Objects.transformer3night);
-
         Objects.transformer4 = new Sprite(pixelsToCoords(1350, 335), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.transformer1);
+                new Color(255, 255, 255), R.drawable.transformer4);
         Global.getRenderer().addDrawable(Objects.transformer4);
 
-        Objects.transformer4night = new Sprite(pixelsToCoords(1200, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.transformer1night);
-        Global.getRenderer().addDrawable(Objects.transformer4night);
-
         Objects.transformer5 = new Sprite(pixelsToCoords(1800, 800), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.transformer1);
+                new Color(255, 255, 255), R.drawable.transformer5);
         Global.getRenderer().addDrawable(Objects.transformer5);
 
-        Objects.transformer5night = new Sprite(pixelsToCoords(1200, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.transformer1night);
-        Global.getRenderer().addDrawable(Objects.transformer5night);
-
         Objects.transformer6 = new Sprite(pixelsToCoords(1800, 1150), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.transformer1);
+                new Color(255, 255, 255), R.drawable.transformer6);
         Global.getRenderer().addDrawable(Objects.transformer6);
-
-        Objects.transformer6night = new Sprite(pixelsToCoords(1200, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.transformer1night);
-        Global.getRenderer().addDrawable(Objects.transformer6night);
 
         Objects.switch1 = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.switch1);
         Global.getRenderer().addDrawable(Objects.switch1);
 
-        Objects.switch1night = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switch1night);
-        Global.getRenderer().addDrawable(Objects.switch1night);
-
-        Objects.switch1top = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switchtop);
-        Global.getRenderer().addDrawable(Objects.switch1top);
-
-        Objects.switch1topnight = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switchtopnight);
-        Global.getRenderer().addDrawable(Objects.switch1topnight);
-
-        Objects.switch1middle = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switchmiddle);
-        Global.getRenderer().addDrawable(Objects.switch1middle);
-
-        Objects.switch1middlenight = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switchmiddlenight);
-        Global.getRenderer().addDrawable(Objects.switch1middlenight);
-
-        Objects.switch1bottom = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switchbottom);
-        Global.getRenderer().addDrawable(Objects.switch1bottom);
-
-        Objects.switch1bottomnight = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switchbottomnight);
-        Global.getRenderer().addDrawable(Objects.switch1bottomnight);
-
         Objects.switch2 = new Sprite(pixelsToCoords(870, 450), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switch1);
+                new Color(255, 255, 255), R.drawable.switch2);
         Global.getRenderer().addDrawable(Objects.switch2);
 
-        Objects.switch2night = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switch1night);
-        Global.getRenderer().addDrawable(Objects.switch2night);
-
-        Objects.switch2top = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switchtop);
-        Global.getRenderer().addDrawable(Objects.switch2top);
-
-        Objects.switch2topnight = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switchtopnight);
-        Global.getRenderer().addDrawable(Objects.switch2topnight);
-
-        Objects.switch2middle = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switchmiddle);
-        Global.getRenderer().addDrawable(Objects.switch2middle);
-
-        Objects.switch2middlenight = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switchmiddlenight);
-        Global.getRenderer().addDrawable(Objects.switch2middlenight);
-
-        Objects.switch2bottom = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switchbottom);
-        Global.getRenderer().addDrawable(Objects.switch2bottom);
-
-        Objects.switch2bottomnight = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switchbottomnight);
-        Global.getRenderer().addDrawable(Objects.switch2bottomnight);
-
         Objects.switch3 = new Sprite(pixelsToCoords(870, 115), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switch1);
+                new Color(255, 255, 255), R.drawable.switch3);
         Global.getRenderer().addDrawable(Objects.switch3);
 
-        Objects.switch3night = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switch1night);
-        Global.getRenderer().addDrawable(Objects.switch3night);
-
-        Objects.switch3top = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switchtop);
-        Global.getRenderer().addDrawable(Objects.switch3top);
-
-        Objects.switch3topnight = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switchtopnight);
-        Global.getRenderer().addDrawable(Objects.switch3topnight);
-
-        Objects.switch3middle = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switchmiddle);
-        Global.getRenderer().addDrawable(Objects.switch3middle);
-
-        Objects.switch3middlenight = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switchmiddlenight);
-        Global.getRenderer().addDrawable(Objects.switch3middlenight);
-
-        Objects.switch3bottom = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switchbottom);
-        Global.getRenderer().addDrawable(Objects.switch3bottom);
-
-        Objects.switch3bottomnight = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switchbottomnight);
-        Global.getRenderer().addDrawable(Objects.switch3bottomnight);
-
         Objects.switch4 = new Sprite(pixelsToCoords(1250, 335), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switch1);
+                new Color(255, 255, 255), R.drawable.switch4);
         Global.getRenderer().addDrawable(Objects.switch4);
 
-        Objects.switch4night = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switch1night);
-        Global.getRenderer().addDrawable(Objects.switch4night);
-
-        Objects.switch4top = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switchtop);
-        Global.getRenderer().addDrawable(Objects.switch4top);
-
-        Objects.switch4topnight = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switchtopnight);
-        Global.getRenderer().addDrawable(Objects.switch4topnight);
-
-        Objects.switch4middle = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switchmiddle);
-        Global.getRenderer().addDrawable(Objects.switch4middle);
-
-        Objects.switch4middlenight = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switchmiddlenight);
-        Global.getRenderer().addDrawable(Objects.switch4middlenight);
-
-        Objects.switch4bottom = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switchbottom);
-        Global.getRenderer().addDrawable(Objects.switch4bottom);
-
-        Objects.switch4bottomnight = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switchbottomnight);
-        Global.getRenderer().addDrawable(Objects.switch4bottomnight);
-
         Objects.switch5 = new Sprite(pixelsToCoords(1700, 800), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switch1);
+                new Color(255, 255, 255), R.drawable.switch5);
         Global.getRenderer().addDrawable(Objects.switch5);
 
-        Objects.switch5night = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switch1night);
-        Global.getRenderer().addDrawable(Objects.switch5night);
-
-        Objects.switch5top = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switchtop);
-        Global.getRenderer().addDrawable(Objects.switch5top);
-
-        Objects.switch5topnight = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switchtopnight);
-        Global.getRenderer().addDrawable(Objects.switch5topnight);
-
-        Objects.switch5middle = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switchmiddle);
-        Global.getRenderer().addDrawable(Objects.switch5middle);
-
-        Objects.switch5middlenight = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switchmiddlenight);
-        Global.getRenderer().addDrawable(Objects.switch5middlenight);
-
-        Objects.switch5bottom = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switchbottom);
-        Global.getRenderer().addDrawable(Objects.switch5bottom);
-
-        Objects.switch5bottomnight = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switchbottomnight);
-        Global.getRenderer().addDrawable(Objects.switch5bottomnight);
-
         Objects.switch6 = new Sprite(pixelsToCoords(1700, 1150), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switch1);
+                new Color(255, 255, 255), R.drawable.switch6);
         Global.getRenderer().addDrawable(Objects.switch6);
-
-        Objects.switch6night = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switch1night);
-        Global.getRenderer().addDrawable(Objects.switch6night);
-
-        Objects.switch6top = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switchtop);
-        Global.getRenderer().addDrawable(Objects.switch6top);
-
-        Objects.switch6topnight = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switchtopnight);
-        Global.getRenderer().addDrawable(Objects.switch6topnight);
-
-        Objects.switch6middle = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switchmiddle);
-        Global.getRenderer().addDrawable(Objects.switch6middle);
-
-        Objects.switch6middlenight = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switchmiddlenight);
-        Global.getRenderer().addDrawable(Objects.switch6middlenight);
-
-        Objects.switch6bottom = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switchbottom);
-        Global.getRenderer().addDrawable(Objects.switch6bottom);
-
-        Objects.switch6bottomnight = new Sprite(pixelsToCoords(1300, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.switchbottomnight);
-        Global.getRenderer().addDrawable(Objects.switch6bottomnight);
 
         Objects.trackhoe = new Sprite(pixelsToCoords(1310, 550), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.trackhoe);
@@ -1218,11 +985,11 @@ public class MainUI {
             ClickableObjects.business2c.setResource(R.drawable.business2night);
             ClickableObjects.graphs.setResource(R.drawable.graphsnight);
             ClickableObjects.house1solar1.setResource(R.drawable.house1solarnight);
-            ClickableObjects.house1solar2.setResource(R.drawable.house1solarnight);
-            ClickableObjects.house1solar3.setResource(R.drawable.house1solarnight);
+            ClickableObjects.house1solar2.setResource(R.drawable.house1solar2night);
+            ClickableObjects.house1solar3.setResource(R.drawable.house1solar3night);
             ClickableObjects.house2solar1.setResource(R.drawable.house2solarnight);
-            ClickableObjects.house2solar2.setResource(R.drawable.house2solarnight);
-            ClickableObjects.house2solar3.setResource(R.drawable.house2solarnight);
+            ClickableObjects.house2solar2.setResource(R.drawable.house2solar2night);
+            ClickableObjects.house2solar3.setResource(R.drawable.house2solar3night);
             ClickableObjects.house3a.setResource(R.drawable.house3night);
             ClickableObjects.house3b.setResource(R.drawable.house3night);
             ClickableObjects.house3c.setResource(R.drawable.house3night);
@@ -1234,20 +1001,20 @@ public class MainUI {
             Objects.stadium.setResource(R.drawable.stadiumnight);
             Objects.substation.setResource(R.drawable.substationnight);
             Objects.switch1.setResource(R.drawable.switch1night);
-            Objects.switch2.setResource(R.drawable.switch1night);
-            Objects.switch3.setResource(R.drawable.switch1night);
-            Objects.switch4.setResource(R.drawable.switch1night);
-            Objects.switch5.setResource(R.drawable.switch1night);
-            Objects.switch6.setResource(R.drawable.switch1night);
+            Objects.switch2.setResource(R.drawable.switch2night);
+            Objects.switch3.setResource(R.drawable.switch3night);
+            Objects.switch4.setResource(R.drawable.switch4night);
+            Objects.switch5.setResource(R.drawable.switch5night);
+            Objects.switch6.setResource(R.drawable.switch6night);
             Objects.tie.setResource(R.drawable.tienight);
-            Objects.transformer1.setResource(R.drawable.transformer1night);
-            Objects.transformer2.setResource(R.drawable.transformer1night);
-            Objects.transformer3.setResource(R.drawable.transformer1night);
-            Objects.transformer4.setResource(R.drawable.transformer1night);
-            Objects.transformer5.setResource(R.drawable.transformer1night);
-            Objects.transformer6.setResource(R.drawable.transformer1night);
+            Objects.transformer.setResource(R.drawable.transformernight);
+            Objects.transformer2.setResource(R.drawable.transformer2night);
+            Objects.transformer3.setResource(R.drawable.transformer3night);
+            Objects.transformer4.setResource(R.drawable.transformer4night);
+            Objects.transformer5.setResource(R.drawable.transformer5night);
+            Objects.transformer6.setResource(R.drawable.transformer6night);
             Objects.turbine.setResource(R.drawable.turbinenight);
-            Objects.turbine2.setResource(R.drawable.turbinenight);
+            Objects.turbine2.setResource(R.drawable.turbine2night);
             UIInfo.trA.setColor(new Color(255, 255, 255));
             UIInfo.trB.setColor(new Color(255, 255, 255));
             UIInfo.trC.setColor(new Color(255, 255, 255));
@@ -1264,11 +1031,6 @@ public class MainUI {
             UIInfo.PowPlant.setColor(new Color(255, 255, 255));
             UIInfo.WindTurbines.setColor(new Color(255, 255, 255));
             UIInfo.transTotal.setColor(new Color(255, 255, 255));
-
-//            if (Simulation.FaultManager.currentFault == "A") {
-//                Objects.switch1.setResource(R.drawable.switchtopnight);
-//            }
-
         } else if ((Simulation.SimInfo.currentTime <= 18.00 && Simulation.SimInfo.currentTime >= 6.00) && night) {
             night = false;
             ClickableObjects.background.setResource(R.drawable.background);
@@ -1301,7 +1063,7 @@ public class MainUI {
             Objects.switch5.setResource(R.drawable.switch5);
             Objects.switch6.setResource(R.drawable.switch6);
             Objects.tie.setResource(R.drawable.tie);
-            Objects.transformer1.setResource(R.drawable.transformer);
+            Objects.transformer.setResource(R.drawable.transformer);
             Objects.transformer2.setResource(R.drawable.transformer2);
             Objects.transformer3.setResource(R.drawable.transformer3);
             Objects.transformer4.setResource(R.drawable.transformer4);

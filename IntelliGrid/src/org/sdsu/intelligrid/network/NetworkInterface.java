@@ -24,7 +24,7 @@ public class NetworkInterface implements Runnable {
 	private static final int INPUT_BUFFER_CAPACITY = 10000;
 	private static final int OUTPUT_BUFFER_CAPACITY = 10;
 
-	private static final boolean ENABLE_NETWORK = false;
+	private static final boolean ENABLE_NETWORK = true;
 
 	private final Queue<IntelliGridPacket> outputBuffer = new ArrayBlockingQueue<>(
 			OUTPUT_BUFFER_CAPACITY);
@@ -59,10 +59,12 @@ public class NetworkInterface implements Runnable {
 	 */
 	public void sendMessage(final String message) {
 		if (clientSocket == null) {
+			Logger.getGlobal().log(Level.INFO, "No client to send message!");
 			return;
 		}
 		if (outputBuffer.size() == OUTPUT_BUFFER_CAPACITY) {
 			outputBuffer.remove();
+			Logger.getGlobal().log(Level.INFO, "Buffer Full!");
 		}
 		outputBuffer.add(new IntelliGridPacket(message, new Date()));
 	}
@@ -128,8 +130,7 @@ public class NetworkInterface implements Runnable {
 				}
 
 				if (in != null) {
-					Logger.getGlobal()
-							.log(Level.SEVERE, "Read: \"" + in + "\"");
+					Logger.getGlobal().log(Level.INFO, "Read: \"" + in + "\"");
 					if (inputBuffer.size() == INPUT_BUFFER_CAPACITY) {
 						inputBuffer.remove();
 					}
@@ -149,14 +150,18 @@ public class NetworkInterface implements Runnable {
 
 		while (!Thread.currentThread().isInterrupted() && !failed) {
 			if (clientSocket == null) {
-				Logger.getGlobal()
-						.log(Level.SEVERE, "Attempting connection...");
+				Logger.getGlobal().log(Level.INFO, "Attempting connection...");
 				clientSocket = connect();
 				if (clientSocket == null) {
+					try {
+						Thread.sleep(5000);
+					} catch (InterruptedException e) {
+						Logger.getGlobal().log(Level.SEVERE, e.getMessage());
+					}
 					continue;
 				}
 				Logger.getGlobal().log(
-						Level.SEVERE,
+						Level.INFO,
 						"Connected to "
 								+ clientSocket.getInetAddress().getHostName());
 
@@ -177,7 +182,7 @@ public class NetworkInterface implements Runnable {
 
 				if (packet != null) {
 					final String out = packet.message;
-					Logger.getGlobal().log(Level.SEVERE,
+					Logger.getGlobal().log(Level.INFO,
 							"Sending \"" + out + "\"");
 					try {
 						writer.write(out);
