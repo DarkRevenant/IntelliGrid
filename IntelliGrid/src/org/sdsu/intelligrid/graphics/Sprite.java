@@ -62,9 +62,15 @@ public class Sprite implements Drawable {
 	private final Vector2f scaleFactor = new Vector2f();
 	private float[] color;
 	private boolean absoluteScale = true;
+	private boolean additive = false;
 
 	private int texture;
 	private int resource;
+	private int texture2;
+	private int resource2;
+
+	private float time = 1f;
+	private float progress = 1f;
 
 	private int width;
 	private int height;
@@ -292,6 +298,29 @@ public class Sprite implements Drawable {
 	}
 
 	/**
+	 * Sets the sprite's resource ID and blends it in over time. Must be the
+	 * same size.
+	 * 
+	 * @param resource
+	 *            the resource ID that the sprite should display
+	 * @param time
+	 *            the time to blend the sprite transition
+	 */
+	public void setResourceOverTime(final int resource, final float time) {
+		resource2 = this.resource;
+		texture2 = texture;
+
+		this.resource = resource;
+		this.time = time;
+		progress = 0f;
+
+		Texture tex = Global.getRenderer().getTexture(resource);
+		texture = tex.getTexture();
+		width = tex.getWidth();
+		height = tex.getHeight();
+	}
+
+	/**
 	 * Sets the scaling mode to <tt>absolute</tt>. This means that the sprite's
 	 * size will remain consistent, in pixels, regardless of the screen size.
 	 * For example, a 1280x800 image will appear to fill a quarter of the screen
@@ -313,8 +342,23 @@ public class Sprite implements Drawable {
 		absoluteScale = false;
 	}
 
+	/**
+	 * Sets the sprite rendering mode to additive or standard (if <tt>false</tt>
+	 * ).
+	 */
+	public void setAdditive(final boolean additive) {
+		this.additive = additive;
+	}
+
 	@Override
 	public void advance(final float amount) {
+		if (progress < 1f) {
+			progress += amount;
+			if (progress >= 1f) {
+				resource2 = -1;
+				texture2 = -1;
+			}
+		}
 	}
 
 	private static final int POSITION_OFFSET = 0;
@@ -353,7 +397,11 @@ public class Sprite implements Drawable {
 		glDisable(GL_DEPTH_TEST);
 		glEnable(GL_TEXTURE_2D);
 		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		if (additive) {
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+		} else {
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		}
 
 		// Load in the texture
 		glActiveTexture(GL_TEXTURE0);
@@ -386,6 +434,43 @@ public class Sprite implements Drawable {
 
 		// Draw the sprite
 		glDrawArrays(GL_TRIANGLES, 0, 6);
+
+		if (progress < 1f) {
+			// Load in the texture
+			glActiveTexture(GL_TEXTURE0);
+			glBindTexture(GL_TEXTURE_2D, texture2);
+			glUniform1i(spriteShaderParams[1], 0);
+
+			// Load in the color
+			final float[] newColor = { color[0], color[1], color[2],
+					(1f - progress) * color[3] };
+			glUniform4fv(spriteShaderParams[2], 1, newColor, 0);
+
+			// Load in the sprite model vertices
+			spritePositionBuffer.position(POSITION_OFFSET);
+			glVertexAttribPointer(spriteShaderParams[3], POSITION_DATA_SIZE,
+					GL_FLOAT, false, 3 * BYTES_PER_FLOAT, spritePositionBuffer);
+			glEnableVertexAttribArray(spriteShaderParams[3]);
+
+			// Load in the sprite model texture coordinates
+			spriteTexCoordinateBuffer.position(TEXTURE_COORDINATE_OFFSET);
+			glVertexAttribPointer(spriteShaderParams[4],
+					TEXTURE_COORDINATE_DATA_SIZE, GL_FLOAT, false,
+					2 * BYTES_PER_FLOAT, spriteTexCoordinateBuffer);
+			glEnableVertexAttribArray(spriteShaderParams[4]);
+
+			// Create the combined movel-view-projection (MVP) matrix
+			Matrix.multiplyMM(combinedMatrix, 0, viewMatrix, 0, modelMatrix, 0);
+			Matrix.multiplyMM(combinedMatrix, 0, projectionMatrix, 0,
+					combinedMatrix, 0);
+
+			// Load in the MVP matrix
+			glUniformMatrix4fv(spriteShaderParams[0], 1, false, combinedMatrix,
+					0);
+
+			// Draw the sprite
+			glDrawArrays(GL_TRIANGLES, 0, 6);
+		}
 
 		// Clean up state bits that were set
 		glUseProgram(0);

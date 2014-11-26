@@ -931,6 +931,8 @@ public class MainUI {
     
     private static final float LIGHT_PACKET_INTERVAL = 1f / 1f;
     private float lightPacketInterval = LIGHT_PACKET_INTERVAL;
+    
+    private static final float TRANSITION_TIME = 5f;
 
     /**
      * This is the primary step driver for the interface. Call all time-based
@@ -950,44 +952,44 @@ public class MainUI {
         // Night Time Mode
         if ((Simulation.SimInfo.currentTime > 18.00 || Simulation.SimInfo.currentTime < 6.00) && !night) {
             night = true;
-            ClickableObjects.background.setResource(R.drawable.backgroundnight);
-            ClickableObjects.business1a.setResource(R.drawable.business1night);
-            ClickableObjects.business1b.setResource(R.drawable.business1night);
-            ClickableObjects.business2a.setResource(R.drawable.business2night);
-            ClickableObjects.business2b.setResource(R.drawable.business2night);
-            ClickableObjects.business2c.setResource(R.drawable.business2night);
-            ClickableObjects.graphs.setResource(R.drawable.graphsnight);
-            ClickableObjects.house1solar1.setResource(R.drawable.house1solarnight);
-            ClickableObjects.house1solar2.setResource(R.drawable.house1solarnight);
-            ClickableObjects.house1solar3.setResource(R.drawable.house1solarnight);
-            ClickableObjects.house2solar1.setResource(R.drawable.house2solarnight);
-            ClickableObjects.house2solar2.setResource(R.drawable.house2solarnight);
-            ClickableObjects.house2solar3.setResource(R.drawable.house2solarnight);
-            ClickableObjects.house3a.setResource(R.drawable.house3night);
-            ClickableObjects.house3b.setResource(R.drawable.house3night);
-            ClickableObjects.house3c.setResource(R.drawable.house3night);
-            ClickableObjects.info.setResource(R.drawable.infonight);
-            Objects.battery.setResource(R.drawable.batterynight);
-            Objects.midway.setResource(R.drawable.midwaynight);
-            Objects.museum.setResource(R.drawable.museumnight);
-            Objects.solarpanel.setResource(R.drawable.solarpanelnight);
-            Objects.stadium.setResource(R.drawable.stadiumnight);
-            Objects.substation.setResource(R.drawable.substationnight);
-            Objects.switch1.setResource(R.drawable.switch1night);
-            Objects.switch2.setResource(R.drawable.switch1night);
-            Objects.switch3.setResource(R.drawable.switch1night);
-            Objects.switch4.setResource(R.drawable.switch1night);
-            Objects.switch5.setResource(R.drawable.switch1night);
-            Objects.switch6.setResource(R.drawable.switch1night);
-            Objects.tie.setResource(R.drawable.tienight);
-            Objects.transformer.setResource(R.drawable.transformernight);
-            Objects.transformer2.setResource(R.drawable.transformernight);
-            Objects.transformer3.setResource(R.drawable.transformernight);
-            Objects.transformer4.setResource(R.drawable.transformernight);
-            Objects.transformer5.setResource(R.drawable.transformernight);
-            Objects.transformer6.setResource(R.drawable.transformernight);
-            Objects.turbine.setResource(R.drawable.turbinenight);
-            Objects.turbine2.setResource(R.drawable.turbinenight);
+            ClickableObjects.background.setResourceOverTime(R.drawable.backgroundnight, TRANSITION_TIME);
+            ClickableObjects.business1a.setResourceOverTime(R.drawable.business1night, TRANSITION_TIME);
+            ClickableObjects.business1b.setResourceOverTime(R.drawable.business1night, TRANSITION_TIME);
+            ClickableObjects.business2a.setResourceOverTime(R.drawable.business2night, TRANSITION_TIME);
+            ClickableObjects.business2b.setResourceOverTime(R.drawable.business2night, TRANSITION_TIME);
+            ClickableObjects.business2c.setResourceOverTime(R.drawable.business2night, TRANSITION_TIME);
+            ClickableObjects.graphs.setResourceOverTime(R.drawable.graphsnight, TRANSITION_TIME);
+            ClickableObjects.house1solar1.setResourceOverTime(R.drawable.house1solarnight, TRANSITION_TIME);
+            ClickableObjects.house1solar2.setResourceOverTime(R.drawable.house1solarnight, TRANSITION_TIME);
+            ClickableObjects.house1solar3.setResourceOverTime(R.drawable.house1solarnight, TRANSITION_TIME);
+            ClickableObjects.house2solar1.setResourceOverTime(R.drawable.house2solarnight, TRANSITION_TIME);
+            ClickableObjects.house2solar2.setResourceOverTime(R.drawable.house2solarnight, TRANSITION_TIME);
+            ClickableObjects.house2solar3.setResourceOverTime(R.drawable.house2solarnight, TRANSITION_TIME);
+            ClickableObjects.house3a.setResourceOverTime(R.drawable.house3night, TRANSITION_TIME);
+            ClickableObjects.house3b.setResourceOverTime(R.drawable.house3night, TRANSITION_TIME);
+            ClickableObjects.house3c.setResourceOverTime(R.drawable.house3night, TRANSITION_TIME);
+            ClickableObjects.info.setResourceOverTime(R.drawable.infonight, TRANSITION_TIME);
+            Objects.battery.setResourceOverTime(R.drawable.batterynight, TRANSITION_TIME);
+            Objects.midway.setResourceOverTime(R.drawable.midwaynight, TRANSITION_TIME);
+            Objects.museum.setResourceOverTime(R.drawable.museumnight, TRANSITION_TIME);
+            Objects.solarpanel.setResourceOverTime(R.drawable.solarpanelnight, TRANSITION_TIME);
+            Objects.stadium.setResourceOverTime(R.drawable.stadiumnight, TRANSITION_TIME);
+            Objects.substation.setResourceOverTime(R.drawable.substationnight, TRANSITION_TIME);
+            Objects.switch1.setResourceOverTime(R.drawable.switch1night, TRANSITION_TIME);
+            Objects.switch2.setResourceOverTime(R.drawable.switch1night, TRANSITION_TIME);
+            Objects.switch3.setResourceOverTime(R.drawable.switch1night, TRANSITION_TIME);
+            Objects.switch4.setResourceOverTime(R.drawable.switch1night, TRANSITION_TIME);
+            Objects.switch5.setResourceOverTime(R.drawable.switch1night, TRANSITION_TIME);
+            Objects.switch6.setResourceOverTime(R.drawable.switch1night, TRANSITION_TIME);
+            Objects.tie.setResourceOverTime(R.drawable.tienight, TRANSITION_TIME);
+            Objects.transformer.setResourceOverTime(R.drawable.transformernight, TRANSITION_TIME);
+            Objects.transformer2.setResourceOverTime(R.drawable.transformernight, TRANSITION_TIME);
+            Objects.transformer3.setResourceOverTime(R.drawable.transformernight, TRANSITION_TIME);
+            Objects.transformer4.setResourceOverTime(R.drawable.transformernight, TRANSITION_TIME);
+            Objects.transformer5.setResourceOverTime(R.drawable.transformernight, TRANSITION_TIME);
+            Objects.transformer6.setResourceOverTime(R.drawable.transformernight, TRANSITION_TIME);
+            Objects.turbine.setResourceOverTime(R.drawable.turbinenight, TRANSITION_TIME);
+            Objects.turbine2.setResourceOverTime(R.drawable.turbinenight, TRANSITION_TIME);
             UIInfo.trA.setColor(new Color(255, 255, 255));
             UIInfo.trB.setColor(new Color(255, 255, 255));
             UIInfo.trC.setColor(new Color(255, 255, 255));
@@ -1006,44 +1008,44 @@ public class MainUI {
             UIInfo.transTotal.setColor(new Color(255, 255, 255));
         } else if ((Simulation.SimInfo.currentTime <= 18.00 && Simulation.SimInfo.currentTime >= 6.00) && night) {
             night = false;
-            ClickableObjects.background.setResource(R.drawable.background);
-            ClickableObjects.business1a.setResource(R.drawable.business1);
-            ClickableObjects.business1b.setResource(R.drawable.business1);
-            ClickableObjects.business2a.setResource(R.drawable.business2);
-            ClickableObjects.business2b.setResource(R.drawable.business2);
-            ClickableObjects.business2c.setResource(R.drawable.business2);
-            ClickableObjects.graphs.setResource(R.drawable.graphs);
-            ClickableObjects.house1solar1.setResource(R.drawable.house1solar);
-            ClickableObjects.house1solar2.setResource(R.drawable.house1solar);
-            ClickableObjects.house1solar3.setResource(R.drawable.house1solar);
-            ClickableObjects.house2solar1.setResource(R.drawable.house2solar);
-            ClickableObjects.house2solar2.setResource(R.drawable.house2solar);
-            ClickableObjects.house2solar3.setResource(R.drawable.house2solar);
-            ClickableObjects.house3a.setResource(R.drawable.house3);
-            ClickableObjects.house3b.setResource(R.drawable.house3);
-            ClickableObjects.house3c.setResource(R.drawable.house3);
-            ClickableObjects.info.setResource(R.drawable.info);
-            Objects.battery.setResource(R.drawable.battery);
-            Objects.midway.setResource(R.drawable.midway);
-            Objects.museum.setResource(R.drawable.museum);
-            Objects.solarpanel.setResource(R.drawable.solarpanel);
-            Objects.stadium.setResource(R.drawable.stadium);
-            Objects.substation.setResource(R.drawable.substation);
-            Objects.switch1.setResource(R.drawable.switch1);
-            Objects.switch2.setResource(R.drawable.switch1);
-            Objects.switch3.setResource(R.drawable.switch1);
-            Objects.switch4.setResource(R.drawable.switch1);
-            Objects.switch5.setResource(R.drawable.switch1);
-            Objects.switch6.setResource(R.drawable.switch1);
-            Objects.tie.setResource(R.drawable.tie);
-            Objects.transformer.setResource(R.drawable.transformer);
-            Objects.transformer2.setResource(R.drawable.transformer);
-            Objects.transformer3.setResource(R.drawable.transformer);
-            Objects.transformer4.setResource(R.drawable.transformer);
-            Objects.transformer5.setResource(R.drawable.transformer);
-            Objects.transformer6.setResource(R.drawable.transformer);
-            Objects.turbine.setResource(R.drawable.turbine);
-            Objects.turbine2.setResource(R.drawable.turbine);
+            ClickableObjects.background.setResourceOverTime(R.drawable.background, TRANSITION_TIME);
+            ClickableObjects.business1a.setResourceOverTime(R.drawable.business1, TRANSITION_TIME);
+            ClickableObjects.business1b.setResourceOverTime(R.drawable.business1, TRANSITION_TIME);
+            ClickableObjects.business2a.setResourceOverTime(R.drawable.business2, TRANSITION_TIME);
+            ClickableObjects.business2b.setResourceOverTime(R.drawable.business2, TRANSITION_TIME);
+            ClickableObjects.business2c.setResourceOverTime(R.drawable.business2, TRANSITION_TIME);
+            ClickableObjects.graphs.setResourceOverTime(R.drawable.graphs, TRANSITION_TIME);
+            ClickableObjects.house1solar1.setResourceOverTime(R.drawable.house1solar, TRANSITION_TIME);
+            ClickableObjects.house1solar2.setResourceOverTime(R.drawable.house1solar, TRANSITION_TIME);
+            ClickableObjects.house1solar3.setResourceOverTime(R.drawable.house1solar, TRANSITION_TIME);
+            ClickableObjects.house2solar1.setResourceOverTime(R.drawable.house2solar, TRANSITION_TIME);
+            ClickableObjects.house2solar2.setResourceOverTime(R.drawable.house2solar, TRANSITION_TIME);
+            ClickableObjects.house2solar3.setResourceOverTime(R.drawable.house2solar, TRANSITION_TIME);
+            ClickableObjects.house3a.setResourceOverTime(R.drawable.house3, TRANSITION_TIME);
+            ClickableObjects.house3b.setResourceOverTime(R.drawable.house3, TRANSITION_TIME);
+            ClickableObjects.house3c.setResourceOverTime(R.drawable.house3, TRANSITION_TIME);
+            ClickableObjects.info.setResourceOverTime(R.drawable.info, TRANSITION_TIME);
+            Objects.battery.setResourceOverTime(R.drawable.battery, TRANSITION_TIME);
+            Objects.midway.setResourceOverTime(R.drawable.midway, TRANSITION_TIME);
+            Objects.museum.setResourceOverTime(R.drawable.museum, TRANSITION_TIME);
+            Objects.solarpanel.setResourceOverTime(R.drawable.solarpanel, TRANSITION_TIME);
+            Objects.stadium.setResourceOverTime(R.drawable.stadium, TRANSITION_TIME);
+            Objects.substation.setResourceOverTime(R.drawable.substation, TRANSITION_TIME);
+            Objects.switch1.setResourceOverTime(R.drawable.switch1, TRANSITION_TIME);
+            Objects.switch2.setResourceOverTime(R.drawable.switch1, TRANSITION_TIME);
+            Objects.switch3.setResourceOverTime(R.drawable.switch1, TRANSITION_TIME);
+            Objects.switch4.setResourceOverTime(R.drawable.switch1, TRANSITION_TIME);
+            Objects.switch5.setResourceOverTime(R.drawable.switch1, TRANSITION_TIME);
+            Objects.switch6.setResourceOverTime(R.drawable.switch1, TRANSITION_TIME);
+            Objects.tie.setResourceOverTime(R.drawable.tie, TRANSITION_TIME);
+            Objects.transformer.setResourceOverTime(R.drawable.transformer, TRANSITION_TIME);
+            Objects.transformer2.setResourceOverTime(R.drawable.transformer, TRANSITION_TIME);
+            Objects.transformer3.setResourceOverTime(R.drawable.transformer, TRANSITION_TIME);
+            Objects.transformer4.setResourceOverTime(R.drawable.transformer, TRANSITION_TIME);
+            Objects.transformer5.setResourceOverTime(R.drawable.transformer, TRANSITION_TIME);
+            Objects.transformer6.setResourceOverTime(R.drawable.transformer, TRANSITION_TIME);
+            Objects.turbine.setResourceOverTime(R.drawable.turbine, TRANSITION_TIME);
+            Objects.turbine2.setResourceOverTime(R.drawable.turbine, TRANSITION_TIME);
             UIInfo.trA.setColor(new Color(0, 0, 0));
             UIInfo.trB.setColor(new Color(0, 0, 0));
             UIInfo.trC.setColor(new Color(0, 0, 0));
@@ -1166,7 +1168,7 @@ public class MainUI {
                         UIInfo.WindTurbines.getMaxLineWidth());
 
             if (Math.random() < textUpdateChance)
-                UIInfo.PowPlant.setText("" + String.format("%.2f", Simulation.SimInfo.PowPlant + Simulation.SimInfo.BatteryStorage) + " MW",
+                UIInfo.PowPlant.setText("" + String.format("%.2f", Simulation.SimInfo.PowPlant) + " MW",
                         UIInfo.PowPlant.getFontSize(), UIInfo.PowPlant.getFont(),
                         UIInfo.PowPlant.getMaxLineWidth());
 

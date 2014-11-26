@@ -241,14 +241,27 @@ public class LightAnimation {
 			toLED = to;
 
 			final Color color;
-			if (type == OrbTypes.BLUE) {
-				color = new Color(70, 255, 244);
+			final boolean additive;
+			if (Global.getGlobalSimulation().data.time >= 18.0
+					|| Global.getGlobalSimulation().data.time <= 6.0) {
+				if (type == OrbTypes.BLUE) {
+					color = new Color(70, 255, 244);
+				} else {
+					color = new Color(111, 255, 0);
+				}
+				additive = true;
 			} else {
-				color = new Color(111, 255, 0);
+				if (type == OrbTypes.BLUE) {
+					color = new Color(100, 255, 250);
+				} else {
+					color = new Color(125, 255, 75);
+				}
+				additive = false;
 			}
 
 			sprite = new Sprite(MainUI.ledPositionMap.get(from), 1, 0f,
 					new Vector2f(1f, 1f), color, R.drawable.orb);
+			sprite.setAdditive(additive);
 
 			Global.getRenderer().addDrawable(sprite);
 		}
@@ -260,6 +273,27 @@ public class LightAnimation {
 							- MainUI.ledPositionMap.get(fromLED).y) <= OFF_THRESHOLD) {
 				return distance;
 			}
+
+			final Color color;
+			final boolean additive;
+			if (Global.getGlobalSimulation().data.time >= 18.0
+					|| Global.getGlobalSimulation().data.time <= 6.0) {
+				if (type == OrbTypes.BLUE) {
+					color = new Color(70, 255, 244);
+				} else {
+					color = new Color(111, 255, 0);
+				}
+				additive = true;
+			} else {
+				if (type == OrbTypes.BLUE) {
+					color = new Color(100, 255, 250);
+				} else {
+					color = new Color(125, 255, 75);
+				}
+				additive = false;
+			}
+			sprite.setColor(color);
+			sprite.setAdditive(additive);
 
 			final float dist = Vector2f.sub(MainUI.ledPositionMap.get(toLED),
 					MainUI.ledPositionMap.get(fromLED), null).length();
