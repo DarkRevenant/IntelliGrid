@@ -933,6 +933,9 @@ public class MainUI {
 
     private double textUpdateChance = 1.0;
     private float textUpdateTimer = TEXT_UPDATE_INTERVAL;
+    
+    private static final float LIGHT_PACKET_INTERVAL = (float) (1.0 / 9.0);
+    private float lightPacketTimer = LIGHT_PACKET_INTERVAL;
 
     /**
      * This is the primary step driver for the interface. Call all time-based
@@ -1300,9 +1303,13 @@ public class MainUI {
             textUpdateTimer += TEXT_UPDATE_INTERVAL;
         }
 
+        lightPacketTimer -= amount;
         lightAnimation.advance(amount);
-        lightAnimation.advanceState(amount);
-        MainNetworkHandler.constructAndSendPacket(PacketTypes.LIGHT_ANIMATION, null);
+        if (lightPacketTimer <= 0f) {
+            lightAnimation.advanceState(amount);
+            MainNetworkHandler.constructAndSendPacket(PacketTypes.LIGHT_ANIMATION, null);
+            lightPacketTimer = LIGHT_PACKET_INTERVAL;
+        }
 
         textUpdateChance = TEXT_UPDATE_CHANCE;
     }

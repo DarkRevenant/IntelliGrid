@@ -52,8 +52,7 @@ public class MainRenderer implements GLSurfaceView.Renderer {
 
 	@Override
 	public void onDrawFrame(GL10 unused) {
-		final long beginms, endms;
-		long leftms;
+		final long beginms;
 
 		beginms = System.currentTimeMillis();
 
@@ -61,13 +60,9 @@ public class MainRenderer implements GLSurfaceView.Renderer {
 
 		lastms = beginms;
 
-		endms = System.currentTimeMillis() - beginms;
-
-		leftms = (1000L / FRAME_RATE) - endms;
-
 		// avoid catchup
-		if (leftms > 1000) {
-			leftms = 1000;
+		if (amount < (float) (1.0 / 128.0)) {
+			amount = (float) (1.0 / 128.0);
 		}
 		if (amount > 0.1f) {
 			amount = 0.1f;
@@ -75,11 +70,6 @@ public class MainRenderer implements GLSurfaceView.Renderer {
 
 		advance(amount);
 		draw(amount);
-
-		/*try {
-			TimeUnit.MILLISECONDS.sleep(leftms);
-		} catch (InterruptedException e) {
-		}*/
 	}
 
 	/**

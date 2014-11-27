@@ -242,9 +242,6 @@ public class MainNetworkHandler {
 			}
 			
 			switch (data.load) {
-			case 0:
-				out = out + "0";
-				break;
 			case 1:
 				out = out + "1";
 				break;
@@ -253,6 +250,15 @@ public class MainNetworkHandler {
 				break;
 			case 3:
 				out = out + "3";
+				break;
+			case 4:
+				out = out + "4";
+				break;
+			case 5:
+				out = out + "5";
+				break;
+			case 6:
+				out = out + "6";
 				break;
 			default:
 				return null;
@@ -399,6 +405,30 @@ public class MainNetworkHandler {
 			for (int i = 1; i <= 177; i++) {
 				out = out + LightAnimation.getState(i).signal;
 			}
+			/*for (int i = 0; i < 22; i++) {
+				out = out + "0";
+			}
+			for (int i = 0; i < 22; i++) {
+				out = out + "1";
+			}
+			for (int i = 0; i < 22; i++) {
+				out = out + "2";
+			}
+			for (int i = 0; i < 22; i++) {
+				out = out + "3";
+			}
+			for (int i = 0; i < 22; i++) {
+				out = out + "4";
+			}
+			for (int i = 0; i < 22; i++) {
+				out = out + "5";
+			}
+			for (int i = 0; i < 22; i++) {
+				out = out + "6";
+			}
+			for (int i = 0; i < 23; i++) {
+				out = out + "7";
+			}*/
 			return out;
 		}
 	}

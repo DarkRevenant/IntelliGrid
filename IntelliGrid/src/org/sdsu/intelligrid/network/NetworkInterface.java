@@ -7,9 +7,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.net.InetAddress;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.Date;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -35,8 +33,7 @@ public class NetworkInterface implements Runnable {
 	 * NETWORK CONFIGURATION
 	 */
 	private static final int SERVER_PORT = 9750;
-	private static final byte[] SERVER_IP = { (byte) 192, (byte) 168, (byte) 1,
-			(byte) 10 }; // 192.168.1.10
+	private static final String SERVER_IP = "192.168.1.10";
 	/**
 	 * END NETWORK CONFIGURATION
 	 */
@@ -45,7 +42,8 @@ public class NetworkInterface implements Runnable {
 	private BufferedReader reader = null;
 	private BufferedWriter writer = null;
 
-	private boolean failed = false;
+	private float waitAfterConnect = 5f;
+	private long startTime;
 
 	/**
 	 * Pushes a network message to the output buffer to be sent at the earliest
@@ -91,23 +89,21 @@ public class NetworkInterface implements Runnable {
 	 * Returns <tt>false</tt> otherwise.
 	 */
 	public boolean isConnected() {
-		return clientSocket != null;
+		return clientSocket != null && waitAfterConnect <= 0f;
 	}
 
 	private Socket connect() {
 		final Socket connection;
 		try {
-			final InetAddress serverAddress = InetAddress
-					.getByAddress(SERVER_IP);
-			connection = new Socket(serverAddress, SERVER_PORT);
-		} catch (UnknownHostException e1) {
-			Logger.getGlobal().log(Level.SEVERE, e1.getMessage());
-			return null;
-		} catch (IOException e) {
-			Logger.getGlobal().log(Level.SEVERE, e.getMessage());
+			connection = new Socket(SERVER_IP, SERVER_PORT);
+		} catch (Exception e) {
+			Logger.getGlobal().log(Level.SEVERE,
+					"Connection failed: " + e.getMessage());
 			return null;
 		}
 
+		waitAfterConnect = 5f;
+		startTime = System.currentTimeMillis();
 		return connection;
 	}
 
@@ -115,7 +111,7 @@ public class NetworkInterface implements Runnable {
 
 		@Override
 		public void run() {
-			while (!Thread.currentThread().isInterrupted() && !failed) {
+			while (!Thread.currentThread().isInterrupted()) {
 				if (clientSocket == null || reader == null) {
 					continue;
 				}
@@ -124,9 +120,10 @@ public class NetworkInterface implements Runnable {
 				try {
 					in = reader.readLine();
 				} catch (IOException e) {
-					Logger.getGlobal().log(Level.SEVERE, e.getMessage());
-					failed = true;
-					break;
+					Logger.getGlobal().log(Level.SEVERE,
+							"Reader failed: " + e.getMessage());
+					clientSocket = null;
+					continue;
 				}
 
 				if (in != null) {
@@ -148,7 +145,21 @@ public class NetworkInterface implements Runnable {
 
 		new Thread(new XBeeReader()).start();
 
-		while (!Thread.currentThread().isInterrupted() && !failed) {
+		while (!Thread.currentThread().isInterrupted()) {
+			if (clientSocket != null) {
+				if (!clientSocket.isBound()) {
+					clientSocket = null;
+					Logger.getGlobal()
+							.log(Level.SEVERE, "Socket is not bound!");
+				} else if (clientSocket.isClosed()) {
+					clientSocket = null;
+					Logger.getGlobal().log(Level.SEVERE, "Socket is closed!");
+				} else if (!clientSocket.isConnected()) {
+					clientSocket = null;
+					Logger.getGlobal().log(Level.SEVERE,
+							"Socket is not connected!");
+				}
+			}
 			if (clientSocket == null) {
 				Logger.getGlobal().log(Level.INFO, "Attempting connection...");
 				clientSocket = connect();
@@ -170,11 +181,17 @@ public class NetworkInterface implements Runnable {
 							clientSocket.getInputStream()), 65536);
 					writer = new BufferedWriter(new OutputStreamWriter(
 							clientSocket.getOutputStream()), 65536);
-				} catch (IOException e) {
-					Logger.getGlobal().log(Level.SEVERE, e.getMessage());
-					failed = true;
-					break;
+				} catch (Exception e) {
+					Logger.getGlobal().log(Level.SEVERE,
+							"Failed to initialize r/w: " + e.getMessage());
+					clientSocket = null;
+					continue;
 				}
+			}
+
+			if (waitAfterConnect > 0f) {
+				waitAfterConnect -= (float) (System.currentTimeMillis() - startTime) / 1000f;
+				startTime = System.currentTimeMillis();
 			}
 
 			if (writer != null) {
@@ -182,15 +199,16 @@ public class NetworkInterface implements Runnable {
 
 				if (packet != null) {
 					final String out = packet.message;
-					Logger.getGlobal().log(Level.INFO,
-							"Sending \"" + out + "\"");
 					try {
 						writer.write(out);
-					} catch (IOException e) {
-						Logger.getGlobal().log(Level.SEVERE, e.getMessage());
-						failed = true;
-						break;
+						writer.flush();
+					} catch (Exception e) {
+						Logger.getGlobal().log(Level.SEVERE,
+								"Failed to write: " + e.getMessage());
+						clientSocket = null;
+						continue;
 					}
+					Logger.getGlobal().log(Level.INFO, "Sent \"" + out + "\"");
 				}
 			}
 		}

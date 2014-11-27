@@ -23,12 +23,13 @@ public class LightAnimation {
 	}
 
 	public static enum LightStates {
-		OFF('0'), RED('1'), BLUE('2'), DIMMER_BLUE('3'), DIMMEST_BLUE('4'), GREEN(
-				'5'), DIMMER_GREEN('6'), DIMMEST_GREEN('7');
+		OFF((byte) 0), RED((byte) 1), BLUE((byte) 2), DIMMER_BLUE((byte) 3), DIMMEST_BLUE(
+				(byte) 4), GREEN((byte) 5), DIMMER_GREEN((byte) 6), DIMMEST_GREEN(
+				(byte) 7);
 
-		public final char signal;
+		public final byte signal;
 
-		private LightStates(final char signal) {
+		private LightStates(final byte signal) {
 			this.signal = signal;
 		}
 	}
@@ -426,8 +427,8 @@ public class LightAnimation {
 
 	private static final float OFF_THRESHOLD = 0.0001f;
 
-	private static final float GEN_SCALE = 40f;
-	private static final float FLOW_SCALE = 5f;
+	private static final float GEN_SCALE = 4f;
+	private static final float FLOW_SCALE = 3f;
 
 	private static boolean paused = false;
 

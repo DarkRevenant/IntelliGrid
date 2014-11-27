@@ -54,7 +54,7 @@ public class InputHook {
 			MainUI.Objects.playdown.setDepth(-1);
 			MainUI.Objects.play2down.setDepth(11);
 			MainUI.Objects.play3down.setDepth(11);
-			MainUI.Objects.pausedown.setDepth(11);
+			//MainUI.Objects.pausedown.setDepth(11);
 		}
 		if (object.getId().equals("play2")) {
 			LightAnimation.setPaused(false);
@@ -62,7 +62,7 @@ public class InputHook {
 			MainUI.Objects.playdown.setDepth(11);
 			MainUI.Objects.play2down.setDepth(-1);
 			MainUI.Objects.play3down.setDepth(11);
-			MainUI.Objects.pausedown.setDepth(11);
+			//MainUI.Objects.pausedown.setDepth(11);
 		}
 		if (object.getId().equals("play3")) {
 			LightAnimation.setPaused(false);
@@ -70,7 +70,7 @@ public class InputHook {
 			MainUI.Objects.playdown.setDepth(11);
 			MainUI.Objects.play2down.setDepth(11);
 			MainUI.Objects.play3down.setDepth(-1);
-			MainUI.Objects.pausedown.setDepth(11);
+			//MainUI.Objects.pausedown.setDepth(11);
 		}
 		if (object.getId().equals("pause")) {
 			LightAnimation.setPaused(true);
@@ -78,7 +78,7 @@ public class InputHook {
 			MainUI.Objects.playdown.setDepth(11);
 			MainUI.Objects.play2down.setDepth(11);
 			MainUI.Objects.play3down.setDepth(11);
-			MainUI.Objects.pausedown.setDepth(-1);
+			//MainUI.Objects.pausedown.setDepth(-1);
 		}
 
 		// if(object.getId().equals("background")) {
