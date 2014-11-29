@@ -88,14 +88,35 @@ public class MainUI {
      */
     public void init() {
         final List<Integer> resources = new ArrayList<>();
+        resources.add(R.drawable.faulta);
+        resources.add(R.drawable.faultb);
+        resources.add(R.drawable.faultc);
+        resources.add(R.drawable.faultd);
+        resources.add(R.drawable.faulte);
+        resources.add(R.drawable.faultf);
+        resources.add(R.drawable.faulth);
+        resources.add(R.drawable.faulti);
+        resources.add(R.drawable.faultj);
+        resources.add(R.drawable.faultk);
+        resources.add(R.drawable.faultl);
+        resources.add(R.drawable.faultm);
+        resources.add(R.drawable.nofault);
         resources.add(R.drawable.background);
         resources.add(R.drawable.backgroundnight);
-        resources.add(R.drawable.battery);
-        resources.add(R.drawable.batterynight);
+        resources.add(R.drawable.balloon);
+        resources.add(R.drawable.balloonnight);
+        resources.add(R.drawable.battery1);
+        resources.add(R.drawable.battery1night);
+        resources.add(R.drawable.battery2);
+        resources.add(R.drawable.battery2night);
+        resources.add(R.drawable.battery3);
+        resources.add(R.drawable.battery3night);
         resources.add(R.drawable.business1);
         resources.add(R.drawable.business1night);
         resources.add(R.drawable.business2);
         resources.add(R.drawable.business2night);
+        resources.add(R.drawable.coal);
+        resources.add(R.drawable.coalnight);
         resources.add(R.drawable.exit);
         resources.add(R.drawable.faults);
         resources.add(R.drawable.faultspage);
@@ -126,6 +147,7 @@ public class MainUI {
         resources.add(R.drawable.orb);
         resources.add(R.drawable.paths);
         resources.add(R.drawable.pause);
+        resources.add(R.drawable.pausedown);
         resources.add(R.drawable.play);
         resources.add(R.drawable.play2);
         resources.add(R.drawable.play2down);
@@ -153,10 +175,12 @@ public class MainUI {
         resources.add(R.drawable.tieopen);
         resources.add(R.drawable.tieopennight);
         resources.add(R.drawable.trackhoe);
+        resources.add(R.drawable.trackhoenight);
         resources.add(R.drawable.transformer1);
         resources.add(R.drawable.transformer1night);
         resources.add(R.drawable.turbine);
         resources.add(R.drawable.turbinenight);
+        resources.add(R.drawable.xout);
         Global.getRenderer().loadTextures(resources);
     }
 
@@ -189,6 +213,19 @@ public class MainUI {
     }
 
     public static class ClickableObjects {
+        public static ClickableSprite faulta;
+        public static ClickableSprite faultb;
+        public static ClickableSprite faultc;
+        public static ClickableSprite faultd;
+        public static ClickableSprite faulte;
+        public static ClickableSprite faultf;
+        public static ClickableSprite faulth;
+        public static ClickableSprite faulti;
+        public static ClickableSprite faultj;
+        public static ClickableSprite faultk;
+        public static ClickableSprite faultl;
+        public static ClickableSprite faultm;
+        public static ClickableSprite nofault;
         public static ClickableSprite background;
         public static ClickableSprite infopage;
         public static ClickableSprite exitinfo;
@@ -232,19 +269,41 @@ public class MainUI {
     }
 
     public static class Objects {
-        public static Sprite battery;
+        public static Sprite battery1;
+        public static Sprite battery2;
+        public static Sprite battery3;
+        public static Sprite balloon;
         public static Sprite midway;
         public static Sprite museum;
         public static Sprite solarpanel;
         public static Sprite stadium;
         public static Sprite substation;
         public static Sprite switch1;
+        public static Sprite switch1top;
+        public static Sprite switch1middle;
+        public static Sprite switch1bottom;
         public static Sprite switch2;
+        public static Sprite switch2top;
+        public static Sprite switch2middle;
+        public static Sprite switch2bottom;
         public static Sprite switch3;
+        public static Sprite switch3top;
+        public static Sprite switch3middle;
+        public static Sprite switch3bottom;
         public static Sprite switch4;
+        public static Sprite switch4top;
+        public static Sprite switch4middle;
+        public static Sprite switch4bottom;
         public static Sprite switch5;
+        public static Sprite switch5top;
+        public static Sprite switch5middle;
+        public static Sprite switch5bottom;
         public static Sprite switch6;
+        public static Sprite switch6top;
+        public static Sprite switch6middle;
+        public static Sprite switch6bottom;
         public static Sprite tie;
+        public static Sprite tieopen;
         public static Sprite transformer1;
         public static Sprite transformer2;
         public static Sprite transformer3;
@@ -253,13 +312,30 @@ public class MainUI {
         public static Sprite transformer6;
         public static Sprite turbine;
         public static Sprite turbine2;
+        public static Sprite play;
         public static Sprite playdown;
+        public static Sprite play2;
         public static Sprite play2down;
+        public static Sprite play3;
         public static Sprite play3down;
+        public static Sprite pause;
         public static Sprite pausedown;
         public static Sprite paths;
         public static Sprite intelligrid;
         public static Sprite trackhoe;
+        public static Sprite coal;
+        public static Sprite xouta;
+        public static Sprite xoutb;
+        public static Sprite xoutc;
+        public static Sprite xoutd;
+        public static Sprite xoute;
+        public static Sprite xoutf;
+        public static Sprite xouth;
+        public static Sprite xouti;
+        public static Sprite xoutj;
+        public static Sprite xoutk;
+        public static Sprite xoutl;
+        public static Sprite xoutm;
     }
 
     /**
@@ -325,37 +401,106 @@ public class MainUI {
         Global.getRenderer().addDrawable(ClickableObjects.exitinfo);
         addClickable(ClickableObjects.exitinfo);
 
-        ClickableObjects.play = new ClickableSprite(pixelsToCoords(2210, 1550), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.play, sizeToCoords(-14,-20), sizeToCoords(14,20), "play");
+        ClickableObjects.play = new ClickableSprite(pixelsToCoords(2200, 1550), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.play, sizeToCoords(-32,-32), sizeToCoords(32,32), "play");
         Global.getRenderer().addDrawable(ClickableObjects.play);
         addClickable(ClickableObjects.play);
 
-        Objects.playdown = new Sprite(pixelsToCoords(2210, 1550), 11, 0f, new Vector2f(1f, 1f),
+        Objects.playdown = new Sprite(pixelsToCoords(2200, 1550), -1, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.playdown);
         Global.getRenderer().addDrawable(Objects.playdown);
 
-        ClickableObjects.play2 = new ClickableSprite(pixelsToCoords(2300, 1550), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.play2, sizeToCoords(-19,-20), sizeToCoords(19,20), "play2");
+        ClickableObjects.play2 = new ClickableSprite(pixelsToCoords(2290, 1550), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.play2, sizeToCoords(-32,-32), sizeToCoords(32,32), "play2");
         Global.getRenderer().addDrawable(ClickableObjects.play2);
         addClickable(ClickableObjects.play2);
 
-        Objects.play2down = new Sprite(pixelsToCoords(2300, 1550), 11, 0f, new Vector2f(1f, 1f),
+        Objects.play2down = new Sprite(pixelsToCoords(2290, 1550), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.play2down);
         Global.getRenderer().addDrawable(Objects.play2down);
 
-        ClickableObjects.play3 = new ClickableSprite(pixelsToCoords(2400, 1550), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.play3, sizeToCoords(-33,-20), sizeToCoords(33,20), "play3");
+        ClickableObjects.play3 = new ClickableSprite(pixelsToCoords(2390, 1550), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.play3, sizeToCoords(-32,-32), sizeToCoords(32,32), "play3");
         Global.getRenderer().addDrawable(ClickableObjects.play3);
         addClickable(ClickableObjects.play3);
 
-        Objects.play3down = new Sprite(pixelsToCoords(2400, 1550), 11, 0f, new Vector2f(1f, 1f),
+        Objects.play3down = new Sprite(pixelsToCoords(2390, 1550), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.play3down);
         Global.getRenderer().addDrawable(Objects.play3down);
 
         ClickableObjects.pause = new ClickableSprite(pixelsToCoords(2500, 1550), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.pause, sizeToCoords(-17,-20), sizeToCoords(17,20), "pause");
+                new Color(255, 255, 255), R.drawable.pause, sizeToCoords(-32,-32), sizeToCoords(32,32), "pause");
         Global.getRenderer().addDrawable(ClickableObjects.pause);
         addClickable(ClickableObjects.pause);
+
+        Objects.pausedown = new Sprite(pixelsToCoords(2500, 1550), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.pausedown);
+        Global.getRenderer().addDrawable(Objects.pausedown);
+
+        ClickableObjects.faulta = new ClickableSprite(pixelsToCoords(500, 800), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.faulta, sizeToCoords(-56,-60), sizeToCoords(56,60), "faulta");
+        Global.getRenderer().addDrawable(ClickableObjects.faulta);
+        addClickable(ClickableObjects.faulta);
+
+        ClickableObjects.faultb = new ClickableSprite(pixelsToCoords(650, 800), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.faultb, sizeToCoords(-56,-60), sizeToCoords(56,60), "faultb");
+        Global.getRenderer().addDrawable(ClickableObjects.faultb);
+        addClickable(ClickableObjects.faultb);
+
+        ClickableObjects.faultc = new ClickableSprite(pixelsToCoords(800, 800), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.faultc, sizeToCoords(-56,-60), sizeToCoords(56,60), "faultc");
+        Global.getRenderer().addDrawable(ClickableObjects.faultc);
+        addClickable(ClickableObjects.faultc);
+
+        ClickableObjects.faultd = new ClickableSprite(pixelsToCoords(950, 800), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.faultd, sizeToCoords(-56,-60), sizeToCoords(56,60), "faultd");
+        Global.getRenderer().addDrawable(ClickableObjects.faultd);
+        addClickable(ClickableObjects.faultd);
+
+        ClickableObjects.faulte = new ClickableSprite(pixelsToCoords(1100, 800), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.faulte, sizeToCoords(-56,-60), sizeToCoords(56,60), "faulte");
+        Global.getRenderer().addDrawable(ClickableObjects.faulte);
+        addClickable(ClickableObjects.faulte);
+
+        ClickableObjects.faultf = new ClickableSprite(pixelsToCoords(1250, 800), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.faultf, sizeToCoords(-56,-60), sizeToCoords(56,60), "faultf");
+        Global.getRenderer().addDrawable(ClickableObjects.faultf);
+        addClickable(ClickableObjects.faultf);
+
+        ClickableObjects.faulth = new ClickableSprite(pixelsToCoords(500, 500), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.faulth, sizeToCoords(-56,-60), sizeToCoords(56,60), "faulth");
+        Global.getRenderer().addDrawable(ClickableObjects.faulth);
+        addClickable(ClickableObjects.faulth);
+
+        ClickableObjects.faulti = new ClickableSprite(pixelsToCoords(650, 500), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.faulti, sizeToCoords(-56,-60), sizeToCoords(56,60), "faulti");
+        Global.getRenderer().addDrawable(ClickableObjects.faulti);
+        addClickable(ClickableObjects.faulti);
+
+        ClickableObjects.faultj = new ClickableSprite(pixelsToCoords(800, 500), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.faultj, sizeToCoords(-56,-60), sizeToCoords(56,60), "faultj");
+        Global.getRenderer().addDrawable(ClickableObjects.faultj);
+        addClickable(ClickableObjects.faultj);
+
+        ClickableObjects.faultk = new ClickableSprite(pixelsToCoords(950, 500), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.faultk, sizeToCoords(-56,-60), sizeToCoords(56,60), "faultk");
+        Global.getRenderer().addDrawable(ClickableObjects.faultk);
+        addClickable(ClickableObjects.faultk);
+
+        ClickableObjects.faultl = new ClickableSprite(pixelsToCoords(1100, 500), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.faultl, sizeToCoords(-56,-60), sizeToCoords(56,60), "faultl");
+        Global.getRenderer().addDrawable(ClickableObjects.faultl);
+        addClickable(ClickableObjects.faultl);
+
+        ClickableObjects.faultm = new ClickableSprite(pixelsToCoords(1250, 500), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.faultm, sizeToCoords(-56,-60), sizeToCoords(56,60), "faultm");
+        Global.getRenderer().addDrawable(ClickableObjects.faultm);
+        addClickable(ClickableObjects.faultm);
+
+        ClickableObjects.nofault = new ClickableSprite(pixelsToCoords(1400, 500), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.nofault, sizeToCoords(-76,-60), sizeToCoords(76,60), "nofault");
+        Global.getRenderer().addDrawable(ClickableObjects.nofault);
+        addClickable(ClickableObjects.nofault);
 
         ClickableObjects.house1solar1 = new ClickableSprite(pixelsToCoords(155, 120), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.house1solar, sizeToCoords(-60,-62), sizeToCoords(60,62), "house1solar1");
@@ -372,7 +517,7 @@ public class MainUI {
         Global.getRenderer().addDrawable(ClickableObjects.house1solar3);
         addClickable(ClickableObjects.house1solar3);
 
-        ClickableObjects.store = new ClickableSprite(pixelsToCoords(135, 500), 0, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.store = new ClickableSprite(pixelsToCoords(135, 490), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.store, sizeToCoords(-84,-64), sizeToCoords(84, 64), "store");
         Global.getRenderer().addDrawable(ClickableObjects.store);
         addClickable(ClickableObjects.store);
@@ -447,11 +592,27 @@ public class MainUI {
                 new Color(255, 255, 255), R.drawable.turbine);
         Global.getRenderer().addDrawable(Objects.turbine2);
 
-        Objects.battery = new Sprite(pixelsToCoords(2120, 1440), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.battery);
-        Global.getRenderer().addDrawable(Objects.battery);
+        Objects.balloon = new Sprite(pixelsToCoords(300, 680), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.balloon);
+        Global.getRenderer().addDrawable(Objects.balloon);
 
-        Objects.solarpanel = new Sprite(pixelsToCoords(2330, 1440), 0, 0f, new Vector2f(1f, 1f),
+        Objects.trackhoe = new Sprite(pixelsToCoords(1305, 550), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.trackhoe);
+        Global.getRenderer().addDrawable(Objects.trackhoe);
+
+        Objects.battery1 = new Sprite(pixelsToCoords(1500, 1055), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.battery1);
+        Global.getRenderer().addDrawable(Objects.battery1);
+
+        Objects.battery2 = new Sprite(pixelsToCoords(1500, 1055), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.battery2);
+        Global.getRenderer().addDrawable(Objects.battery2);
+
+        Objects.battery3 = new Sprite(pixelsToCoords(1500, 1055), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.battery3);
+        Global.getRenderer().addDrawable(Objects.battery3);
+
+        Objects.solarpanel = new Sprite(pixelsToCoords(2275, 1415), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.solarpanel);
         Global.getRenderer().addDrawable(Objects.solarpanel);
 
@@ -459,9 +620,9 @@ public class MainUI {
                 new Color(255, 255, 255), R.drawable.substation);
         Global.getRenderer().addDrawable(Objects.substation);
 
-        Objects.tie = new Sprite(pixelsToCoords(1050, 115), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.tie);
-        Global.getRenderer().addDrawable(Objects.tie);
+        Objects.coal = new Sprite(pixelsToCoords(1520, 1462), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.coal);
+        Global.getRenderer().addDrawable(Objects.coal);
 
         Objects.transformer1 = new Sprite(pixelsToCoords(1200, 1000), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.transformer1);
@@ -491,29 +652,105 @@ public class MainUI {
                 new Color(255, 255, 255), R.drawable.switch1);
         Global.getRenderer().addDrawable(Objects.switch1);
 
+        Objects.switch1top = new Sprite(pixelsToCoords(1300, 1000), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.switchtop);
+        Global.getRenderer().addDrawable(Objects.switch1top);
+
+        Objects.switch1middle = new Sprite(pixelsToCoords(1300, 1000), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.switchmiddle);
+        Global.getRenderer().addDrawable(Objects.switch1middle);
+
+        Objects.switch1bottom = new Sprite(pixelsToCoords(1300, 1000), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.switchbottom);
+        Global.getRenderer().addDrawable(Objects.switch1bottom);
+
         Objects.switch2 = new Sprite(pixelsToCoords(870, 450), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.switch1);
         Global.getRenderer().addDrawable(Objects.switch2);
+
+        Objects.switch2top = new Sprite(pixelsToCoords(870, 450), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.switchtop);
+        Global.getRenderer().addDrawable(Objects.switch2top);
+
+        Objects.switch2middle = new Sprite(pixelsToCoords(870, 450), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.switchmiddle);
+        Global.getRenderer().addDrawable(Objects.switch2middle);
+
+        Objects.switch2bottom = new Sprite(pixelsToCoords(870, 450), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.switchbottom);
+        Global.getRenderer().addDrawable(Objects.switch2bottom);
 
         Objects.switch3 = new Sprite(pixelsToCoords(870, 115), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.switch1);
         Global.getRenderer().addDrawable(Objects.switch3);
 
+        Objects.switch3top = new Sprite(pixelsToCoords(870, 115), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.switchtop);
+        Global.getRenderer().addDrawable(Objects.switch3top);
+
+        Objects.switch3middle = new Sprite(pixelsToCoords(870, 115), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.switchmiddle);
+        Global.getRenderer().addDrawable(Objects.switch3middle);
+
+        Objects.switch3bottom = new Sprite(pixelsToCoords(870, 115), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.switchbottom);
+        Global.getRenderer().addDrawable(Objects.switch3bottom);
+
         Objects.switch4 = new Sprite(pixelsToCoords(1250, 335), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.switch1);
         Global.getRenderer().addDrawable(Objects.switch4);
+
+        Objects.switch4top = new Sprite(pixelsToCoords(1250, 335), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.switchtop);
+        Global.getRenderer().addDrawable(Objects.switch4top);
+
+        Objects.switch4middle = new Sprite(pixelsToCoords(1250, 335), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.switchmiddle);
+        Global.getRenderer().addDrawable(Objects.switch4middle);
+
+        Objects.switch4bottom = new Sprite(pixelsToCoords(1250, 335), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.switchbottom);
+        Global.getRenderer().addDrawable(Objects.switch4bottom);
 
         Objects.switch5 = new Sprite(pixelsToCoords(1700, 800), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.switch1);
         Global.getRenderer().addDrawable(Objects.switch5);
 
-        Objects.switch6 = new Sprite(pixelsToCoords(1700, 1150), 0, 0f, new Vector2f(1f, 1f),
+        Objects.switch5top = new Sprite(pixelsToCoords(1700, 800), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.switchtop);
+        Global.getRenderer().addDrawable(Objects.switch5top);
+
+        Objects.switch5middle = new Sprite(pixelsToCoords(1700, 800), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.switchmiddle);
+        Global.getRenderer().addDrawable(Objects.switch5middle);
+
+        Objects.switch5bottom = new Sprite(pixelsToCoords(1700, 800), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.switchbottom);
+        Global.getRenderer().addDrawable(Objects.switch5bottom);
+
+        Objects.switch6 = new Sprite(pixelsToCoords(1700, 1043), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.switch1);
         Global.getRenderer().addDrawable(Objects.switch6);
 
-        Objects.trackhoe = new Sprite(pixelsToCoords(1310, 550), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.trackhoe);
-        Global.getRenderer().addDrawable(Objects.trackhoe);
+        Objects.switch6top = new Sprite(pixelsToCoords(1700, 1043), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.switchtop);
+        Global.getRenderer().addDrawable(Objects.switch6top);
+
+        Objects.switch6middle = new Sprite(pixelsToCoords(1700, 1043), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.switchmiddle);
+        Global.getRenderer().addDrawable(Objects.switch6middle);
+
+        Objects.switch6bottom = new Sprite(pixelsToCoords(1700, 1043), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.switchbottom);
+        Global.getRenderer().addDrawable(Objects.switch6bottom);
+
+        Objects.tie = new Sprite(pixelsToCoords(1050, 115), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.tie);
+        Global.getRenderer().addDrawable(Objects.tie);
+
+        Objects.tieopen = new Sprite(pixelsToCoords(1050, 115), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.tieopen);
+        Global.getRenderer().addDrawable(Objects.tieopen);
 
         UIInfo.Load1 = new TextSprite("",
                 pixelsToCoords(1000, 1000), 20, Typeface.DEFAULT, 1000f, 11, 0,
@@ -610,30 +847,54 @@ public class MainUI {
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trA);
 
+        Objects.xouta = new Sprite(pixelsToCoords(1350, 1150), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.xout);
+        Global.getRenderer().addDrawable(Objects.xouta);
+
         UIInfo.trB = new TextSprite("",
                 pixelsToCoords(1230, 945), 30, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trB);
+
+        Objects.xoutb = new Sprite(pixelsToCoords(1063, 1005), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.xout);
+        Global.getRenderer().addDrawable(Objects.xoutb);
 
         UIInfo.trC = new TextSprite("",
                 pixelsToCoords(960, 670), 30, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trC);
 
+        Objects.xoutc = new Sprite(pixelsToCoords(885, 747), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.xout);
+        Global.getRenderer().addDrawable(Objects.xoutc);
+
         UIInfo.trD = new TextSprite("",
                 pixelsToCoords(620, 640), 30, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trD);
+
+        Objects.xoutd = new Sprite(pixelsToCoords(350, 647), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.xout);
+        Global.getRenderer().addDrawable(Objects.xoutd);
 
         UIInfo.trE = new TextSprite("",
                 pixelsToCoords(960, 300), 30, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trE);
 
+        Objects.xoute = new Sprite(pixelsToCoords(870, 290), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.xout);
+        Global.getRenderer().addDrawable(Objects.xoute);
+
         UIInfo.trF = new TextSprite("",
                 pixelsToCoords(800, 60), 30, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trF);
+
+        Objects.xoutf = new Sprite(pixelsToCoords(470, 120), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.xout);
+        Global.getRenderer().addDrawable(Objects.xoutf);
 
         UIInfo.trG = new TextSprite("",
                 pixelsToCoords(1145, 110), 30, Typeface.DEFAULT, 1000f, 0, 0,
@@ -645,45 +906,69 @@ public class MainUI {
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trH);
 
+        Objects.xouth = new Sprite(pixelsToCoords(1500, 336), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.xout);
+        Global.getRenderer().addDrawable(Objects.xouth);
+
         UIInfo.trI = new TextSprite("",
                 pixelsToCoords(1500, 650), 30, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trI);
+
+        Objects.xouti = new Sprite(pixelsToCoords(1500, 620), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.xout);
+        Global.getRenderer().addDrawable(Objects.xouti);
 
         UIInfo.trJ = new TextSprite("",
                 pixelsToCoords(1820, 745), 30, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trJ);
 
+        Objects.xoutj = new Sprite(pixelsToCoords(1898, 800), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.xout);
+        Global.getRenderer().addDrawable(Objects.xoutj);
+
         UIInfo.trK = new TextSprite("",
-                pixelsToCoords(1635, 965), 30, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(1635, 910), 30, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trK);
+
+        Objects.xoutk = new Sprite(pixelsToCoords(1700, 920), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.xout);
+        Global.getRenderer().addDrawable(Objects.xoutk);
 
         UIInfo.trL = new TextSprite("",
                 pixelsToCoords(1820, 1095), 30, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trL);
 
+        Objects.xoutl = new Sprite(pixelsToCoords(1922, 1150), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.xout);
+        Global.getRenderer().addDrawable(Objects.xoutl);
+
         UIInfo.trM = new TextSprite("",
                 pixelsToCoords(1680, 1200), 30, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trM);
 
+        Objects.xoutm = new Sprite(pixelsToCoords(1647, 1150), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.xout);
+        Global.getRenderer().addDrawable(Objects.xoutm);
+
         UIInfo.WindTurbines = new TextSprite("",
-                pixelsToCoords(1250, 1400), 20, Typeface.DEFAULT, 1000f, 0, 0,
-                new Vector2f(1f, 1f), new Color(0, 0, 0));
+                pixelsToCoords(1250, 1370), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                new Vector2f(1f, 1f), new Color(0, 0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.WindTurbines);
 
         UIInfo.PowPlant = new TextSprite("",
-                pixelsToCoords(1930, 1400), 20, Typeface.DEFAULT, 1000f, 0, 0,
-                new Vector2f(1f, 1f), new Color(0, 0, 0));
+                pixelsToCoords(1930, 1370), 20, Typeface.DEFAULT, 1000f, 0, 0,
+                new Vector2f(1f, 1f), new Color(0, 0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.PowPlant);
 
-        UIInfo.transTotal = new TextSprite("",
-                pixelsToCoords(1515, 1060), 20, Typeface.DEFAULT, 1000f, 0, 0,
-                new Vector2f(1f, 1f), new Color(0, 0, 0));
-        Global.getRenderer().addDrawable(UIInfo.transTotal);
+//        UIInfo.transTotal = new TextSprite("",
+//                pixelsToCoords(1515, 1060), 20, Typeface.DEFAULT, 1000f, 0, 0,
+//                new Vector2f(1f, 1f), new Color(0, 0, 0));
+//        Global.getRenderer().addDrawable(UIInfo.transTotal);
 
 //        UIInfo.SDGE = new TextSprite("",
 //                pixelsToCoords(1530, 1480), 20, Typeface.DEFAULT, 1000f, 0, 0,
@@ -825,17 +1110,17 @@ public class MainUI {
         ledPositionMap.put(128, pixelsToCoords(1930, 800));
         ledPositionMap.put(129, pixelsToCoords(1950, 800));
         ledPositionMap.put(130, pixelsToCoords(2065, 800));
-        ledPositionMap.put(131, pixelsToCoords(1698, 1000));
-        ledPositionMap.put(132, pixelsToCoords(1698, 1050));
-        ledPositionMap.put(133, pixelsToCoords(1698, 1100));
-        ledPositionMap.put(134, pixelsToCoords(1698, 1130));
-        ledPositionMap.put(135, pixelsToCoords(1698, 1150));
-        ledPositionMap.put(136, pixelsToCoords(1698, 1150));
-        ledPositionMap.put(137, pixelsToCoords(1670, 1150));
-        ledPositionMap.put(138, pixelsToCoords(1690, 1150));
-        ledPositionMap.put(139, pixelsToCoords(1720, 1150));
-        ledPositionMap.put(140, pixelsToCoords(1750, 1150));
-        ledPositionMap.put(141, pixelsToCoords(1790, 1150));
+        ledPositionMap.put(131, pixelsToCoords(1698, 915));
+        ledPositionMap.put(132, pixelsToCoords(1698, 930));
+        ledPositionMap.put(133, pixelsToCoords(1698, 950));
+        ledPositionMap.put(134, pixelsToCoords(1698, 980));
+        ledPositionMap.put(135, pixelsToCoords(1698, 1010));
+        ledPositionMap.put(136, pixelsToCoords(1698, 1040));
+        ledPositionMap.put(137, pixelsToCoords(1698, 1100));
+        ledPositionMap.put(138, pixelsToCoords(1720, 1040));
+        ledPositionMap.put(139, pixelsToCoords(1735, 1090));
+        ledPositionMap.put(140, pixelsToCoords(1735, 1140));
+        ledPositionMap.put(141, pixelsToCoords(1780, 1150));
         ledPositionMap.put(142, pixelsToCoords(1820, 1150));
         ledPositionMap.put(143, pixelsToCoords(1850, 1150));
         ledPositionMap.put(144, pixelsToCoords(1870, 1150));
@@ -846,29 +1131,29 @@ public class MainUI {
         ledPositionMap.put(149, pixelsToCoords(2100, 1150));
         ledPositionMap.put(150, pixelsToCoords(2150, 1150));
         ledPositionMap.put(151, pixelsToCoords(2192, 1150));
-        ledPositionMap.put(152, pixelsToCoords(1650, 1150));
-        ledPositionMap.put(153, pixelsToCoords(1640, 1150));
+        ledPositionMap.put(152, pixelsToCoords(1690, 1130));
+        ledPositionMap.put(153, pixelsToCoords(1680, 1150));
         ledPositionMap.put(154, pixelsToCoords(1620, 1150));
         ledPositionMap.put(155, pixelsToCoords(1540, 1230));
         ledPositionMap.put(156, pixelsToCoords(1540, 1300));
         ledPositionMap.put(157, pixelsToCoords(1540, 1400));
-        ledPositionMap.put(158, pixelsToCoords(1540, 1445));
-        ledPositionMap.put(159, pixelsToCoords(1590, 1445));
-        ledPositionMap.put(160, pixelsToCoords(1640, 1445));
-        ledPositionMap.put(161, pixelsToCoords(1680, 1445));
-        ledPositionMap.put(162, pixelsToCoords(1710, 1445));
-        ledPositionMap.put(163, pixelsToCoords(1780, 1445));
-        ledPositionMap.put(164, pixelsToCoords(1820, 1445));
-        ledPositionMap.put(165, pixelsToCoords(1870, 1445));
-        ledPositionMap.put(166, pixelsToCoords(1910, 1445));
-        ledPositionMap.put(167, pixelsToCoords(2057, 1445));
-        ledPositionMap.put(168, pixelsToCoords(1508, 1445));
-        ledPositionMap.put(169, pixelsToCoords(1400, 1445));
-        ledPositionMap.put(170, pixelsToCoords(1300, 1445));
-        ledPositionMap.put(171, pixelsToCoords(1200, 1445));
-        ledPositionMap.put(172, pixelsToCoords(1150, 1445));
-        ledPositionMap.put(173, pixelsToCoords(1130, 1445));
-        ledPositionMap.put(174, pixelsToCoords(1100, 1445));
+        ledPositionMap.put(158, pixelsToCoords(1540, 1410));
+        ledPositionMap.put(159, pixelsToCoords(1590, 1410));
+        ledPositionMap.put(160, pixelsToCoords(1640, 1410));
+        ledPositionMap.put(161, pixelsToCoords(1680, 1410));
+        ledPositionMap.put(162, pixelsToCoords(1710, 1410));
+        ledPositionMap.put(163, pixelsToCoords(1780, 1410));
+        ledPositionMap.put(164, pixelsToCoords(1820, 1410));
+        ledPositionMap.put(165, pixelsToCoords(1870, 1410));
+        ledPositionMap.put(166, pixelsToCoords(1910, 1410));
+        ledPositionMap.put(167, pixelsToCoords(2057, 1410));
+        ledPositionMap.put(168, pixelsToCoords(1508, 1410));
+        ledPositionMap.put(169, pixelsToCoords(1400, 1410));
+        ledPositionMap.put(170, pixelsToCoords(1300, 1410));
+        ledPositionMap.put(171, pixelsToCoords(1200, 1410));
+        ledPositionMap.put(172, pixelsToCoords(1150, 1410));
+        ledPositionMap.put(173, pixelsToCoords(1130, 1410));
+        ledPositionMap.put(174, pixelsToCoords(1100, 1410));
         ledPositionMap.put(175, pixelsToCoords(1508, 1400));
         ledPositionMap.put(176, pixelsToCoords(1508, 1300));
         ledPositionMap.put(177, pixelsToCoords(1508, 1230));
@@ -878,14 +1163,14 @@ public class MainUI {
      * Called when the model starts a mylar balloon fault.
      */
     public void reportBalloonFaultStarted() {
-    	
+
     }
 
     /**
      * Called when the simulation ends the mylar balloon fault (time-out).
      */
     public void reportBalloonFaultEnded() {
-    	
+
     }
 
     /**
@@ -952,6 +1237,23 @@ public class MainUI {
             return;
         }
 
+        // Battery Levels
+        if (Simulation.SimInfo.BatteryLevel == 1) {
+            Objects.battery1.setDepth(-1);
+            Objects.battery2.setDepth(11);
+            Objects.battery3.setDepth(11);
+        }
+        else if (Simulation.SimInfo.BatteryLevel == 2) {
+            Objects.battery1.setDepth(11);
+            Objects.battery2.setDepth(-1);
+            Objects.battery3.setDepth(11);
+        }
+        else if (Simulation.SimInfo.BatteryLevel == 3) {
+            Objects.battery1.setDepth(11);
+            Objects.battery2.setDepth(11);
+            Objects.battery3.setDepth(-1);
+        }
+
         // Night Time Mode
         if ((Simulation.SimInfo.currentTime > 18.00 || Simulation.SimInfo.currentTime < 6.00) && !night) {
             night = true;
@@ -972,12 +1274,34 @@ public class MainUI {
             ClickableObjects.house3a.setResource(R.drawable.house3night);
             ClickableObjects.house3b.setResource(R.drawable.house3night);
             ClickableObjects.house3c.setResource(R.drawable.house3night);
-            Objects.battery.setResource(R.drawable.batterynight);
+            Objects.coal.setResource(R.drawable.coalnight);
+            Objects.battery1.setResource(R.drawable.battery1night);
+            Objects.battery2.setResource(R.drawable.battery2night);
+            Objects.battery3.setResource(R.drawable.battery3night);
             Objects.midway.setResource(R.drawable.midwaynight);
             Objects.museum.setResource(R.drawable.museumnight);
             Objects.solarpanel.setResource(R.drawable.solarpanelnight);
             Objects.stadium.setResource(R.drawable.stadiumnight);
             Objects.substation.setResource(R.drawable.substationnight);
+            Objects.coal.setResource(R.drawable.coalnight);
+            Objects.switch1top.setResource(R.drawable.switchtopnight);
+            Objects.switch1middle.setResource(R.drawable.switchmiddlenight);
+            Objects.switch1bottom.setResource(R.drawable.switchbottomnight);
+            Objects.switch2top.setResource(R.drawable.switchtopnight);
+            Objects.switch2middle.setResource(R.drawable.switchmiddlenight);
+            Objects.switch2bottom.setResource(R.drawable.switchbottomnight);
+            Objects.switch3top.setResource(R.drawable.switchtopnight);
+            Objects.switch3middle.setResource(R.drawable.switchmiddlenight);
+            Objects.switch3bottom.setResource(R.drawable.switchbottomnight);
+            Objects.switch4top.setResource(R.drawable.switchtopnight);
+            Objects.switch4middle.setResource(R.drawable.switchmiddlenight);
+            Objects.switch4bottom.setResource(R.drawable.switchbottomnight);
+            Objects.switch5top.setResource(R.drawable.switchtopnight);
+            Objects.switch5middle.setResource(R.drawable.switchmiddlenight);
+            Objects.switch5bottom.setResource(R.drawable.switchbottomnight);
+            Objects.switch6top.setResource(R.drawable.switchtopnight);
+            Objects.switch6middle.setResource(R.drawable.switchmiddlenight);
+            Objects.switch6bottom.setResource(R.drawable.switchbottomnight);
             Objects.switch1.setResource(R.drawable.switch1night);
             Objects.switch2.setResource(R.drawable.switch1night);
             Objects.switch3.setResource(R.drawable.switch1night);
@@ -985,6 +1309,7 @@ public class MainUI {
             Objects.switch5.setResource(R.drawable.switch1night);
             Objects.switch6.setResource(R.drawable.switch1night);
             Objects.tie.setResource(R.drawable.tienight);
+            Objects.tieopen.setResource(R.drawable.tieopennight);
             Objects.transformer1.setResource(R.drawable.transformer1night);
             Objects.transformer2.setResource(R.drawable.transformer1night);
             Objects.transformer3.setResource(R.drawable.transformer1night);
@@ -993,6 +1318,8 @@ public class MainUI {
             Objects.transformer6.setResource(R.drawable.transformer1night);
             Objects.turbine.setResource(R.drawable.turbinenight);
             Objects.turbine2.setResource(R.drawable.turbinenight);
+            Objects.balloon.setResource(R.drawable.balloonnight);
+            Objects.trackhoe.setResource(R.drawable.trackhoenight);
             UIInfo.trA.setColor(new Color(255, 255, 255));
             UIInfo.trB.setColor(new Color(255, 255, 255));
             UIInfo.trC.setColor(new Color(255, 255, 255));
@@ -1008,64 +1335,10 @@ public class MainUI {
             UIInfo.trM.setColor(new Color(255, 255, 255));
             UIInfo.PowPlant.setColor(new Color(255, 255, 255));
             UIInfo.WindTurbines.setColor(new Color(255, 255, 255));
-            UIInfo.transTotal.setColor(new Color(255, 255, 255));
+        }
 
-            // Fault Cases for Night Mode
-            if (Simulation.FaultManager.currentFault == "A") {
-                Objects.switch1.setResource(R.drawable.switchtopnight);
-                Objects.tie.setResource(R.drawable.tieopennight);
-            }
-            if (Simulation.FaultManager.currentFault == "B") {
-                Objects.switch1.setResource(R.drawable.switchmiddlenight);
-            }
-            if (Simulation.FaultManager.currentFault == "C") {
-                Objects.switch1.setResource(R.drawable.switchbottomnight);
-                Objects.switch2.setResource(R.drawable.switchtopnight);
-                Objects.tie.setResource(R.drawable.tieopennight);
-            }
-            if (Simulation.FaultManager.currentFault == "D") {
-                Objects.switch2.setResource(R.drawable.switchmiddlenight);
-            }
-            if (Simulation.FaultManager.currentFault == "E") {
-                Objects.switch2.setResource(R.drawable.switchbottomnight);
-                Objects.switch3.setResource(R.drawable.switchtopnight);
-                Objects.tie.setResource(R.drawable.tieopennight);
-            }
-            if (Simulation.FaultManager.currentFault == "F") {
-                Objects.switch3.setResource(R.drawable.switchmiddlenight);
-            }
-            if (Simulation.FaultManager.currentFault == "H") {
-                Objects.switch4.setResource(R.drawable.switchmiddlenight);
-            }
-            if (Simulation.FaultManager.currentFault == "I") {
-                Objects.switch5.setResource(R.drawable.switchbottomnight);
-                Objects.switch4.setResource(R.drawable.switchtopnight);
-                Objects.tie.setResource(R.drawable.tieopennight);
-            }
-            if (Simulation.FaultManager.currentFault == "J") {
-                Objects.switch5.setResource(R.drawable.switchmiddlenight);
-            }
-            if (Simulation.FaultManager.currentFault == "K") {
-                Objects.switch6.setResource(R.drawable.switchbottomnight);
-                Objects.switch5.setResource(R.drawable.switchtopnight);
-                Objects.tie.setResource(R.drawable.tieopennight);
-            }
-            if (Simulation.FaultManager.currentFault == "J") {
-                Objects.switch6.setResource(R.drawable.switchmiddlenight);
-            }
-            if (Simulation.FaultManager.currentFault == "M") {
-                Objects.switch6.setResource(R.drawable.switchtopnight);
-                Objects.tie.setResource(R.drawable.tieopennight);
-            }
-            if (Simulation.FaultManager.currentFault == "DI") {
-                Objects.switch2.setResource(R.drawable.switchmiddlenight);
-                Objects.tie.setResource(R.drawable.tieopennight);
-                Objects.switch5.setResource(R.drawable.switchbottomnight);
-                Objects.switch4.setResource(R.drawable.switchtopnight);
-                Objects.tie.setResource(R.drawable.tieopennight);
-            }
-
-        } else if ((Simulation.SimInfo.currentTime <= 18.00 && Simulation.SimInfo.currentTime >= 6.00) && night) {
+        // Day Time Mode
+        if ((Simulation.SimInfo.currentTime <= 18.00 && Simulation.SimInfo.currentTime >= 6.00) && night) {
             night = false;
             ClickableObjects.background.setResource(R.drawable.background);
             ClickableObjects.business1a.setResource(R.drawable.business1);
@@ -1084,12 +1357,34 @@ public class MainUI {
             ClickableObjects.house3a.setResource(R.drawable.house3);
             ClickableObjects.house3b.setResource(R.drawable.house3);
             ClickableObjects.house3c.setResource(R.drawable.house3);
-            Objects.battery.setResource(R.drawable.battery);
+            Objects.coal.setResource(R.drawable.coal);
+            Objects.battery1.setResource(R.drawable.battery1);
+            Objects.battery2.setResource(R.drawable.battery2);
+            Objects.battery3.setResource(R.drawable.battery3);
+            Objects.midway.setResource(R.drawable.midway);
             Objects.midway.setResource(R.drawable.midway);
             Objects.museum.setResource(R.drawable.museum);
             Objects.solarpanel.setResource(R.drawable.solarpanel);
             Objects.stadium.setResource(R.drawable.stadium);
             Objects.substation.setResource(R.drawable.substation);
+            Objects.switch1top.setResource(R.drawable.switchtop);
+            Objects.switch1middle.setResource(R.drawable.switchmiddle);
+            Objects.switch1bottom.setResource(R.drawable.switchbottom);
+            Objects.switch2top.setResource(R.drawable.switchtop);
+            Objects.switch2middle.setResource(R.drawable.switchmiddle);
+            Objects.switch2bottom.setResource(R.drawable.switchbottom);
+            Objects.switch3top.setResource(R.drawable.switchtop);
+            Objects.switch3middle.setResource(R.drawable.switchmiddle);
+            Objects.switch3bottom.setResource(R.drawable.switchbottom);
+            Objects.switch4top.setResource(R.drawable.switchtop);
+            Objects.switch4middle.setResource(R.drawable.switchmiddle);
+            Objects.switch4bottom.setResource(R.drawable.switchbottom);
+            Objects.switch5top.setResource(R.drawable.switchtop);
+            Objects.switch5middle.setResource(R.drawable.switchmiddle);
+            Objects.switch5bottom.setResource(R.drawable.switchbottom);
+            Objects.switch6top.setResource(R.drawable.switchtop);
+            Objects.switch6middle.setResource(R.drawable.switchmiddle);
+            Objects.switch6bottom.setResource(R.drawable.switchbottom);
             Objects.switch1.setResource(R.drawable.switch1);
             Objects.switch2.setResource(R.drawable.switch1);
             Objects.switch3.setResource(R.drawable.switch1);
@@ -1097,6 +1392,7 @@ public class MainUI {
             Objects.switch5.setResource(R.drawable.switch1);
             Objects.switch6.setResource(R.drawable.switch1);
             Objects.tie.setResource(R.drawable.tie);
+            Objects.tieopen.setResource(R.drawable.tieopen);
             Objects.transformer1.setResource(R.drawable.transformer1);
             Objects.transformer2.setResource(R.drawable.transformer1);
             Objects.transformer3.setResource(R.drawable.transformer1);
@@ -1105,6 +1401,8 @@ public class MainUI {
             Objects.transformer6.setResource(R.drawable.transformer1);
             Objects.turbine.setResource(R.drawable.turbine);
             Objects.turbine2.setResource(R.drawable.turbine);
+            Objects.balloon.setResource(R.drawable.balloon);
+            Objects.trackhoe.setResource(R.drawable.trackhoe);
             UIInfo.trA.setColor(new Color(0, 0, 0));
             UIInfo.trB.setColor(new Color(0, 0, 0));
             UIInfo.trC.setColor(new Color(0, 0, 0));
@@ -1120,68 +1418,12 @@ public class MainUI {
             UIInfo.trM.setColor(new Color(0, 0, 0));
             UIInfo.PowPlant.setColor(new Color(0, 0, 0));
             UIInfo.WindTurbines.setColor(new Color(0, 0, 0));
-            UIInfo.transTotal.setColor(new Color(0, 0, 0));
-
-            // Fault Cases for Day Mode
-            if (Simulation.FaultManager.currentFault == "A") {
-                Objects.switch1.setResource(R.drawable.switchtop);
-                Objects.tie.setResource(R.drawable.tieopen);
-            }
-            if (Simulation.FaultManager.currentFault == "B") {
-                Objects.switch1.setResource(R.drawable.switchmiddle);
-            }
-            if (Simulation.FaultManager.currentFault == "C") {
-                Objects.switch1.setResource(R.drawable.switchbottom);
-                Objects.switch2.setResource(R.drawable.switchtop);
-                Objects.tie.setResource(R.drawable.tieopen);
-            }
-            if (Simulation.FaultManager.currentFault == "D") {
-                Objects.switch2.setResource(R.drawable.switchmiddle);
-            }
-            if (Simulation.FaultManager.currentFault == "E") {
-                Objects.switch2.setResource(R.drawable.switchbottom);
-                Objects.switch3.setResource(R.drawable.switchtop);
-                Objects.tie.setResource(R.drawable.tieopen);
-            }
-            if (Simulation.FaultManager.currentFault == "F") {
-                Objects.switch3.setResource(R.drawable.switchmiddle);
-            }
-            if (Simulation.FaultManager.currentFault == "H") {
-                Objects.switch4.setResource(R.drawable.switchmiddle);
-            }
-            if (Simulation.FaultManager.currentFault == "I") {
-                Objects.switch5.setResource(R.drawable.switchbottom);
-                Objects.switch4.setResource(R.drawable.switchtop);
-                Objects.tie.setResource(R.drawable.tieopen);
-            }
-            if (Simulation.FaultManager.currentFault == "J") {
-                Objects.switch5.setResource(R.drawable.switchmiddle);
-            }
-            if (Simulation.FaultManager.currentFault == "K") {
-                Objects.switch6.setResource(R.drawable.switchbottom);
-                Objects.switch5.setResource(R.drawable.switchtop);
-                Objects.tie.setResource(R.drawable.tieopen);
-            }
-            if (Simulation.FaultManager.currentFault == "J") {
-                Objects.switch6.setResource(R.drawable.switchmiddle);
-            }
-            if (Simulation.FaultManager.currentFault == "M") {
-                Objects.switch6.setResource(R.drawable.switchtop);
-                Objects.tie.setResource(R.drawable.tieopen);
-            }
-            if (Simulation.FaultManager.currentFault == "DI") {
-                Objects.switch2.setResource(R.drawable.switchmiddle);
-                Objects.tie.setResource(R.drawable.tieopen);
-                Objects.switch5.setResource(R.drawable.switchbottom);
-                Objects.switch4.setResource(R.drawable.switchtop);
-                Objects.tie.setResource(R.drawable.tieopen);
-            }
         }
 
         textUpdateTimer -= amount;
         if (textUpdateTimer <= 0f) {
             if (Math.random() < textUpdateChance)
-                UIInfo.Load1.setText("Residential 1" + "\n"
+                UIInfo.Load1.setText("\t" + "Residential 1" + "\n"
                                 + "Real Power: " + "" + String.format("%.2f", Simulation.SimInfo.Load1) + " MW" + "\n"
                                 + "Reactive Power: " + String.format("%.2f", Simulation.SimInfo.Load1r) + " MVAR" + "\n"
                                 + "Apparent Power: " + String.format("%.2f", Simulation.SimInfo.Load1a) + " MVA",
@@ -1189,37 +1431,42 @@ public class MainUI {
                         UIInfo.Load1.getMaxLineWidth());
 
             if (Math.random() < textUpdateChance)
-                UIInfo.Load2.setText("" + String.format("%.2f", Simulation.SimInfo.Load2) + " MW"
-                                + "\n" + String.format("%.2f", Simulation.SimInfo.Load2r) + " MVAR"
-                                + "\n" + String.format("%.2f", Simulation.SimInfo.Load2a) + " MVA",
+                UIInfo.Load2.setText("\t" + "Residential 1" + "\n"
+                                + "Real Power: " + "" + String.format("%.2f", Simulation.SimInfo.Load2) + " MW" + "\n"
+                                + "Reactive Power: " + String.format("%.2f", Simulation.SimInfo.Load2r) + " MVAR" + "\n"
+                                + "Apparent Power: " + String.format("%.2f", Simulation.SimInfo.Load2a) + " MVA",
                         UIInfo.Load2.getFontSize(), UIInfo.Load2.getFont(),
                         UIInfo.Load2.getMaxLineWidth());
 
             if (Math.random() < textUpdateChance)
-                UIInfo.Load3.setText("" + String.format("%.2f", Simulation.SimInfo.Load3) + " MW"
-                                + "\n" + String.format("%.2f", Simulation.SimInfo.Load3r) + " MVAR"
-                                + "\n" + String.format("%.2f", Simulation.SimInfo.Load3a) + " MVA",
+                UIInfo.Load3.setText("\t" + "Residential 1" + "\n"
+                                + "Real Power: " + "" + String.format("%.2f", Simulation.SimInfo.Load3) + " MW" + "\n"
+                                + "Reactive Power: " + String.format("%.2f", Simulation.SimInfo.Load3r) + " MVAR" + "\n"
+                                + "Apparent Power: " + String.format("%.2f", Simulation.SimInfo.Load3a) + " MVA",
                         UIInfo.Load3.getFontSize(), UIInfo.Load3.getFont(),
                         UIInfo.Load3.getMaxLineWidth());
 
             if (Math.random() < textUpdateChance)
-                UIInfo.Load4.setText("" + String.format("%.2f", Simulation.SimInfo.Load4) + " MW"
-                                + "\n" + String.format("%.2f", Simulation.SimInfo.Load4r) + " MVAR"
-                                + "\n" + String.format("%.2f", Simulation.SimInfo.Load4a) + " MVA",
+                UIInfo.Load4.setText("\t" + "Residential 1" + "\n"
+                                + "Real Power: " + "" + String.format("%.2f", Simulation.SimInfo.Load4) + " MW" + "\n"
+                                + "Reactive Power: " + String.format("%.2f", Simulation.SimInfo.Load4r) + " MVAR" + "\n"
+                                + "Apparent Power: " + String.format("%.2f", Simulation.SimInfo.Load4a) + " MVA",
                         UIInfo.Load4.getFontSize(), UIInfo.Load4.getFont(),
                         UIInfo.Load4.getMaxLineWidth());
 
             if (Math.random() < textUpdateChance)
-                UIInfo.Load5.setText("" + String.format("%.2f", Simulation.SimInfo.Load5) + " MW"
-                                + "\n" + String.format("%.2f", Simulation.SimInfo.Load5r) + " MVAR"
-                                + "\n" + String.format("%.2f", Simulation.SimInfo.Load5a) + " MVA",
+                UIInfo.Load5.setText("\t" + "Residential 1" + "\n"
+                                + "Real Power: " + "" + String.format("%.2f", Simulation.SimInfo.Load5) + " MW" + "\n"
+                                + "Reactive Power: " + String.format("%.2f", Simulation.SimInfo.Load5r) + " MVAR" + "\n"
+                                + "Apparent Power: " + String.format("%.2f", Simulation.SimInfo.Load5a) + " MVA",
                         UIInfo.Load5.getFontSize(), UIInfo.Load5.getFont(),
                         UIInfo.Load5.getMaxLineWidth());
 
             if (Math.random() < textUpdateChance)
-                UIInfo.Load6.setText("" + String.format("%.2f", Simulation.SimInfo.Load6) + " MW"
-                                + "\n" + String.format("%.2f", Simulation.SimInfo.Load6r) + " MVAR"
-                                + "\n" + String.format("%.2f", Simulation.SimInfo.Load6a) + " MVA",
+                UIInfo.Load6.setText("\t" + "Residential 1" + "\n"
+                                + "Real Power: " + "" + String.format("%.2f", Simulation.SimInfo.Load6) + " MW" + "\n"
+                                + "Reactive Power: " + String.format("%.2f", Simulation.SimInfo.Load6r) + " MVAR" + "\n"
+                                + "Apparent Power: " + String.format("%.2f", Simulation.SimInfo.Load6a) + " MVA",
                         UIInfo.Load6.getFontSize(), UIInfo.Load6.getFont(),
                         UIInfo.Load6.getMaxLineWidth());
 
@@ -1286,10 +1533,10 @@ public class MainUI {
                         UIInfo.PowPlant.getFontSize(), UIInfo.PowPlant.getFont(),
                         UIInfo.PowPlant.getMaxLineWidth());
 
-            if (Math.random() < textUpdateChance)
-                UIInfo.transTotal.setText("" + String.format("%.2f", Simulation.SimInfo.transTotal) + " MVA",
-                        UIInfo.transTotal.getFontSize(), UIInfo.transTotal.getFont(),
-                        UIInfo.transTotal.getMaxLineWidth());
+//            if (Math.random() < textUpdateChance)
+//                UIInfo.transTotal.setText("" + String.format("%.2f", Simulation.SimInfo.transTotal) + " MVA",
+//                        UIInfo.transTotal.getFontSize(), UIInfo.transTotal.getFont(),
+//                        UIInfo.transTotal.getMaxLineWidth());
 
 //            if (Math.random() < textUpdateChance)
 //                UIInfo.SDGE.setText("" + String.format("%.2f", Simulation.SimInfo.SDGE) + " MW",

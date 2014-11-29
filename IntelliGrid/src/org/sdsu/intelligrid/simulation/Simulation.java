@@ -183,8 +183,8 @@ public class Simulation {
 		private static final double LOAD_THRESHOLD = 0.95;
 		private static final double DESIRED_BUFFER = 0.05;
 		
-		public static String currentFault = "";
-		private String genericFault = "";
+		private String currentFault = "";
+		public static String genericFault = "";
 		private String automaticFault = "";
 		private double balloonFaultTimeOut = 0.0;
 		private double digFaultTimeOut = 0.0;
@@ -829,6 +829,7 @@ public class Simulation {
         double PowPlant = linear(SimulationData.PowerPlant, time) * linear(SimulationData.weather, data.w) * data.renewableSolarLevel.get();
         double WindTurbines = linear(SimulationData.WindFarm, time) * data.windGenerationLevel.get();
         double BatteryStorage = linear(SimulationData.Battery, time);
+        double BatteryLevel = linear(SimulationData.BatteryLevel, time);
 
         //Total SDGE Power
         double SDGE = transTotal - PowPlant - WindTurbines + BatteryStorage;
@@ -873,6 +874,7 @@ public class Simulation {
         SimInfo.PowPlant = PowPlant;
         SimInfo.WindTurbines = WindTurbines;
         SimInfo.BatteryStorage = BatteryStorage;
+        SimInfo.BatteryLevel = BatteryLevel;
         SimInfo.transTotal = transTotal;
         SimInfo.SDGE = SDGE;
         SimInfo.GenScale = 1.0 / data.capacity;
@@ -933,6 +935,7 @@ public class Simulation {
         public static double PowPlant;
         public static double WindTurbines;
         public static double BatteryStorage;
+        public static double BatteryLevel;
         public static double transTotal;
         public static double SDGE;
         public static double GenScale;
