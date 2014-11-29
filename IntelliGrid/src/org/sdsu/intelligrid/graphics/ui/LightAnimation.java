@@ -231,6 +231,7 @@ public class LightAnimation {
 		public boolean fading = false;
 		public boolean forward = true;
 		private float alpha = 1f;
+		public boolean onHardware = false;
 
 		private List<Integer> previous = new ArrayList<>();
 
@@ -386,6 +387,7 @@ public class LightAnimation {
 		private float gen = 0f;
 		private float genGreen = 0f;
 		private float flow = 0f;
+		private int hardwareDivider = 0;
 
 		public Segment(final List<Integer> leds, final float orbFlowScale) {
 			super(leds);
@@ -399,10 +401,20 @@ public class LightAnimation {
 			if (gen >= 1f && genGreen >= 1f && greenFlow > OFF_THRESHOLD) {
 				gen -= 1f;
 				genGreen -= 1f;
-				return 2;
+				hardwareDivider++;
+				if (hardwareDivider >= SOFTWARE_ORB_MULTIPLIER) {
+					return 4;
+				} else {
+					return 2;
+				}
 			} else if (gen >= 1f) {
 				gen -= 1f;
-				return 1;
+				hardwareDivider++;
+				if (hardwareDivider >= SOFTWARE_ORB_MULTIPLIER) {
+					return 3;
+				} else {
+					return 1;
+				}
 			} else {
 				return 0;
 			}
@@ -429,6 +441,8 @@ public class LightAnimation {
 
 	private static final float GEN_SCALE = 4f;
 	private static final float FLOW_SCALE = 3f;
+	
+	private static final int SOFTWARE_ORB_MULTIPLIER = 4;
 
 	private static boolean paused = false;
 
@@ -912,15 +926,30 @@ public class LightAnimation {
 
 			final int type = strand.advance(blueFlow, greenFlow);
 			final OrbTypes orbType;
-			if (type == 2) {
+			final boolean onHardware;
+			switch (type) {
+			case 4:
 				orbType = OrbTypes.GREEN;
-			} else {
+				onHardware = true;
+				break;
+			case 3:
 				orbType = OrbTypes.BLUE;
+				onHardware = true;
+				break;
+			case 2:
+				orbType = OrbTypes.GREEN;
+				onHardware = false;
+				break;
+			default:
+				orbType = OrbTypes.BLUE;
+				onHardware = false;
 			}
 
 			if (type > 0) {
-				orbs.add(new Orb(orbType, strand, strand.getLEDs().get(0),
-						strand.getLEDs().get(1)));
+				final Orb orb = new Orb(orbType, strand, strand.getLEDs()
+						.get(0), strand.getLEDs().get(1));
+				orb.onHardware = onHardware;
+				orbs.add(orb);
 			}
 		} else {
 			final Segment strand = (Segment) LightStrands.SEGMENT_A.strand;
@@ -1037,15 +1066,30 @@ public class LightAnimation {
 
 			final int type = strand.advance(blueFlow, greenFlow);
 			final OrbTypes orbType;
-			if (type == 2) {
+			final boolean onHardware;
+			switch (type) {
+			case 4:
 				orbType = OrbTypes.GREEN;
-			} else {
+				onHardware = true;
+				break;
+			case 3:
 				orbType = OrbTypes.BLUE;
+				onHardware = true;
+				break;
+			case 2:
+				orbType = OrbTypes.GREEN;
+				onHardware = false;
+				break;
+			default:
+				orbType = OrbTypes.BLUE;
+				onHardware = false;
 			}
 
 			if (type > 0) {
-				orbs.add(new Orb(orbType, strand, strand.getLEDs().get(0),
-						strand.getLEDs().get(1)));
+				final Orb orb = new Orb(orbType, strand, strand.getLEDs()
+						.get(0), strand.getLEDs().get(1));
+				orb.onHardware = onHardware;
+				orbs.add(orb);
 			}
 		} else {
 			final Segment strand = (Segment) LightStrands.SEGMENT_M.strand;
@@ -1070,15 +1114,30 @@ public class LightAnimation {
 
 			final int type = strand.advance(blueFlow, greenFlow);
 			final OrbTypes orbType;
-			if (type == 2) {
+			final boolean onHardware;
+			switch (type) {
+			case 4:
 				orbType = OrbTypes.GREEN;
-			} else {
+				onHardware = true;
+				break;
+			case 3:
 				orbType = OrbTypes.BLUE;
+				onHardware = true;
+				break;
+			case 2:
+				orbType = OrbTypes.GREEN;
+				onHardware = false;
+				break;
+			default:
+				orbType = OrbTypes.BLUE;
+				onHardware = false;
 			}
 
 			if (type > 0) {
-				orbs.add(new Orb(orbType, strand, strand.getLEDs().get(0),
-						strand.getLEDs().get(1)));
+				final Orb orb = new Orb(orbType, strand, strand.getLEDs()
+						.get(0), strand.getLEDs().get(1));
+				orb.onHardware = onHardware;
+				orbs.add(orb);
 			}
 		}
 
@@ -1094,15 +1153,30 @@ public class LightAnimation {
 
 			final int type = strand.advance(blueFlow, greenFlow);
 			final OrbTypes orbType;
-			if (type == 2) {
+			final boolean onHardware;
+			switch (type) {
+			case 4:
 				orbType = OrbTypes.GREEN;
-			} else {
+				onHardware = true;
+				break;
+			case 3:
 				orbType = OrbTypes.BLUE;
+				onHardware = true;
+				break;
+			case 2:
+				orbType = OrbTypes.GREEN;
+				onHardware = false;
+				break;
+			default:
+				orbType = OrbTypes.BLUE;
+				onHardware = false;
 			}
 
 			if (type > 0) {
-				orbs.add(new Orb(orbType, strand, strand.getLEDs().get(0),
-						strand.getLEDs().get(1)));
+				final Orb orb = new Orb(orbType, strand, strand.getLEDs()
+						.get(0), strand.getLEDs().get(1));
+				orb.onHardware = onHardware;
+				orbs.add(orb);
 			}
 		} else {
 			final Segment strand = (Segment) LightStrands.SEGMENT_W.strand;
@@ -1121,15 +1195,30 @@ public class LightAnimation {
 
 			final int type = strand.advance(blueFlow, greenFlow);
 			final OrbTypes orbType;
-			if (type == 2) {
+			final boolean onHardware;
+			switch (type) {
+			case 4:
 				orbType = OrbTypes.GREEN;
-			} else {
+				onHardware = true;
+				break;
+			case 3:
 				orbType = OrbTypes.BLUE;
+				onHardware = true;
+				break;
+			case 2:
+				orbType = OrbTypes.GREEN;
+				onHardware = false;
+				break;
+			default:
+				orbType = OrbTypes.BLUE;
+				onHardware = false;
 			}
 
 			if (type > 0) {
-				orbs.add(new Orb(orbType, strand, strand.getLEDs().get(0),
-						strand.getLEDs().get(1)));
+				final Orb orb = new Orb(orbType, strand, strand.getLEDs()
+						.get(0), strand.getLEDs().get(1));
+				orb.onHardware = onHardware;
+				orbs.add(orb);
 			}
 		} else {
 			final Segment strand = (Segment) LightStrands.SEGMENT_X.strand;
@@ -1152,10 +1241,23 @@ public class LightAnimation {
 
 			final int type = strand.advance(0f, greenFlow);
 			final OrbTypes orbType;
-			if (type == 2) {
+			final boolean onHardware;
+			switch (type) {
+			case 4:
 				orbType = OrbTypes.GREEN;
-			} else {
+				onHardware = true;
+				break;
+			case 3:
 				orbType = OrbTypes.BLUE;
+				onHardware = true;
+				break;
+			case 2:
+				orbType = OrbTypes.GREEN;
+				onHardware = false;
+				break;
+			default:
+				orbType = OrbTypes.BLUE;
+				onHardware = false;
 			}
 
 			if (type > 0) {
@@ -1163,6 +1265,7 @@ public class LightAnimation {
 						strand.getLEDs().size() - 1), strand.getLEDs().get(
 						strand.getLEDs().size() - 2));
 				orb.forward = false;
+				orb.onHardware = onHardware;
 				orbs.add(orb);
 			}
 		}
@@ -1184,10 +1287,23 @@ public class LightAnimation {
 
 			final int type = strand.advance(0f, greenFlow);
 			final OrbTypes orbType;
-			if (type == 2) {
+			final boolean onHardware;
+			switch (type) {
+			case 4:
 				orbType = OrbTypes.GREEN;
-			} else {
+				onHardware = true;
+				break;
+			case 3:
 				orbType = OrbTypes.BLUE;
+				onHardware = true;
+				break;
+			case 2:
+				orbType = OrbTypes.GREEN;
+				onHardware = false;
+				break;
+			default:
+				orbType = OrbTypes.BLUE;
+				onHardware = false;
 			}
 
 			if (type > 0) {
@@ -1195,6 +1311,7 @@ public class LightAnimation {
 						strand.getLEDs().size() - 1), strand.getLEDs().get(
 						strand.getLEDs().size() - 2));
 				orb.forward = false;
+				orb.onHardware = onHardware;
 				orbs.add(orb);
 			}
 		}
@@ -1220,10 +1337,23 @@ public class LightAnimation {
 
 			final int type = strand.advance(0f, greenFlow);
 			final OrbTypes orbType;
-			if (type == 2) {
+			final boolean onHardware;
+			switch (type) {
+			case 4:
 				orbType = OrbTypes.GREEN;
-			} else {
+				onHardware = true;
+				break;
+			case 3:
 				orbType = OrbTypes.BLUE;
+				onHardware = true;
+				break;
+			case 2:
+				orbType = OrbTypes.GREEN;
+				onHardware = false;
+				break;
+			default:
+				orbType = OrbTypes.BLUE;
+				onHardware = false;
 			}
 
 			if (type > 0) {
@@ -1231,6 +1361,7 @@ public class LightAnimation {
 						strand.getLEDs().size() - 1), strand.getLEDs().get(
 						strand.getLEDs().size() - 2));
 				orb.forward = false;
+				orb.onHardware = onHardware;
 				orbs.add(orb);
 			}
 		}
@@ -1249,10 +1380,23 @@ public class LightAnimation {
 
 			final int type = strand.advance(0f, greenFlow);
 			final OrbTypes orbType;
-			if (type == 2) {
+			final boolean onHardware;
+			switch (type) {
+			case 4:
 				orbType = OrbTypes.GREEN;
-			} else {
+				onHardware = true;
+				break;
+			case 3:
 				orbType = OrbTypes.BLUE;
+				onHardware = true;
+				break;
+			case 2:
+				orbType = OrbTypes.GREEN;
+				onHardware = false;
+				break;
+			default:
+				orbType = OrbTypes.BLUE;
+				onHardware = false;
 			}
 
 			if (type > 0) {
@@ -1260,6 +1404,7 @@ public class LightAnimation {
 						strand.getLEDs().size() - 1), strand.getLEDs().get(
 						strand.getLEDs().size() - 2));
 				orb.forward = false;
+				orb.onHardware = onHardware;
 				orbs.add(orb);
 			}
 		}
@@ -1278,10 +1423,23 @@ public class LightAnimation {
 
 			final int type = strand.advance(0f, greenFlow);
 			final OrbTypes orbType;
-			if (type == 2) {
+			final boolean onHardware;
+			switch (type) {
+			case 4:
 				orbType = OrbTypes.GREEN;
-			} else {
+				onHardware = true;
+				break;
+			case 3:
 				orbType = OrbTypes.BLUE;
+				onHardware = true;
+				break;
+			case 2:
+				orbType = OrbTypes.GREEN;
+				onHardware = false;
+				break;
+			default:
+				orbType = OrbTypes.BLUE;
+				onHardware = false;
 			}
 
 			if (type > 0) {
@@ -1289,6 +1447,7 @@ public class LightAnimation {
 						strand.getLEDs().size() - 1), strand.getLEDs().get(
 						strand.getLEDs().size() - 2));
 				orb.forward = false;
+				orb.onHardware = onHardware;
 				orbs.add(orb);
 			}
 		}
@@ -1307,10 +1466,23 @@ public class LightAnimation {
 
 			final int type = strand.advance(0f, greenFlow);
 			final OrbTypes orbType;
-			if (type == 2) {
+			final boolean onHardware;
+			switch (type) {
+			case 4:
 				orbType = OrbTypes.GREEN;
-			} else {
+				onHardware = true;
+				break;
+			case 3:
 				orbType = OrbTypes.BLUE;
+				onHardware = true;
+				break;
+			case 2:
+				orbType = OrbTypes.GREEN;
+				onHardware = false;
+				break;
+			default:
+				orbType = OrbTypes.BLUE;
+				onHardware = false;
 			}
 
 			if (type > 0) {
@@ -1318,6 +1490,7 @@ public class LightAnimation {
 						strand.getLEDs().size() - 1), strand.getLEDs().get(
 						strand.getLEDs().size() - 2));
 				orb.forward = false;
+				orb.onHardware = onHardware;
 				orbs.add(orb);
 			}
 		}
@@ -1533,7 +1706,7 @@ public class LightAnimation {
 		}
 
 		for (Orb orb : orbs) {
-			if (orb.alpha < 0.9f) {
+			if (orb.alpha < 0.9f || !orb.onHardware) {
 				continue;
 			}
 
