@@ -24,7 +24,7 @@ class TextTextureManager {
 
 	private static final Map<String, Texture> textureMap = new LinkedHashMap<>();
 	
-	private static final int MAX_BUFFERED_TEXTURES = 5000;
+	private static final int MAX_BUFFERED_TEXTURES = 500;
 
 	private static int measureHeight(final String text, final int fontSize,
 			final Typeface font, final float maxLineWidth) {

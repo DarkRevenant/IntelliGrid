@@ -439,7 +439,7 @@ public class LightAnimation {
 
 	private static final float OFF_THRESHOLD = 0.0001f;
 
-	private static final float GEN_SCALE = 4f;
+	private static final float GEN_SCALE = 16f;
 	private static final float FLOW_SCALE = 3f;
 	
 	private static final int SOFTWARE_ORB_MULTIPLIER = 4;

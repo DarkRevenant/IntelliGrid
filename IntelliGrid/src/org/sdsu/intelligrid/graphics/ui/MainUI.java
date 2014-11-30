@@ -4,8 +4,10 @@ package org.sdsu.intelligrid.graphics.ui;
 
 import android.graphics.Typeface;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -57,6 +59,15 @@ public class MainUI {
         }
     }
 
+//    public static class Date {
+//        public void main(String args[]) {
+//
+//            Date dNow = new Date();
+//            SimpleDateFormat ft =
+//                    new SimpleDateFormat("hh:mm:ss");
+//        }
+//    }
+
     /**
      * Returns the list of all
      * {@link org.sdsu.intelligrid.graphics.ui.Clickable Clickable} objects
@@ -100,6 +111,8 @@ public class MainUI {
         resources.add(R.drawable.faultk);
         resources.add(R.drawable.faultl);
         resources.add(R.drawable.faultm);
+        resources.add(R.drawable.balloonfault);
+        resources.add(R.drawable.digfault);
         resources.add(R.drawable.nofault);
         resources.add(R.drawable.background);
         resources.add(R.drawable.backgroundnight);
@@ -154,6 +167,10 @@ public class MainUI {
         resources.add(R.drawable.play3);
         resources.add(R.drawable.play3down);
         resources.add(R.drawable.playdown);
+        resources.add(R.drawable.sunny);
+        resources.add(R.drawable.partlycloudy);
+        resources.add(R.drawable.cloudy);
+        resources.add(R.drawable.night);
         resources.add(R.drawable.solarpanel);
         resources.add(R.drawable.solarpanelnight);
         resources.add(R.drawable.stadium);
@@ -170,6 +187,8 @@ public class MainUI {
         resources.add(R.drawable.switchmiddlenight);
         resources.add(R.drawable.switchtop);
         resources.add(R.drawable.switchtopnight);
+        resources.add(R.drawable.switchall);
+        resources.add(R.drawable.switchallnight);
         resources.add(R.drawable.tie);
         resources.add(R.drawable.tienight);
         resources.add(R.drawable.tieopen);
@@ -225,6 +244,8 @@ public class MainUI {
         public static ClickableSprite faultk;
         public static ClickableSprite faultl;
         public static ClickableSprite faultm;
+        public static ClickableSprite balloonfault;
+        public static ClickableSprite digfault;
         public static ClickableSprite nofault;
         public static ClickableSprite background;
         public static ClickableSprite infopage;
@@ -282,26 +303,32 @@ public class MainUI {
         public static Sprite switch1top;
         public static Sprite switch1middle;
         public static Sprite switch1bottom;
+        public static Sprite switch1all;
         public static Sprite switch2;
         public static Sprite switch2top;
         public static Sprite switch2middle;
         public static Sprite switch2bottom;
+        public static Sprite switch2all;
         public static Sprite switch3;
         public static Sprite switch3top;
         public static Sprite switch3middle;
         public static Sprite switch3bottom;
+        public static Sprite switch3all;
         public static Sprite switch4;
         public static Sprite switch4top;
         public static Sprite switch4middle;
         public static Sprite switch4bottom;
+        public static Sprite switch4all;
         public static Sprite switch5;
         public static Sprite switch5top;
         public static Sprite switch5middle;
         public static Sprite switch5bottom;
+        public static Sprite switch5all;
         public static Sprite switch6;
         public static Sprite switch6top;
         public static Sprite switch6middle;
         public static Sprite switch6bottom;
+        public static Sprite switch6all;
         public static Sprite tie;
         public static Sprite tieopen;
         public static Sprite transformer1;
@@ -324,6 +351,10 @@ public class MainUI {
         public static Sprite intelligrid;
         public static Sprite trackhoe;
         public static Sprite coal;
+        public static Sprite sunny;
+        public static Sprite partlycloudy;
+        public static Sprite cloudy;
+        public static Sprite night;
         public static Sprite xouta;
         public static Sprite xoutb;
         public static Sprite xoutc;
@@ -355,6 +386,22 @@ public class MainUI {
         Objects.intelligrid = new Sprite(pixelsToCoords(195, 1555), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.intelligrid);
         Global.getRenderer().addDrawable(Objects.intelligrid);
+
+        Objects.sunny = new Sprite(pixelsToCoords(700, 1551), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.sunny);
+        Global.getRenderer().addDrawable(Objects.sunny);
+
+        Objects.partlycloudy = new Sprite(pixelsToCoords(700, 1551), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.partlycloudy);
+        Global.getRenderer().addDrawable(Objects.partlycloudy);
+
+        Objects.cloudy = new Sprite(pixelsToCoords(700, 1551), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.cloudy);
+        Global.getRenderer().addDrawable(Objects.cloudy);
+
+        Objects.night = new Sprite(pixelsToCoords(700, 1551), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.night);
+        Global.getRenderer().addDrawable(Objects.night);
 
         ClickableObjects.faults = new ClickableSprite(pixelsToCoords(2185, 75), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.faults, sizeToCoords(-64,-64), sizeToCoords(64,64), "faults");
@@ -437,67 +484,77 @@ public class MainUI {
                 new Color(255, 255, 255), R.drawable.pausedown);
         Global.getRenderer().addDrawable(Objects.pausedown);
 
-        ClickableObjects.faulta = new ClickableSprite(pixelsToCoords(500, 800), 11, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.faulta = new ClickableSprite(pixelsToCoords(565, 980), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.faulta, sizeToCoords(-56,-60), sizeToCoords(56,60), "faulta");
         Global.getRenderer().addDrawable(ClickableObjects.faulta);
         addClickable(ClickableObjects.faulta);
 
-        ClickableObjects.faultb = new ClickableSprite(pixelsToCoords(650, 800), 11, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.faultb = new ClickableSprite(pixelsToCoords(715, 980), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.faultb, sizeToCoords(-56,-60), sizeToCoords(56,60), "faultb");
         Global.getRenderer().addDrawable(ClickableObjects.faultb);
         addClickable(ClickableObjects.faultb);
 
-        ClickableObjects.faultc = new ClickableSprite(pixelsToCoords(800, 800), 11, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.faultc = new ClickableSprite(pixelsToCoords(1210, 980), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.faultc, sizeToCoords(-56,-60), sizeToCoords(56,60), "faultc");
         Global.getRenderer().addDrawable(ClickableObjects.faultc);
         addClickable(ClickableObjects.faultc);
 
-        ClickableObjects.faultd = new ClickableSprite(pixelsToCoords(950, 800), 11, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.faultd = new ClickableSprite(pixelsToCoords(1360, 980), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.faultd, sizeToCoords(-56,-60), sizeToCoords(56,60), "faultd");
         Global.getRenderer().addDrawable(ClickableObjects.faultd);
         addClickable(ClickableObjects.faultd);
 
-        ClickableObjects.faulte = new ClickableSprite(pixelsToCoords(1100, 800), 11, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.faulte = new ClickableSprite(pixelsToCoords(1820, 980), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.faulte, sizeToCoords(-56,-60), sizeToCoords(56,60), "faulte");
         Global.getRenderer().addDrawable(ClickableObjects.faulte);
         addClickable(ClickableObjects.faulte);
 
-        ClickableObjects.faultf = new ClickableSprite(pixelsToCoords(1250, 800), 11, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.faultf = new ClickableSprite(pixelsToCoords(1960, 980), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.faultf, sizeToCoords(-56,-60), sizeToCoords(56,60), "faultf");
         Global.getRenderer().addDrawable(ClickableObjects.faultf);
         addClickable(ClickableObjects.faultf);
 
-        ClickableObjects.faulth = new ClickableSprite(pixelsToCoords(500, 500), 11, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.faulth = new ClickableSprite(pixelsToCoords(565, 690), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.faulth, sizeToCoords(-56,-60), sizeToCoords(56,60), "faulth");
         Global.getRenderer().addDrawable(ClickableObjects.faulth);
         addClickable(ClickableObjects.faulth);
 
-        ClickableObjects.faulti = new ClickableSprite(pixelsToCoords(650, 500), 11, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.faulti = new ClickableSprite(pixelsToCoords(715, 690), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.faulti, sizeToCoords(-56,-60), sizeToCoords(56,60), "faulti");
         Global.getRenderer().addDrawable(ClickableObjects.faulti);
         addClickable(ClickableObjects.faulti);
 
-        ClickableObjects.faultj = new ClickableSprite(pixelsToCoords(800, 500), 11, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.faultj = new ClickableSprite(pixelsToCoords(1210, 690), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.faultj, sizeToCoords(-56,-60), sizeToCoords(56,60), "faultj");
         Global.getRenderer().addDrawable(ClickableObjects.faultj);
         addClickable(ClickableObjects.faultj);
 
-        ClickableObjects.faultk = new ClickableSprite(pixelsToCoords(950, 500), 11, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.faultk = new ClickableSprite(pixelsToCoords(1360, 690), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.faultk, sizeToCoords(-56,-60), sizeToCoords(56,60), "faultk");
         Global.getRenderer().addDrawable(ClickableObjects.faultk);
         addClickable(ClickableObjects.faultk);
 
-        ClickableObjects.faultl = new ClickableSprite(pixelsToCoords(1100, 500), 11, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.faultl = new ClickableSprite(pixelsToCoords(1820, 690), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.faultl, sizeToCoords(-56,-60), sizeToCoords(56,60), "faultl");
         Global.getRenderer().addDrawable(ClickableObjects.faultl);
         addClickable(ClickableObjects.faultl);
 
-        ClickableObjects.faultm = new ClickableSprite(pixelsToCoords(1250, 500), 11, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.faultm = new ClickableSprite(pixelsToCoords(1960, 690), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.faultm, sizeToCoords(-56,-60), sizeToCoords(56,60), "faultm");
         Global.getRenderer().addDrawable(ClickableObjects.faultm);
         addClickable(ClickableObjects.faultm);
 
-        ClickableObjects.nofault = new ClickableSprite(pixelsToCoords(1400, 500), 11, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.balloonfault = new ClickableSprite(pixelsToCoords(920, 390), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.balloonfault, sizeToCoords(-58,-58), sizeToCoords(58,58), "balloonfault");
+        Global.getRenderer().addDrawable(ClickableObjects.balloonfault);
+        addClickable(ClickableObjects.balloonfault);
+
+        ClickableObjects.digfault = new ClickableSprite(pixelsToCoords(1590, 390), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.digfault, sizeToCoords(-58,-58), sizeToCoords(58,58), "digfault");
+        Global.getRenderer().addDrawable(ClickableObjects.digfault);
+        addClickable(ClickableObjects.digfault);
+
+        ClickableObjects.nofault = new ClickableSprite(pixelsToCoords(2170, 300), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.nofault, sizeToCoords(-76,-60), sizeToCoords(76,60), "nofault");
         Global.getRenderer().addDrawable(ClickableObjects.nofault);
         addClickable(ClickableObjects.nofault);
@@ -620,7 +677,7 @@ public class MainUI {
                 new Color(255, 255, 255), R.drawable.substation);
         Global.getRenderer().addDrawable(Objects.substation);
 
-        Objects.coal = new Sprite(pixelsToCoords(1520, 1462), 0, 0f, new Vector2f(1f, 1f),
+        Objects.coal = new Sprite(pixelsToCoords(1520, 1430), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.coal);
         Global.getRenderer().addDrawable(Objects.coal);
 
@@ -664,6 +721,10 @@ public class MainUI {
                 new Color(255, 255, 255), R.drawable.switchbottom);
         Global.getRenderer().addDrawable(Objects.switch1bottom);
 
+        Objects.switch1all = new Sprite(pixelsToCoords(1300, 1000), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.switchall);
+        Global.getRenderer().addDrawable(Objects.switch1all);
+
         Objects.switch2 = new Sprite(pixelsToCoords(870, 450), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.switch1);
         Global.getRenderer().addDrawable(Objects.switch2);
@@ -679,6 +740,10 @@ public class MainUI {
         Objects.switch2bottom = new Sprite(pixelsToCoords(870, 450), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.switchbottom);
         Global.getRenderer().addDrawable(Objects.switch2bottom);
+
+        Objects.switch2all = new Sprite(pixelsToCoords(870, 450), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.switchall);
+        Global.getRenderer().addDrawable(Objects.switch2all);
 
         Objects.switch3 = new Sprite(pixelsToCoords(870, 115), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.switch1);
@@ -696,6 +761,10 @@ public class MainUI {
                 new Color(255, 255, 255), R.drawable.switchbottom);
         Global.getRenderer().addDrawable(Objects.switch3bottom);
 
+        Objects.switch3all = new Sprite(pixelsToCoords(870, 115), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.switchall);
+        Global.getRenderer().addDrawable(Objects.switch3all);
+
         Objects.switch4 = new Sprite(pixelsToCoords(1250, 335), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.switch1);
         Global.getRenderer().addDrawable(Objects.switch4);
@@ -711,6 +780,10 @@ public class MainUI {
         Objects.switch4bottom = new Sprite(pixelsToCoords(1250, 335), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.switchbottom);
         Global.getRenderer().addDrawable(Objects.switch4bottom);
+
+        Objects.switch4all = new Sprite(pixelsToCoords(1250, 335), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.switchall);
+        Global.getRenderer().addDrawable(Objects.switch4all);
 
         Objects.switch5 = new Sprite(pixelsToCoords(1700, 800), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.switch1);
@@ -728,6 +801,10 @@ public class MainUI {
                 new Color(255, 255, 255), R.drawable.switchbottom);
         Global.getRenderer().addDrawable(Objects.switch5bottom);
 
+        Objects.switch5all = new Sprite(pixelsToCoords(1700, 800), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.switchall);
+        Global.getRenderer().addDrawable(Objects.switch5all);
+
         Objects.switch6 = new Sprite(pixelsToCoords(1700, 1043), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.switch1);
         Global.getRenderer().addDrawable(Objects.switch6);
@@ -743,6 +820,10 @@ public class MainUI {
         Objects.switch6bottom = new Sprite(pixelsToCoords(1700, 1043), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.switchbottom);
         Global.getRenderer().addDrawable(Objects.switch6bottom);
+
+        Objects.switch6all = new Sprite(pixelsToCoords(1700, 1043), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.switchall);
+        Global.getRenderer().addDrawable(Objects.switch6all);
 
         Objects.tie = new Sprite(pixelsToCoords(1050, 115), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.tie);
@@ -1215,6 +1296,8 @@ public class MainUI {
 
     private static final float TEXT_UPDATE_INTERVAL = 0.1f;
     private static final double TEXT_UPDATE_CHANCE = 0.25;
+    
+    private static final float DAY_NIGHT_TRANSITION_TIME = 5f;
 
     private double textUpdateChance = 1.0;
     private float textUpdateTimer = TEXT_UPDATE_INTERVAL;
@@ -1254,72 +1337,269 @@ public class MainUI {
             Objects.battery3.setDepth(-1);
         }
 
+        // Electric Cars
+        if (Global.getGlobalSimulation().data.electricVehicleL1.get() == 1.0) {
+
+        }
+
+        // Weather States
+        if (Global.getGlobalSimulation().data.renewableSolarLevel.get() >= 0.7){
+            Objects.sunny.setDepth(0);
+            Objects.partlycloudy.setDepth(11);
+            Objects.cloudy.setDepth(11);
+        }
+        else if (Global.getGlobalSimulation().data.renewableSolarLevel.get() >= 0.4){
+            Objects.sunny.setDepth(11);
+            Objects.partlycloudy.setDepth(0);
+            Objects.cloudy.setDepth(11);
+        }
+        else if (Global.getGlobalSimulation().data.renewableSolarLevel.get() >= 0.1){
+            Objects.sunny.setDepth(11);
+            Objects.partlycloudy.setDepth(11);
+            Objects.cloudy.setDepth(0);
+        }
+
+        // Fault State
+        final String fault = Global.getGlobalSimulation().faultManager.getCurrentFault();
+        MainUI.Objects.xouta.setDepth(11);
+        MainUI.Objects.xoutb.setDepth(11);
+        MainUI.Objects.xoutc.setDepth(11);
+        MainUI.Objects.xoutd.setDepth(11);
+        MainUI.Objects.xoute.setDepth(11);
+        MainUI.Objects.xoutf.setDepth(11);
+        MainUI.Objects.xouth.setDepth(11);
+        MainUI.Objects.xouti.setDepth(11);
+        MainUI.Objects.xoutj.setDepth(11);
+        MainUI.Objects.xoutk.setDepth(11);
+        MainUI.Objects.xoutl.setDepth(11);
+        MainUI.Objects.xoutm.setDepth(11);
+        switch (fault) {
+            case "A":
+                MainUI.Objects.xouta.setDepth(0);
+                break;
+            case "B":
+                MainUI.Objects.xoutb.setDepth(0);
+                break;
+            case "C":
+                MainUI.Objects.xoutc.setDepth(0);
+                break;
+            case "D":
+                MainUI.Objects.xoutd.setDepth(0);
+                break;
+            case "E":
+                MainUI.Objects.xoute.setDepth(0);
+                break;
+            case "F":
+                MainUI.Objects.xoutf.setDepth(0);
+                break;
+            case "H":
+                MainUI.Objects.xouth.setDepth(0);
+                break;
+            case "I":
+                MainUI.Objects.xouti.setDepth(0);
+                break;
+            case "J":
+                MainUI.Objects.xoutj.setDepth(0);
+                break;
+            case "K":
+                MainUI.Objects.xoutk.setDepth(0);
+                break;
+            case "L":
+                MainUI.Objects.xoutl.setDepth(0);
+                break;
+            case "M":
+                MainUI.Objects.xoutm.setDepth(0);
+                break;
+            case "DI":
+                MainUI.Objects.xoutd.setDepth(0);
+                MainUI.Objects.xouti.setDepth(0);
+                break;
+            case "ACE":
+                MainUI.Objects.xouta.setDepth(0);
+                MainUI.Objects.xoutc.setDepth(0);
+                MainUI.Objects.xoute.setDepth(0);
+                break;
+            case "MKI":
+                MainUI.Objects.xoutm.setDepth(0);
+                MainUI.Objects.xoutk.setDepth(0);
+                MainUI.Objects.xouti.setDepth(0);
+                break;
+            default:
+        }
+
+        // Device States
+        MainUI.Objects.switch1.setDepth(11);
+        MainUI.Objects.switch1top.setDepth(11);
+        MainUI.Objects.switch1middle.setDepth(11);
+        MainUI.Objects.switch1bottom.setDepth(11);
+        MainUI.Objects.switch1all.setDepth(11);
+        MainUI.Objects.switch2.setDepth(11);
+        MainUI.Objects.switch2top.setDepth(11);
+        MainUI.Objects.switch2middle.setDepth(11);
+        MainUI.Objects.switch2bottom.setDepth(11);
+        MainUI.Objects.switch2all.setDepth(11);
+        MainUI.Objects.switch3.setDepth(11);
+        MainUI.Objects.switch3top.setDepth(11);
+        MainUI.Objects.switch3middle.setDepth(11);
+        MainUI.Objects.switch3bottom.setDepth(11);
+        MainUI.Objects.switch3all.setDepth(11);
+        MainUI.Objects.switch4.setDepth(11);
+        MainUI.Objects.switch4top.setDepth(11);
+        MainUI.Objects.switch4middle.setDepth(11);
+        MainUI.Objects.switch4bottom.setDepth(11);
+        MainUI.Objects.switch4all.setDepth(11);
+        MainUI.Objects.switch5.setDepth(11);
+        MainUI.Objects.switch5top.setDepth(11);
+        MainUI.Objects.switch5middle.setDepth(11);
+        MainUI.Objects.switch5bottom.setDepth(11);
+        MainUI.Objects.switch5all.setDepth(11);
+        MainUI.Objects.switch6.setDepth(11);
+        MainUI.Objects.switch6top.setDepth(11);
+        MainUI.Objects.switch6middle.setDepth(11);
+        MainUI.Objects.switch6bottom.setDepth(11);
+        MainUI.Objects.switch6all.setDepth(11);
+        MainUI.Objects.tie.setDepth(11);
+        MainUI.Objects.tieopen.setDepth(11);
+        if (Simulation.SimInfo.swiABC == 1) {
+            MainUI.Objects.switch1top.setDepth(0);
+        } else if (Simulation.SimInfo.swiABC == 2) {
+            MainUI.Objects.switch1middle.setDepth(0);
+        } else if (Simulation.SimInfo.swiABC == 3) {
+            MainUI.Objects.switch1bottom.setDepth(0);
+        } else if (Simulation.SimInfo.swiABC == 4) {
+            MainUI.Objects.switch1all.setDepth(0);
+        } else {
+            MainUI.Objects.switch1.setDepth(0);
+        }
+        if (Simulation.SimInfo.swiCDE == 1) {
+            MainUI.Objects.switch2top.setDepth(0);
+        } else if (Simulation.SimInfo.swiCDE == 2) {
+            MainUI.Objects.switch2middle.setDepth(0);
+        } else if (Simulation.SimInfo.swiCDE == 3) {
+            MainUI.Objects.switch2bottom.setDepth(0);
+        } else if (Simulation.SimInfo.swiCDE == 4) {
+            MainUI.Objects.switch2all.setDepth(0);
+        } else {
+            MainUI.Objects.switch2.setDepth(0);
+        }
+        if (Simulation.SimInfo.swiEFG == 1) {
+            MainUI.Objects.switch3top.setDepth(0);
+        } else if (Simulation.SimInfo.swiEFG == 2) {
+            MainUI.Objects.switch3middle.setDepth(0);
+        } else if (Simulation.SimInfo.swiEFG == 3) {
+            MainUI.Objects.switch3bottom.setDepth(0);
+        } else if (Simulation.SimInfo.swiEFG == 4) {
+            MainUI.Objects.switch3all.setDepth(0);
+        } else {
+            MainUI.Objects.switch3.setDepth(0);
+        }
+        if (Simulation.SimInfo.swiIHG == 1) {
+            MainUI.Objects.switch4top.setDepth(0);
+        } else if (Simulation.SimInfo.swiIHG == 2) {
+            MainUI.Objects.switch4middle.setDepth(0);
+        } else if (Simulation.SimInfo.swiIHG == 3) {
+            MainUI.Objects.switch4bottom.setDepth(0);
+        } else if (Simulation.SimInfo.swiIHG == 4) {
+            MainUI.Objects.switch4all.setDepth(0);
+        } else {
+            MainUI.Objects.switch4.setDepth(0);
+        }
+        if (Simulation.SimInfo.swiKJI == 1) {
+            MainUI.Objects.switch5top.setDepth(0);
+        } else if (Simulation.SimInfo.swiKJI == 2) {
+            MainUI.Objects.switch5middle.setDepth(0);
+        } else if (Simulation.SimInfo.swiKJI == 3) {
+            MainUI.Objects.switch5bottom.setDepth(0);
+        } else if (Simulation.SimInfo.swiKJI == 4) {
+            MainUI.Objects.switch5all.setDepth(0);
+        } else {
+            MainUI.Objects.switch5.setDepth(0);
+        }
+        if (Simulation.SimInfo.swiMLK == 1) {
+            MainUI.Objects.switch6top.setDepth(0);
+        } else if (Simulation.SimInfo.swiMLK == 2) {
+            MainUI.Objects.switch6middle.setDepth(0);
+        } else if (Simulation.SimInfo.swiMLK == 3) {
+            MainUI.Objects.switch6bottom.setDepth(0);
+        } else if (Simulation.SimInfo.swiMLK == 4) {
+            MainUI.Objects.switch6all.setDepth(0);
+        } else {
+            MainUI.Objects.switch6.setDepth(0);
+        }
+        if (Simulation.SimInfo.tieG) {
+            MainUI.Objects.tie.setDepth(0);
+        } else {
+            MainUI.Objects.tieopen.setDepth(0);
+        }
+
         // Night Time Mode
         if ((Simulation.SimInfo.currentTime > 18.00 || Simulation.SimInfo.currentTime < 6.00) && !night) {
             night = true;
-            ClickableObjects.background.setResource(R.drawable.backgroundnight);
-            ClickableObjects.graphs.setResource(R.drawable.graphsnight);
-            ClickableObjects.info.setResource(R.drawable.infonight);
-            ClickableObjects.business1a.setResource(R.drawable.business1night);
-            ClickableObjects.business1b.setResource(R.drawable.business1night);
-            ClickableObjects.business2a.setResource(R.drawable.business2night);
-            ClickableObjects.business2b.setResource(R.drawable.business2night);
-            ClickableObjects.business2c.setResource(R.drawable.business2night);
-            ClickableObjects.house1solar1.setResource(R.drawable.house1solarnight);
-            ClickableObjects.house1solar2.setResource(R.drawable.house1solarnight);
-            ClickableObjects.house1solar3.setResource(R.drawable.house1solarnight);
-            ClickableObjects.house2solar1.setResource(R.drawable.house2solarnight);
-            ClickableObjects.house2solar2.setResource(R.drawable.house2solarnight);
-            ClickableObjects.store.setResource(R.drawable.storenight);
-            ClickableObjects.house3a.setResource(R.drawable.house3night);
-            ClickableObjects.house3b.setResource(R.drawable.house3night);
-            ClickableObjects.house3c.setResource(R.drawable.house3night);
-            Objects.coal.setResource(R.drawable.coalnight);
-            Objects.battery1.setResource(R.drawable.battery1night);
-            Objects.battery2.setResource(R.drawable.battery2night);
-            Objects.battery3.setResource(R.drawable.battery3night);
-            Objects.midway.setResource(R.drawable.midwaynight);
-            Objects.museum.setResource(R.drawable.museumnight);
-            Objects.solarpanel.setResource(R.drawable.solarpanelnight);
-            Objects.stadium.setResource(R.drawable.stadiumnight);
-            Objects.substation.setResource(R.drawable.substationnight);
-            Objects.coal.setResource(R.drawable.coalnight);
-            Objects.switch1top.setResource(R.drawable.switchtopnight);
-            Objects.switch1middle.setResource(R.drawable.switchmiddlenight);
-            Objects.switch1bottom.setResource(R.drawable.switchbottomnight);
-            Objects.switch2top.setResource(R.drawable.switchtopnight);
-            Objects.switch2middle.setResource(R.drawable.switchmiddlenight);
-            Objects.switch2bottom.setResource(R.drawable.switchbottomnight);
-            Objects.switch3top.setResource(R.drawable.switchtopnight);
-            Objects.switch3middle.setResource(R.drawable.switchmiddlenight);
-            Objects.switch3bottom.setResource(R.drawable.switchbottomnight);
-            Objects.switch4top.setResource(R.drawable.switchtopnight);
-            Objects.switch4middle.setResource(R.drawable.switchmiddlenight);
-            Objects.switch4bottom.setResource(R.drawable.switchbottomnight);
-            Objects.switch5top.setResource(R.drawable.switchtopnight);
-            Objects.switch5middle.setResource(R.drawable.switchmiddlenight);
-            Objects.switch5bottom.setResource(R.drawable.switchbottomnight);
-            Objects.switch6top.setResource(R.drawable.switchtopnight);
-            Objects.switch6middle.setResource(R.drawable.switchmiddlenight);
-            Objects.switch6bottom.setResource(R.drawable.switchbottomnight);
-            Objects.switch1.setResource(R.drawable.switch1night);
-            Objects.switch2.setResource(R.drawable.switch1night);
-            Objects.switch3.setResource(R.drawable.switch1night);
-            Objects.switch4.setResource(R.drawable.switch1night);
-            Objects.switch5.setResource(R.drawable.switch1night);
-            Objects.switch6.setResource(R.drawable.switch1night);
-            Objects.tie.setResource(R.drawable.tienight);
-            Objects.tieopen.setResource(R.drawable.tieopennight);
-            Objects.transformer1.setResource(R.drawable.transformer1night);
-            Objects.transformer2.setResource(R.drawable.transformer1night);
-            Objects.transformer3.setResource(R.drawable.transformer1night);
-            Objects.transformer4.setResource(R.drawable.transformer1night);
-            Objects.transformer5.setResource(R.drawable.transformer1night);
-            Objects.transformer6.setResource(R.drawable.transformer1night);
-            Objects.turbine.setResource(R.drawable.turbinenight);
-            Objects.turbine2.setResource(R.drawable.turbinenight);
-            Objects.balloon.setResource(R.drawable.balloonnight);
-            Objects.trackhoe.setResource(R.drawable.trackhoenight);
+            ClickableObjects.background.setResourceOverTime(R.drawable.backgroundnight, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.graphs.setResourceOverTime(R.drawable.graphsnight, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.info.setResourceOverTime(R.drawable.infonight, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.business1a.setResourceOverTime(R.drawable.business1night, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.business1b.setResourceOverTime(R.drawable.business1night, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.business2a.setResourceOverTime(R.drawable.business2night, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.business2b.setResourceOverTime(R.drawable.business2night, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.business2c.setResourceOverTime(R.drawable.business2night, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house1solar1.setResourceOverTime(R.drawable.house1solarnight, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house1solar2.setResourceOverTime(R.drawable.house1solarnight, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house1solar3.setResourceOverTime(R.drawable.house1solarnight, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house2solar1.setResourceOverTime(R.drawable.house2solarnight, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house2solar2.setResourceOverTime(R.drawable.house2solarnight, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.store.setResourceOverTime(R.drawable.storenight, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house3a.setResourceOverTime(R.drawable.house3night, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house3b.setResourceOverTime(R.drawable.house3night, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house3c.setResourceOverTime(R.drawable.house3night, DAY_NIGHT_TRANSITION_TIME);
+            Objects.sunny.setResourceOverTime(R.drawable.night, DAY_NIGHT_TRANSITION_TIME);
+            Objects.partlycloudy.setResourceOverTime(R.drawable.night, DAY_NIGHT_TRANSITION_TIME);
+            Objects.cloudy.setResourceOverTime(R.drawable.night, DAY_NIGHT_TRANSITION_TIME);
+            Objects.coal.setResourceOverTime(R.drawable.coalnight, DAY_NIGHT_TRANSITION_TIME);
+            Objects.battery1.setResourceOverTime(R.drawable.battery1night, DAY_NIGHT_TRANSITION_TIME);
+            Objects.battery2.setResourceOverTime(R.drawable.battery2night, DAY_NIGHT_TRANSITION_TIME);
+            Objects.battery3.setResourceOverTime(R.drawable.battery3night, DAY_NIGHT_TRANSITION_TIME);
+            Objects.midway.setResourceOverTime(R.drawable.midwaynight, DAY_NIGHT_TRANSITION_TIME);
+            Objects.museum.setResourceOverTime(R.drawable.museumnight, DAY_NIGHT_TRANSITION_TIME);
+            Objects.solarpanel.setResourceOverTime(R.drawable.solarpanelnight, DAY_NIGHT_TRANSITION_TIME);
+            Objects.stadium.setResourceOverTime(R.drawable.stadiumnight, DAY_NIGHT_TRANSITION_TIME);
+            Objects.substation.setResourceOverTime(R.drawable.substationnight, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch1top.setResourceOverTime(R.drawable.switchtopnight, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch1middle.setResourceOverTime(R.drawable.switchmiddlenight, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch1bottom.setResourceOverTime(R.drawable.switchbottomnight, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch2top.setResourceOverTime(R.drawable.switchtopnight, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch2middle.setResourceOverTime(R.drawable.switchmiddlenight, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch2bottom.setResourceOverTime(R.drawable.switchbottomnight, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch3top.setResourceOverTime(R.drawable.switchtopnight, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch3middle.setResourceOverTime(R.drawable.switchmiddlenight, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch3bottom.setResourceOverTime(R.drawable.switchbottomnight, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch4top.setResourceOverTime(R.drawable.switchtopnight, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch4middle.setResourceOverTime(R.drawable.switchmiddlenight, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch4bottom.setResourceOverTime(R.drawable.switchbottomnight, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch5top.setResourceOverTime(R.drawable.switchtopnight, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch5middle.setResourceOverTime(R.drawable.switchmiddlenight, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch5bottom.setResourceOverTime(R.drawable.switchbottomnight, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch6top.setResourceOverTime(R.drawable.switchtopnight, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch6middle.setResourceOverTime(R.drawable.switchmiddlenight, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch6bottom.setResourceOverTime(R.drawable.switchbottomnight, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch1.setResourceOverTime(R.drawable.switch1night, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch2.setResourceOverTime(R.drawable.switch1night, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch3.setResourceOverTime(R.drawable.switch1night, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch4.setResourceOverTime(R.drawable.switch1night, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch5.setResourceOverTime(R.drawable.switch1night, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch6.setResourceOverTime(R.drawable.switch1night, DAY_NIGHT_TRANSITION_TIME);
+            Objects.tie.setResourceOverTime(R.drawable.tienight, DAY_NIGHT_TRANSITION_TIME);
+            Objects.tieopen.setResourceOverTime(R.drawable.tieopennight, DAY_NIGHT_TRANSITION_TIME);
+            Objects.transformer1.setResourceOverTime(R.drawable.transformer1night, DAY_NIGHT_TRANSITION_TIME);
+            Objects.transformer2.setResourceOverTime(R.drawable.transformer1night, DAY_NIGHT_TRANSITION_TIME);
+            Objects.transformer3.setResourceOverTime(R.drawable.transformer1night, DAY_NIGHT_TRANSITION_TIME);
+            Objects.transformer4.setResourceOverTime(R.drawable.transformer1night, DAY_NIGHT_TRANSITION_TIME);
+            Objects.transformer5.setResourceOverTime(R.drawable.transformer1night, DAY_NIGHT_TRANSITION_TIME);
+            Objects.transformer6.setResourceOverTime(R.drawable.transformer1night, DAY_NIGHT_TRANSITION_TIME);
+            Objects.turbine.setResourceOverTime(R.drawable.turbinenight, DAY_NIGHT_TRANSITION_TIME);
+            Objects.turbine2.setResourceOverTime(R.drawable.turbinenight, DAY_NIGHT_TRANSITION_TIME);
+            Objects.balloon.setResourceOverTime(R.drawable.balloonnight, DAY_NIGHT_TRANSITION_TIME);
+            Objects.trackhoe.setResourceOverTime(R.drawable.trackhoenight, DAY_NIGHT_TRANSITION_TIME);
             UIInfo.trA.setColor(new Color(255, 255, 255));
             UIInfo.trB.setColor(new Color(255, 255, 255));
             UIInfo.trC.setColor(new Color(255, 255, 255));
@@ -1340,69 +1620,72 @@ public class MainUI {
         // Day Time Mode
         if ((Simulation.SimInfo.currentTime <= 18.00 && Simulation.SimInfo.currentTime >= 6.00) && night) {
             night = false;
-            ClickableObjects.background.setResource(R.drawable.background);
-            ClickableObjects.business1a.setResource(R.drawable.business1);
-            ClickableObjects.business1b.setResource(R.drawable.business1);
-            ClickableObjects.business2a.setResource(R.drawable.business2);
-            ClickableObjects.business2b.setResource(R.drawable.business2);
-            ClickableObjects.business2c.setResource(R.drawable.business2);
-            ClickableObjects.graphs.setResource(R.drawable.graphs);
-            ClickableObjects.info.setResource(R.drawable.info);
-            ClickableObjects.house1solar1.setResource(R.drawable.house1solar);
-            ClickableObjects.house1solar2.setResource(R.drawable.house1solar);
-            ClickableObjects.house1solar3.setResource(R.drawable.house1solar);
-            ClickableObjects.house2solar1.setResource(R.drawable.house2solar);
-            ClickableObjects.house2solar2.setResource(R.drawable.house2solar);
-            ClickableObjects.store.setResource(R.drawable.store);
-            ClickableObjects.house3a.setResource(R.drawable.house3);
-            ClickableObjects.house3b.setResource(R.drawable.house3);
-            ClickableObjects.house3c.setResource(R.drawable.house3);
-            Objects.coal.setResource(R.drawable.coal);
-            Objects.battery1.setResource(R.drawable.battery1);
-            Objects.battery2.setResource(R.drawable.battery2);
-            Objects.battery3.setResource(R.drawable.battery3);
-            Objects.midway.setResource(R.drawable.midway);
-            Objects.midway.setResource(R.drawable.midway);
-            Objects.museum.setResource(R.drawable.museum);
-            Objects.solarpanel.setResource(R.drawable.solarpanel);
-            Objects.stadium.setResource(R.drawable.stadium);
-            Objects.substation.setResource(R.drawable.substation);
-            Objects.switch1top.setResource(R.drawable.switchtop);
-            Objects.switch1middle.setResource(R.drawable.switchmiddle);
-            Objects.switch1bottom.setResource(R.drawable.switchbottom);
-            Objects.switch2top.setResource(R.drawable.switchtop);
-            Objects.switch2middle.setResource(R.drawable.switchmiddle);
-            Objects.switch2bottom.setResource(R.drawable.switchbottom);
-            Objects.switch3top.setResource(R.drawable.switchtop);
-            Objects.switch3middle.setResource(R.drawable.switchmiddle);
-            Objects.switch3bottom.setResource(R.drawable.switchbottom);
-            Objects.switch4top.setResource(R.drawable.switchtop);
-            Objects.switch4middle.setResource(R.drawable.switchmiddle);
-            Objects.switch4bottom.setResource(R.drawable.switchbottom);
-            Objects.switch5top.setResource(R.drawable.switchtop);
-            Objects.switch5middle.setResource(R.drawable.switchmiddle);
-            Objects.switch5bottom.setResource(R.drawable.switchbottom);
-            Objects.switch6top.setResource(R.drawable.switchtop);
-            Objects.switch6middle.setResource(R.drawable.switchmiddle);
-            Objects.switch6bottom.setResource(R.drawable.switchbottom);
-            Objects.switch1.setResource(R.drawable.switch1);
-            Objects.switch2.setResource(R.drawable.switch1);
-            Objects.switch3.setResource(R.drawable.switch1);
-            Objects.switch4.setResource(R.drawable.switch1);
-            Objects.switch5.setResource(R.drawable.switch1);
-            Objects.switch6.setResource(R.drawable.switch1);
-            Objects.tie.setResource(R.drawable.tie);
-            Objects.tieopen.setResource(R.drawable.tieopen);
-            Objects.transformer1.setResource(R.drawable.transformer1);
-            Objects.transformer2.setResource(R.drawable.transformer1);
-            Objects.transformer3.setResource(R.drawable.transformer1);
-            Objects.transformer4.setResource(R.drawable.transformer1);
-            Objects.transformer5.setResource(R.drawable.transformer1);
-            Objects.transformer6.setResource(R.drawable.transformer1);
-            Objects.turbine.setResource(R.drawable.turbine);
-            Objects.turbine2.setResource(R.drawable.turbine);
-            Objects.balloon.setResource(R.drawable.balloon);
-            Objects.trackhoe.setResource(R.drawable.trackhoe);
+            ClickableObjects.background.setResourceOverTime(R.drawable.background, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.business1a.setResourceOverTime(R.drawable.business1, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.business1b.setResourceOverTime(R.drawable.business1, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.business2a.setResourceOverTime(R.drawable.business2, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.business2b.setResourceOverTime(R.drawable.business2, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.business2c.setResourceOverTime(R.drawable.business2, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.graphs.setResourceOverTime(R.drawable.graphs, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.info.setResourceOverTime(R.drawable.info, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house1solar1.setResourceOverTime(R.drawable.house1solar, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house1solar2.setResourceOverTime(R.drawable.house1solar, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house1solar3.setResourceOverTime(R.drawable.house1solar, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house2solar1.setResourceOverTime(R.drawable.house2solar, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house2solar2.setResourceOverTime(R.drawable.house2solar, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.store.setResourceOverTime(R.drawable.store, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house3a.setResourceOverTime(R.drawable.house3, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house3b.setResourceOverTime(R.drawable.house3, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house3c.setResourceOverTime(R.drawable.house3, DAY_NIGHT_TRANSITION_TIME);
+            Objects.sunny.setResourceOverTime(R.drawable.sunny, DAY_NIGHT_TRANSITION_TIME);
+            Objects.partlycloudy.setResourceOverTime(R.drawable.partlycloudy, DAY_NIGHT_TRANSITION_TIME);
+            Objects.cloudy.setResourceOverTime(R.drawable.cloudy, DAY_NIGHT_TRANSITION_TIME);
+            Objects.coal.setResourceOverTime(R.drawable.coal, DAY_NIGHT_TRANSITION_TIME);
+            Objects.battery1.setResourceOverTime(R.drawable.battery1, DAY_NIGHT_TRANSITION_TIME);
+            Objects.battery2.setResourceOverTime(R.drawable.battery2, DAY_NIGHT_TRANSITION_TIME);
+            Objects.battery3.setResourceOverTime(R.drawable.battery3, DAY_NIGHT_TRANSITION_TIME);
+            Objects.midway.setResourceOverTime(R.drawable.midway, DAY_NIGHT_TRANSITION_TIME);
+            Objects.midway.setResourceOverTime(R.drawable.midway, DAY_NIGHT_TRANSITION_TIME);
+            Objects.museum.setResourceOverTime(R.drawable.museum, DAY_NIGHT_TRANSITION_TIME);
+            Objects.solarpanel.setResourceOverTime(R.drawable.solarpanel, DAY_NIGHT_TRANSITION_TIME);
+            Objects.stadium.setResourceOverTime(R.drawable.stadium, DAY_NIGHT_TRANSITION_TIME);
+            Objects.substation.setResourceOverTime(R.drawable.substation, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch1top.setResourceOverTime(R.drawable.switchtop, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch1middle.setResourceOverTime(R.drawable.switchmiddle, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch1bottom.setResourceOverTime(R.drawable.switchbottom, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch2top.setResourceOverTime(R.drawable.switchtop, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch2middle.setResourceOverTime(R.drawable.switchmiddle, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch2bottom.setResourceOverTime(R.drawable.switchbottom, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch3top.setResourceOverTime(R.drawable.switchtop, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch3middle.setResourceOverTime(R.drawable.switchmiddle, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch3bottom.setResourceOverTime(R.drawable.switchbottom, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch4top.setResourceOverTime(R.drawable.switchtop, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch4middle.setResourceOverTime(R.drawable.switchmiddle, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch4bottom.setResourceOverTime(R.drawable.switchbottom, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch5top.setResourceOverTime(R.drawable.switchtop, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch5middle.setResourceOverTime(R.drawable.switchmiddle, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch5bottom.setResourceOverTime(R.drawable.switchbottom, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch6top.setResourceOverTime(R.drawable.switchtop, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch6middle.setResourceOverTime(R.drawable.switchmiddle, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch6bottom.setResourceOverTime(R.drawable.switchbottom, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch1.setResourceOverTime(R.drawable.switch1, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch2.setResourceOverTime(R.drawable.switch1, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch3.setResourceOverTime(R.drawable.switch1, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch4.setResourceOverTime(R.drawable.switch1, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch5.setResourceOverTime(R.drawable.switch1, DAY_NIGHT_TRANSITION_TIME);
+            Objects.switch6.setResourceOverTime(R.drawable.switch1, DAY_NIGHT_TRANSITION_TIME);
+            Objects.tie.setResourceOverTime(R.drawable.tie, DAY_NIGHT_TRANSITION_TIME);
+            Objects.tieopen.setResourceOverTime(R.drawable.tieopen, DAY_NIGHT_TRANSITION_TIME);
+            Objects.transformer1.setResourceOverTime(R.drawable.transformer1, DAY_NIGHT_TRANSITION_TIME);
+            Objects.transformer2.setResourceOverTime(R.drawable.transformer1, DAY_NIGHT_TRANSITION_TIME);
+            Objects.transformer3.setResourceOverTime(R.drawable.transformer1, DAY_NIGHT_TRANSITION_TIME);
+            Objects.transformer4.setResourceOverTime(R.drawable.transformer1, DAY_NIGHT_TRANSITION_TIME);
+            Objects.transformer5.setResourceOverTime(R.drawable.transformer1, DAY_NIGHT_TRANSITION_TIME);
+            Objects.transformer6.setResourceOverTime(R.drawable.transformer1, DAY_NIGHT_TRANSITION_TIME);
+            Objects.turbine.setResourceOverTime(R.drawable.turbine, DAY_NIGHT_TRANSITION_TIME);
+            Objects.turbine2.setResourceOverTime(R.drawable.turbine, DAY_NIGHT_TRANSITION_TIME);
+            Objects.balloon.setResourceOverTime(R.drawable.balloon, DAY_NIGHT_TRANSITION_TIME);
+            Objects.trackhoe.setResourceOverTime(R.drawable.trackhoe, DAY_NIGHT_TRANSITION_TIME);
             UIInfo.trA.setColor(new Color(0, 0, 0));
             UIInfo.trB.setColor(new Color(0, 0, 0));
             UIInfo.trC.setColor(new Color(0, 0, 0));
@@ -1423,18 +1706,18 @@ public class MainUI {
         textUpdateTimer -= amount;
         if (textUpdateTimer <= 0f) {
             if (Math.random() < textUpdateChance)
-                UIInfo.Load1.setText("\t" + "Residential 1" + "\n"
-                                + "Real Power: " + "" + String.format("%.2f", Simulation.SimInfo.Load1) + " MW" + "\n"
-                                + "Reactive Power: " + String.format("%.2f", Simulation.SimInfo.Load1r) + " MVAR" + "\n"
-                                + "Apparent Power: " + String.format("%.2f", Simulation.SimInfo.Load1a) + " MVA",
+                UIInfo.Load1.setText("\t\t\t\t\t\t\t\t\t\t\t\t" + "Residential 1" + "\n" + "\n"
+                                + "Real Power: \t\t\t\t\t\t\t\t\t" + "" + String.format("%.2f", Simulation.SimInfo.Load1) + " MW" + "\n"
+                                + "Reactive Power: \t\t\t" + String.format("%.2f", Simulation.SimInfo.Load1r) + " MVAR" + "\n"
+                                + "Apparent Power: \t\t\t" + String.format("%.2f", Simulation.SimInfo.Load1a) + " MVA",
                         UIInfo.Load1.getFontSize(), UIInfo.Load1.getFont(),
                         UIInfo.Load1.getMaxLineWidth());
 
             if (Math.random() < textUpdateChance)
-                UIInfo.Load2.setText("\t" + "Residential 1" + "\n"
-                                + "Real Power: " + "" + String.format("%.2f", Simulation.SimInfo.Load2) + " MW" + "\n"
-                                + "Reactive Power: " + String.format("%.2f", Simulation.SimInfo.Load2r) + " MVAR" + "\n"
-                                + "Apparent Power: " + String.format("%.2f", Simulation.SimInfo.Load2a) + " MVA",
+                UIInfo.Load2.setText("\t\t\t\t\t\t\t\t\t\t\t\t" + "Residential 2" + "\n" + "\n"
+                                + "Real Power: \t\t\t\t\t\t\t\t\t" + "" + String.format("%.2f", Simulation.SimInfo.Load2) + " MW" + "\n"
+                                + "Reactive Power: \t\t\t" + String.format("%.2f", Simulation.SimInfo.Load2r) + " MVAR" + "\n"
+                                + "Apparent Power: \t\t\t" + String.format("%.2f", Simulation.SimInfo.Load2a) + " MVA",
                         UIInfo.Load2.getFontSize(), UIInfo.Load2.getFont(),
                         UIInfo.Load2.getMaxLineWidth());
 
@@ -1543,7 +1826,22 @@ public class MainUI {
 //                        UIInfo.SDGE.getFontSize(), UIInfo.SDGE.getFont(),
 //                        UIInfo.SDGE.getMaxLineWidth());
 
-            UIInfo.currentTime.setText("Time: " + "" + String.format("%.2f", Simulation.SimInfo.currentTime),
+            final int hours;
+            if (Simulation.SimInfo.currentTime < 1.0) {
+                hours = (int) Simulation.SimInfo.currentTime + 12;
+            } else if (Simulation.SimInfo.currentTime >= 13.0) {
+                hours = (int) Simulation.SimInfo.currentTime - 12;
+            } else {
+                hours = (int) Simulation.SimInfo.currentTime;
+            }
+            final int minutes = (int) ((Simulation.SimInfo.currentTime - (int) Simulation.SimInfo.currentTime) * 60.0);
+            final String amPM;
+            if (Simulation.SimInfo.currentTime > 12.0) {
+                amPM = "PM";
+            } else {
+                amPM = "AM";
+            }
+            UIInfo.currentTime.setText("" + hours + ":" + String.format("%02d", minutes) + " " + amPM,
                     UIInfo.currentTime.getFontSize(), UIInfo.currentTime.getFont(),
                     UIInfo.currentTime.getMaxLineWidth());
 
