@@ -111,6 +111,7 @@ public class Simulation {
         public boolean load4WasOn = true;
         public boolean load5WasOn = true;
         public boolean load6WasOn = true;
+        public int lastBatteryLevel = 0;
     }
 
 	/**
@@ -471,6 +472,7 @@ public class Simulation {
             } else {
             	MainNetworkHandler.constructAndSendPacket(PacketTypes.POWER_OUTAGE, new MainNetworkHandler.OutageData(6, false));
             }
+            MainNetworkHandler.constructAndSendPacket(PacketTypes.BATTERY_STORAGE_LEVEL, linear(SimulationData.BatteryLevel, time));
         } else if (!Global.getNetworkInterface().isConnected() && hasConnectionBeenMade) {
         	hasConnectionBeenMade = false;
         }
@@ -890,6 +892,11 @@ public class Simulation {
         double WindTurbines = linear(SimulationData.WindFarm, time) * data.windGenerationLevel.get();
         double BatteryStorage = linear(SimulationData.Battery, time);
         double BatteryLevel = linear(SimulationData.BatteryLevel, time);
+        
+        if (Math.round(BatteryLevel) != data.lastBatteryLevel) {
+        	data.lastBatteryLevel = (int) Math.round(BatteryLevel);
+        	MainNetworkHandler.constructAndSendPacket(PacketTypes.BATTERY_STORAGE_LEVEL, data.lastBatteryLevel);
+        }
 
         //Total SDGE Power
         double SDGE = transTotal - PowPlant - WindTurbines + BatteryStorage;
@@ -934,7 +941,7 @@ public class Simulation {
         SimInfo.PowPlant = PowPlant;
         SimInfo.WindTurbines = WindTurbines;
         SimInfo.BatteryStorage = BatteryStorage;
-        SimInfo.BatteryLevel = BatteryLevel;
+        SimInfo.BatteryLevel = (int) Math.round(BatteryLevel);
         SimInfo.transTotal = transTotal;
         SimInfo.SDGE = SDGE;
         SimInfo.GenScale = 1.0 / data.capacity;
@@ -995,7 +1002,7 @@ public class Simulation {
         public static double PowPlant;
         public static double WindTurbines;
         public static double BatteryStorage;
-        public static double BatteryLevel;
+        public static int BatteryLevel;
         public static double transTotal;
         public static double SDGE;
         public static double GenScale;

@@ -180,8 +180,6 @@ public class MainNetworkHandler {
 		// param == integer representing the battery storage level
 		@Override
 		public String output(final Object param) {
-			// This is not called anywhere yet
-
 			final int val = (int) param;
 			final String out;
 			switch (val) {
@@ -405,30 +403,6 @@ public class MainNetworkHandler {
 			for (int i = 1; i <= 177; i++) {
 				out = out + LightAnimation.getState(i).signal;
 			}
-			/*for (int i = 0; i < 22; i++) {
-				out = out + "0";
-			}
-			for (int i = 0; i < 22; i++) {
-				out = out + "1";
-			}
-			for (int i = 0; i < 22; i++) {
-				out = out + "2";
-			}
-			for (int i = 0; i < 22; i++) {
-				out = out + "3";
-			}
-			for (int i = 0; i < 22; i++) {
-				out = out + "4";
-			}
-			for (int i = 0; i < 22; i++) {
-				out = out + "5";
-			}
-			for (int i = 0; i < 22; i++) {
-				out = out + "6";
-			}
-			for (int i = 0; i < 23; i++) {
-				out = out + "7";
-			}*/
 			return out;
 		}
 	}
