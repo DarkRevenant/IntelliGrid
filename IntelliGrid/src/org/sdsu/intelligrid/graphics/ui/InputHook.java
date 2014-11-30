@@ -813,6 +813,30 @@ public class InputHook {
             MainUI.ClickableObjects.load6stats.setDepth(-1);
             MainUI.UIInfo.Load6.setDepth(-2);
         }
+        if (object.getId().equals("transformer1")) {
+            MainUI.ClickableObjects.load1stats.setDepth(-1);
+            MainUI.UIInfo.Load1.setDepth(-2);
+        }
+        if (object.getId().equals("transformer2")) {
+            MainUI.ClickableObjects.load2stats.setDepth(-1);
+            MainUI.UIInfo.Load2.setDepth(-2);
+        }
+        if (object.getId().equals("transformer3")) {
+            MainUI.ClickableObjects.load3stats.setDepth(-1);
+            MainUI.UIInfo.Load3.setDepth(-2);
+        }
+        if (object.getId().equals("transformer4")) {
+            MainUI.ClickableObjects.load4stats.setDepth(-1);
+            MainUI.UIInfo.Load4.setDepth(-2);
+        }
+        if (object.getId().equals("transformer5")) {
+            MainUI.ClickableObjects.load5stats.setDepth(-1);
+            MainUI.UIInfo.Load5.setDepth(-2);
+        }
+        if (object.getId().equals("transformer6")) {
+            MainUI.ClickableObjects.load6stats.setDepth(-1);
+            MainUI.UIInfo.Load6.setDepth(-2);
+        }
 	}
 
 	/**
