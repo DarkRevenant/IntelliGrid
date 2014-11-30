@@ -535,19 +535,6 @@ public class InputHook {
 			MainUI.ClickableObjects.load1stats.setDepth(11);
 			MainUI.UIInfo.Load1.setDepth(11);
 		}
-		if (object.getId().equals("house3a")) {
-			MainUI.ClickableObjects.load1stats.setDepth(-1);
-			MainUI.UIInfo.Load1.setDepth(-2);
-		}
-		if (object.getId().equals("house3b")) {
-			MainUI.ClickableObjects.load1stats.setDepth(-1);
-			MainUI.UIInfo.Load1.setDepth(-2);
-		}
-		if (object.getId().equals("house3c")) {
-			MainUI.ClickableObjects.load1stats.setDepth(-1);
-			MainUI.UIInfo.Load1.setDepth(-2);
-		}
-
         // Residential 2
 		if (object.getId().equals("load2stats")) {
 			MainUI.ClickableObjects.load2stats.setDepth(11);
@@ -648,10 +635,6 @@ public class InputHook {
 			MainUI.ClickableObjects.load4stats.setDepth(11);
 			MainUI.UIInfo.Load4.setDepth(11);
 		}
-		if (object.getId().equals("business1a")) {
-			MainUI.ClickableObjects.load4stats.setDepth(-1);
-			MainUI.UIInfo.Load4.setDepth(-2);
-		}
         if (object.getId().equals("midway")) {
             MainUI.ClickableObjects.load4stats.setDepth(-1);
             MainUI.UIInfo.Load4.setDepth(-2);
@@ -660,31 +643,10 @@ public class InputHook {
 			MainUI.ClickableObjects.load5stats.setDepth(11);
 			MainUI.UIInfo.Load5.setDepth(11);
 		}
-		if (object.getId().equals("business2a")) {
-			MainUI.ClickableObjects.load5stats.setDepth(-1);
-			MainUI.UIInfo.Load5.setDepth(-2);
-		}
-		if (object.getId().equals("business2b")) {
-			MainUI.ClickableObjects.load5stats.setDepth(-1);
-			MainUI.UIInfo.Load5.setDepth(-2);
-		}
-		if (object.getId().equals("business2c")) {
-			MainUI.ClickableObjects.load5stats.setDepth(-1);
-			MainUI.UIInfo.Load5.setDepth(-2);
-		}
-
 		if (object.getId().equals("load6stats")) {
 			MainUI.ClickableObjects.load6stats.setDepth(11);
 			MainUI.UIInfo.Load6.setDepth(11);
 		}
-		if (object.getId().equals("business1b")) {
-			MainUI.ClickableObjects.load6stats.setDepth(-1);
-			MainUI.UIInfo.Load6.setDepth(-2);
-		}
-        if (object.getId().equals("stadium")) {
-            MainUI.ClickableObjects.load6stats.setDepth(-1);
-            MainUI.UIInfo.Load6.setDepth(-2);
-        }
         if (object.getId().equals("transformer1")) {
             MainUI.ClickableObjects.load1stats.setDepth(-1);
             MainUI.UIInfo.Load1.setDepth(-2);
