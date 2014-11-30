@@ -717,14 +717,38 @@ public class InputHook {
 			MainUI.ClickableObjects.load2stats.setDepth(11);
 			MainUI.UIInfo.Load2.setDepth(11);
 		}
-		if (object.getId().equals("house2solar1")) {
+		if (object.getId().equals("house2a")) {
 			MainUI.ClickableObjects.load2stats.setDepth(-1);
 			MainUI.UIInfo.Load2.setDepth(-2);
 		}
-		if (object.getId().equals("house2solar2")) {
+        if (object.getId().equals("house2asolar")) {
+            MainUI.ClickableObjects.load2stats.setDepth(-1);
+            MainUI.UIInfo.Load2.setDepth(-2);
+        }
+        if (object.getId().equals("house2acar")) {
+            MainUI.ClickableObjects.load2stats.setDepth(-1);
+            MainUI.UIInfo.Load2.setDepth(-2);
+        }
+        if (object.getId().equals("house2aboth")) {
+            MainUI.ClickableObjects.load2stats.setDepth(-1);
+            MainUI.UIInfo.Load2.setDepth(-2);
+        }
+		if (object.getId().equals("house2b")) {
 			MainUI.ClickableObjects.load2stats.setDepth(-1);
 			MainUI.UIInfo.Load2.setDepth(-2);
 		}
+        if (object.getId().equals("house2bsolar")) {
+            MainUI.ClickableObjects.load2stats.setDepth(-1);
+            MainUI.UIInfo.Load2.setDepth(-2);
+        }
+        if (object.getId().equals("house2bcar")) {
+            MainUI.ClickableObjects.load2stats.setDepth(-1);
+            MainUI.UIInfo.Load2.setDepth(-2);
+        }
+        if (object.getId().equals("house2bboth")) {
+            MainUI.ClickableObjects.load2stats.setDepth(-1);
+            MainUI.UIInfo.Load2.setDepth(-2);
+        }
 		if (object.getId().equals("store")) {
 			MainUI.ClickableObjects.load2stats.setDepth(-1);
 			MainUI.UIInfo.Load2.setDepth(-2);
@@ -738,14 +762,38 @@ public class InputHook {
 			MainUI.ClickableObjects.load3stats.setDepth(11);
 			MainUI.UIInfo.Load3.setDepth(11);
 		}
-		if (object.getId().equals("house1solar1")) {
+		if (object.getId().equals("house1a")) {
 			MainUI.ClickableObjects.load3stats.setDepth(-1);
 			MainUI.UIInfo.Load3.setDepth(-2);
 		}
-		if (object.getId().equals("house1solar2")) {
+        if (object.getId().equals("house1asolar")) {
+            MainUI.ClickableObjects.load3stats.setDepth(-1);
+            MainUI.UIInfo.Load3.setDepth(-2);
+        }
+        if (object.getId().equals("house1acar")) {
+            MainUI.ClickableObjects.load3stats.setDepth(-1);
+            MainUI.UIInfo.Load3.setDepth(-2);
+        }
+        if (object.getId().equals("house1aboth")) {
+            MainUI.ClickableObjects.load3stats.setDepth(-1);
+            MainUI.UIInfo.Load3.setDepth(-2);
+        }
+		if (object.getId().equals("house1b")) {
 			MainUI.ClickableObjects.load3stats.setDepth(-1);
 			MainUI.UIInfo.Load3.setDepth(-2);
 		}
+        if (object.getId().equals("house1bsolar")) {
+            MainUI.ClickableObjects.load3stats.setDepth(-1);
+            MainUI.UIInfo.Load3.setDepth(-2);
+        }
+        if (object.getId().equals("house1bcar")) {
+            MainUI.ClickableObjects.load3stats.setDepth(-1);
+            MainUI.UIInfo.Load3.setDepth(-2);
+        }
+        if (object.getId().equals("house1bboth")) {
+            MainUI.ClickableObjects.load3stats.setDepth(-1);
+            MainUI.UIInfo.Load3.setDepth(-2);
+        }
 		if (object.getId().equals("house1solar3")) {
 			MainUI.ClickableObjects.load3stats.setDepth(-1);
 			MainUI.UIInfo.Load3.setDepth(-2);

@@ -61,7 +61,7 @@ public class Simulation {
                         3.811616794, 4.024718622, 4.23782045, 4.446079055, 4.660633851, 4.658212239, 4.660149528, 4.339528141, 3.811616794, 3.283705446, 2.964052704, 2.54269227};
         
         //Electric Vehicles
-        public double EV = 1;  //electric vehicle load (per vehicle)
+        public double EV = 0.4;  //electric vehicle load (per vehicle)
 
         //Weather for Solar Panels
         public static double[] weather = {1, .8, .6, .4, .2}; //Sunny to cloudy
@@ -491,7 +491,7 @@ public class Simulation {
 
         double Load1 = linear(SimulationData.res1, time);
         double Load2 = linear(SimulationData.res2, time) - ((data.solarPanelM1.get() + data.solarPanelM2.get()) * (linear(SimulationData.Solar, time) * data.solarCoefficientM * data.middleSolarLevel.get() * linear(SimulationData.weather, data.w)));
-        double Load3 = linear(SimulationData.res3, time) * ((data.electricVehicleL1.get() + data.electricVehicleL2.get() + data.electricVehicleL3.get()) * data.EV) - ((data.solarPanelL1.get() + data.solarPanelL2.get() + data.solarPanelL3.get()) * (linear(SimulationData.Solar, time) * data.solarCoefficientL * data.lowerSolarLevel.get() * linear(SimulationData.weather, data.w)));
+        double Load3 = linear(SimulationData.res3, time) + ((data.electricVehicleL1.get() + data.electricVehicleL2.get() + data.electricVehicleL3.get()) * data.EV) - ((data.solarPanelL1.get() + data.solarPanelL2.get() + data.solarPanelL3.get()) * (linear(SimulationData.Solar, time) * data.solarCoefficientL * data.lowerSolarLevel.get() * linear(SimulationData.weather, data.w)));
         double Load4 = linear(SimulationData.comm2, time);
         double Load5 = linear(SimulationData.comm1, time);
         double Load6 = linear(SimulationData.comm3, time);

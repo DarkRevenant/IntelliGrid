@@ -289,11 +289,14 @@ public class MainUI {
         public static ClickableSprite house1bsolar;
         public static ClickableSprite house1bcar;
         public static ClickableSprite house1bboth;
-        public static ClickableSprite house1solar1;
-        public static ClickableSprite house1solar2;
-        public static ClickableSprite house1solar3;
-        public static ClickableSprite house2solar1;
-        public static ClickableSprite house2solar2;
+        public static ClickableSprite house1c;
+        public static ClickableSprite house1csolar;
+        public static ClickableSprite house1ccar;
+        public static ClickableSprite house1cboth;
+        public static ClickableSprite house2a;
+        public static ClickableSprite house2asolar;
+        public static ClickableSprite house2b;
+        public static ClickableSprite house2bsolar;
         public static ClickableSprite house3a;
         public static ClickableSprite house3b;
         public static ClickableSprite house3c;
@@ -575,35 +578,90 @@ public class MainUI {
         Global.getRenderer().addDrawable(ClickableObjects.nofault);
         addClickable(ClickableObjects.nofault);
 
-        ClickableObjects.house1solar1 = new ClickableSprite(pixelsToCoords(155, 120), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house1solar, sizeToCoords(-60,-62), sizeToCoords(60,62), "house1solar1");
-        Global.getRenderer().addDrawable(ClickableObjects.house1solar1);
-        addClickable(ClickableObjects.house1solar1);
+        ClickableObjects.house1a = new ClickableSprite(pixelsToCoords(155, 120), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.house1, sizeToCoords(-60,-62), sizeToCoords(60,62), "house1a");
+        Global.getRenderer().addDrawable(ClickableObjects.house1a);
+        addClickable(ClickableObjects.house1a);
 
-        ClickableObjects.house1solar2 = new ClickableSprite(pixelsToCoords(375, 270), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house1solar, sizeToCoords(-60,-62), sizeToCoords(60,62), "house1solar2");
-        Global.getRenderer().addDrawable(ClickableObjects.house1solar2);
-        addClickable(ClickableObjects.house1solar2);
+        ClickableObjects.house1asolar = new ClickableSprite(pixelsToCoords(155, 120), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.house1solar, sizeToCoords(-60,-62), sizeToCoords(60,62), "house1asolar");
+        Global.getRenderer().addDrawable(ClickableObjects.house1asolar);
+        addClickable(ClickableObjects.house1asolar);
 
-        ClickableObjects.house1solar3 = new ClickableSprite(pixelsToCoords(615, 270), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house1solar, sizeToCoords(-60,-62), sizeToCoords(60,62), "house1solar3");
-        Global.getRenderer().addDrawable(ClickableObjects.house1solar3);
-        addClickable(ClickableObjects.house1solar3);
+        ClickableObjects.house1acar = new ClickableSprite(pixelsToCoords(155, 120), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.house1car, sizeToCoords(-60,-62), sizeToCoords(60,62), "house1acar");
+        Global.getRenderer().addDrawable(ClickableObjects.house1acar);
+        addClickable(ClickableObjects.house1acar);
+
+        ClickableObjects.house1aboth = new ClickableSprite(pixelsToCoords(155, 120), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.house1both, sizeToCoords(-60,-62), sizeToCoords(60,62), "house1aboth");
+        Global.getRenderer().addDrawable(ClickableObjects.house1aboth);
+        addClickable(ClickableObjects.house1aboth);
+
+        ClickableObjects.house1b = new ClickableSprite(pixelsToCoords(375, 270), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.house1, sizeToCoords(-60,-62), sizeToCoords(60,62), "house1b");
+        Global.getRenderer().addDrawable(ClickableObjects.house1b);
+        addClickable(ClickableObjects.house1b);
+
+        ClickableObjects.house1bsolar = new ClickableSprite(pixelsToCoords(375, 270), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.house1solar, sizeToCoords(-60,-62), sizeToCoords(60,62), "house1bsolar");
+        Global.getRenderer().addDrawable(ClickableObjects.house1bsolar);
+        addClickable(ClickableObjects.house1bsolar);
+
+        ClickableObjects.house1bcar = new ClickableSprite(pixelsToCoords(375, 270), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.house1car, sizeToCoords(-60,-62), sizeToCoords(60,62), "house1bcar");
+        Global.getRenderer().addDrawable(ClickableObjects.house1bcar);
+        addClickable(ClickableObjects.house1bcar);
+
+        ClickableObjects.house1bboth = new ClickableSprite(pixelsToCoords(375, 270), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.house1both, sizeToCoords(-60,-62), sizeToCoords(60,62), "house1solar2");
+        Global.getRenderer().addDrawable(ClickableObjects.house1bboth);
+        addClickable(ClickableObjects.house1bboth);
+
+        ClickableObjects.house1c = new ClickableSprite(pixelsToCoords(615, 270), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.house1, sizeToCoords(-60,-62), sizeToCoords(60,62), "house1c");
+        Global.getRenderer().addDrawable(ClickableObjects.house1c);
+        addClickable(ClickableObjects.house1c);
+
+        ClickableObjects.house1csolar = new ClickableSprite(pixelsToCoords(615, 270), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.house1solar, sizeToCoords(-60,-62), sizeToCoords(60,62), "house1csolar");
+        Global.getRenderer().addDrawable(ClickableObjects.house1csolar);
+        addClickable(ClickableObjects.house1csolar);
+
+        ClickableObjects.house1ccar = new ClickableSprite(pixelsToCoords(615, 270), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.house1car, sizeToCoords(-60,-62), sizeToCoords(60,62), "house1ccar");
+        Global.getRenderer().addDrawable(ClickableObjects.house1ccar);
+        addClickable(ClickableObjects.house1ccar);
+
+        ClickableObjects.house1cboth = new ClickableSprite(pixelsToCoords(615, 270), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.house1both, sizeToCoords(-60,-62), sizeToCoords(60,62), "house1cboth");
+        Global.getRenderer().addDrawable(ClickableObjects.house1cboth);
+        addClickable(ClickableObjects.house1cboth);
 
         ClickableObjects.store = new ClickableSprite(pixelsToCoords(135, 490), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.store, sizeToCoords(-84,-64), sizeToCoords(84, 64), "store");
         Global.getRenderer().addDrawable(ClickableObjects.store);
         addClickable(ClickableObjects.store);
 
-        ClickableObjects.house2solar1 = new ClickableSprite(pixelsToCoords(135, 830), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house2solar, sizeToCoords(-69,-68), sizeToCoords(69,68), "house2solar1");
-        Global.getRenderer().addDrawable(ClickableObjects.house2solar1);
-        addClickable(ClickableObjects.house2solar1);
+        ClickableObjects.house2a = new ClickableSprite(pixelsToCoords(135, 830), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.house2, sizeToCoords(-69,-68), sizeToCoords(69,68), "house2a");
+        Global.getRenderer().addDrawable(ClickableObjects.house2a);
+        addClickable(ClickableObjects.house2a);
 
-        ClickableObjects.house2solar2 = new ClickableSprite(pixelsToCoords(430, 830), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house2solar, sizeToCoords(-69,-68), sizeToCoords(69,68), "house2solar2");
-        Global.getRenderer().addDrawable(ClickableObjects.house2solar2);
-        addClickable(ClickableObjects.house2solar2);
+        ClickableObjects.house2asolar = new ClickableSprite(pixelsToCoords(135, 830), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.house2solar, sizeToCoords(-69,-68), sizeToCoords(69,68), "house2asolar");
+        Global.getRenderer().addDrawable(ClickableObjects.house2asolar);
+        addClickable(ClickableObjects.house2asolar);
+
+        ClickableObjects.house2b = new ClickableSprite(pixelsToCoords(430, 830), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.house2, sizeToCoords(-69,-68), sizeToCoords(69,68), "house2b");
+        Global.getRenderer().addDrawable(ClickableObjects.house2b);
+        addClickable(ClickableObjects.house2b);
+
+        ClickableObjects.house2bsolar = new ClickableSprite(pixelsToCoords(430, 830), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.house2solar, sizeToCoords(-69,-68), sizeToCoords(69,68), "house2bsolar");
+        Global.getRenderer().addDrawable(ClickableObjects.house2bsolar);
+        addClickable(ClickableObjects.house2bsolar);
 
         ClickableObjects.business1a = new ClickableSprite(pixelsToCoords(1500, 480), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.business1, sizeToCoords(-101,-100), sizeToCoords(101,100), "business1a");
@@ -854,7 +912,7 @@ public class MainUI {
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load1);
 
-        ClickableObjects.load1statsclick = new ClickableSprite(pixelsToCoords(980, 1000), 0, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.load1statsclick = new ClickableSprite(pixelsToCoords(980, 1000), 1, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255, 0), R.drawable.load1statsclick, sizeToCoords(-312,-313), sizeToCoords(312,313), "load1statsclick");
         Global.getRenderer().addDrawable(ClickableObjects.load1statsclick);
         addClickable(ClickableObjects.load1statsclick);
@@ -869,7 +927,7 @@ public class MainUI {
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load2);
 
-        ClickableObjects.load2statsclick = new ClickableSprite(pixelsToCoords(295, 655), 0, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.load2statsclick = new ClickableSprite(pixelsToCoords(295, 655), 1, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255, 0), R.drawable.load2statsclick, sizeToCoords(-76,-80), sizeToCoords(76,80), "load2statsclick");
         Global.getRenderer().addDrawable(ClickableObjects.load2statsclick);
         addClickable(ClickableObjects.load2statsclick);
@@ -884,7 +942,7 @@ public class MainUI {
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load3);
 
-        ClickableObjects.load3statsclick = new ClickableSprite(pixelsToCoords(400, 190), 0, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.load3statsclick = new ClickableSprite(pixelsToCoords(400, 190), 1, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255, 0), R.drawable.load3statsclick, sizeToCoords(-119,-52), sizeToCoords(119,52), "load3statsclick");
         Global.getRenderer().addDrawable(ClickableObjects.load3statsclick);
         addClickable(ClickableObjects.load3statsclick);
@@ -899,7 +957,7 @@ public class MainUI {
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load4);
 
-        ClickableObjects.load4statsclick = new ClickableSprite(pixelsToCoords(1550, 310), 0, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.load4statsclick = new ClickableSprite(pixelsToCoords(1550, 310), 1, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255, 0), R.drawable.load4statsclick, sizeToCoords(-225,-330), sizeToCoords(225,330), "load4statsclick");
         Global.getRenderer().addDrawable(ClickableObjects.load4statsclick);
         addClickable(ClickableObjects.load4statsclick);
@@ -914,7 +972,7 @@ public class MainUI {
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load5);
 
-        ClickableObjects.load5statsclick = new ClickableSprite(pixelsToCoords(2100, 600), 0, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.load5statsclick = new ClickableSprite(pixelsToCoords(2100, 600), 1, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255, 0), R.drawable.load5statsclick, sizeToCoords(-310,-250), sizeToCoords(310,250), "load5statsclick");
         Global.getRenderer().addDrawable(ClickableObjects.load5statsclick);
         addClickable(ClickableObjects.load5statsclick);
@@ -929,7 +987,7 @@ public class MainUI {
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load6);
 
-        ClickableObjects.load6statsclick = new ClickableSprite(pixelsToCoords(2170, 1090), 0, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.load6statsclick = new ClickableSprite(pixelsToCoords(2170, 1090), 1, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255, 0), R.drawable.load6statsclick, sizeToCoords(-370,-110), sizeToCoords(370,110), "load6statsclick");
         Global.getRenderer().addDrawable(ClickableObjects.load6statsclick);
         addClickable(ClickableObjects.load6statsclick);
@@ -1559,11 +1617,22 @@ public class MainUI {
             ClickableObjects.business2a.setResourceOverTime(R.drawable.business2night, DAY_NIGHT_TRANSITION_TIME);
             ClickableObjects.business2b.setResourceOverTime(R.drawable.business2night, DAY_NIGHT_TRANSITION_TIME);
             ClickableObjects.business2c.setResourceOverTime(R.drawable.business2night, DAY_NIGHT_TRANSITION_TIME);
-            ClickableObjects.house1solar1.setResourceOverTime(R.drawable.house1solarnight, DAY_NIGHT_TRANSITION_TIME);
-            ClickableObjects.house1solar2.setResourceOverTime(R.drawable.house1solarnight, DAY_NIGHT_TRANSITION_TIME);
-            ClickableObjects.house1solar3.setResourceOverTime(R.drawable.house1solarnight, DAY_NIGHT_TRANSITION_TIME);
-            ClickableObjects.house2solar1.setResourceOverTime(R.drawable.house2solarnight, DAY_NIGHT_TRANSITION_TIME);
-            ClickableObjects.house2solar2.setResourceOverTime(R.drawable.house2solarnight, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house1a.setResourceOverTime(R.drawable.house1night, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house1asolar.setResourceOverTime(R.drawable.house1solarnight, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house1acar.setResourceOverTime(R.drawable.house1carnight, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house1aboth.setResourceOverTime(R.drawable.house1bothnight, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house1b.setResourceOverTime(R.drawable.house1night, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house1bsolar.setResourceOverTime(R.drawable.house1solarnight, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house1bcar.setResourceOverTime(R.drawable.house1carnight, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house1bboth.setResourceOverTime(R.drawable.house1bothnight, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house1c.setResourceOverTime(R.drawable.house1night, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house1csolar.setResourceOverTime(R.drawable.house1solarnight, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house1ccar.setResourceOverTime(R.drawable.house1carnight, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house1cboth.setResourceOverTime(R.drawable.house1bothnight, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house2a.setResourceOverTime(R.drawable.house2night, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house2asolar.setResourceOverTime(R.drawable.house2solarnight, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house2b.setResourceOverTime(R.drawable.house2night, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house2bsolar.setResourceOverTime(R.drawable.house2solarnight, DAY_NIGHT_TRANSITION_TIME);
             ClickableObjects.store.setResourceOverTime(R.drawable.storenight, DAY_NIGHT_TRANSITION_TIME);
             ClickableObjects.house3a.setResourceOverTime(R.drawable.house3night, DAY_NIGHT_TRANSITION_TIME);
             ClickableObjects.house3b.setResourceOverTime(R.drawable.house3night, DAY_NIGHT_TRANSITION_TIME);
@@ -1637,18 +1706,29 @@ public class MainUI {
         if ((Simulation.SimInfo.currentTime <= 18.00 && Simulation.SimInfo.currentTime >= 6.00) && night) {
             night = false;
             ClickableObjects.background.setResourceOverTime(R.drawable.background, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.graphs.setResourceOverTime(R.drawable.graphs, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.info.setResourceOverTime(R.drawable.info, DAY_NIGHT_TRANSITION_TIME);
             ClickableObjects.business1a.setResourceOverTime(R.drawable.business1, DAY_NIGHT_TRANSITION_TIME);
             ClickableObjects.business1b.setResourceOverTime(R.drawable.business1, DAY_NIGHT_TRANSITION_TIME);
             ClickableObjects.business2a.setResourceOverTime(R.drawable.business2, DAY_NIGHT_TRANSITION_TIME);
             ClickableObjects.business2b.setResourceOverTime(R.drawable.business2, DAY_NIGHT_TRANSITION_TIME);
             ClickableObjects.business2c.setResourceOverTime(R.drawable.business2, DAY_NIGHT_TRANSITION_TIME);
-            ClickableObjects.graphs.setResourceOverTime(R.drawable.graphs, DAY_NIGHT_TRANSITION_TIME);
-            ClickableObjects.info.setResourceOverTime(R.drawable.info, DAY_NIGHT_TRANSITION_TIME);
-            ClickableObjects.house1solar1.setResourceOverTime(R.drawable.house1solar, DAY_NIGHT_TRANSITION_TIME);
-            ClickableObjects.house1solar2.setResourceOverTime(R.drawable.house1solar, DAY_NIGHT_TRANSITION_TIME);
-            ClickableObjects.house1solar3.setResourceOverTime(R.drawable.house1solar, DAY_NIGHT_TRANSITION_TIME);
-            ClickableObjects.house2solar1.setResourceOverTime(R.drawable.house2solar, DAY_NIGHT_TRANSITION_TIME);
-            ClickableObjects.house2solar2.setResourceOverTime(R.drawable.house2solar, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house1a.setResourceOverTime(R.drawable.house1night, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house1asolar.setResourceOverTime(R.drawable.house1solar, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house1acar.setResourceOverTime(R.drawable.house1car, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house1aboth.setResourceOverTime(R.drawable.house1both, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house1b.setResourceOverTime(R.drawable.house1, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house1bsolar.setResourceOverTime(R.drawable.house1solar, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house1bcar.setResourceOverTime(R.drawable.house1car, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house1bboth.setResourceOverTime(R.drawable.house1both, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house1c.setResourceOverTime(R.drawable.house1, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house1csolar.setResourceOverTime(R.drawable.house1solar, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house1ccar.setResourceOverTime(R.drawable.house1car, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house1cboth.setResourceOverTime(R.drawable.house1both, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house2a.setResourceOverTime(R.drawable.house2, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house2asolar.setResourceOverTime(R.drawable.house2solar, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house2b.setResourceOverTime(R.drawable.house2, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house2bsolar.setResourceOverTime(R.drawable.house2solar, DAY_NIGHT_TRANSITION_TIME);
             ClickableObjects.store.setResourceOverTime(R.drawable.store, DAY_NIGHT_TRANSITION_TIME);
             ClickableObjects.house3a.setResourceOverTime(R.drawable.house3, DAY_NIGHT_TRANSITION_TIME);
             ClickableObjects.house3b.setResourceOverTime(R.drawable.house3, DAY_NIGHT_TRANSITION_TIME);
