@@ -333,6 +333,13 @@ public class MainUI {
         public static ClickableSprite store;
         public static ClickableSprite turbine;
         public static ClickableSprite turbine2;
+        public static ClickableSprite transformer1;
+        public static ClickableSprite transformer2;
+        public static ClickableSprite transformer3;
+        public static ClickableSprite transformer4;
+        public static ClickableSprite transformer5;
+        public static ClickableSprite transformer6;
+
     }
 
     public static class Objects {
@@ -843,6 +850,35 @@ public class MainUI {
         Global.getRenderer().addDrawable(ClickableObjects.turbine2);
         addClickable(ClickableObjects.turbine2);
 
+        ClickableObjects.transformer1 = new ClickableSprite(pixelsToCoords(1200, 1000), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.transformer1, sizeToCoords(-22,-25), sizeToCoords(22,25), "transformer1");
+        Global.getRenderer().addDrawable(ClickableObjects.transformer1);
+        addClickable(ClickableObjects.transformer1);
+
+        ClickableObjects.transformer2 = new ClickableSprite(pixelsToCoords(520, 640), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.transformer1, sizeToCoords(-22,-25), sizeToCoords(22,25), "transformer2");
+        Global.getRenderer().addDrawable(ClickableObjects.transformer2);
+        addClickable(ClickableObjects.transformer2);
+
+        ClickableObjects.transformer3 = new ClickableSprite(pixelsToCoords(770, 115), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.transformer1, sizeToCoords(-22,-25), sizeToCoords(22,25), "transformer3");
+        Global.getRenderer().addDrawable(ClickableObjects.transformer3);
+        addClickable(ClickableObjects.transformer3);
+
+        ClickableObjects.transformer4 = new ClickableSprite(pixelsToCoords(1350, 335), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.transformer1, sizeToCoords(-22,-25), sizeToCoords(22,25), "transformer4");
+        Global.getRenderer().addDrawable(ClickableObjects.transformer4);
+        addClickable(ClickableObjects.transformer4);
+
+        ClickableObjects.transformer5 = new ClickableSprite(pixelsToCoords(1800, 800), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.transformer1, sizeToCoords(-22,-25), sizeToCoords(22,25), "transformer5");
+        Global.getRenderer().addDrawable(ClickableObjects.transformer5);
+        addClickable(ClickableObjects.transformer5);
+
+        ClickableObjects.transformer6 = new ClickableSprite(pixelsToCoords(1800, 1150), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.transformer1, sizeToCoords(-22,-25), sizeToCoords(22,25), "transformer6");
+        Global.getRenderer().addDrawable(ClickableObjects.transformer6);
+        addClickable(ClickableObjects.transformer6);
 
         Objects.museum = new Sprite(pixelsToCoords(310, 1280), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.museum);
@@ -1772,6 +1808,12 @@ public class MainUI {
             ClickableObjects.house3c.setResourceOverTime(R.drawable.house3night, DAY_NIGHT_TRANSITION_TIME);
             ClickableObjects.turbine.setResourceOverTime(R.drawable.turbinenight, DAY_NIGHT_TRANSITION_TIME);
             ClickableObjects.turbine2.setResourceOverTime(R.drawable.turbinenight, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.transformer1.setResourceOverTime(R.drawable.transformer1night, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.transformer2.setResourceOverTime(R.drawable.transformer1night, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.transformer3.setResourceOverTime(R.drawable.transformer1night, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.transformer4.setResourceOverTime(R.drawable.transformer1night, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.transformer5.setResourceOverTime(R.drawable.transformer1night, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.transformer6.setResourceOverTime(R.drawable.transformer1night, DAY_NIGHT_TRANSITION_TIME);
             Objects.sunny.setResourceOverTime(R.drawable.night, DAY_NIGHT_TRANSITION_TIME);
             Objects.partlycloudy.setResourceOverTime(R.drawable.night, DAY_NIGHT_TRANSITION_TIME);
             Objects.cloudy.setResourceOverTime(R.drawable.night, DAY_NIGHT_TRANSITION_TIME);
@@ -1810,12 +1852,7 @@ public class MainUI {
             Objects.switch6.setResourceOverTime(R.drawable.switch1night, DAY_NIGHT_TRANSITION_TIME);
             Objects.tie.setResourceOverTime(R.drawable.tienight, DAY_NIGHT_TRANSITION_TIME);
             Objects.tieopen.setResourceOverTime(R.drawable.tieopennight, DAY_NIGHT_TRANSITION_TIME);
-            Objects.transformer1.setResourceOverTime(R.drawable.transformer1night, DAY_NIGHT_TRANSITION_TIME);
-            Objects.transformer2.setResourceOverTime(R.drawable.transformer1night, DAY_NIGHT_TRANSITION_TIME);
-            Objects.transformer3.setResourceOverTime(R.drawable.transformer1night, DAY_NIGHT_TRANSITION_TIME);
-            Objects.transformer4.setResourceOverTime(R.drawable.transformer1night, DAY_NIGHT_TRANSITION_TIME);
-            Objects.transformer5.setResourceOverTime(R.drawable.transformer1night, DAY_NIGHT_TRANSITION_TIME);
-            Objects.transformer6.setResourceOverTime(R.drawable.transformer1night, DAY_NIGHT_TRANSITION_TIME);
+
 
             Objects.balloon.setResourceOverTime(R.drawable.balloonnight, DAY_NIGHT_TRANSITION_TIME);
             Objects.trackhoe.setResourceOverTime(R.drawable.trackhoenight, DAY_NIGHT_TRANSITION_TIME);
@@ -1869,6 +1906,12 @@ public class MainUI {
             ClickableObjects.house3c.setResourceOverTime(R.drawable.house3, DAY_NIGHT_TRANSITION_TIME);
             ClickableObjects.turbine.setResourceOverTime(R.drawable.turbine, DAY_NIGHT_TRANSITION_TIME);
             ClickableObjects.turbine2.setResourceOverTime(R.drawable.turbine, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.transformer1.setResourceOverTime(R.drawable.transformer1, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.transformer2.setResourceOverTime(R.drawable.transformer1, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.transformer3.setResourceOverTime(R.drawable.transformer1, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.transformer4.setResourceOverTime(R.drawable.transformer1, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.transformer5.setResourceOverTime(R.drawable.transformer1, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.transformer6.setResourceOverTime(R.drawable.transformer1, DAY_NIGHT_TRANSITION_TIME);
             Objects.sunny.setResourceOverTime(R.drawable.sunny, DAY_NIGHT_TRANSITION_TIME);
             Objects.partlycloudy.setResourceOverTime(R.drawable.partlycloudy, DAY_NIGHT_TRANSITION_TIME);
             Objects.cloudy.setResourceOverTime(R.drawable.cloudy, DAY_NIGHT_TRANSITION_TIME);
@@ -1908,12 +1951,7 @@ public class MainUI {
             Objects.switch6.setResourceOverTime(R.drawable.switch1, DAY_NIGHT_TRANSITION_TIME);
             Objects.tie.setResourceOverTime(R.drawable.tie, DAY_NIGHT_TRANSITION_TIME);
             Objects.tieopen.setResourceOverTime(R.drawable.tieopen, DAY_NIGHT_TRANSITION_TIME);
-            Objects.transformer1.setResourceOverTime(R.drawable.transformer1, DAY_NIGHT_TRANSITION_TIME);
-            Objects.transformer2.setResourceOverTime(R.drawable.transformer1, DAY_NIGHT_TRANSITION_TIME);
-            Objects.transformer3.setResourceOverTime(R.drawable.transformer1, DAY_NIGHT_TRANSITION_TIME);
-            Objects.transformer4.setResourceOverTime(R.drawable.transformer1, DAY_NIGHT_TRANSITION_TIME);
-            Objects.transformer5.setResourceOverTime(R.drawable.transformer1, DAY_NIGHT_TRANSITION_TIME);
-            Objects.transformer6.setResourceOverTime(R.drawable.transformer1, DAY_NIGHT_TRANSITION_TIME);
+
 
             Objects.balloon.setResourceOverTime(R.drawable.balloon, DAY_NIGHT_TRANSITION_TIME);
             Objects.trackhoe.setResourceOverTime(R.drawable.trackhoe, DAY_NIGHT_TRANSITION_TIME);
