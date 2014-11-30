@@ -472,7 +472,7 @@ public class Simulation {
             } else {
             	MainNetworkHandler.constructAndSendPacket(PacketTypes.POWER_OUTAGE, new MainNetworkHandler.OutageData(6, false));
             }
-            MainNetworkHandler.constructAndSendPacket(PacketTypes.BATTERY_STORAGE_LEVEL, linear(SimulationData.BatteryLevel, time));
+            MainNetworkHandler.constructAndSendPacket(PacketTypes.BATTERY_STORAGE_LEVEL, (int) linear(SimulationData.BatteryLevel, time));
         } else if (!Global.getNetworkInterface().isConnected() && hasConnectionBeenMade) {
         	hasConnectionBeenMade = false;
         }

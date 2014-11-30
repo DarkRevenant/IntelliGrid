@@ -366,8 +366,6 @@ public class MainNetworkHandler {
 		// param == boolean; true means start fault, false means end fault
 		@Override
 		public String output(final Object param) {
-			// This is not called by the UI yet
-
 			final boolean start = (boolean) param;
 			final String out = start ? "1" : "0";
 
@@ -385,8 +383,6 @@ public class MainNetworkHandler {
 		// param == boolean; true means start fault, false means end fault
 		@Override
 		public String output(final Object param) {
-			// This is not called by the UI yet
-
 			final boolean start = (boolean) param;
 			final String out = start ? "1" : "0";
 

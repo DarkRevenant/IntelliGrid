@@ -2,6 +2,8 @@ package org.sdsu.intelligrid.graphics.ui;
 
 import org.sdsu.intelligrid.Global;
 import org.sdsu.intelligrid.R;
+import org.sdsu.intelligrid.network.MainNetworkHandler;
+import org.sdsu.intelligrid.network.MainNetworkHandler.PacketTypes;
 import org.sdsu.intelligrid.simulation.Simulation;
 import org.sdsu.intelligrid.util.Vector2f;
 
@@ -210,66 +212,6 @@ public class InputHook {
 			MainUI.ClickableObjects.load6stats.setDepth(11);
 			MainUI.ClickableObjects.load6statsclick.setDepth(11);
 			MainUI.UIInfo.Load6.setDepth(11);
-
-//			currentFault++;
-//			if (currentFault == 16) {
-//				currentFault = 0;
-//			}
-//			String fault;
-//			switch (currentFault) {
-//			case 1:
-//				fault = "A";
-//				break;
-//			case 2:
-//				fault = "B";
-//				break;
-//			case 3:
-//				fault = "C";
-//				break;
-//			case 4:
-//				fault = "D";
-//				break;
-//			case 5:
-//				fault = "E";
-//				break;
-//			case 6:
-//				fault = "F";
-//				break;
-//			case 7:
-//				fault = "H";
-//				break;
-//			case 8:
-//				fault = "I";
-//				break;
-//			case 9:
-//				fault = "J";
-//				break;
-//			case 10:
-//				fault = "K";
-//				break;
-//			case 11:
-//				fault = "L";
-//				break;
-//			case 12:
-//				fault = "M";
-//				break;
-//			case 13:
-//				fault = "DI";
-//				break;
-//			case 14:
-//				fault = "ACE";
-//				break;
-//			case 15:
-//				fault = "MKI";
-//				break;
-//			default:
-//				fault = "";
-//			}
-//			try {
-//				Global.getGlobalSimulation().data.fault = fault;
-//			} catch (Exception ex) {
-//				// do nothing
-//			}
 		}
         if (object.getId().equals("faulta")) {
             Global.getGlobalSimulation().faultManager.startGenericFault("A");
@@ -584,6 +526,7 @@ public class InputHook {
             MainUI.ClickableObjects.load6statsclick.setDepth(0);
         }
         if (object.getId().equals("balloonfault")) {
+            MainNetworkHandler.constructAndSendPacket(PacketTypes.BALLOON_DETECT_RESET, true);
             Global.getGlobalSimulation().faultManager.startBalloonFault();
             MainUI.ClickableObjects.fault_a.setDepth(11);
             MainUI.ClickableObjects.fault_b.setDepth(11);
@@ -610,6 +553,7 @@ public class InputHook {
             MainUI.ClickableObjects.load6statsclick.setDepth(0);
         }
         if (object.getId().equals("digfault")) {
+            MainNetworkHandler.constructAndSendPacket(PacketTypes.DIG_DETECT_RESET, true);
             Global.getGlobalSimulation().faultManager.startDigFault();
             MainUI.ClickableObjects.fault_a.setDepth(11);
             MainUI.ClickableObjects.fault_b.setDepth(11);
@@ -688,6 +632,7 @@ public class InputHook {
 			MainUI.ClickableObjects.load6statsclick.setDepth(0);
 		}
 
+        // Residential 1
 		if (object.getId().equals("load1statsclick")) {
 			MainUI.ClickableObjects.load1stats.setDepth(-1);
 			MainUI.UIInfo.Load1.setDepth(-2);
@@ -709,30 +654,45 @@ public class InputHook {
 			MainUI.UIInfo.Load1.setDepth(-2);
 		}
 
-		if (object.getId().equals("load2statsclick")) {
-			MainUI.ClickableObjects.load2stats.setDepth(-1);
-			MainUI.UIInfo.Load2.setDepth(-2);
-		}
+        // Residential 2
+//		if (object.getId().equals("load2statsclick")) {
+//			MainUI.ClickableObjects.load2stats.setDepth(-1);
+//			MainUI.UIInfo.Load2.setDepth(-2);
+//		}
 		if (object.getId().equals("load2stats")) {
 			MainUI.ClickableObjects.load2stats.setDepth(11);
 			MainUI.UIInfo.Load2.setDepth(11);
 		}
 		if (object.getId().equals("house2a")) {
-			MainUI.ClickableObjects.load2stats.setDepth(-1);
-			MainUI.UIInfo.Load2.setDepth(-2);
+            MainUI.ClickableObjects.house2apopup.setDepth(-1);
+            MainUI.ClickableObjects.house2asolarcheckoff.setDepth(-2);
 		}
         if (object.getId().equals("house2asolar")) {
-            MainUI.ClickableObjects.load2stats.setDepth(-1);
-            MainUI.UIInfo.Load2.setDepth(-2);
+            MainUI.ClickableObjects.house2apopup.setDepth(-1);
+            MainUI.ClickableObjects.house2asolarcheckoff.setDepth(-2);
         }
         if (object.getId().equals("house2acar")) {
-            MainUI.ClickableObjects.load2stats.setDepth(-1);
-            MainUI.UIInfo.Load2.setDepth(-2);
+            MainUI.ClickableObjects.house2apopup.setDepth(-1);
+            MainUI.ClickableObjects.house2asolarcheckoff.setDepth(-2);
         }
         if (object.getId().equals("house2aboth")) {
-            MainUI.ClickableObjects.load2stats.setDepth(-1);
-            MainUI.UIInfo.Load2.setDepth(-2);
+            MainUI.ClickableObjects.house2apopup.setDepth(-1);
+            MainUI.ClickableObjects.house2asolarcheckoff.setDepth(-2);
         }
+        if (object.getId().equals("house2apopup")) {
+            MainUI.ClickableObjects.house2apopup.setDepth(11);
+            MainUI.ClickableObjects.house2asolarcheck.setDepth(11);
+            MainUI.ClickableObjects.house2asolarcheckoff.setDepth(11);
+        }
+        if (object.getId().equals("house2asolarcheckoff")) {
+            MainUI.ClickableObjects.house2asolarcheck.setDepth(-2);
+            MainUI.ClickableObjects.house2asolarcheckoff.setDepth(11);
+        }
+        if (object.getId().equals("house2asolarcheck")) {
+            MainUI.ClickableObjects.house2asolarcheck.setDepth(11);
+            MainUI.ClickableObjects.house2asolarcheckoff.setDepth(-2);
+        }
+
 		if (object.getId().equals("house2b")) {
 			MainUI.ClickableObjects.load2stats.setDepth(-1);
 			MainUI.UIInfo.Load2.setDepth(-2);
