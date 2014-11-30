@@ -158,12 +158,6 @@ public class MainUI {
         resources.add(R.drawable.infonight);
         resources.add(R.drawable.infopage);
         resources.add(R.drawable.intelligrid);
-        resources.add(R.drawable.load1statsclick);
-        resources.add(R.drawable.load2statsclick);
-        resources.add(R.drawable.load3statsclick);
-        resources.add(R.drawable.load4statsclick);
-        resources.add(R.drawable.load5statsclick);
-        resources.add(R.drawable.load6statsclick);
         resources.add(R.drawable.loadstats);
         resources.add(R.drawable.midway);
         resources.add(R.drawable.midwaynight);
@@ -267,17 +261,11 @@ public class MainUI {
         public static ClickableSprite faultspage;
         public static ClickableSprite exitfaults;
         public static ClickableSprite load1stats;
-        public static ClickableSprite load1statsclick;
         public static ClickableSprite load2stats;
-        public static ClickableSprite load2statsclick;
         public static ClickableSprite load3stats;
-        public static ClickableSprite load3statsclick;
         public static ClickableSprite load4stats;
-        public static ClickableSprite load4statsclick;
         public static ClickableSprite load5stats;
-        public static ClickableSprite load5statsclick;
         public static ClickableSprite load6stats;
-        public static ClickableSprite load6statsclick;
         public static ClickableSprite faults;
         public static ClickableSprite graphs;
         public static ClickableSprite info;
@@ -1081,10 +1069,7 @@ public class MainUI {
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load1);
 
-        ClickableObjects.load1statsclick = new ClickableSprite(pixelsToCoords(980, 1000), 1, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255, 0), R.drawable.load1statsclick, sizeToCoords(-312,-313), sizeToCoords(312,313), "load1statsclick");
-        Global.getRenderer().addDrawable(ClickableObjects.load1statsclick);
-        addClickable(ClickableObjects.load1statsclick);
+
 
         ClickableObjects.load1stats = new ClickableSprite(pixelsToCoords(1000, 1000), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.loadstats, sizeToCoords(-211,-140), sizeToCoords(211,140), "load1stats");
@@ -1096,11 +1081,6 @@ public class MainUI {
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load2);
 
-        ClickableObjects.load2statsclick = new ClickableSprite(pixelsToCoords(295, 655), 1, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255, 0), R.drawable.load2statsclick, sizeToCoords(-76,-80), sizeToCoords(76,80), "load2statsclick");
-        Global.getRenderer().addDrawable(ClickableObjects.load2statsclick);
-        addClickable(ClickableObjects.load2statsclick);
-
         ClickableObjects.load2stats = new ClickableSprite(pixelsToCoords(295, 675), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.loadstats, sizeToCoords(-211,-140), sizeToCoords(211,140), "load2stats");
         Global.getRenderer().addDrawable(ClickableObjects.load2stats);
@@ -1110,11 +1090,6 @@ public class MainUI {
                 pixelsToCoords(400, 190), 20, Typeface.DEFAULT, 1000f, 11, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load3);
-
-        ClickableObjects.load3statsclick = new ClickableSprite(pixelsToCoords(400, 190), 1, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255, 0), R.drawable.load3statsclick, sizeToCoords(-119,-52), sizeToCoords(119,52), "load3statsclick");
-        Global.getRenderer().addDrawable(ClickableObjects.load3statsclick);
-        addClickable(ClickableObjects.load3statsclick);
 
         ClickableObjects.load3stats = new ClickableSprite(pixelsToCoords(400, 190), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.loadstats, sizeToCoords(-211,-140), sizeToCoords(211,140), "load3stats");
@@ -1126,11 +1101,6 @@ public class MainUI {
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load4);
 
-        ClickableObjects.load4statsclick = new ClickableSprite(pixelsToCoords(1550, 310), 1, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255, 0), R.drawable.load4statsclick, sizeToCoords(-225,-330), sizeToCoords(225,330), "load4statsclick");
-        Global.getRenderer().addDrawable(ClickableObjects.load4statsclick);
-        addClickable(ClickableObjects.load4statsclick);
-
         ClickableObjects.load4stats = new ClickableSprite(pixelsToCoords(1530, 420), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.loadstats, sizeToCoords(-211,-140), sizeToCoords(211,140), "load4stats");
         Global.getRenderer().addDrawable(ClickableObjects.load4stats);
@@ -1141,11 +1111,6 @@ public class MainUI {
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load5);
 
-        ClickableObjects.load5statsclick = new ClickableSprite(pixelsToCoords(2100, 600), 1, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255, 0), R.drawable.load5statsclick, sizeToCoords(-310,-250), sizeToCoords(310,250), "load5statsclick");
-        Global.getRenderer().addDrawable(ClickableObjects.load5statsclick);
-        addClickable(ClickableObjects.load5statsclick);
-
         ClickableObjects.load5stats = new ClickableSprite(pixelsToCoords(1980, 720), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.loadstats, sizeToCoords(-211,-140), sizeToCoords(211,140), "load5stats");
         Global.getRenderer().addDrawable(ClickableObjects.load5stats);
@@ -1155,11 +1120,6 @@ public class MainUI {
                 pixelsToCoords(2010, 1140), 20, Typeface.DEFAULT, 1000f, 11, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load6);
-
-        ClickableObjects.load6statsclick = new ClickableSprite(pixelsToCoords(2170, 1090), 1, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255, 0), R.drawable.load6statsclick, sizeToCoords(-370,-110), sizeToCoords(370,110), "load6statsclick");
-        Global.getRenderer().addDrawable(ClickableObjects.load6statsclick);
-        addClickable(ClickableObjects.load6statsclick);
 
         ClickableObjects.load6stats = new ClickableSprite(pixelsToCoords(2010, 1140), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.loadstats, sizeToCoords(-211,-140), sizeToCoords(211,140), "load6stats");
