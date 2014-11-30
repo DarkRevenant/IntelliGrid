@@ -91,12 +91,6 @@ public class InputHook {
 		    MainUI.ClickableObjects.exitinfo.setDepth(11);
 		    MainUI.ClickableObjects.faultspage.setDepth(11);
 		    MainUI.ClickableObjects.exitfaults.setDepth(11);
-            MainUI.ClickableObjects.load1statsclick.setDepth(0);
-            MainUI.ClickableObjects.load2statsclick.setDepth(0);
-            MainUI.ClickableObjects.load3statsclick.setDepth(0);
-            MainUI.ClickableObjects.load4statsclick.setDepth(0);
-            MainUI.ClickableObjects.load5statsclick.setDepth(0);
-            MainUI.ClickableObjects.load6statsclick.setDepth(0);
             MainUI.ClickableObjects.fault_a.setDepth(11);
             MainUI.ClickableObjects.fault_b.setDepth(11);
             MainUI.ClickableObjects.fault_c.setDepth(11);
@@ -118,33 +112,23 @@ public class InputHook {
 			MainUI.ClickableObjects.infopage.setDepth(-1);
 			MainUI.ClickableObjects.exitinfo.setDepth(-2);
 			MainUI.ClickableObjects.load1stats.setDepth(11);
-			MainUI.ClickableObjects.load1statsclick.setDepth(11);
+
 			MainUI.UIInfo.Load1.setDepth(11);
 			MainUI.ClickableObjects.load2stats.setDepth(11);
-			MainUI.ClickableObjects.load2statsclick.setDepth(11);
 			MainUI.UIInfo.Load2.setDepth(11);
 			MainUI.ClickableObjects.load3stats.setDepth(11);
-			MainUI.ClickableObjects.load3statsclick.setDepth(11);
 			MainUI.UIInfo.Load3.setDepth(11);
 			MainUI.ClickableObjects.load4stats.setDepth(11);
-			MainUI.ClickableObjects.load4statsclick.setDepth(11);
 			MainUI.UIInfo.Load4.setDepth(11);
 			MainUI.ClickableObjects.load5stats.setDepth(11);
-			MainUI.ClickableObjects.load5statsclick.setDepth(11);
 			MainUI.UIInfo.Load5.setDepth(11);
 			MainUI.ClickableObjects.load6stats.setDepth(11);
-			MainUI.ClickableObjects.load6statsclick.setDepth(11);
 			MainUI.UIInfo.Load6.setDepth(11);
 		}
 		if (object.getId().equals("exitinfo")) {
 			MainUI.ClickableObjects.infopage.setDepth(11);
 			MainUI.ClickableObjects.exitinfo.setDepth(11);
-			MainUI.ClickableObjects.load1statsclick.setDepth(0);
-			MainUI.ClickableObjects.load2statsclick.setDepth(0);
-			MainUI.ClickableObjects.load3statsclick.setDepth(0);
-			MainUI.ClickableObjects.load4statsclick.setDepth(0);
-			MainUI.ClickableObjects.load5statsclick.setDepth(0);
-			MainUI.ClickableObjects.load6statsclick.setDepth(0);
+
 		}
 
 		if (object.getId().equals("graphs")) {
@@ -193,24 +177,17 @@ public class InputHook {
             MainUI.ClickableObjects.balloonfault.setDepth(-2);
             MainUI.ClickableObjects.digfault.setDepth(-2);
             MainUI.ClickableObjects.nofault.setDepth(-2);
-            MainUI.ClickableObjects.load6statsclick.setDepth(11);
 			MainUI.ClickableObjects.load1stats.setDepth(11);
-			MainUI.ClickableObjects.load1statsclick.setDepth(11);
 			MainUI.UIInfo.Load1.setDepth(11);
 			MainUI.ClickableObjects.load2stats.setDepth(11);
-			MainUI.ClickableObjects.load2statsclick.setDepth(11);
 			MainUI.UIInfo.Load2.setDepth(11);
 			MainUI.ClickableObjects.load3stats.setDepth(11);
-			MainUI.ClickableObjects.load3statsclick.setDepth(11);
 			MainUI.UIInfo.Load3.setDepth(11);
 			MainUI.ClickableObjects.load4stats.setDepth(11);
-			MainUI.ClickableObjects.load4statsclick.setDepth(11);
 			MainUI.UIInfo.Load4.setDepth(11);
 			MainUI.ClickableObjects.load5stats.setDepth(11);
-			MainUI.ClickableObjects.load5statsclick.setDepth(11);
 			MainUI.UIInfo.Load5.setDepth(11);
 			MainUI.ClickableObjects.load6stats.setDepth(11);
-			MainUI.ClickableObjects.load6statsclick.setDepth(11);
 			MainUI.UIInfo.Load6.setDepth(11);
 		}
         if (object.getId().equals("faulta")) {
@@ -232,12 +209,7 @@ public class InputHook {
             MainUI.ClickableObjects.nofault.setDepth(11);
             MainUI.ClickableObjects.faultspage.setDepth(11);
             MainUI.ClickableObjects.exitfaults.setDepth(11);
-            MainUI.ClickableObjects.load1statsclick.setDepth(0);
-            MainUI.ClickableObjects.load2statsclick.setDepth(0);
-            MainUI.ClickableObjects.load3statsclick.setDepth(0);
-            MainUI.ClickableObjects.load4statsclick.setDepth(0);
-            MainUI.ClickableObjects.load5statsclick.setDepth(0);
-            MainUI.ClickableObjects.load6statsclick.setDepth(0);
+
         }
         if (object.getId().equals("faultb")) {
             Global.getGlobalSimulation().faultManager.startGenericFault("B");
@@ -258,12 +230,7 @@ public class InputHook {
             MainUI.ClickableObjects.nofault.setDepth(11);
             MainUI.ClickableObjects.faultspage.setDepth(11);
             MainUI.ClickableObjects.exitfaults.setDepth(11);
-            MainUI.ClickableObjects.load1statsclick.setDepth(0);
-            MainUI.ClickableObjects.load2statsclick.setDepth(0);
-            MainUI.ClickableObjects.load3statsclick.setDepth(0);
-            MainUI.ClickableObjects.load4statsclick.setDepth(0);
-            MainUI.ClickableObjects.load5statsclick.setDepth(0);
-            MainUI.ClickableObjects.load6statsclick.setDepth(0);
+
         }
         if (object.getId().equals("faultc")) {
             Global.getGlobalSimulation().faultManager.startGenericFault("C");
@@ -284,12 +251,7 @@ public class InputHook {
             MainUI.ClickableObjects.nofault.setDepth(11);
             MainUI.ClickableObjects.faultspage.setDepth(11);
             MainUI.ClickableObjects.exitfaults.setDepth(11);
-            MainUI.ClickableObjects.load1statsclick.setDepth(0);
-            MainUI.ClickableObjects.load2statsclick.setDepth(0);
-            MainUI.ClickableObjects.load3statsclick.setDepth(0);
-            MainUI.ClickableObjects.load4statsclick.setDepth(0);
-            MainUI.ClickableObjects.load5statsclick.setDepth(0);
-            MainUI.ClickableObjects.load6statsclick.setDepth(0);
+
         }
         if (object.getId().equals("faultd")) {
             Global.getGlobalSimulation().faultManager.startGenericFault("D");
@@ -310,12 +272,7 @@ public class InputHook {
             MainUI.ClickableObjects.nofault.setDepth(11);
             MainUI.ClickableObjects.faultspage.setDepth(11);
             MainUI.ClickableObjects.exitfaults.setDepth(11);
-            MainUI.ClickableObjects.load1statsclick.setDepth(0);
-            MainUI.ClickableObjects.load2statsclick.setDepth(0);
-            MainUI.ClickableObjects.load3statsclick.setDepth(0);
-            MainUI.ClickableObjects.load4statsclick.setDepth(0);
-            MainUI.ClickableObjects.load5statsclick.setDepth(0);
-            MainUI.ClickableObjects.load6statsclick.setDepth(0);
+
         }
         if (object.getId().equals("faulte")) {
             Global.getGlobalSimulation().faultManager.startGenericFault("E");
@@ -336,12 +293,7 @@ public class InputHook {
             MainUI.ClickableObjects.nofault.setDepth(11);
             MainUI.ClickableObjects.faultspage.setDepth(11);
             MainUI.ClickableObjects.exitfaults.setDepth(11);
-            MainUI.ClickableObjects.load1statsclick.setDepth(0);
-            MainUI.ClickableObjects.load2statsclick.setDepth(0);
-            MainUI.ClickableObjects.load3statsclick.setDepth(0);
-            MainUI.ClickableObjects.load4statsclick.setDepth(0);
-            MainUI.ClickableObjects.load5statsclick.setDepth(0);
-            MainUI.ClickableObjects.load6statsclick.setDepth(0);
+
         }
         if (object.getId().equals("faultf")) {
             Global.getGlobalSimulation().faultManager.startGenericFault("F");
@@ -362,12 +314,7 @@ public class InputHook {
             MainUI.ClickableObjects.nofault.setDepth(11);
             MainUI.ClickableObjects.faultspage.setDepth(11);
             MainUI.ClickableObjects.exitfaults.setDepth(11);
-            MainUI.ClickableObjects.load1statsclick.setDepth(0);
-            MainUI.ClickableObjects.load2statsclick.setDepth(0);
-            MainUI.ClickableObjects.load3statsclick.setDepth(0);
-            MainUI.ClickableObjects.load4statsclick.setDepth(0);
-            MainUI.ClickableObjects.load5statsclick.setDepth(0);
-            MainUI.ClickableObjects.load6statsclick.setDepth(0);
+
         }
         if (object.getId().equals("faulth")) {
             Global.getGlobalSimulation().faultManager.startGenericFault("H");
@@ -388,12 +335,7 @@ public class InputHook {
             MainUI.ClickableObjects.nofault.setDepth(11);
             MainUI.ClickableObjects.faultspage.setDepth(11);
             MainUI.ClickableObjects.exitfaults.setDepth(11);
-            MainUI.ClickableObjects.load1statsclick.setDepth(0);
-            MainUI.ClickableObjects.load2statsclick.setDepth(0);
-            MainUI.ClickableObjects.load3statsclick.setDepth(0);
-            MainUI.ClickableObjects.load4statsclick.setDepth(0);
-            MainUI.ClickableObjects.load5statsclick.setDepth(0);
-            MainUI.ClickableObjects.load6statsclick.setDepth(0);
+
         }
         if (object.getId().equals("faulti")) {
             Global.getGlobalSimulation().faultManager.startGenericFault("I");
@@ -414,12 +356,7 @@ public class InputHook {
             MainUI.ClickableObjects.nofault.setDepth(11);
             MainUI.ClickableObjects.faultspage.setDepth(11);
             MainUI.ClickableObjects.exitfaults.setDepth(11);
-            MainUI.ClickableObjects.load1statsclick.setDepth(0);
-            MainUI.ClickableObjects.load2statsclick.setDepth(0);
-            MainUI.ClickableObjects.load3statsclick.setDepth(0);
-            MainUI.ClickableObjects.load4statsclick.setDepth(0);
-            MainUI.ClickableObjects.load5statsclick.setDepth(0);
-            MainUI.ClickableObjects.load6statsclick.setDepth(0);
+
         }
         if (object.getId().equals("faultj")) {
             Global.getGlobalSimulation().faultManager.startGenericFault("J");
@@ -440,12 +377,7 @@ public class InputHook {
             MainUI.ClickableObjects.nofault.setDepth(11);
             MainUI.ClickableObjects.faultspage.setDepth(11);
             MainUI.ClickableObjects.exitfaults.setDepth(11);
-            MainUI.ClickableObjects.load1statsclick.setDepth(0);
-            MainUI.ClickableObjects.load2statsclick.setDepth(0);
-            MainUI.ClickableObjects.load3statsclick.setDepth(0);
-            MainUI.ClickableObjects.load4statsclick.setDepth(0);
-            MainUI.ClickableObjects.load5statsclick.setDepth(0);
-            MainUI.ClickableObjects.load6statsclick.setDepth(0);
+
         }
         if (object.getId().equals("faultk")) {
             Global.getGlobalSimulation().faultManager.startGenericFault("K");
@@ -466,12 +398,7 @@ public class InputHook {
             MainUI.ClickableObjects.nofault.setDepth(11);
             MainUI.ClickableObjects.faultspage.setDepth(11);
             MainUI.ClickableObjects.exitfaults.setDepth(11);
-            MainUI.ClickableObjects.load1statsclick.setDepth(0);
-            MainUI.ClickableObjects.load2statsclick.setDepth(0);
-            MainUI.ClickableObjects.load3statsclick.setDepth(0);
-            MainUI.ClickableObjects.load4statsclick.setDepth(0);
-            MainUI.ClickableObjects.load5statsclick.setDepth(0);
-            MainUI.ClickableObjects.load6statsclick.setDepth(0);
+
         }
         if (object.getId().equals("faultl")) {
             Global.getGlobalSimulation().faultManager.startGenericFault("L");
@@ -492,12 +419,7 @@ public class InputHook {
             MainUI.ClickableObjects.nofault.setDepth(11);
             MainUI.ClickableObjects.faultspage.setDepth(11);
             MainUI.ClickableObjects.exitfaults.setDepth(11);
-            MainUI.ClickableObjects.load1statsclick.setDepth(0);
-            MainUI.ClickableObjects.load2statsclick.setDepth(0);
-            MainUI.ClickableObjects.load3statsclick.setDepth(0);
-            MainUI.ClickableObjects.load4statsclick.setDepth(0);
-            MainUI.ClickableObjects.load5statsclick.setDepth(0);
-            MainUI.ClickableObjects.load6statsclick.setDepth(0);
+
         }
         if (object.getId().equals("faultm")) {
             Global.getGlobalSimulation().faultManager.startGenericFault("M");
@@ -518,12 +440,7 @@ public class InputHook {
             MainUI.ClickableObjects.nofault.setDepth(11);
             MainUI.ClickableObjects.faultspage.setDepth(11);
             MainUI.ClickableObjects.exitfaults.setDepth(11);
-            MainUI.ClickableObjects.load1statsclick.setDepth(0);
-            MainUI.ClickableObjects.load2statsclick.setDepth(0);
-            MainUI.ClickableObjects.load3statsclick.setDepth(0);
-            MainUI.ClickableObjects.load4statsclick.setDepth(0);
-            MainUI.ClickableObjects.load5statsclick.setDepth(0);
-            MainUI.ClickableObjects.load6statsclick.setDepth(0);
+
         }
         if (object.getId().equals("balloonfault")) {
             MainNetworkHandler.constructAndSendPacket(PacketTypes.BALLOON_DETECT_RESET, true);
@@ -545,12 +462,7 @@ public class InputHook {
             MainUI.ClickableObjects.nofault.setDepth(11);
             MainUI.ClickableObjects.faultspage.setDepth(11);
             MainUI.ClickableObjects.exitfaults.setDepth(11);
-            MainUI.ClickableObjects.load1statsclick.setDepth(0);
-            MainUI.ClickableObjects.load2statsclick.setDepth(0);
-            MainUI.ClickableObjects.load3statsclick.setDepth(0);
-            MainUI.ClickableObjects.load4statsclick.setDepth(0);
-            MainUI.ClickableObjects.load5statsclick.setDepth(0);
-            MainUI.ClickableObjects.load6statsclick.setDepth(0);
+
         }
         if (object.getId().equals("digfault")) {
             MainNetworkHandler.constructAndSendPacket(PacketTypes.DIG_DETECT_RESET, true);
@@ -572,12 +484,7 @@ public class InputHook {
             MainUI.ClickableObjects.nofault.setDepth(11);
             MainUI.ClickableObjects.faultspage.setDepth(11);
             MainUI.ClickableObjects.exitfaults.setDepth(11);
-            MainUI.ClickableObjects.load1statsclick.setDepth(0);
-            MainUI.ClickableObjects.load2statsclick.setDepth(0);
-            MainUI.ClickableObjects.load3statsclick.setDepth(0);
-            MainUI.ClickableObjects.load4statsclick.setDepth(0);
-            MainUI.ClickableObjects.load5statsclick.setDepth(0);
-            MainUI.ClickableObjects.load6statsclick.setDepth(0);
+
         }
         if (object.getId().equals("nofault")) {
             Global.getGlobalSimulation().faultManager.endFaults();
@@ -598,12 +505,7 @@ public class InputHook {
             MainUI.ClickableObjects.nofault.setDepth(11);
             MainUI.ClickableObjects.faultspage.setDepth(11);
             MainUI.ClickableObjects.exitfaults.setDepth(11);
-            MainUI.ClickableObjects.load1statsclick.setDepth(0);
-            MainUI.ClickableObjects.load2statsclick.setDepth(0);
-            MainUI.ClickableObjects.load3statsclick.setDepth(0);
-            MainUI.ClickableObjects.load4statsclick.setDepth(0);
-            MainUI.ClickableObjects.load5statsclick.setDepth(0);
-            MainUI.ClickableObjects.load6statsclick.setDepth(0);
+
         }
 
 		if (object.getId().equals("exitfaults")) {
@@ -624,19 +526,11 @@ public class InputHook {
             MainUI.ClickableObjects.nofault.setDepth(11);
 			MainUI.ClickableObjects.faultspage.setDepth(11);
 			MainUI.ClickableObjects.exitfaults.setDepth(11);
-			MainUI.ClickableObjects.load1statsclick.setDepth(0);
-			MainUI.ClickableObjects.load2statsclick.setDepth(0);
-			MainUI.ClickableObjects.load3statsclick.setDepth(0);
-			MainUI.ClickableObjects.load4statsclick.setDepth(0);
-			MainUI.ClickableObjects.load5statsclick.setDepth(0);
-			MainUI.ClickableObjects.load6statsclick.setDepth(0);
+
 		}
 
         // Residential 1
-		if (object.getId().equals("load1statsclick")) {
-			MainUI.ClickableObjects.load1stats.setDepth(-1);
-			MainUI.UIInfo.Load1.setDepth(-2);
-		}
+
 		if (object.getId().equals("load1stats")) {
 			MainUI.ClickableObjects.load1stats.setDepth(11);
 			MainUI.UIInfo.Load1.setDepth(11);
@@ -655,10 +549,6 @@ public class InputHook {
 		}
 
         // Residential 2
-//		if (object.getId().equals("load2statsclick")) {
-//			MainUI.ClickableObjects.load2stats.setDepth(-1);
-//			MainUI.UIInfo.Load2.setDepth(-2);
-//		}
 		if (object.getId().equals("load2stats")) {
 			MainUI.ClickableObjects.load2stats.setDepth(11);
 			MainUI.UIInfo.Load2.setDepth(11);
@@ -713,11 +603,6 @@ public class InputHook {
 			MainUI.ClickableObjects.load2stats.setDepth(-1);
 			MainUI.UIInfo.Load2.setDepth(-2);
 		}
-
-		if (object.getId().equals("load3statsclick")) {
-			MainUI.ClickableObjects.load3stats.setDepth(-1);
-			MainUI.UIInfo.Load3.setDepth(-2);
-		}
 		if (object.getId().equals("load3stats")) {
 			MainUI.ClickableObjects.load3stats.setDepth(11);
 			MainUI.UIInfo.Load3.setDepth(11);
@@ -759,10 +644,6 @@ public class InputHook {
 			MainUI.UIInfo.Load3.setDepth(-2);
 		}
 
-		if (object.getId().equals("load4statsclick")) {
-			MainUI.ClickableObjects.load4stats.setDepth(-1);
-			MainUI.UIInfo.Load4.setDepth(-2);
-		}
 		if (object.getId().equals("load4stats")) {
 			MainUI.ClickableObjects.load4stats.setDepth(11);
 			MainUI.UIInfo.Load4.setDepth(11);
@@ -775,11 +656,6 @@ public class InputHook {
             MainUI.ClickableObjects.load4stats.setDepth(-1);
             MainUI.UIInfo.Load4.setDepth(-2);
         }
-
-		if (object.getId().equals("load5statsclick")) {
-			MainUI.ClickableObjects.load5stats.setDepth(-1);
-			MainUI.UIInfo.Load5.setDepth(-2);
-		}
 		if (object.getId().equals("load5stats")) {
 			MainUI.ClickableObjects.load5stats.setDepth(11);
 			MainUI.UIInfo.Load5.setDepth(11);
@@ -797,10 +673,6 @@ public class InputHook {
 			MainUI.UIInfo.Load5.setDepth(-2);
 		}
 
-		if (object.getId().equals("load6statsclick")) {
-			MainUI.ClickableObjects.load6stats.setDepth(-1);
-			MainUI.UIInfo.Load6.setDepth(-2);
-		}
 		if (object.getId().equals("load6stats")) {
 			MainUI.ClickableObjects.load6stats.setDepth(11);
 			MainUI.UIInfo.Load6.setDepth(11);
