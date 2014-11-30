@@ -67,9 +67,10 @@ public class LightAnimation {
 				LEDLayout.segmentBbranch1, 1f)), SEGMENT_B_BRANCH_2(
 				new Segment(LEDLayout.segmentBbranch2, 1f)), SEGMENT_B_BRANCH_3(
 				new Segment(LEDLayout.segmentBbranch3, 1f)), SEGMENT_C(
-				new Segment(LEDLayout.segmentC, 1f)), SEGMENT_D(new Segment(
+				new Segment(LEDLayout.segmentC, 0.8f)), SEGMENT_C2(new Segment(
+				LEDLayout.segmentC2, 1.3f)), SEGMENT_D(new Segment(
 				LEDLayout.segmentD, 1f)), SEGMENT_D_2(new Segment(
-				LEDLayout.segmentD2, 1f)), SEGMENT_D_BRANCH_1(new Segment(
+				LEDLayout.segmentD2, 2f)), SEGMENT_D_BRANCH_1(new Segment(
 				LEDLayout.segmentDbranch1, 1f)), SEGMENT_D_BRANCH_2(
 				new Segment(LEDLayout.segmentDbranch2, 1f)), SEGMENT_D_BRANCH_3(
 				new Segment(LEDLayout.segmentDbranch3, 1f)), SEGMENT_E(
@@ -83,7 +84,7 @@ public class LightAnimation {
 				LEDLayout.segmentH, 1f)), SEGMENT_H_BRANCH_1(new Segment(
 				LEDLayout.segmentHbranch1, 1f)), SEGMENT_H_BRANCH_2(
 				new Segment(LEDLayout.segmentHbranch2, 1f)), SEGMENT_I(
-				new Segment(LEDLayout.segmentI, 1f)), SEGMENT_J(new Segment(
+				new Segment(LEDLayout.segmentI, 0.75f)), SEGMENT_J(new Segment(
 				LEDLayout.segmentJ, 1f)), SEGMENT_J_BRANCH_1(new Segment(
 				LEDLayout.segmentJbranch1, 1f)), SEGMENT_J_BRANCH_2(
 				new Segment(LEDLayout.segmentJbranch2, 1f)), SEGMENT_K(
@@ -132,7 +133,9 @@ public class LightAnimation {
 		private static final List<Integer> segmentBbranch3 = Arrays.asList(15,
 				16);
 		private static final List<Integer> segmentC = Arrays.asList(6, 17, 18,
-				19, 20, 21, 22, 23, 24, 25, 26, 27);
+				19, 20, 21);
+		private static final List<Integer> segmentC2 = Arrays.asList(22, 23,
+				24, 25, 26, 27);
 		private static final List<Integer> switchCDE = Arrays
 				.asList(26, 27, 28);
 		private static final List<Integer> segmentD = Arrays.asList(29, 30, 31,
@@ -403,6 +406,7 @@ public class LightAnimation {
 				genGreen -= 1f;
 				hardwareDivider++;
 				if (hardwareDivider >= SOFTWARE_ORB_MULTIPLIER) {
+					hardwareDivider = 0;
 					return 4;
 				} else {
 					return 2;
@@ -411,6 +415,7 @@ public class LightAnimation {
 				gen -= 1f;
 				hardwareDivider++;
 				if (hardwareDivider >= SOFTWARE_ORB_MULTIPLIER) {
+					hardwareDivider = 0;
 					return 3;
 				} else {
 					return 1;
@@ -440,9 +445,9 @@ public class LightAnimation {
 	private static final float OFF_THRESHOLD = 0.0001f;
 
 	private static final float GEN_SCALE = 16f;
-	private static final float FLOW_SCALE = 3f;
-	
-	private static final int SOFTWARE_ORB_MULTIPLIER = 12;
+	private static final float FLOW_SCALE = 4f;
+
+	private static final int SOFTWARE_ORB_MULTIPLIER = 4;
 
 	private static boolean paused = false;
 
@@ -566,16 +571,7 @@ public class LightAnimation {
 					nextSegment = (Segment) LightStrands.SEGMENT_B.strand;
 				} else if (segment == LightStrands.SEGMENT_C.strand
 						&& orb.forward) {
-					final float d = Math.max(getFlow(LightStrands.SEGMENT_D),
-							0f);
-					final float e = Math.max(getFlow(LightStrands.SEGMENT_E),
-							0f);
-					final int dir = Junctions.CDE.advance(0f, d, e);
-					if (dir == 2) {
-						nextSegment = (Segment) LightStrands.SEGMENT_D.strand;
-					} else if (dir == 3) {
-						nextSegment = (Segment) LightStrands.SEGMENT_E.strand;
-					}
+					nextSegment = (Segment) LightStrands.SEGMENT_C2.strand;
 				} else if (segment == LightStrands.SEGMENT_C.strand
 						&& !orb.forward) {
 					if (getFlow(LightStrands.SEGMENT_B) > OFF_THRESHOLD) {
@@ -586,6 +582,21 @@ public class LightAnimation {
 						orb.progress = 1f;
 						continue;
 					}
+				} else if (segment == LightStrands.SEGMENT_C2.strand
+						&& orb.forward) {
+					final float d = Math.max(getFlow(LightStrands.SEGMENT_D),
+							0f);
+					final float e = Math.max(getFlow(LightStrands.SEGMENT_E),
+							0f);
+					final int dir = Junctions.CDE.advance(0f, d, e);
+					if (dir == 2) {
+						nextSegment = (Segment) LightStrands.SEGMENT_D.strand;
+					} else if (dir == 3) {
+						nextSegment = (Segment) LightStrands.SEGMENT_E.strand;
+					}
+				} else if (segment == LightStrands.SEGMENT_C2.strand
+						&& !orb.forward) {
+					nextSegment = (Segment) LightStrands.SEGMENT_C.strand;
 				} else if (segment == LightStrands.SEGMENT_D.strand
 						&& orb.forward) {
 					final int dir = Junctions.D_BRANCH.advance(1f + jitter(),
@@ -898,9 +909,11 @@ public class LightAnimation {
 				if (nextSegment != null) {
 					orb.setSegment(nextSegment);
 					if (orb.forward) {
+						orb.previous.add(orb.getFrom());
 						orb.setFrom(orb.getTo());
 						orb.setTo(nextSegment.getLEDs().get(0));
 					} else {
+						orb.previous.add(orb.getFrom());
 						orb.setFrom(orb.getTo());
 						orb.setTo(nextSegment.getLEDs().get(
 								nextSegment.getLEDs().size() - 1));
@@ -968,8 +981,10 @@ public class LightAnimation {
 		}
 
 		if (true) {
-			final Segment strand = (Segment) LightStrands.SEGMENT_C.strand;
+			Segment strand = (Segment) LightStrands.SEGMENT_C.strand;
 			strand.setFlow(getFlow(LightStrands.SEGMENT_C));
+			strand = (Segment) LightStrands.SEGMENT_C2.strand;
+			strand.setFlow(getFlow(LightStrands.SEGMENT_C2));
 		}
 
 		if (true) {
@@ -1517,6 +1532,10 @@ public class LightAnimation {
 			flow = SimInfo.trC;
 			break;
 		}
+		case SEGMENT_C2: {
+			flow = SimInfo.trC;
+			break;
+		}
 		case SEGMENT_D: {
 			flow = SimInfo.trD;
 			break;
@@ -1680,7 +1699,7 @@ public class LightAnimation {
 
 	public void advanceState(final float amount) {
 		for (int i = 1; i <= 177; i++) {
-			LightStates currentState = states.get(i);
+			final LightStates currentState = states.get(i);
 			switch (currentState) {
 			case BLUE:
 				states.put(i, LightStates.DIMMER_BLUE);
@@ -1706,35 +1725,61 @@ public class LightAnimation {
 		}
 
 		for (Orb orb : orbs) {
-			if (orb.alpha < 0.9f || !orb.onHardware) {
+			if (!orb.onHardware) {
 				continue;
 			}
 
 			final int loc;
-			if (orb.progress >= 0.5f) {
-				loc = orb.getTo();
-			} else {
+			if (orb.alpha >= 0.9) {
 				loc = orb.getFrom();
+			} else {
+				loc = orb.getTo();
 			}
 
 			if (orb.getType() == OrbTypes.GREEN) {
-				states.put(loc, LightStates.GREEN);
-			} else if (orb.getType() == OrbTypes.BLUE
-					&& states.get(loc) != LightStates.GREEN) {
-				states.put(loc, LightStates.BLUE);
+				if (orb.alpha >= 0.9) {
+					states.put(loc, LightStates.GREEN);
+				} else if (orb.alpha >= 0.6
+						&& states.get(loc) != LightStates.BLUE
+						&& states.get(loc) != LightStates.GREEN) {
+					states.put(loc, LightStates.DIMMER_GREEN);
+				} else if (orb.alpha >= 0.3
+						&& states.get(loc) != LightStates.BLUE
+						&& states.get(loc) != LightStates.GREEN
+						&& states.get(loc) != LightStates.DIMMER_BLUE
+						&& states.get(loc) != LightStates.DIMMER_GREEN) {
+					states.put(loc, LightStates.DIMMEST_GREEN);
+				}
+			} else if (orb.getType() == OrbTypes.BLUE) {
+				if (orb.alpha >= 0.9 && states.get(loc) != LightStates.GREEN) {
+					states.put(loc, LightStates.BLUE);
+				} else if (orb.alpha >= 0.6
+						&& states.get(loc) != LightStates.BLUE
+						&& states.get(loc) != LightStates.GREEN
+						&& states.get(loc) != LightStates.DIMMER_GREEN) {
+					states.put(loc, LightStates.DIMMER_BLUE);
+				} else if (orb.alpha >= 0.3
+						&& states.get(loc) != LightStates.BLUE
+						&& states.get(loc) != LightStates.GREEN
+						&& states.get(loc) != LightStates.DIMMER_BLUE
+						&& states.get(loc) != LightStates.DIMMER_GREEN
+						&& states.get(loc) != LightStates.DIMMEST_GREEN) {
+					states.put(loc, LightStates.DIMMEST_BLUE);
+				}
 			}
 
 			if (!orb.previous.isEmpty()) {
+				boolean first = true;
 				for (int prev : orb.previous) {
-					if (orb.getType() == OrbTypes.GREEN
-							&& states.get(prev) != LightStates.GREEN
-							&& states.get(prev) != LightStates.BLUE) {
-						states.put(prev, LightStates.DIMMER_GREEN);
+					if (first) {
+						first = false;
+						continue;
+					}
+					if (orb.getType() == OrbTypes.GREEN) {
+						states.put(prev, LightStates.GREEN);
 					} else if (orb.getType() == OrbTypes.BLUE
-							&& states.get(prev) != LightStates.GREEN
-							&& states.get(prev) != LightStates.BLUE
-							&& states.get(prev) != LightStates.DIMMER_GREEN) {
-						states.put(prev, LightStates.DIMMER_BLUE);
+							&& states.get(prev) != LightStates.GREEN) {
+						states.put(prev, LightStates.BLUE);
 					}
 				}
 				orb.previous.clear();

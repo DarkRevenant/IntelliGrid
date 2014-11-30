@@ -633,6 +633,7 @@ public class Simulation {
             trK = trJ;
             trM = trK + trL;
             swiCDE = 2;
+            swiEFG = 0;
             swiKJI = 3;
             swiIHG = 1;
             traD = true;
