@@ -15,4 +15,6 @@ public class GraphsPage extends Fragment {
 			Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.graphs, container, false);
 	}
+
+
 }
