@@ -99,18 +99,18 @@ public class MainUI {
      */
     public void init() {
         final List<Integer> resources = new ArrayList<>();
-        resources.add(R.drawable.faulta);
-        resources.add(R.drawable.faultb);
-        resources.add(R.drawable.faultc);
-        resources.add(R.drawable.faultd);
-        resources.add(R.drawable.faulte);
-        resources.add(R.drawable.faultf);
-        resources.add(R.drawable.faulth);
-        resources.add(R.drawable.faulti);
-        resources.add(R.drawable.faultj);
-        resources.add(R.drawable.faultk);
-        resources.add(R.drawable.faultl);
-        resources.add(R.drawable.faultm);
+        resources.add(R.drawable.fault_a);
+        resources.add(R.drawable.fault_b);
+        resources.add(R.drawable.fault_c);
+        resources.add(R.drawable.fault_d);
+        resources.add(R.drawable.fault_e);
+        resources.add(R.drawable.fault_f);
+        resources.add(R.drawable.fault_h);
+        resources.add(R.drawable.fault_i);
+        resources.add(R.drawable.fault_j);
+        resources.add(R.drawable.fault_k);
+        resources.add(R.drawable.fault_l);
+        resources.add(R.drawable.fault_m);
         resources.add(R.drawable.balloonfault);
         resources.add(R.drawable.digfault);
         resources.add(R.drawable.nofault);
@@ -136,8 +136,16 @@ public class MainUI {
         resources.add(R.drawable.graphs);
         resources.add(R.drawable.graphsnight);
         resources.add(R.drawable.graphspage);
+        resources.add(R.drawable.house1);
+        resources.add(R.drawable.house1night);
         resources.add(R.drawable.house1solar);
         resources.add(R.drawable.house1solarnight);
+        resources.add(R.drawable.house1car);
+        resources.add(R.drawable.house1carnight);
+        resources.add(R.drawable.house1both);
+        resources.add(R.drawable.house1bothnight);
+        resources.add(R.drawable.house2);
+        resources.add(R.drawable.house2night);
         resources.add(R.drawable.house2solar);
         resources.add(R.drawable.house2solarnight);
         resources.add(R.drawable.house3);
@@ -232,18 +240,18 @@ public class MainUI {
     }
 
     public static class ClickableObjects {
-        public static ClickableSprite faulta;
-        public static ClickableSprite faultb;
-        public static ClickableSprite faultc;
-        public static ClickableSprite faultd;
-        public static ClickableSprite faulte;
-        public static ClickableSprite faultf;
-        public static ClickableSprite faulth;
-        public static ClickableSprite faulti;
-        public static ClickableSprite faultj;
-        public static ClickableSprite faultk;
-        public static ClickableSprite faultl;
-        public static ClickableSprite faultm;
+        public static ClickableSprite fault_a;
+        public static ClickableSprite fault_b;
+        public static ClickableSprite fault_c;
+        public static ClickableSprite fault_d;
+        public static ClickableSprite fault_e;
+        public static ClickableSprite fault_f;
+        public static ClickableSprite fault_h;
+        public static ClickableSprite fault_i;
+        public static ClickableSprite fault_j;
+        public static ClickableSprite fault_k;
+        public static ClickableSprite fault_l;
+        public static ClickableSprite fault_m;
         public static ClickableSprite balloonfault;
         public static ClickableSprite digfault;
         public static ClickableSprite nofault;
@@ -273,6 +281,14 @@ public class MainUI {
         public static ClickableSprite play2;
         public static ClickableSprite play3;
         public static ClickableSprite pause;
+        public static ClickableSprite house1a;
+        public static ClickableSprite house1asolar;
+        public static ClickableSprite house1acar;
+        public static ClickableSprite house1aboth;
+        public static ClickableSprite house1b;
+        public static ClickableSprite house1bsolar;
+        public static ClickableSprite house1bcar;
+        public static ClickableSprite house1bboth;
         public static ClickableSprite house1solar1;
         public static ClickableSprite house1solar2;
         public static ClickableSprite house1solar3;
@@ -484,65 +500,65 @@ public class MainUI {
                 new Color(255, 255, 255), R.drawable.pausedown);
         Global.getRenderer().addDrawable(Objects.pausedown);
 
-        ClickableObjects.faulta = new ClickableSprite(pixelsToCoords(565, 980), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.faulta, sizeToCoords(-56,-60), sizeToCoords(56,60), "faulta");
-        Global.getRenderer().addDrawable(ClickableObjects.faulta);
-        addClickable(ClickableObjects.faulta);
+        ClickableObjects.fault_a = new ClickableSprite(pixelsToCoords(565, 980), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.fault_a, sizeToCoords(-56,-60), sizeToCoords(56,60), "faulta");
+        Global.getRenderer().addDrawable(ClickableObjects.fault_a);
+        addClickable(ClickableObjects.fault_a);
 
-        ClickableObjects.faultb = new ClickableSprite(pixelsToCoords(715, 980), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.faultb, sizeToCoords(-56,-60), sizeToCoords(56,60), "faultb");
-        Global.getRenderer().addDrawable(ClickableObjects.faultb);
-        addClickable(ClickableObjects.faultb);
+        ClickableObjects.fault_b = new ClickableSprite(pixelsToCoords(715, 980), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.fault_b, sizeToCoords(-56,-60), sizeToCoords(56,60), "faultb");
+        Global.getRenderer().addDrawable(ClickableObjects.fault_b);
+        addClickable(ClickableObjects.fault_b);
 
-        ClickableObjects.faultc = new ClickableSprite(pixelsToCoords(1210, 980), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.faultc, sizeToCoords(-56,-60), sizeToCoords(56,60), "faultc");
-        Global.getRenderer().addDrawable(ClickableObjects.faultc);
-        addClickable(ClickableObjects.faultc);
+        ClickableObjects.fault_c = new ClickableSprite(pixelsToCoords(1210, 980), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.fault_c, sizeToCoords(-56,-60), sizeToCoords(56,60), "faultc");
+        Global.getRenderer().addDrawable(ClickableObjects.fault_c);
+        addClickable(ClickableObjects.fault_c);
 
-        ClickableObjects.faultd = new ClickableSprite(pixelsToCoords(1360, 980), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.faultd, sizeToCoords(-56,-60), sizeToCoords(56,60), "faultd");
-        Global.getRenderer().addDrawable(ClickableObjects.faultd);
-        addClickable(ClickableObjects.faultd);
+        ClickableObjects.fault_d = new ClickableSprite(pixelsToCoords(1360, 980), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.fault_d, sizeToCoords(-56,-60), sizeToCoords(56,60), "faultd");
+        Global.getRenderer().addDrawable(ClickableObjects.fault_d);
+        addClickable(ClickableObjects.fault_d);
 
-        ClickableObjects.faulte = new ClickableSprite(pixelsToCoords(1820, 980), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.faulte, sizeToCoords(-56,-60), sizeToCoords(56,60), "faulte");
-        Global.getRenderer().addDrawable(ClickableObjects.faulte);
-        addClickable(ClickableObjects.faulte);
+        ClickableObjects.fault_e = new ClickableSprite(pixelsToCoords(1820, 980), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.fault_e, sizeToCoords(-56,-60), sizeToCoords(56,60), "faulte");
+        Global.getRenderer().addDrawable(ClickableObjects.fault_e);
+        addClickable(ClickableObjects.fault_e);
 
-        ClickableObjects.faultf = new ClickableSprite(pixelsToCoords(1960, 980), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.faultf, sizeToCoords(-56,-60), sizeToCoords(56,60), "faultf");
-        Global.getRenderer().addDrawable(ClickableObjects.faultf);
-        addClickable(ClickableObjects.faultf);
+        ClickableObjects.fault_f = new ClickableSprite(pixelsToCoords(1960, 980), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.fault_f, sizeToCoords(-56,-60), sizeToCoords(56,60), "faultf");
+        Global.getRenderer().addDrawable(ClickableObjects.fault_f);
+        addClickable(ClickableObjects.fault_f);
 
-        ClickableObjects.faulth = new ClickableSprite(pixelsToCoords(565, 690), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.faulth, sizeToCoords(-56,-60), sizeToCoords(56,60), "faulth");
-        Global.getRenderer().addDrawable(ClickableObjects.faulth);
-        addClickable(ClickableObjects.faulth);
+        ClickableObjects.fault_h = new ClickableSprite(pixelsToCoords(565, 690), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.fault_h, sizeToCoords(-56,-60), sizeToCoords(56,60), "faulth");
+        Global.getRenderer().addDrawable(ClickableObjects.fault_h);
+        addClickable(ClickableObjects.fault_h);
 
-        ClickableObjects.faulti = new ClickableSprite(pixelsToCoords(715, 690), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.faulti, sizeToCoords(-56,-60), sizeToCoords(56,60), "faulti");
-        Global.getRenderer().addDrawable(ClickableObjects.faulti);
-        addClickable(ClickableObjects.faulti);
+        ClickableObjects.fault_i = new ClickableSprite(pixelsToCoords(715, 690), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.fault_i, sizeToCoords(-56,-60), sizeToCoords(56,60), "faulti");
+        Global.getRenderer().addDrawable(ClickableObjects.fault_i);
+        addClickable(ClickableObjects.fault_i);
 
-        ClickableObjects.faultj = new ClickableSprite(pixelsToCoords(1210, 690), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.faultj, sizeToCoords(-56,-60), sizeToCoords(56,60), "faultj");
-        Global.getRenderer().addDrawable(ClickableObjects.faultj);
-        addClickable(ClickableObjects.faultj);
+        ClickableObjects.fault_j = new ClickableSprite(pixelsToCoords(1210, 690), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.fault_j, sizeToCoords(-56,-60), sizeToCoords(56,60), "faultj");
+        Global.getRenderer().addDrawable(ClickableObjects.fault_j);
+        addClickable(ClickableObjects.fault_j);
 
-        ClickableObjects.faultk = new ClickableSprite(pixelsToCoords(1360, 690), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.faultk, sizeToCoords(-56,-60), sizeToCoords(56,60), "faultk");
-        Global.getRenderer().addDrawable(ClickableObjects.faultk);
-        addClickable(ClickableObjects.faultk);
+        ClickableObjects.fault_k = new ClickableSprite(pixelsToCoords(1360, 690), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.fault_k, sizeToCoords(-56,-60), sizeToCoords(56,60), "faultk");
+        Global.getRenderer().addDrawable(ClickableObjects.fault_k);
+        addClickable(ClickableObjects.fault_k);
 
-        ClickableObjects.faultl = new ClickableSprite(pixelsToCoords(1820, 690), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.faultl, sizeToCoords(-56,-60), sizeToCoords(56,60), "faultl");
-        Global.getRenderer().addDrawable(ClickableObjects.faultl);
-        addClickable(ClickableObjects.faultl);
+        ClickableObjects.fault_l = new ClickableSprite(pixelsToCoords(1820, 690), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.fault_l, sizeToCoords(-56,-60), sizeToCoords(56,60), "faultl");
+        Global.getRenderer().addDrawable(ClickableObjects.fault_l);
+        addClickable(ClickableObjects.fault_l);
 
-        ClickableObjects.faultm = new ClickableSprite(pixelsToCoords(1960, 690), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.faultm, sizeToCoords(-56,-60), sizeToCoords(56,60), "faultm");
-        Global.getRenderer().addDrawable(ClickableObjects.faultm);
-        addClickable(ClickableObjects.faultm);
+        ClickableObjects.fault_m = new ClickableSprite(pixelsToCoords(1960, 690), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.fault_m, sizeToCoords(-56,-60), sizeToCoords(56,60), "faultm");
+        Global.getRenderer().addDrawable(ClickableObjects.fault_m);
+        addClickable(ClickableObjects.fault_m);
 
         ClickableObjects.balloonfault = new ClickableSprite(pixelsToCoords(920, 390), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.balloonfault, sizeToCoords(-58,-58), sizeToCoords(58,58), "balloonfault");
