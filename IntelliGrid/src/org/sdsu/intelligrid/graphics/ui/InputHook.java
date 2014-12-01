@@ -51,6 +51,7 @@ public class InputHook {
 	public static synchronized void reportDownOnObject(final Clickable object,
 			final Vector2f coords, final MotionEvent e, final int id) {
 
+        // Play Buttons
 		if (object.getId().equals("play")) {
 			LightAnimation.setPaused(false);
             Global.getGlobalSimulation().data.timeScale = 288;
@@ -84,6 +85,7 @@ public class InputHook {
             MainUI.Objects.pausedown.setDepth(-1);
 		}
 
+        // Background
 		if(object.getId().equals("background")) {
 		    MainUI.ClickableObjects.graphspage.setDepth(11);
 		    MainUI.ClickableObjects.exitgraphs.setDepth(11);
@@ -108,11 +110,11 @@ public class InputHook {
             MainUI.ClickableObjects.nofault.setDepth(11);
 		}
 
+        // Info Page
 		if (object.getId().equals("info")) {
 			MainUI.ClickableObjects.infopage.setDepth(-1);
 			MainUI.ClickableObjects.exitinfo.setDepth(-2);
 			MainUI.ClickableObjects.load1stats.setDepth(11);
-
 			MainUI.UIInfo.Load1.setDepth(11);
 			MainUI.ClickableObjects.load2stats.setDepth(11);
 			MainUI.UIInfo.Load2.setDepth(11);
@@ -128,9 +130,9 @@ public class InputHook {
 		if (object.getId().equals("exitinfo")) {
 			MainUI.ClickableObjects.infopage.setDepth(11);
 			MainUI.ClickableObjects.exitinfo.setDepth(11);
-
 		}
 
+        // Graphs Page
 		if (object.getId().equals("graphs")) {
 			if (!graphsOn) {
 				Global.getMainActivity().runOnUiThread(new Runnable() {
@@ -159,6 +161,7 @@ public class InputHook {
 			}
 		}
 
+        // Faults Page
 		if (object.getId().equals("faults")) {
 			MainUI.ClickableObjects.faultspage.setDepth(-1);
 			MainUI.ClickableObjects.exitfaults.setDepth(-2);
@@ -209,7 +212,6 @@ public class InputHook {
             MainUI.ClickableObjects.nofault.setDepth(11);
             MainUI.ClickableObjects.faultspage.setDepth(11);
             MainUI.ClickableObjects.exitfaults.setDepth(11);
-
         }
         if (object.getId().equals("faultb")) {
             Global.getGlobalSimulation().faultManager.startGenericFault("B");
@@ -230,7 +232,6 @@ public class InputHook {
             MainUI.ClickableObjects.nofault.setDepth(11);
             MainUI.ClickableObjects.faultspage.setDepth(11);
             MainUI.ClickableObjects.exitfaults.setDepth(11);
-
         }
         if (object.getId().equals("faultc")) {
             Global.getGlobalSimulation().faultManager.startGenericFault("C");
@@ -251,7 +252,6 @@ public class InputHook {
             MainUI.ClickableObjects.nofault.setDepth(11);
             MainUI.ClickableObjects.faultspage.setDepth(11);
             MainUI.ClickableObjects.exitfaults.setDepth(11);
-
         }
         if (object.getId().equals("faultd")) {
             Global.getGlobalSimulation().faultManager.startGenericFault("D");
@@ -272,7 +272,6 @@ public class InputHook {
             MainUI.ClickableObjects.nofault.setDepth(11);
             MainUI.ClickableObjects.faultspage.setDepth(11);
             MainUI.ClickableObjects.exitfaults.setDepth(11);
-
         }
         if (object.getId().equals("faulte")) {
             Global.getGlobalSimulation().faultManager.startGenericFault("E");
@@ -293,7 +292,6 @@ public class InputHook {
             MainUI.ClickableObjects.nofault.setDepth(11);
             MainUI.ClickableObjects.faultspage.setDepth(11);
             MainUI.ClickableObjects.exitfaults.setDepth(11);
-
         }
         if (object.getId().equals("faultf")) {
             Global.getGlobalSimulation().faultManager.startGenericFault("F");
@@ -314,7 +312,6 @@ public class InputHook {
             MainUI.ClickableObjects.nofault.setDepth(11);
             MainUI.ClickableObjects.faultspage.setDepth(11);
             MainUI.ClickableObjects.exitfaults.setDepth(11);
-
         }
         if (object.getId().equals("faulth")) {
             Global.getGlobalSimulation().faultManager.startGenericFault("H");
@@ -335,7 +332,6 @@ public class InputHook {
             MainUI.ClickableObjects.nofault.setDepth(11);
             MainUI.ClickableObjects.faultspage.setDepth(11);
             MainUI.ClickableObjects.exitfaults.setDepth(11);
-
         }
         if (object.getId().equals("faulti")) {
             Global.getGlobalSimulation().faultManager.startGenericFault("I");
@@ -356,7 +352,6 @@ public class InputHook {
             MainUI.ClickableObjects.nofault.setDepth(11);
             MainUI.ClickableObjects.faultspage.setDepth(11);
             MainUI.ClickableObjects.exitfaults.setDepth(11);
-
         }
         if (object.getId().equals("faultj")) {
             Global.getGlobalSimulation().faultManager.startGenericFault("J");
@@ -377,7 +372,6 @@ public class InputHook {
             MainUI.ClickableObjects.nofault.setDepth(11);
             MainUI.ClickableObjects.faultspage.setDepth(11);
             MainUI.ClickableObjects.exitfaults.setDepth(11);
-
         }
         if (object.getId().equals("faultk")) {
             Global.getGlobalSimulation().faultManager.startGenericFault("K");
@@ -398,7 +392,6 @@ public class InputHook {
             MainUI.ClickableObjects.nofault.setDepth(11);
             MainUI.ClickableObjects.faultspage.setDepth(11);
             MainUI.ClickableObjects.exitfaults.setDepth(11);
-
         }
         if (object.getId().equals("faultl")) {
             Global.getGlobalSimulation().faultManager.startGenericFault("L");
@@ -419,7 +412,6 @@ public class InputHook {
             MainUI.ClickableObjects.nofault.setDepth(11);
             MainUI.ClickableObjects.faultspage.setDepth(11);
             MainUI.ClickableObjects.exitfaults.setDepth(11);
-
         }
         if (object.getId().equals("faultm")) {
             Global.getGlobalSimulation().faultManager.startGenericFault("M");
@@ -440,7 +432,6 @@ public class InputHook {
             MainUI.ClickableObjects.nofault.setDepth(11);
             MainUI.ClickableObjects.faultspage.setDepth(11);
             MainUI.ClickableObjects.exitfaults.setDepth(11);
-
         }
         if (object.getId().equals("balloonfault")) {
             MainNetworkHandler.constructAndSendPacket(PacketTypes.BALLOON_DETECT_RESET, true);
@@ -462,7 +453,6 @@ public class InputHook {
             MainUI.ClickableObjects.nofault.setDepth(11);
             MainUI.ClickableObjects.faultspage.setDepth(11);
             MainUI.ClickableObjects.exitfaults.setDepth(11);
-
         }
         if (object.getId().equals("digfault")) {
             MainNetworkHandler.constructAndSendPacket(PacketTypes.DIG_DETECT_RESET, true);
@@ -484,7 +474,6 @@ public class InputHook {
             MainUI.ClickableObjects.nofault.setDepth(11);
             MainUI.ClickableObjects.faultspage.setDepth(11);
             MainUI.ClickableObjects.exitfaults.setDepth(11);
-
         }
         if (object.getId().equals("nofault")) {
             Global.getGlobalSimulation().faultManager.endFaults();
@@ -505,9 +494,7 @@ public class InputHook {
             MainUI.ClickableObjects.nofault.setDepth(11);
             MainUI.ClickableObjects.faultspage.setDepth(11);
             MainUI.ClickableObjects.exitfaults.setDepth(11);
-
         }
-
 		if (object.getId().equals("exitfaults")) {
             MainUI.ClickableObjects.fault_a.setDepth(11);
             MainUI.ClickableObjects.fault_b.setDepth(11);
@@ -526,15 +513,13 @@ public class InputHook {
             MainUI.ClickableObjects.nofault.setDepth(11);
 			MainUI.ClickableObjects.faultspage.setDepth(11);
 			MainUI.ClickableObjects.exitfaults.setDepth(11);
-
 		}
 
-        // Residential 1
+//        // If Network is NOT Connected
+//        if (Global.getNetworkInterface().ENABLE_NETWORK.get() == 1.0) {
+//
+//        }
 
-		if (object.getId().equals("load1stats")) {
-			MainUI.ClickableObjects.load1stats.setDepth(11);
-			MainUI.UIInfo.Load1.setDepth(11);
-		}
         // Residential 2
 		if (object.getId().equals("load2stats")) {
 			MainUI.ClickableObjects.load2stats.setDepth(11);
@@ -569,7 +554,6 @@ public class InputHook {
             MainUI.ClickableObjects.house2asolarcheck.setDepth(11);
             MainUI.ClickableObjects.house2asolarcheckoff.setDepth(-2);
         }
-
 		if (object.getId().equals("house2b")) {
 			MainUI.ClickableObjects.load2stats.setDepth(-1);
 			MainUI.UIInfo.Load2.setDepth(-2);
@@ -590,10 +574,7 @@ public class InputHook {
 			MainUI.ClickableObjects.load2stats.setDepth(-1);
 			MainUI.UIInfo.Load2.setDepth(-2);
 		}
-		if (object.getId().equals("load3stats")) {
-			MainUI.ClickableObjects.load3stats.setDepth(11);
-			MainUI.UIInfo.Load3.setDepth(11);
-		}
+        // Residential 3
 		if (object.getId().equals("house1a")) {
 			MainUI.ClickableObjects.load3stats.setDepth(-1);
 			MainUI.UIInfo.Load3.setDepth(-2);
@@ -631,45 +612,54 @@ public class InputHook {
 			MainUI.UIInfo.Load3.setDepth(-2);
 		}
 
-		if (object.getId().equals("load4stats")) {
-			MainUI.ClickableObjects.load4stats.setDepth(11);
-			MainUI.UIInfo.Load4.setDepth(11);
-		}
-        if (object.getId().equals("midway")) {
-            MainUI.ClickableObjects.load4stats.setDepth(-1);
-            MainUI.UIInfo.Load4.setDepth(-2);
-        }
-		if (object.getId().equals("load5stats")) {
-			MainUI.ClickableObjects.load5stats.setDepth(11);
-			MainUI.UIInfo.Load5.setDepth(11);
-		}
-		if (object.getId().equals("load6stats")) {
-			MainUI.ClickableObjects.load6stats.setDepth(11);
-			MainUI.UIInfo.Load6.setDepth(11);
-		}
+        // Load Displays
         if (object.getId().equals("transformer1")) {
             MainUI.ClickableObjects.load1stats.setDepth(-1);
             MainUI.UIInfo.Load1.setDepth(-2);
+        }
+        if (object.getId().equals("load1stats")) {
+            MainUI.ClickableObjects.load1stats.setDepth(11);
+            MainUI.UIInfo.Load1.setDepth(11);
         }
         if (object.getId().equals("transformer2")) {
             MainUI.ClickableObjects.load2stats.setDepth(-1);
             MainUI.UIInfo.Load2.setDepth(-2);
         }
+        if (object.getId().equals("load2stats")) {
+            MainUI.ClickableObjects.load2stats.setDepth(11);
+            MainUI.UIInfo.Load2.setDepth(11);
+        }
         if (object.getId().equals("transformer3")) {
             MainUI.ClickableObjects.load3stats.setDepth(-1);
             MainUI.UIInfo.Load3.setDepth(-2);
+        }
+        if (object.getId().equals("load3stats")) {
+            MainUI.ClickableObjects.load3stats.setDepth(11);
+            MainUI.UIInfo.Load3.setDepth(11);
         }
         if (object.getId().equals("transformer4")) {
             MainUI.ClickableObjects.load4stats.setDepth(-1);
             MainUI.UIInfo.Load4.setDepth(-2);
         }
+        if (object.getId().equals("load4stats")) {
+            MainUI.ClickableObjects.load4stats.setDepth(11);
+            MainUI.UIInfo.Load4.setDepth(11);
+        }
         if (object.getId().equals("transformer5")) {
             MainUI.ClickableObjects.load5stats.setDepth(-1);
             MainUI.UIInfo.Load5.setDepth(-2);
         }
+        if (object.getId().equals("load5stats")) {
+            MainUI.ClickableObjects.load5stats.setDepth(11);
+            MainUI.UIInfo.Load5.setDepth(11);
+        }
         if (object.getId().equals("transformer6")) {
             MainUI.ClickableObjects.load6stats.setDepth(-1);
             MainUI.UIInfo.Load6.setDepth(-2);
+        }
+        if (object.getId().equals("load6stats")) {
+            MainUI.ClickableObjects.load6stats.setDepth(11);
+            MainUI.UIInfo.Load6.setDepth(11);
         }
 	}
 
