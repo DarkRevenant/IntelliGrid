@@ -223,9 +223,7 @@ abstract public class GraphView extends LinearLayout {
             return valueX;
         }
         @Override
-        public double getY() {
-            return valueY;
-        }
+        public double getY() { return valueY; }
     }
 
     public enum LegendAlign {
