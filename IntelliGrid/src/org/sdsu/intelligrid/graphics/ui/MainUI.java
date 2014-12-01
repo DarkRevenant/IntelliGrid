@@ -429,17 +429,13 @@ public class MainUI {
                 new Color(255, 255, 255), R.drawable.sunny);
         Global.getRenderer().addDrawable(Objects.sunny);
 
-        Objects.partlycloudy = new Sprite(pixelsToCoords(700, 1551), 11, 0f, new Vector2f(1f, 1f),
+        Objects.partlycloudy = new Sprite(pixelsToCoords(1800, 1551), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.partlycloudy);
         Global.getRenderer().addDrawable(Objects.partlycloudy);
 
-        Objects.cloudy = new Sprite(pixelsToCoords(700, 1551), 11, 0f, new Vector2f(1f, 1f),
+        Objects.cloudy = new Sprite(pixelsToCoords(1800, 1551), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.cloudy);
         Global.getRenderer().addDrawable(Objects.cloudy);
-
-        Objects.night = new Sprite(pixelsToCoords(700, 1551), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.night);
-        Global.getRenderer().addDrawable(Objects.night);
 
         ClickableObjects.faults = new ClickableSprite(pixelsToCoords(2485, 425), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.faults, sizeToCoords(-64,-64), sizeToCoords(64,64), "faults");
@@ -602,31 +598,6 @@ public class MainUI {
         Global.getRenderer().addDrawable(ClickableObjects.house1a);
         addClickable(ClickableObjects.house1a);
 
-        ClickableObjects.house1apopup = new ClickableSprite(pixelsToCoords(155, 120), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house1popup, sizeToCoords(-127,-84), sizeToCoords(172,84), "house1apopup");
-        Global.getRenderer().addDrawable(ClickableObjects.house1apopup);
-        addClickable(ClickableObjects.house1apopup);
-
-        ClickableObjects.house1asolarcheck = new ClickableSprite(pixelsToCoords(245, 150), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.check, sizeToCoords(-17,-17), sizeToCoords(17,17), "house1asolarcheck");
-        Global.getRenderer().addDrawable(ClickableObjects.house1asolarcheck);
-        addClickable(ClickableObjects.house1asolarcheck);
-
-        ClickableObjects.house1asolarcheckoff = new ClickableSprite(pixelsToCoords(245, 150), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-17,-17), sizeToCoords(17,17), "house1asolarcheckoff");
-        Global.getRenderer().addDrawable(ClickableObjects.house1asolarcheckoff);
-        addClickable(ClickableObjects.house1asolarcheckoff);
-
-        ClickableObjects.house1acarcheck = new ClickableSprite(pixelsToCoords(245, 95), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.check, sizeToCoords(-17,-17), sizeToCoords(17,17), "house1acarcheck");
-        Global.getRenderer().addDrawable(ClickableObjects.house1acarcheck);
-        addClickable(ClickableObjects.house1acarcheck);
-
-        ClickableObjects.house1acarcheckoff = new ClickableSprite(pixelsToCoords(245, 95), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-17,-17), sizeToCoords(17,17), "house1acarcheckoff");
-        Global.getRenderer().addDrawable(ClickableObjects.house1acarcheckoff);
-        addClickable(ClickableObjects.house1acarcheckoff);
-
         ClickableObjects.house1asolar = new ClickableSprite(pixelsToCoords(155, 120), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.house1solar, sizeToCoords(-60,-62), sizeToCoords(60,62), "house1asolar");
         Global.getRenderer().addDrawable(ClickableObjects.house1asolar);
@@ -642,35 +613,35 @@ public class MainUI {
         Global.getRenderer().addDrawable(ClickableObjects.house1aboth);
         addClickable(ClickableObjects.house1aboth);
 
+        ClickableObjects.house1apopup = new ClickableSprite(pixelsToCoords(155, 100), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.house1popup, sizeToCoords(-127,-84), sizeToCoords(172,84), "house1apopup");
+        Global.getRenderer().addDrawable(ClickableObjects.house1apopup);
+        addClickable(ClickableObjects.house1apopup);
+
+        ClickableObjects.house1asolarcheck = new ClickableSprite(pixelsToCoords(245, 130), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.check, sizeToCoords(-17,-17), sizeToCoords(17,17), "house1asolarcheck");
+        Global.getRenderer().addDrawable(ClickableObjects.house1asolarcheck);
+        addClickable(ClickableObjects.house1asolarcheck);
+
+        ClickableObjects.house1asolarcheckoff = new ClickableSprite(pixelsToCoords(245, 130), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-17,-17), sizeToCoords(17,17), "house1asolarcheckoff");
+        Global.getRenderer().addDrawable(ClickableObjects.house1asolarcheckoff);
+        addClickable(ClickableObjects.house1asolarcheckoff);
+
+        ClickableObjects.house1acarcheck = new ClickableSprite(pixelsToCoords(245, 75), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.check, sizeToCoords(-17,-17), sizeToCoords(17,17), "house1acarcheck");
+        Global.getRenderer().addDrawable(ClickableObjects.house1acarcheck);
+        addClickable(ClickableObjects.house1acarcheck);
+
+        ClickableObjects.house1acarcheckoff = new ClickableSprite(pixelsToCoords(245, 75), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-17,-17), sizeToCoords(17,17), "house1acarcheckoff");
+        Global.getRenderer().addDrawable(ClickableObjects.house1acarcheckoff);
+        addClickable(ClickableObjects.house1acarcheckoff);
+
         ClickableObjects.house1b = new ClickableSprite(pixelsToCoords(375, 270), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.house1, sizeToCoords(-60,-62), sizeToCoords(60,62), "house1b");
         Global.getRenderer().addDrawable(ClickableObjects.house1b);
         addClickable(ClickableObjects.house1b);
-
-        ClickableObjects.house1bpopup = new ClickableSprite(pixelsToCoords(375, 270), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house1popup, sizeToCoords(-127,-84), sizeToCoords(172,84), "house1bpopup");
-        Global.getRenderer().addDrawable(ClickableObjects.house1bpopup);
-        addClickable(ClickableObjects.house1bpopup);
-
-        ClickableObjects.house1bsolarcheck = new ClickableSprite(pixelsToCoords(468, 300), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.check, sizeToCoords(-17,-17), sizeToCoords(17,17), "house1bsolarcheck");
-        Global.getRenderer().addDrawable(ClickableObjects.house1bsolarcheck);
-        addClickable(ClickableObjects.house1bsolarcheck);
-
-        ClickableObjects.house1bsolarcheckoff = new ClickableSprite(pixelsToCoords(468, 300), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-17,-17), sizeToCoords(17,17), "house1bsolarcheckoff");
-        Global.getRenderer().addDrawable(ClickableObjects.house1bsolarcheckoff);
-        addClickable(ClickableObjects.house1bsolarcheckoff);
-
-        ClickableObjects.house1bcarcheck = new ClickableSprite(pixelsToCoords(468, 245), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.check, sizeToCoords(-17,-17), sizeToCoords(17,17), "house1bcarcheck");
-        Global.getRenderer().addDrawable(ClickableObjects.house1bcarcheck);
-        addClickable(ClickableObjects.house1bcarcheck);
-
-        ClickableObjects.house1bcarcheckoff = new ClickableSprite(pixelsToCoords(468, 245), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-17,-17), sizeToCoords(17,17), "house1bcarcheckoff");
-        Global.getRenderer().addDrawable(ClickableObjects.house1bcarcheckoff);
-        addClickable(ClickableObjects.house1bcarcheckoff);
 
         ClickableObjects.house1bsolar = new ClickableSprite(pixelsToCoords(375, 270), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.house1solar, sizeToCoords(-60,-62), sizeToCoords(60,62), "house1bsolar");
@@ -683,39 +654,39 @@ public class MainUI {
         addClickable(ClickableObjects.house1bcar);
 
         ClickableObjects.house1bboth = new ClickableSprite(pixelsToCoords(375, 270), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house1both, sizeToCoords(-60,-62), sizeToCoords(60,62), "house1solar2");
+                new Color(255, 255, 255), R.drawable.house1both, sizeToCoords(-60,-62), sizeToCoords(60,62), "house1bboth");
         Global.getRenderer().addDrawable(ClickableObjects.house1bboth);
         addClickable(ClickableObjects.house1bboth);
+
+        ClickableObjects.house1bpopup = new ClickableSprite(pixelsToCoords(365, 275), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.house1popup, sizeToCoords(-127,-84), sizeToCoords(172,84), "house1bpopup");
+        Global.getRenderer().addDrawable(ClickableObjects.house1bpopup);
+        addClickable(ClickableObjects.house1bpopup);
+
+        ClickableObjects.house1bsolarcheck = new ClickableSprite(pixelsToCoords(455, 305), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.check, sizeToCoords(-17,-17), sizeToCoords(17,17), "house1bsolarcheck");
+        Global.getRenderer().addDrawable(ClickableObjects.house1bsolarcheck);
+        addClickable(ClickableObjects.house1bsolarcheck);
+
+        ClickableObjects.house1bsolarcheckoff = new ClickableSprite(pixelsToCoords(455, 305), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-17,-17), sizeToCoords(17,17), "house1bsolarcheckoff");
+        Global.getRenderer().addDrawable(ClickableObjects.house1bsolarcheckoff);
+        addClickable(ClickableObjects.house1bsolarcheckoff);
+
+        ClickableObjects.house1bcarcheck = new ClickableSprite(pixelsToCoords(455, 250), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.check, sizeToCoords(-17,-17), sizeToCoords(17,17), "house1bcarcheck");
+        Global.getRenderer().addDrawable(ClickableObjects.house1bcarcheck);
+        addClickable(ClickableObjects.house1bcarcheck);
+
+        ClickableObjects.house1bcarcheckoff = new ClickableSprite(pixelsToCoords(455, 250), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-17,-17), sizeToCoords(17,17), "house1bcarcheckoff");
+        Global.getRenderer().addDrawable(ClickableObjects.house1bcarcheckoff);
+        addClickable(ClickableObjects.house1bcarcheckoff);
 
         ClickableObjects.house1c = new ClickableSprite(pixelsToCoords(615, 270), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.house1, sizeToCoords(-60,-62), sizeToCoords(60,62), "house1c");
         Global.getRenderer().addDrawable(ClickableObjects.house1c);
         addClickable(ClickableObjects.house1c);
-
-        ClickableObjects.house1cpopup = new ClickableSprite(pixelsToCoords(615, 270), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.house1popup, sizeToCoords(-127,-84), sizeToCoords(172,84), "house1cpopup");
-        Global.getRenderer().addDrawable(ClickableObjects.house1cpopup);
-        addClickable(ClickableObjects.house1cpopup);
-
-        ClickableObjects.house1csolarcheck = new ClickableSprite(pixelsToCoords(705, 300), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.check, sizeToCoords(-17,-17), sizeToCoords(17,17), "house1csolarcheck");
-        Global.getRenderer().addDrawable(ClickableObjects.house1csolarcheck);
-        addClickable(ClickableObjects.house1csolarcheck);
-
-        ClickableObjects.house1csolarcheckoff = new ClickableSprite(pixelsToCoords(705, 300), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-17,-17), sizeToCoords(17,17), "house1csolarcheckoff");
-        Global.getRenderer().addDrawable(ClickableObjects.house1csolarcheckoff);
-        addClickable(ClickableObjects.house1csolarcheckoff);
-
-        ClickableObjects.house1ccarcheck = new ClickableSprite(pixelsToCoords(705, 245), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.check, sizeToCoords(-17,-17), sizeToCoords(17,17), "house1ccarcheck");
-        Global.getRenderer().addDrawable(ClickableObjects.house1ccarcheck);
-        addClickable(ClickableObjects.house1ccarcheck);
-
-        ClickableObjects.house1ccarcheckoff = new ClickableSprite(pixelsToCoords(705, 245), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-17,-17), sizeToCoords(17,17), "house1ccarcheckoff");
-        Global.getRenderer().addDrawable(ClickableObjects.house1ccarcheckoff);
-        addClickable(ClickableObjects.house1ccarcheckoff);
 
         ClickableObjects.house1csolar = new ClickableSprite(pixelsToCoords(615, 270), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.house1solar, sizeToCoords(-60,-62), sizeToCoords(60,62), "house1csolar");
@@ -732,6 +703,31 @@ public class MainUI {
         Global.getRenderer().addDrawable(ClickableObjects.house1cboth);
         addClickable(ClickableObjects.house1cboth);
 
+        ClickableObjects.house1cpopup = new ClickableSprite(pixelsToCoords(625, 275), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.house1popup, sizeToCoords(-127,-84), sizeToCoords(172,84), "house1cpopup");
+        Global.getRenderer().addDrawable(ClickableObjects.house1cpopup);
+        addClickable(ClickableObjects.house1cpopup);
+
+        ClickableObjects.house1csolarcheck = new ClickableSprite(pixelsToCoords(713, 305), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.check, sizeToCoords(-17,-17), sizeToCoords(17,17), "house1csolarcheck");
+        Global.getRenderer().addDrawable(ClickableObjects.house1csolarcheck);
+        addClickable(ClickableObjects.house1csolarcheck);
+
+        ClickableObjects.house1csolarcheckoff = new ClickableSprite(pixelsToCoords(713, 305), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-17,-17), sizeToCoords(17,17), "house1csolarcheckoff");
+        Global.getRenderer().addDrawable(ClickableObjects.house1csolarcheckoff);
+        addClickable(ClickableObjects.house1csolarcheckoff);
+
+        ClickableObjects.house1ccarcheck = new ClickableSprite(pixelsToCoords(713, 250), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.check, sizeToCoords(-17,-17), sizeToCoords(17,17), "house1ccarcheck");
+        Global.getRenderer().addDrawable(ClickableObjects.house1ccarcheck);
+        addClickable(ClickableObjects.house1ccarcheck);
+
+        ClickableObjects.house1ccarcheckoff = new ClickableSprite(pixelsToCoords(713, 250), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-17,-17), sizeToCoords(17,17), "house1ccarcheckoff");
+        Global.getRenderer().addDrawable(ClickableObjects.house1ccarcheckoff);
+        addClickable(ClickableObjects.house1ccarcheckoff);
+
         ClickableObjects.house2a = new ClickableSprite(pixelsToCoords(135, 830), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.house2, sizeToCoords(-69,-68), sizeToCoords(69,68), "house2a");
         Global.getRenderer().addDrawable(ClickableObjects.house2a);
@@ -743,12 +739,12 @@ public class MainUI {
         addClickable(ClickableObjects.house2apopup);
 
         ClickableObjects.house2asolarcheck = new ClickableSprite(pixelsToCoords(240, 825), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.check, sizeToCoords(-127,-84), sizeToCoords(172,84), "house2asolarcheck");
+                new Color(255, 255, 255), R.drawable.check, sizeToCoords(-17,-17), sizeToCoords(17,17), "house2asolarcheck");
         Global.getRenderer().addDrawable(ClickableObjects.house2asolarcheck);
         addClickable(ClickableObjects.house2asolarcheck);
 
         ClickableObjects.house2asolarcheckoff = new ClickableSprite(pixelsToCoords(240, 825), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-127,-84), sizeToCoords(172,84), "house2asolarcheckoff");
+                new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-17,-17), sizeToCoords(17,17), "house2asolarcheckoff");
         Global.getRenderer().addDrawable(ClickableObjects.house2asolarcheckoff);
         addClickable(ClickableObjects.house2asolarcheckoff);
 
@@ -768,12 +764,12 @@ public class MainUI {
         addClickable(ClickableObjects.house2bpopup);
 
         ClickableObjects.house2bsolarcheck = new ClickableSprite(pixelsToCoords(540, 825), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.check, sizeToCoords(-127,-84), sizeToCoords(172,84), "house2bsolarcheck");
+                new Color(255, 255, 255), R.drawable.check, sizeToCoords(-17,-17), sizeToCoords(17,17), "house2bsolarcheck");
         Global.getRenderer().addDrawable(ClickableObjects.house2bsolarcheck);
         addClickable(ClickableObjects.house2bsolarcheck);
 
         ClickableObjects.house2bsolarcheckoff = new ClickableSprite(pixelsToCoords(540, 825), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-127,-84), sizeToCoords(172,84), "house2bsolarcheckoff");
+                new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-17,-17), sizeToCoords(17,17), "house2bsolarcheckoff");
         Global.getRenderer().addDrawable(ClickableObjects.house2bsolarcheckoff);
         addClickable(ClickableObjects.house2bsolarcheckoff);
 
@@ -828,12 +824,12 @@ public class MainUI {
         addClickable(ClickableObjects.house3c);
 
         ClickableObjects.turbine = new ClickableSprite(pixelsToCoords(900, 1420), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.turbine, sizeToCoords(-64,-64), sizeToCoords(64,64), "turbine");
+                new Color(255, 255, 255), R.drawable.turbine, sizeToCoords(-37,-49), sizeToCoords(37,49), "turbine");
         Global.getRenderer().addDrawable(ClickableObjects.turbine);
         addClickable(ClickableObjects.turbine);
 
         ClickableObjects.turbine2 = new ClickableSprite(pixelsToCoords(1040, 1435), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.turbine, sizeToCoords(-64,-64), sizeToCoords(64,64), "turbine2");
+                new Color(255, 255, 255), R.drawable.turbine, sizeToCoords(-37,-49), sizeToCoords(37,49), "turbine2");
         Global.getRenderer().addDrawable(ClickableObjects.turbine2);
         addClickable(ClickableObjects.turbine2);
 
@@ -1540,60 +1536,96 @@ public class MainUI {
             Objects.battery3.setDepth(-1);
         }
 
-            // Solar Panels
-            if (Global.getGlobalSimulation().data.solarPanelL1.get() == 1.0) {
-                ClickableObjects.house1asolar.setDepth(0);
-                ClickableObjects.house1a.setDepth(11);
-            }
-            if (Global.getGlobalSimulation().data.solarPanelL2.get() == 1.0) {
-                ClickableObjects.house1bsolar.setDepth(0);
-                ClickableObjects.house1b.setDepth(11);
-            }
-            if (Global.getGlobalSimulation().data.solarPanelL3.get() == 1.0) {
-                ClickableObjects.house1csolar.setDepth(0);
-                ClickableObjects.house1c.setDepth(11);
-            }
-            if (Global.getGlobalSimulation().data.solarPanelM1.get() == 1.0) {
-                ClickableObjects.house2asolar.setDepth(0);
-                ClickableObjects.house2a.setDepth(11);
-            }
-            if (Global.getGlobalSimulation().data.solarPanelM2.get() == 1.0) {
-                ClickableObjects.house2bsolar.setDepth(0);
-                ClickableObjects.house2b.setDepth(11);
-            }
-            // Electric Cars
-            if (Global.getGlobalSimulation().data.electricVehicleL1.get() == 1.0) {
-                ClickableObjects.house1acar.setDepth(0);
-                ClickableObjects.house1a.setDepth(11);
-            }
-            if (Global.getGlobalSimulation().data.electricVehicleL2.get() == 1.0) {
-                ClickableObjects.house1bcar.setDepth(0);
-                ClickableObjects.house1a.setDepth(11);
-            }
-            if (Global.getGlobalSimulation().data.electricVehicleL3.get() == 1.0) {
-                ClickableObjects.house1ccar.setDepth(0);
-                ClickableObjects.house1c.setDepth(11);
-            }
-            // Solar Panel & Electric Cars
-            if (Global.getGlobalSimulation().data.solarPanelL1.get() == 1.0 && Global.getGlobalSimulation().data.electricVehicleL1.get() == 1.0) {
-                ClickableObjects.house1aboth.setDepth(0);
-                ClickableObjects.house1a.setDepth(11);
-                ClickableObjects.house1asolar.setDepth(11);
-                ClickableObjects.house1acar.setDepth(11);
-            }
-            if (Global.getGlobalSimulation().data.solarPanelL2.get() == 1.0 && Global.getGlobalSimulation().data.electricVehicleL2.get() == 1.0) {
-                ClickableObjects.house1bboth.setDepth(0);
-                ClickableObjects.house1a.setDepth(11);
-                ClickableObjects.house1bsolar.setDepth(11);
-                ClickableObjects.house1bcar.setDepth(11);
-            }
-            if (Global.getGlobalSimulation().data.solarPanelL3.get() == 1.0 && Global.getGlobalSimulation().data.electricVehicleL3.get() == 1.0) {
-                ClickableObjects.house1cboth.setDepth(0);
-                ClickableObjects.house1c.setDepth(11);
-                ClickableObjects.house1bsolar.setDepth(11);
-                ClickableObjects.house1bcar.setDepth(11);
-            }
-
+        // Load 1 Solar Panels
+        if (Global.getGlobalSimulation().data.solarPanelM1.get() == 1.0) {
+            ClickableObjects.house2a.setDepth(11);
+            ClickableObjects.house2asolar.setDepth(0);
+        }
+        else if (Global.getGlobalSimulation().data.solarPanelM1.get() == 0.0) {
+            ClickableObjects.house2a.setDepth(0);
+            ClickableObjects.house2asolar.setDepth(11);
+        }
+        if (Global.getGlobalSimulation().data.solarPanelM2.get() == 1.0) {
+            ClickableObjects.house2b.setDepth(11);
+            ClickableObjects.house2bsolar.setDepth(0);
+        }
+        else if (Global.getGlobalSimulation().data.solarPanelM2.get() == 0.0) {
+            ClickableObjects.house2b.setDepth(0);
+            ClickableObjects.house2bsolar.setDepth(11);
+        }
+        // Load 2&3 Solar Panels & Electric Cars
+        if (Global.getGlobalSimulation().data.solarPanelL1.get() == 1.0 && Global.getGlobalSimulation().data.electricVehicleL1.get() == 0.0) {
+            ClickableObjects.house1a.setDepth(11);
+            ClickableObjects.house1asolar.setDepth(0);
+            ClickableObjects.house1acar.setDepth(11);
+            ClickableObjects.house1aboth.setDepth(11);
+        }
+        if (Global.getGlobalSimulation().data.solarPanelL1.get() == 0.0 && Global.getGlobalSimulation().data.electricVehicleL1.get() == 1.0) {
+            ClickableObjects.house1a.setDepth(11);
+            ClickableObjects.house1asolar.setDepth(11);
+            ClickableObjects.house1acar.setDepth(0);
+            ClickableObjects.house1aboth.setDepth(11);
+        }
+        if (Global.getGlobalSimulation().data.solarPanelL1.get() == 1.0 && Global.getGlobalSimulation().data.electricVehicleL1.get() == 1.0) {
+            ClickableObjects.house1a.setDepth(11);
+            ClickableObjects.house1asolar.setDepth(11);
+            ClickableObjects.house1acar.setDepth(11);
+            ClickableObjects.house1aboth.setDepth(0);
+        }
+        if (Global.getGlobalSimulation().data.solarPanelL1.get() == 0.0 && Global.getGlobalSimulation().data.electricVehicleL1.get() == 0.0) {
+            ClickableObjects.house1a.setDepth(0);
+            ClickableObjects.house1asolar.setDepth(11);
+            ClickableObjects.house1acar.setDepth(11);
+            ClickableObjects.house1aboth.setDepth(11);
+        }
+        if (Global.getGlobalSimulation().data.solarPanelL2.get() == 1.0 && Global.getGlobalSimulation().data.electricVehicleL2.get() == 0.0) {
+            ClickableObjects.house1b.setDepth(11);
+            ClickableObjects.house1bsolar.setDepth(0);
+            ClickableObjects.house1bcar.setDepth(11);
+            ClickableObjects.house1bboth.setDepth(11);
+        }
+        if (Global.getGlobalSimulation().data.solarPanelL2.get() == 0.0 && Global.getGlobalSimulation().data.electricVehicleL2.get() == 1.0) {
+            ClickableObjects.house1b.setDepth(11);
+            ClickableObjects.house1bsolar.setDepth(11);
+            ClickableObjects.house1bcar.setDepth(0);
+            ClickableObjects.house1bboth.setDepth(11);
+        }
+        if (Global.getGlobalSimulation().data.solarPanelL2.get() == 1.0 && Global.getGlobalSimulation().data.electricVehicleL2.get() == 1.0) {
+            ClickableObjects.house1b.setDepth(11);
+            ClickableObjects.house1bsolar.setDepth(11);
+            ClickableObjects.house1bcar.setDepth(11);
+            ClickableObjects.house1bboth.setDepth(0);
+        }
+        if (Global.getGlobalSimulation().data.solarPanelL2.get() == 0.0 && Global.getGlobalSimulation().data.electricVehicleL2.get() == 0.0) {
+            ClickableObjects.house1b.setDepth(0);
+            ClickableObjects.house1bsolar.setDepth(11);
+            ClickableObjects.house1bcar.setDepth(11);
+            ClickableObjects.house1bboth.setDepth(11);
+        }
+        if (Global.getGlobalSimulation().data.solarPanelL3.get() == 1.0 && Global.getGlobalSimulation().data.electricVehicleL3.get() == 0.0) {
+            ClickableObjects.house1c.setDepth(11);
+            ClickableObjects.house1csolar.setDepth(0);
+            ClickableObjects.house1ccar.setDepth(11);
+            ClickableObjects.house1cboth.setDepth(11);
+        }
+        if (Global.getGlobalSimulation().data.solarPanelL3.get() == 0.0 && Global.getGlobalSimulation().data.electricVehicleL3.get() == 1.0) {
+            ClickableObjects.house1c.setDepth(11);
+            ClickableObjects.house1csolar.setDepth(11);
+            ClickableObjects.house1ccar.setDepth(0);
+            ClickableObjects.house1cboth.setDepth(11);
+        }
+        if (Global.getGlobalSimulation().data.solarPanelL3.get() == 1.0 && Global.getGlobalSimulation().data.electricVehicleL3.get() == 1.0) {
+            ClickableObjects.house1c.setDepth(11);
+            ClickableObjects.house1csolar.setDepth(11);
+            ClickableObjects.house1ccar.setDepth(11);
+            ClickableObjects.house1cboth.setDepth(0);
+        }
+        if (Global.getGlobalSimulation().data.solarPanelL3.get() == 0.0 && Global.getGlobalSimulation().data.electricVehicleL3.get() == 0.0) {
+            ClickableObjects.house1c.setDepth(0);
+            ClickableObjects.house1csolar.setDepth(11);
+            ClickableObjects.house1ccar.setDepth(11);
+            ClickableObjects.house1cboth.setDepth(11);
+        }
 
         // Weather States
         if (Global.getGlobalSimulation().data.renewableSolarLevel.get() >= 0.7){

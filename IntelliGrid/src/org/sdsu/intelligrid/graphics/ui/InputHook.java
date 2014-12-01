@@ -516,25 +516,25 @@ public class InputHook {
         }
 
         // If Network is NOT Connected
-        if (Global.getNetworkInterface().isConnected() == false) {
+        if (!Global.getNetworkInterface().isConnected()) {
             // Residential 2
             if (object.getId().equals("house2a")) {
                 MainUI.ClickableObjects.house2apopup.setDepth(-1);
                 MainUI.ClickableObjects.house2asolarcheckoff.setDepth(-2);
+            }
+            if (object.getId().equals("house2asolar")) {
+                MainUI.ClickableObjects.house2apopup.setDepth(-1);
+                MainUI.ClickableObjects.house2asolarcheck.setDepth(-2);
             }
             if (object.getId().equals("house2asolarcheckoff")) {
                 Global.getGlobalSimulation().data.solarPanelM1.set(1.0);
                 MainUI.ClickableObjects.house2asolarcheck.setDepth(-2);
                 MainUI.ClickableObjects.house2asolarcheckoff.setDepth(11);
             }
-            if (object.getId().equals("house2asolar")) {
-                MainUI.ClickableObjects.house2apopup.setDepth(-1);
-                MainUI.ClickableObjects.house2asolarcheck.setDepth(-2);
-            }
             if (object.getId().equals("house2asolarcheck")) {
-                Global.getGlobalSimulation().data.solarPanelM1.set(1.0);
+                Global.getGlobalSimulation().data.solarPanelM1.set(0.0);
                 MainUI.ClickableObjects.house2asolarcheck.setDepth(11);
-                MainUI.ClickableObjects.house2asolarcheckoff.setDepth(0);
+                MainUI.ClickableObjects.house2asolarcheckoff.setDepth(-2);
             }
             if (object.getId().equals("house2apopup")) {
                 MainUI.ClickableObjects.house2apopup.setDepth(11);
@@ -545,19 +545,19 @@ public class InputHook {
                 MainUI.ClickableObjects.house2bpopup.setDepth(-1);
                 MainUI.ClickableObjects.house2bsolarcheckoff.setDepth(-2);
             }
-            if (object.getId().equals("house2asolarcheckoff")) {
-                Global.getGlobalSimulation().data.solarPanelM2.set(1.0);
-                MainUI.ClickableObjects.house2bsolarcheck.setDepth(-2);
-                MainUI.ClickableObjects.house2bsolarcheckoff.setDepth(11);
-            }
             if (object.getId().equals("house2bsolar")) {
                 MainUI.ClickableObjects.house2bpopup.setDepth(-1);
                 MainUI.ClickableObjects.house2bsolarcheck.setDepth(-2);
             }
+            if (object.getId().equals("house2bsolarcheckoff")) {
+                Global.getGlobalSimulation().data.solarPanelM2.set(1.0);
+                MainUI.ClickableObjects.house2bsolarcheck.setDepth(-2);
+                MainUI.ClickableObjects.house2bsolarcheckoff.setDepth(11);
+            }
             if (object.getId().equals("house2bsolarcheck")) {
-                Global.getGlobalSimulation().data.solarPanelM1.set(0.0);
+                Global.getGlobalSimulation().data.solarPanelM2.set(0.0);
                 MainUI.ClickableObjects.house2bsolarcheck.setDepth(11);
-                MainUI.ClickableObjects.house2bsolarcheckoff.setDepth(0);
+                MainUI.ClickableObjects.house2bsolarcheckoff.setDepth(-2);
             }
             if (object.getId().equals("house2bpopup")) {
                 MainUI.ClickableObjects.house2bpopup.setDepth(11);
@@ -573,14 +573,17 @@ public class InputHook {
             if (object.getId().equals("house1asolar")) {
                 MainUI.ClickableObjects.house1apopup.setDepth(-1);
                 MainUI.ClickableObjects.house1asolarcheck.setDepth(-2);
+                MainUI.ClickableObjects.house1acarcheckoff.setDepth(-2);
             }
             if (object.getId().equals("house1acar")) {
                 MainUI.ClickableObjects.house1apopup.setDepth(-1);
-                MainUI.ClickableObjects.house1asolarcheck.setDepth(-2);
+                MainUI.ClickableObjects.house1asolarcheckoff.setDepth(-2);
+                MainUI.ClickableObjects.house1acarcheck.setDepth(-2);
             }
             if (object.getId().equals("house1aboth")) {
                 MainUI.ClickableObjects.house1apopup.setDepth(-1);
                 MainUI.ClickableObjects.house1asolarcheck.setDepth(-2);
+                MainUI.ClickableObjects.house1acarcheck.setDepth(-2);
             }
             if (object.getId().equals("house1asolarcheckoff")) {
                 Global.getGlobalSimulation().data.solarPanelL1.set(1.0);
@@ -589,8 +592,8 @@ public class InputHook {
             }
             if (object.getId().equals("house1asolarcheck")) {
                 Global.getGlobalSimulation().data.solarPanelL1.set(0.0);
-                MainUI.ClickableObjects.house2bsolarcheck.setDepth(11);
-                MainUI.ClickableObjects.house2bsolarcheckoff.setDepth(-2);
+                MainUI.ClickableObjects.house1asolarcheck.setDepth(11);
+                MainUI.ClickableObjects.house1asolarcheckoff.setDepth(-2);
             }
             if (object.getId().equals("house1acarcheckoff")) {
                 Global.getGlobalSimulation().data.electricVehicleL1.set(1.0);
@@ -599,8 +602,8 @@ public class InputHook {
             }
             if (object.getId().equals("house1acarcheck")) {
                 Global.getGlobalSimulation().data.electricVehicleL1.set(0.0);
-                MainUI.ClickableObjects.house2bsolarcheck.setDepth(11);
-                MainUI.ClickableObjects.house2bsolarcheckoff.setDepth(-2);
+                MainUI.ClickableObjects.house1acarcheck.setDepth(11);
+                MainUI.ClickableObjects.house1acarcheckoff.setDepth(-2);
             }
             if (object.getId().equals("house1apopup")) {
                 MainUI.ClickableObjects.house1apopup.setDepth(11);
@@ -617,14 +620,17 @@ public class InputHook {
             if (object.getId().equals("house1bsolar")) {
                 MainUI.ClickableObjects.house1bpopup.setDepth(-1);
                 MainUI.ClickableObjects.house1bsolarcheck.setDepth(-2);
+                MainUI.ClickableObjects.house1bcarcheckoff.setDepth(-2);
             }
             if (object.getId().equals("house1bcar")) {
                 MainUI.ClickableObjects.house1bpopup.setDepth(-1);
-                MainUI.ClickableObjects.house1bsolarcheck.setDepth(-2);
+                MainUI.ClickableObjects.house1bsolarcheckoff.setDepth(-2);
+                MainUI.ClickableObjects.house1bcarcheck.setDepth(-2);
             }
-            if (object.getId().equals("house1aboth")) {
+            if (object.getId().equals("house1bboth")) {
                 MainUI.ClickableObjects.house1bpopup.setDepth(-1);
                 MainUI.ClickableObjects.house1bsolarcheck.setDepth(-2);
+                MainUI.ClickableObjects.house1bcarcheck.setDepth(-2);
             }
             if (object.getId().equals("house1bsolarcheckoff")) {
                 Global.getGlobalSimulation().data.solarPanelL2.set(1.0);
@@ -643,8 +649,8 @@ public class InputHook {
             }
             if (object.getId().equals("house1bcarcheck")) {
                 Global.getGlobalSimulation().data.electricVehicleL2.set(0.0);
-                MainUI.ClickableObjects.house1bsolarcheck.setDepth(11);
-                MainUI.ClickableObjects.house1bsolarcheckoff.setDepth(-2);
+                MainUI.ClickableObjects.house1bcarcheck.setDepth(11);
+                MainUI.ClickableObjects.house1bcarcheckoff.setDepth(-2);
             }
             if (object.getId().equals("house1bpopup")) {
                 MainUI.ClickableObjects.house1bpopup.setDepth(11);
@@ -661,14 +667,17 @@ public class InputHook {
             if (object.getId().equals("house1csolar")) {
                 MainUI.ClickableObjects.house1cpopup.setDepth(-1);
                 MainUI.ClickableObjects.house1csolarcheck.setDepth(-2);
+                MainUI.ClickableObjects.house1ccarcheckoff.setDepth(-2);
             }
             if (object.getId().equals("house1ccar")) {
                 MainUI.ClickableObjects.house1cpopup.setDepth(-1);
-                MainUI.ClickableObjects.house1csolarcheck.setDepth(-2);
+                MainUI.ClickableObjects.house1csolarcheckoff.setDepth(-2);
+                MainUI.ClickableObjects.house1ccarcheck.setDepth(-2);
             }
             if (object.getId().equals("house1cboth")) {
                 MainUI.ClickableObjects.house1cpopup.setDepth(-1);
                 MainUI.ClickableObjects.house1csolarcheck.setDepth(-2);
+                MainUI.ClickableObjects.house1ccarcheck.setDepth(-2);
             }
             if (object.getId().equals("house1csolarcheckoff")) {
                 Global.getGlobalSimulation().data.solarPanelL3.set(1.0);
@@ -687,8 +696,8 @@ public class InputHook {
             }
             if (object.getId().equals("house1ccarcheck")) {
                 Global.getGlobalSimulation().data.electricVehicleL3.set(0.0);
-                MainUI.ClickableObjects.house1csolarcheck.setDepth(11);
-                MainUI.ClickableObjects.house1csolarcheckoff.setDepth(-2);
+                MainUI.ClickableObjects.house1ccarcheck.setDepth(11);
+                MainUI.ClickableObjects.house1ccarcheckoff.setDepth(-2);
             }
             if (object.getId().equals("house1cpopup")) {
                 MainUI.ClickableObjects.house1cpopup.setDepth(11);
@@ -697,9 +706,6 @@ public class InputHook {
                 MainUI.ClickableObjects.house1ccarcheckoff.setDepth(11);
                 MainUI.ClickableObjects.house1ccarcheck.setDepth(11);
             }
-
-
-
         }
 
         // Load Displays
