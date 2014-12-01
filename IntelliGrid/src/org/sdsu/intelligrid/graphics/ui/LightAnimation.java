@@ -1740,7 +1740,7 @@ public class LightAnimation {
 				// states.put(i, LightStates.OFF);
 				break;
 			case DIMMEST_GREEN:
-				// states.put(i, LightStates.OFF);
+				states.put(i, LightStates.DIMMEST_BLUE);
 				break;
 			case OFF:
 			default:

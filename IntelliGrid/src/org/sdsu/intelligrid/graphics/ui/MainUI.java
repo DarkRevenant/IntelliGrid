@@ -875,47 +875,47 @@ public class MainUI {
         Global.getRenderer().addDrawable(ClickableObjects.turbine2);
         addClickable(ClickableObjects.turbine2);
 
-        ClickableObjects.turbinepopup = new ClickableSprite(pixelsToCoords(950, 1425), -1, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.turbinepopup = new ClickableSprite(pixelsToCoords(965, 1415), -1, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.turbinepopup, sizeToCoords(-127,-84), sizeToCoords(127,84), "turbinepopup");
         Global.getRenderer().addDrawable(ClickableObjects.turbinepopup);
         addClickable(ClickableObjects.turbinepopup);
 
-        ClickableObjects.turbinehighcheck = new ClickableSprite(pixelsToCoords(950, 1425), -2, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.turbinehighcheck = new ClickableSprite(pixelsToCoords(955, 1430), -2, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.check, sizeToCoords(-20,-20), sizeToCoords(20,20), "turbinehighcheck");
         Global.getRenderer().addDrawable(ClickableObjects.turbinehighcheck);
         addClickable(ClickableObjects.turbinehighcheck);
 
-        ClickableObjects.turbinehighcheckoff = new ClickableSprite(pixelsToCoords(950, 1425), -2, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.turbinehighcheckoff = new ClickableSprite(pixelsToCoords(955, 1430), -2, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-20,-20), sizeToCoords(20,20), "turbinehighcheckoff");
         Global.getRenderer().addDrawable(ClickableObjects.turbinehighcheckoff);
         addClickable(ClickableObjects.turbinehighcheckoff);
 
-        ClickableObjects.turbinemediumcheck = new ClickableSprite(pixelsToCoords(950, 1400), -2, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.turbinemediumcheck = new ClickableSprite(pixelsToCoords(955, 1375), -2, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.check, sizeToCoords(-20,-20), sizeToCoords(20,20), "turbinemediumcheck");
         Global.getRenderer().addDrawable(ClickableObjects.turbinemediumcheck);
         addClickable(ClickableObjects.turbinemediumcheck);
 
-        ClickableObjects.turbinemediumcheckoff = new ClickableSprite(pixelsToCoords(950, 1400), -2, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.turbinemediumcheckoff = new ClickableSprite(pixelsToCoords(955, 1375), -2, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-20,-20), sizeToCoords(20,20), "turbinemediumcheckoff");
         Global.getRenderer().addDrawable(ClickableObjects.turbinemediumcheckoff);
         addClickable(ClickableObjects.turbinemediumcheckoff);
 
-        ClickableObjects.turbinelowcheck = new ClickableSprite(pixelsToCoords(1000, 1425), -2, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.turbinelowcheck = new ClickableSprite(pixelsToCoords(1055, 1430), -2, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.check, sizeToCoords(-20,-20), sizeToCoords(20,20), "turbinelowcheck");
         Global.getRenderer().addDrawable(ClickableObjects.turbinelowcheck);
         addClickable(ClickableObjects.turbinelowcheck);
 
-        ClickableObjects.turbinelowcheckoff = new ClickableSprite(pixelsToCoords(1000, 1425), -2, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.turbinelowcheckoff = new ClickableSprite(pixelsToCoords(1055, 1430), -2, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-20,-20), sizeToCoords(20,20), "turbinelowcheckoff");
         Global.getRenderer().addDrawable(ClickableObjects.turbinelowcheckoff);
         addClickable(ClickableObjects.turbinelowcheckoff);
 
-        ClickableObjects.turbineoffcheck = new ClickableSprite(pixelsToCoords(1000, 1400), -2, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.turbineoffcheck = new ClickableSprite(pixelsToCoords(1055, 1375), -2, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.check, sizeToCoords(-20,-20), sizeToCoords(20,20), "turbineoffcheck");
         Global.getRenderer().addDrawable(ClickableObjects.turbineoffcheck);
         addClickable(ClickableObjects.turbineoffcheck);
 
-        ClickableObjects.turbineoffcheckoff = new ClickableSprite(pixelsToCoords(1000, 1400), -2, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.turbineoffcheckoff = new ClickableSprite(pixelsToCoords(1055, 1375), -2, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-20,-20), sizeToCoords(20,20), "turbineoffcheckoff");
         Global.getRenderer().addDrawable(ClickableObjects.turbineoffcheckoff);
         addClickable(ClickableObjects.turbineoffcheckoff);
@@ -1296,11 +1296,11 @@ public class MainUI {
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trH);
 
-        Objects.label_h = new Sprite(pixelsToCoords(1500, 336), 2, 0f, new Vector2f(1f, 1f),
+        Objects.label_h = new Sprite(pixelsToCoords(1653, 336), 2, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.label_h);
         Global.getRenderer().addDrawable(Objects.label_h);
 
-        Objects.xouth = new Sprite(pixelsToCoords(1500, 336), 11, 0f, new Vector2f(1f, 1f),
+        Objects.xouth = new Sprite(pixelsToCoords(1653, 336), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.xout);
         Global.getRenderer().addDrawable(Objects.xouth);
 

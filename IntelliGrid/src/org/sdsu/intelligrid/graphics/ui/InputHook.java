@@ -794,22 +794,22 @@ public class InputHook {
 		// Wind Turbines
 		if (object.getId().equals("turbine")) {
             MainUI.ClickableObjects.turbinepopup.setDepth(-1);
-            if (Global.getGlobalSimulation().data.windGenerationLevel.get() == 1.0) { //high
+            if (Global.getGlobalSimulation().data.windGenerationLevel.get() >= 0.7) { //high
                 MainUI.ClickableObjects.turbinehighcheck.setDepth(-2);
                 MainUI.ClickableObjects.turbinemediumcheckoff.setDepth(-2);
                 MainUI.ClickableObjects.turbinelowcheckoff.setDepth(-2);
                 MainUI.ClickableObjects.turbineoffcheckoff.setDepth(-2);
-            } else if (Global.getGlobalSimulation().data.windGenerationLevel.get() == 1.0) { //medium
+            } else if (Global.getGlobalSimulation().data.windGenerationLevel.get() >= 0.4) { //medium
                 MainUI.ClickableObjects.turbinehighcheckoff.setDepth(-2);
                 MainUI.ClickableObjects.turbinemediumcheck.setDepth(-2);
                 MainUI.ClickableObjects.turbinelowcheckoff.setDepth(-2);
                 MainUI.ClickableObjects.turbineoffcheckoff.setDepth(-2);
-            } else if (Global.getGlobalSimulation().data.windGenerationLevel.get() == 1.0) { //low
+            } else if (Global.getGlobalSimulation().data.windGenerationLevel.get() >= 0.1) { //low
                 MainUI.ClickableObjects.turbinehighcheckoff.setDepth(-2);
                 MainUI.ClickableObjects.turbinemediumcheckoff.setDepth(-2);
                 MainUI.ClickableObjects.turbinelowcheck.setDepth(-2);
                 MainUI.ClickableObjects.turbineoffcheckoff.setDepth(-2);
-            } else if (Global.getGlobalSimulation().data.windGenerationLevel.get() == 1.0) { //off
+            } else if (Global.getGlobalSimulation().data.windGenerationLevel.get() >= 0.0) { //off
                 MainUI.ClickableObjects.turbinehighcheckoff.setDepth(-2);
                 MainUI.ClickableObjects.turbinemediumcheckoff.setDepth(-2);
                 MainUI.ClickableObjects.turbinelowcheckoff.setDepth(-2);
