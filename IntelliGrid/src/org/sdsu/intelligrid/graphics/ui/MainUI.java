@@ -1906,7 +1906,7 @@ public class MainUI {
         }
 
         // Night Time Mode
-        if ((Simulation.SimInfo.currentTime > 18.00 || Simulation.SimInfo.currentTime < 6.00) && !night) {
+        if ((Simulation.SimInfo.currentTime > 19.5 || Simulation.SimInfo.currentTime < 6.00) && !night) {
             night = true;
             ClickableObjects.background.setResourceOverTime(R.drawable.backgroundnight, DAY_NIGHT_TRANSITION_TIME);
             ClickableObjects.graphs.setResourceOverTime(R.drawable.graphsnight, DAY_NIGHT_TRANSITION_TIME);
@@ -2004,7 +2004,7 @@ public class MainUI {
         }
 
         // Day Time Mode
-        if ((Simulation.SimInfo.currentTime <= 18.00 && Simulation.SimInfo.currentTime >= 6.00) && night) {
+        if ((Simulation.SimInfo.currentTime <= 19.5 && Simulation.SimInfo.currentTime >= 6.00) && night) {
             night = false;
             ClickableObjects.background.setResourceOverTime(R.drawable.background, DAY_NIGHT_TRANSITION_TIME);
             ClickableObjects.graphs.setResourceOverTime(R.drawable.graphs, DAY_NIGHT_TRANSITION_TIME);

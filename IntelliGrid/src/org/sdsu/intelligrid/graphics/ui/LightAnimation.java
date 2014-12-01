@@ -67,7 +67,7 @@ public class LightAnimation {
 				LEDLayout.segmentBbranch1, 1f)), SEGMENT_B_BRANCH_2(
 				new Segment(LEDLayout.segmentBbranch2, 1f)), SEGMENT_B_BRANCH_3(
 				new Segment(LEDLayout.segmentBbranch3, 1f)), SEGMENT_C(
-				new Segment(LEDLayout.segmentC, 0.7f)), SEGMENT_C2(new Segment(
+				new Segment(LEDLayout.segmentC, 0.6f)), SEGMENT_C2(new Segment(
 				LEDLayout.segmentC2, 2.2f)), SEGMENT_D(new Segment(
 				LEDLayout.segmentD, 1f)), SEGMENT_D_2(new Segment(
 				LEDLayout.segmentD2, 2f)), SEGMENT_D_BRANCH_1(new Segment(
@@ -84,8 +84,8 @@ public class LightAnimation {
 				LEDLayout.segmentH, 1f)), SEGMENT_H_BRANCH_1(new Segment(
 				LEDLayout.segmentHbranch1, 1f)), SEGMENT_H_BRANCH_2(
 				new Segment(LEDLayout.segmentHbranch2, 1f)), SEGMENT_I(
-				new Segment(LEDLayout.segmentI, 1f)), SEGMENT_I2(
-                new Segment(LEDLayout.segmentI2, 0.6f)), SEGMENT_J(new Segment(
+				new Segment(LEDLayout.segmentI, 1f)), SEGMENT_I2(new Segment(
+				LEDLayout.segmentI2, 0.6f)), SEGMENT_J(new Segment(
 				LEDLayout.segmentJ, 1f)), SEGMENT_J_BRANCH_1(new Segment(
 				LEDLayout.segmentJbranch1, 1f)), SEGMENT_J_BRANCH_2(
 				new Segment(LEDLayout.segmentJbranch2, 1f)), SEGMENT_K(
@@ -126,7 +126,7 @@ public class LightAnimation {
 		private static final List<Integer> switchABC = Arrays.asList(4, 5, 6);
 		private static final List<Integer> segmentB = Arrays
 				.asList(7, 8, 9, 10);
-		private static final List<Integer> transformerB = Arrays.asList(8);
+		private static final List<Integer> transformerB = Arrays.asList(10);
 		private static final List<Integer> segmentBbranch1 = Arrays.asList(11,
 				12);
 		private static final List<Integer> segmentBbranch2 = Arrays.asList(13,
@@ -143,7 +143,7 @@ public class LightAnimation {
 				32, 33, 34, 35, 36, 37, 38);
 		private static final List<Integer> segmentD2 = Arrays
 				.asList(41, 42, 43);
-		private static final List<Integer> transformerD = Arrays.asList(36);
+		private static final List<Integer> transformerD = Arrays.asList(38);
 		private static final List<Integer> segmentDbranch1 = Arrays.asList(39,
 				40);
 		private static final List<Integer> segmentDbranch2 = Arrays.asList(44,
@@ -158,7 +158,7 @@ public class LightAnimation {
 				61);
 		private static final List<Integer> segmentF2 = Arrays.asList(65, 66,
 				67, 68, 69, 70);
-		private static final List<Integer> transformerF = Arrays.asList(59);
+		private static final List<Integer> transformerF = Arrays.asList(61);
 		private static final List<Integer> segmentFbranch1 = Arrays.asList(62,
 				63, 64);
 		private static final List<Integer> segmentFbranch2 = Arrays.asList(71,
@@ -172,20 +172,20 @@ public class LightAnimation {
 				.asList(89, 88, 87);
 		private static final List<Integer> segmentH = Arrays.asList(90, 91, 92,
 				93, 94, 95, 96, 97);
-		private static final List<Integer> transformerH = Arrays.asList(92);
+		private static final List<Integer> transformerH = Arrays.asList(97);
 		private static final List<Integer> segmentHbranch1 = Arrays.asList(98,
 				99, 100, 101);
 		private static final List<Integer> segmentHbranch2 = Arrays.asList(102,
 				103, 104, 105, 106);
-        private static final List<Integer> segmentI = Arrays.asList(116, 115,
-                114, 113, 112);
-        private static final List<Integer> segmentI2 = Arrays.asList(111, 110,
-                109, 108, 107, 89, 88);
+		private static final List<Integer> segmentI = Arrays.asList(116, 115,
+				114, 113, 112);
+		private static final List<Integer> segmentI2 = Arrays.asList(111, 110,
+				109, 108, 107, 89, 88);
 		private static final List<Integer> switchKJI = Arrays.asList(118, 117,
 				116);
 		private static final List<Integer> segmentJ = Arrays.asList(119, 120,
 				121, 122, 123, 124);
-		private static final List<Integer> transformerJ = Arrays.asList(121);
+		private static final List<Integer> transformerJ = Arrays.asList(124);
 		private static final List<Integer> segmentJbranch1 = Arrays.asList(125,
 				126, 127);
 		private static final List<Integer> segmentJbranch2 = Arrays.asList(128,
@@ -196,7 +196,7 @@ public class LightAnimation {
 				135);
 		private static final List<Integer> segmentL = Arrays.asList(138, 139,
 				140, 141, 142, 143, 144, 145);
-		private static final List<Integer> transformerL = Arrays.asList(141);
+		private static final List<Integer> transformerL = Arrays.asList(145);
 		private static final List<Integer> segmentLbranch1 = Arrays.asList(146,
 				147);
 		private static final List<Integer> segmentLbranch2 = Arrays.asList(148,
@@ -393,7 +393,6 @@ public class LightAnimation {
 		private float gen = 0f;
 		private float genGreen = 0f;
 		private float flow = 0f;
-		private int hardwareDivider = 0;
 
 		public Segment(final List<Integer> leds, final float orbFlowScale) {
 			super(leds);
@@ -407,18 +406,16 @@ public class LightAnimation {
 			if (gen >= 1f && genGreen >= 1f && greenFlow > OFF_THRESHOLD) {
 				gen -= 1f;
 				genGreen -= 1f;
-				hardwareDivider++;
-				if (hardwareDivider >= SOFTWARE_ORB_MULTIPLIER) {
-					hardwareDivider = 0;
+				final double chanceOfHardware = 1.0 / (double) SOFTWARE_ORB_MULTIPLIER;
+				if (Math.random() < chanceOfHardware) {
 					return 4;
 				} else {
 					return 2;
 				}
 			} else if (gen >= 1f) {
 				gen -= 1f;
-				hardwareDivider++;
-				if (hardwareDivider >= SOFTWARE_ORB_MULTIPLIER) {
-					hardwareDivider = 0;
+				final double chanceOfHardware = 1.0 / (double) SOFTWARE_ORB_MULTIPLIER;
+				if (Math.random() < chanceOfHardware) {
 					return 3;
 				} else {
 					return 1;
@@ -450,7 +447,7 @@ public class LightAnimation {
 	private static final float GEN_SCALE = 16f;
 	private static final float FLOW_SCALE = 4f;
 
-	private static final int SOFTWARE_ORB_MULTIPLIER = 4;
+	private static final int SOFTWARE_ORB_MULTIPLIER = 3;
 
 	private static boolean paused = false;
 
@@ -611,13 +608,13 @@ public class LightAnimation {
 					}
 				} else if (segment == LightStrands.SEGMENT_D.strand
 						&& !orb.forward) {
-					final float c = -Math.min(getFlow(LightStrands.SEGMENT_C),
+					final float c = -Math.min(getFlow(LightStrands.SEGMENT_C2),
 							0f);
 					final float e = Math.max(getFlow(LightStrands.SEGMENT_E),
 							0f);
 					final int dir = Junctions.CDE.advance(c, 0f, e);
 					if (dir == 1) {
-						nextSegment = (Segment) LightStrands.SEGMENT_C.strand;
+						nextSegment = (Segment) LightStrands.SEGMENT_C2.strand;
 					} else if (dir == 3) {
 						nextSegment = (Segment) LightStrands.SEGMENT_E.strand;
 						orb.forward = true;
@@ -660,13 +657,13 @@ public class LightAnimation {
 					}
 				} else if (segment == LightStrands.SEGMENT_E.strand
 						&& !orb.forward) {
-					final float c = -Math.min(getFlow(LightStrands.SEGMENT_C),
+					final float c = -Math.min(getFlow(LightStrands.SEGMENT_C2),
 							0f);
 					final float d = Math.max(getFlow(LightStrands.SEGMENT_D),
 							0f);
 					final int dir = Junctions.CDE.advance(c, d, 0f);
 					if (dir == 1) {
-						nextSegment = (Segment) LightStrands.SEGMENT_C.strand;
+						nextSegment = (Segment) LightStrands.SEGMENT_C2.strand;
 					} else if (dir == 2) {
 						nextSegment = (Segment) LightStrands.SEGMENT_D.strand;
 						orb.forward = true;
@@ -719,13 +716,13 @@ public class LightAnimation {
 					nextSegment = (Segment) LightStrands.SEGMENT_F_2.strand;
 				} else if (segment == LightStrands.SEGMENT_G.strand
 						&& orb.forward) {
-					final float i = -Math.min(getFlow(LightStrands.SEGMENT_I),
+					final float i = -Math.min(getFlow(LightStrands.SEGMENT_I2),
 							0f);
 					final float h = Math.max(getFlow(LightStrands.SEGMENT_H),
 							0f);
 					final int dir = Junctions.IHG.advance(i, h, 0f);
 					if (dir == 1) {
-						nextSegment = (Segment) LightStrands.SEGMENT_I.strand;
+						nextSegment = (Segment) LightStrands.SEGMENT_I2.strand;
 						orb.forward = false;
 					} else if (dir == 2) {
 						nextSegment = (Segment) LightStrands.SEGMENT_H.strand;
@@ -754,13 +751,13 @@ public class LightAnimation {
 					}
 				} else if (segment == LightStrands.SEGMENT_H.strand
 						&& !orb.forward) {
-					final float i = -Math.min(getFlow(LightStrands.SEGMENT_I),
+					final float i = -Math.min(getFlow(LightStrands.SEGMENT_I2),
 							0f);
 					final float g = -Math.min(getFlow(LightStrands.SEGMENT_G),
 							0f);
 					final int dir = Junctions.IHG.advance(i, 0f, g);
 					if (dir == 1) {
-						nextSegment = (Segment) LightStrands.SEGMENT_I.strand;
+						nextSegment = (Segment) LightStrands.SEGMENT_I2.strand;
 					} else if (dir == 3) {
 						nextSegment = (Segment) LightStrands.SEGMENT_G.strand;
 					}
@@ -774,7 +771,7 @@ public class LightAnimation {
 					nextSegment = (Segment) LightStrands.SEGMENT_H.strand;
 				} else if (segment == LightStrands.SEGMENT_I.strand
 						&& orb.forward) {
-                    nextSegment = (Segment) LightStrands.SEGMENT_I2.strand;
+					nextSegment = (Segment) LightStrands.SEGMENT_I2.strand;
 				} else if (segment == LightStrands.SEGMENT_I.strand
 						&& !orb.forward) {
 					final float k = -Math.min(getFlow(LightStrands.SEGMENT_K),
@@ -789,22 +786,22 @@ public class LightAnimation {
 						orb.forward = true;
 					}
 				} else if (segment == LightStrands.SEGMENT_I2.strand
-                        && orb.forward) {
-                    final float h = Math.max(getFlow(LightStrands.SEGMENT_H),
-                            0f);
-                    final float g = -Math.min(getFlow(LightStrands.SEGMENT_G),
-                            0f);
-                    final int dir = Junctions.IHG.advance(0f, h, g);
-                    if (dir == 2) {
-                        nextSegment = (Segment) LightStrands.SEGMENT_H.strand;
-                    } else if (dir == 3) {
-                        nextSegment = (Segment) LightStrands.SEGMENT_G.strand;
-                        orb.forward = false;
-                    }
-                } else if (segment == LightStrands.SEGMENT_I2.strand
-                        && !orb.forward) {
-                    nextSegment = (Segment) LightStrands.SEGMENT_I.strand;
-                } else if (segment == LightStrands.SEGMENT_J.strand
+						&& orb.forward) {
+					final float h = Math.max(getFlow(LightStrands.SEGMENT_H),
+							0f);
+					final float g = -Math.min(getFlow(LightStrands.SEGMENT_G),
+							0f);
+					final int dir = Junctions.IHG.advance(0f, h, g);
+					if (dir == 2) {
+						nextSegment = (Segment) LightStrands.SEGMENT_H.strand;
+					} else if (dir == 3) {
+						nextSegment = (Segment) LightStrands.SEGMENT_G.strand;
+						orb.forward = false;
+					}
+				} else if (segment == LightStrands.SEGMENT_I2.strand
+						&& !orb.forward) {
+					nextSegment = (Segment) LightStrands.SEGMENT_I.strand;
+				} else if (segment == LightStrands.SEGMENT_J.strand
 						&& orb.forward) {
 					final int dir = Junctions.J_BRANCH.advance(1f + jitter(),
 							1f + jitter(), 0f);
@@ -1044,8 +1041,8 @@ public class LightAnimation {
 		if (true) {
 			Segment strand = (Segment) LightStrands.SEGMENT_I.strand;
 			strand.setFlow(getFlow(LightStrands.SEGMENT_I));
-            strand = (Segment) LightStrands.SEGMENT_I2.strand;
-            strand.setFlow(getFlow(LightStrands.SEGMENT_I2));
+			strand = (Segment) LightStrands.SEGMENT_I2.strand;
+			strand.setFlow(getFlow(LightStrands.SEGMENT_I2));
 		}
 
 		if (true) {
@@ -1661,7 +1658,7 @@ public class LightAnimation {
 			break;
 		}
 		case SEGMENT_I:
-        case SEGMENT_I2: {
+		case SEGMENT_I2: {
 			flow = SimInfo.trI;
 			break;
 		}

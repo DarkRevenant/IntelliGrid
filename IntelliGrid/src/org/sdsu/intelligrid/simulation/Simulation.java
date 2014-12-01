@@ -76,8 +76,8 @@ public class Simulation {
         public double timeScale = 288.0; // ex. timeScale 100 = 1 second of application time is 100 seconds of simulation
         public double time = 12; // in Hours
         
-        public double solarCoefficientM = 1.0 / 3.0;
-        public double solarCoefficientL = 1.0 / 3.0;
+        public double solarCoefficientM = 1.0 / 2.0;
+        public double solarCoefficientL = 1.0 / 2.0;
 
         //Solar Multipliers (set by model)
         public MutableValue renewableSolarLevel = new MutableValue(1.0);
@@ -429,14 +429,14 @@ public class Simulation {
         // Time of Day packet (sent on day/night switch)
         if (data.time >= 6.0 && data.time - hours < 6.0) {
         	MainNetworkHandler.constructAndSendPacket(PacketTypes.TIME_OF_DAY, false);
-        } else if (data.time >= 18.0 && data.time - hours < 18.0) {
+        } else if (data.time >= 19.5 && data.time - hours < 19.5) {
         	MainNetworkHandler.constructAndSendPacket(PacketTypes.TIME_OF_DAY, true);
         }
 
         // Time of Day packet (sent on connect)
         if (Global.getNetworkInterface().isConnected() && !hasConnectionBeenMade) {
         	hasConnectionBeenMade = true;
-            if (data.time >= 6.0 && data.time < 18.0) {
+            if (data.time >= 6.0 && data.time < 19.5) {
             	MainNetworkHandler.constructAndSendPacket(PacketTypes.TIME_OF_DAY, false);
             } else {
             	MainNetworkHandler.constructAndSendPacket(PacketTypes.TIME_OF_DAY, true);
