@@ -7,8 +7,8 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="1200dp"
-        android:layout_height="700dp"
+        android:layout_width="1100dp"
+        android:layout_height="600dp"
         android:layout_gravity="center"
         android:background="#FFFFFF"
         android:id="@+id/graph1" />
