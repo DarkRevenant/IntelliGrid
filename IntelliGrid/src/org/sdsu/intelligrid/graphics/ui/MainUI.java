@@ -722,7 +722,7 @@ public class MainUI {
         Global.getRenderer().addDrawable(ClickableObjects.house1csolar);
         addClickable(ClickableObjects.house1csolar);
 
-        ClickableObjects.house1ccar = new ClickableSprite(pixelsToCoords(615, 240), 11, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.house1ccar = new ClickableSprite(pixelsToCoords(615, 270), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.house1car, sizeToCoords(-60,-62), sizeToCoords(60,62), "house1ccar");
         Global.getRenderer().addDrawable(ClickableObjects.house1ccar);
         addClickable(ClickableObjects.house1ccar);
@@ -1539,61 +1539,60 @@ public class MainUI {
             Objects.battery3.setDepth(-1);
         }
 
-        // Solar Panels
-        if (Global.getGlobalSimulation().data.solarPanelL1.get() == 1.0) {
-            ClickableObjects.house1asolar.setDepth(0);
-            ClickableObjects.house1a.setDepth(11);
-        }
-        if (Global.getGlobalSimulation().data.solarPanelL2.get() == 1.0) {
-            ClickableObjects.house1bsolar.setDepth(0);
-            ClickableObjects.house1b.setDepth(11);
-        }
-        if (Global.getGlobalSimulation().data.solarPanelL3.get() == 1.0) {
-            ClickableObjects.house1csolar.setDepth(0);
-            ClickableObjects.house1c.setDepth(11);
-        }
-        if (Global.getGlobalSimulation().data.solarPanelM1.get() == 1.0) {
-            ClickableObjects.house2asolar.setDepth(0);
-            ClickableObjects.house2a.setDepth(11);
-        }
-        if (Global.getGlobalSimulation().data.solarPanelM2.get() == 1.0) {
-            ClickableObjects.house2bsolar.setDepth(0);
-            ClickableObjects.house2b.setDepth(11);
-        }
+            // Solar Panels
+            if (Global.getGlobalSimulation().data.solarPanelL1.get() == 1.0) {
+                ClickableObjects.house1asolar.setDepth(0);
+                ClickableObjects.house1a.setDepth(11);
+            }
+            if (Global.getGlobalSimulation().data.solarPanelL2.get() == 1.0) {
+                ClickableObjects.house1bsolar.setDepth(0);
+                ClickableObjects.house1b.setDepth(11);
+            }
+            if (Global.getGlobalSimulation().data.solarPanelL3.get() == 1.0) {
+                ClickableObjects.house1csolar.setDepth(0);
+                ClickableObjects.house1c.setDepth(11);
+            }
+            if (Global.getGlobalSimulation().data.solarPanelM1.get() == 1.0) {
+                ClickableObjects.house2asolar.setDepth(0);
+                ClickableObjects.house2a.setDepth(11);
+            }
+            if (Global.getGlobalSimulation().data.solarPanelM2.get() == 1.0) {
+                ClickableObjects.house2bsolar.setDepth(0);
+                ClickableObjects.house2b.setDepth(11);
+            }
+            // Electric Cars
+            if (Global.getGlobalSimulation().data.electricVehicleL1.get() == 1.0) {
+                ClickableObjects.house1acar.setDepth(0);
+                ClickableObjects.house1a.setDepth(11);
+            }
+            if (Global.getGlobalSimulation().data.electricVehicleL2.get() == 1.0) {
+                ClickableObjects.house1bcar.setDepth(0);
+                ClickableObjects.house1a.setDepth(11);
+            }
+            if (Global.getGlobalSimulation().data.electricVehicleL3.get() == 1.0) {
+                ClickableObjects.house1ccar.setDepth(0);
+                ClickableObjects.house1c.setDepth(11);
+            }
+            // Solar Panel & Electric Cars
+            if (Global.getGlobalSimulation().data.solarPanelL1.get() == 1.0 && Global.getGlobalSimulation().data.electricVehicleL1.get() == 1.0) {
+                ClickableObjects.house1aboth.setDepth(0);
+                ClickableObjects.house1a.setDepth(11);
+                ClickableObjects.house1asolar.setDepth(11);
+                ClickableObjects.house1acar.setDepth(11);
+            }
+            if (Global.getGlobalSimulation().data.solarPanelL2.get() == 1.0 && Global.getGlobalSimulation().data.electricVehicleL2.get() == 1.0) {
+                ClickableObjects.house1bboth.setDepth(0);
+                ClickableObjects.house1a.setDepth(11);
+                ClickableObjects.house1bsolar.setDepth(11);
+                ClickableObjects.house1bcar.setDepth(11);
+            }
+            if (Global.getGlobalSimulation().data.solarPanelL3.get() == 1.0 && Global.getGlobalSimulation().data.electricVehicleL3.get() == 1.0) {
+                ClickableObjects.house1cboth.setDepth(0);
+                ClickableObjects.house1c.setDepth(11);
+                ClickableObjects.house1bsolar.setDepth(11);
+                ClickableObjects.house1bcar.setDepth(11);
+            }
 
-        // Electric Cars
-        if (Global.getGlobalSimulation().data.electricVehicleL1.get() == 1.0) {
-            ClickableObjects.house1acar.setDepth(0);
-            ClickableObjects.house1a.setDepth(11);
-        }
-        if (Global.getGlobalSimulation().data.electricVehicleL2.get() == 1.0) {
-            ClickableObjects.house1bcar.setDepth(0);
-            ClickableObjects.house1a.setDepth(11);
-        }
-        if (Global.getGlobalSimulation().data.electricVehicleL3.get() == 1.0) {
-            ClickableObjects.house1ccar.setDepth(0);
-            ClickableObjects.house1c.setDepth(11);
-        }
-
-        // Solar Panel & Electric Cars
-        if (Global.getGlobalSimulation().data.solarPanelL1.get() == 1.0 && Global.getGlobalSimulation().data.electricVehicleL1.get() == 1.0) {
-            ClickableObjects.house1aboth.setDepth(0);
-            ClickableObjects.house1a.setDepth(11);
-            ClickableObjects.house1asolar.setDepth(11);
-            ClickableObjects.house1acar.setDepth(11);
-        }
-        if (Global.getGlobalSimulation().data.solarPanelL2.get() == 1.0 && Global.getGlobalSimulation().data.electricVehicleL2.get() == 1.0) {
-            ClickableObjects.house1bboth.setDepth(0);
-            ClickableObjects.house1a.setDepth(11);
-            ClickableObjects.house1bsolar.setDepth(11);
-            ClickableObjects.house1bcar.setDepth(11);
-        }
-        if (Global.getGlobalSimulation().data.solarPanelL3.get() == 1.0 && Global.getGlobalSimulation().data.electricVehicleL3.get() == 1.0) {
-            ClickableObjects.house1cboth.setDepth(0);
-            ClickableObjects.house1c.setDepth(11);
-            ClickableObjects.house1bsolar.setDepth(11);
-            ClickableObjects.house1bcar.setDepth(11);
-        }
 
         // Weather States
         if (Global.getGlobalSimulation().data.renewableSolarLevel.get() >= 0.7){
