@@ -67,8 +67,8 @@ public class LightAnimation {
 				LEDLayout.segmentBbranch1, 1f)), SEGMENT_B_BRANCH_2(
 				new Segment(LEDLayout.segmentBbranch2, 1f)), SEGMENT_B_BRANCH_3(
 				new Segment(LEDLayout.segmentBbranch3, 1f)), SEGMENT_C(
-				new Segment(LEDLayout.segmentC, 0.8f)), SEGMENT_C2(new Segment(
-				LEDLayout.segmentC2, 1.3f)), SEGMENT_D(new Segment(
+				new Segment(LEDLayout.segmentC, 0.7f)), SEGMENT_C2(new Segment(
+				LEDLayout.segmentC2, 2.2f)), SEGMENT_D(new Segment(
 				LEDLayout.segmentD, 1f)), SEGMENT_D_2(new Segment(
 				LEDLayout.segmentD2, 2f)), SEGMENT_D_BRANCH_1(new Segment(
 				LEDLayout.segmentDbranch1, 1f)), SEGMENT_D_BRANCH_2(
@@ -456,7 +456,7 @@ public class LightAnimation {
 
 	private final List<Orb> orbs = new ArrayList<>();
 
-	public void advance(final float amount) {
+	public synchronized void advance(final float amount) {
 		// Logger.getGlobal().log(Level.SEVERE, "" + orbs.size() + " orbs");
 		if (paused) {
 			return;
@@ -1709,7 +1709,7 @@ public class LightAnimation {
 		return (float) flow;
 	}
 
-	public void advanceState(final float amount) {
+	public synchronized void advanceState(final float amount) {
 		for (int i = 1; i <= 177; i++) {
 			final LightStates currentState = states.get(i);
 			switch (currentState) {

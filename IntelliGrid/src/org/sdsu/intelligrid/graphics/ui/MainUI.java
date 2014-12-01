@@ -425,7 +425,7 @@ public class MainUI {
                 new Color(255, 255, 255), R.drawable.intelligrid);
         Global.getRenderer().addDrawable(Objects.intelligrid);
 
-        Objects.sunny = new Sprite(pixelsToCoords(700, 1551), 0, 0f, new Vector2f(1f, 1f),
+        Objects.sunny = new Sprite(pixelsToCoords(1800, 1551), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.sunny);
         Global.getRenderer().addDrawable(Objects.sunny);
 
@@ -441,7 +441,7 @@ public class MainUI {
                 new Color(255, 255, 255), R.drawable.night);
         Global.getRenderer().addDrawable(Objects.night);
 
-        ClickableObjects.faults = new ClickableSprite(pixelsToCoords(2185, 75), 0, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.faults = new ClickableSprite(pixelsToCoords(2485, 425), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.faults, sizeToCoords(-64,-64), sizeToCoords(64,64), "faults");
         Global.getRenderer().addDrawable(ClickableObjects.faults);
         addClickable(ClickableObjects.faults);
@@ -456,7 +456,7 @@ public class MainUI {
         Global.getRenderer().addDrawable(ClickableObjects.exitfaults);
         addClickable(ClickableObjects.exitfaults);
 
-        ClickableObjects.graphs = new ClickableSprite(pixelsToCoords(2335, 75), 0, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.graphs = new ClickableSprite(pixelsToCoords(2485, 300), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.graphs, sizeToCoords(-64,-64), sizeToCoords(64,64), "graphs");
         Global.getRenderer().addDrawable(ClickableObjects.graphs);
         addClickable(ClickableObjects.graphs);
@@ -471,7 +471,7 @@ public class MainUI {
         Global.getRenderer().addDrawable(ClickableObjects.exitgraphs);
         addClickable(ClickableObjects.exitgraphs);
 
-        ClickableObjects.info = new ClickableSprite(pixelsToCoords(2485, 75), 0, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.info = new ClickableSprite(pixelsToCoords(2485, 175), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.info, sizeToCoords(-50,-50), sizeToCoords(50,50), "info");
         Global.getRenderer().addDrawable(ClickableObjects.info);
         addClickable(ClickableObjects.info);
@@ -1259,7 +1259,7 @@ public class MainUI {
 //        Global.getRenderer().addDrawable(UIInfo.SDGE);
 
         UIInfo.currentTime = new TextSprite("",
-                pixelsToCoords(1000, 1550), 40, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(2000, 1550), 40, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.currentTime);
 
@@ -1492,9 +1492,10 @@ public class MainUI {
     }
 
     private boolean first = true;
+    private boolean first2 = true;
     private boolean night = false;
 
-    private LightAnimation lightAnimation;
+    public LightAnimation lightAnimation;
 
     private static final float TEXT_UPDATE_INTERVAL = 0.1f;
     private static final double TEXT_UPDATE_CHANCE = 0.25;
@@ -1503,8 +1504,8 @@ public class MainUI {
 
     private double textUpdateChance = 1.0;
     private float textUpdateTimer = TEXT_UPDATE_INTERVAL;
-    
-    private static final float LIGHT_PACKET_INTERVAL = (float) (1.0 / 12.0);
+
+    private static final float LIGHT_PACKET_INTERVAL = (float) (1.0 / 15.0);
     private float lightPacketTimer = LIGHT_PACKET_INTERVAL;
 
     /**
@@ -2000,34 +2001,34 @@ public class MainUI {
                         UIInfo.Load2.getMaxLineWidth());
 
             if (Math.random() < textUpdateChance)
-                UIInfo.Load3.setText("\t" + "Residential 1" + "\n"
-                                + "Real Power: " + "" + String.format("%.2f", Simulation.SimInfo.Load3) + " MW" + "\n"
-                                + "Reactive Power: " + String.format("%.2f", Simulation.SimInfo.Load3r) + " MVAR" + "\n"
-                                + "Apparent Power: " + String.format("%.2f", Simulation.SimInfo.Load3a) + " MVA",
+                UIInfo.Load3.setText("\t\t\t\t\t\t\t\t\t\t\t\t" + "Residential 3" + "\n" + "\n"
+                                + "Real Power: \t\t\t\t\t\t\t\t\t" + "" + String.format("%.2f", Simulation.SimInfo.Load3) + " MW" + "\n"
+                                + "Reactive Power: \t\t\t" + String.format("%.2f", Simulation.SimInfo.Load3r) + " MVAR" + "\n"
+                                + "Apparent Power: \t\t\t" + String.format("%.2f", Simulation.SimInfo.Load3a) + " MVA",
                         UIInfo.Load3.getFontSize(), UIInfo.Load3.getFont(),
                         UIInfo.Load3.getMaxLineWidth());
 
             if (Math.random() < textUpdateChance)
-                UIInfo.Load4.setText("\t" + "Residential 1" + "\n"
-                                + "Real Power: " + "" + String.format("%.2f", Simulation.SimInfo.Load4) + " MW" + "\n"
-                                + "Reactive Power: " + String.format("%.2f", Simulation.SimInfo.Load4r) + " MVAR" + "\n"
-                                + "Apparent Power: " + String.format("%.2f", Simulation.SimInfo.Load4a) + " MVA",
+                UIInfo.Load4.setText("\t\t\t\t\t\t\t\t\t\t\t\t" + "Commercial 3" + "\n" + "\n"
+                                + "Real Power: \t\t\t\t\t\t\t\t\t" + "" + String.format("%.2f", Simulation.SimInfo.Load4) + " MW" + "\n"
+                                + "Reactive Power: \t\t\t" + String.format("%.2f", Simulation.SimInfo.Load4r) + " MVAR" + "\n"
+                                + "Apparent Power: \t\t\t" + String.format("%.2f", Simulation.SimInfo.Load4a) + " MVA",
                         UIInfo.Load4.getFontSize(), UIInfo.Load4.getFont(),
                         UIInfo.Load4.getMaxLineWidth());
 
             if (Math.random() < textUpdateChance)
-                UIInfo.Load5.setText("\t" + "Residential 1" + "\n"
-                                + "Real Power: " + "" + String.format("%.2f", Simulation.SimInfo.Load5) + " MW" + "\n"
-                                + "Reactive Power: " + String.format("%.2f", Simulation.SimInfo.Load5r) + " MVAR" + "\n"
-                                + "Apparent Power: " + String.format("%.2f", Simulation.SimInfo.Load5a) + " MVA",
+                UIInfo.Load5.setText("\t\t\t\t\t\t\t\t\t\t\t\t" + "Commercial 2" + "\n" + "\n"
+                                + "Real Power: \t\t\t\t\t\t\t\t\t" + "" + String.format("%.2f", Simulation.SimInfo.Load5) + " MW" + "\n"
+                                + "Reactive Power: \t\t\t" + String.format("%.2f", Simulation.SimInfo.Load5r) + " MVAR" + "\n"
+                                + "Apparent Power: \t\t\t" + String.format("%.2f", Simulation.SimInfo.Load5a) + " MVA",
                         UIInfo.Load5.getFontSize(), UIInfo.Load5.getFont(),
                         UIInfo.Load5.getMaxLineWidth());
 
             if (Math.random() < textUpdateChance)
-                UIInfo.Load6.setText("\t" + "Residential 1" + "\n"
-                                + "Real Power: " + "" + String.format("%.2f", Simulation.SimInfo.Load6) + " MW" + "\n"
-                                + "Reactive Power: " + String.format("%.2f", Simulation.SimInfo.Load6r) + " MVAR" + "\n"
-                                + "Apparent Power: " + String.format("%.2f", Simulation.SimInfo.Load6a) + " MVA",
+                UIInfo.Load6.setText("\t\t\t\t\t\t\t\t\t\t\t\t" + "Commercial 1" + "\n" + "\n"
+                                + "Real Power: \t\t\t\t\t\t\t\t\t" + "" + String.format("%.2f", Simulation.SimInfo.Load6) + " MW" + "\n"
+                                + "Reactive Power: \t\t\t" + String.format("%.2f", Simulation.SimInfo.Load6r) + " MVAR" + "\n"
+                                + "Apparent Power: \t\t\t" + String.format("%.2f", Simulation.SimInfo.Load6a) + " MVA",
                         UIInfo.Load6.getFontSize(), UIInfo.Load6.getFont(),
                         UIInfo.Load6.getMaxLineWidth());
 
@@ -2126,14 +2127,15 @@ public class MainUI {
             textUpdateTimer += TEXT_UPDATE_INTERVAL;
         }
 
-        lightPacketTimer -= amount;
         lightAnimation.advance(amount);
-        if (lightPacketTimer <= 0f) {
-            lightAnimation.advanceState(amount);
-            MainNetworkHandler.constructAndSendPacket(PacketTypes.LIGHT_ANIMATION, null);
-            lightPacketTimer = LIGHT_PACKET_INTERVAL;
-        }
 
         textUpdateChance = TEXT_UPDATE_CHANCE;
+
+        lightPacketTimer -= amount;
+        if (lightPacketTimer <= 0f) {
+            Global.getMainUI().lightAnimation.advanceState(amount);
+            MainNetworkHandler.constructAndSendPacket(MainNetworkHandler.PacketTypes.LIGHT_ANIMATION, null);
+            lightPacketTimer = LIGHT_PACKET_INTERVAL;
+        }
     }
 }

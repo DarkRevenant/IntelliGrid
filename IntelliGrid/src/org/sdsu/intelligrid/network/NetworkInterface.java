@@ -208,7 +208,7 @@ public class NetworkInterface implements Runnable {
 						clientSocket = null;
 						continue;
 					}
-					Logger.getGlobal().log(Level.INFO, "Sent \"" + out + "\"");
+					//Logger.getGlobal().log(Level.INFO, "Sent \"" + out + "\"");
 				}
 			}
 		}
