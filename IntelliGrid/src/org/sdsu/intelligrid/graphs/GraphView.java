@@ -22,13 +22,7 @@ package org.sdsu.intelligrid.graphs;
         import org.sdsu.intelligrid.graphs.GraphViewStyle.GridStyle;
         import org.sdsu.intelligrid.graphs.ScaleGestureDetector;
 
-/**
- * GraphView is a Android View for creating zoomable and scrollable graphs.
- * This is the abstract base class for all graphs. Extend this class and implement {@link #drawSeries(android.graphics.Canvas, GraphViewDataInterface[], float, float, float, double, double, double, double, float, com.jjoe64.graphview.GraphViewSeries.GraphViewSeriesStyle)} to display a custom graph.
- * Use {@link com.jjoe64.graphview.LineGraphView} for creating a line chart.
- *
- *
- */
+
 abstract public class GraphView extends LinearLayout {
     static final private class GraphViewConfig {
         static final float BORDER = 20;

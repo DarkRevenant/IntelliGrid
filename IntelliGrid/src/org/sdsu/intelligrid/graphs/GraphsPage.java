@@ -13,7 +13,9 @@ import org.sdsu.intelligrid.graphs.GraphView;
 import org.sdsu.intelligrid.graphs.GraphView.GraphViewData;
 import org.sdsu.intelligrid.simulation.Simulation.SimulationData;
 import org.sdsu.intelligrid.graphs.GraphViewSeries;
+import org.sdsu.intelligrid.graphs.GraphViewSeries.GraphViewSeriesStyle;
 import org.sdsu.intelligrid.graphs.LineGraphView;
+import org.sdsu.intelligrid.util.Color;
 
 
 public class GraphsPage extends Fragment {
@@ -78,19 +80,47 @@ public class GraphsPage extends Fragment {
                 , new GraphViewData(23, SimulationData.res2[23])
         });
 
+        GraphViewSeries res3 = new GraphViewSeries(new GraphViewData[]{
+        new GraphViewData(0, SimulationData.res3[0])
+                , new GraphViewData(1, SimulationData.res3[1])
+                , new GraphViewData(2, SimulationData.res3[2])
+                , new GraphViewData(3, SimulationData.res3[3])
+                , new GraphViewData(4, SimulationData.res3[4])
+                , new GraphViewData(5, SimulationData.res3[5])
+                , new GraphViewData(6, SimulationData.res3[6])
+                , new GraphViewData(7, SimulationData.res3[7])
+                , new GraphViewData(8, SimulationData.res3[8])
+                , new GraphViewData(9, SimulationData.res3[9])
+                , new GraphViewData(10, SimulationData.res3[10])
+                , new GraphViewData(11, SimulationData.res3[11])
+                , new GraphViewData(12, SimulationData.res3[12])
+                , new GraphViewData(13, SimulationData.res3[13])
+                , new GraphViewData(14, SimulationData.res3[14])
+                , new GraphViewData(15, SimulationData.res3[15])
+                , new GraphViewData(16, SimulationData.res3[16])
+                , new GraphViewData(17, SimulationData.res3[17])
+                , new GraphViewData(18, SimulationData.res3[18])
+                , new GraphViewData(19, SimulationData.res3[19])
+                , new GraphViewData(20, SimulationData.res3[20])
+                , new GraphViewData(21, SimulationData.res3[21])
+                , new GraphViewData(22, SimulationData.res3[22])
+                , new GraphViewData(23, SimulationData.res3[23])
+         });
+
         GraphView graphView = new LineGraphView(
                 getActivity() // context
                 , "Infographics - Load Data" // heading
         );
 
         graphView.getGraphViewStyle().setTextSize(20);
+
         graphView.getGraphViewStyle().setNumHorizontalLabels(24);
-        //graphView.getGraphViewStyle().gethorizo
+
         graphView.addSeries(res1); // data
         graphView.addSeries(res2);
+        graphView.addSeries(res3);
 
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.graph1);
-        //LinearLayout layout = (LinearLayout) view.findViewById(R.id.)
         layout.addView(graphView);
 
         return view;
