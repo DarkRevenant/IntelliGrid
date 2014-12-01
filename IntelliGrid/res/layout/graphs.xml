@@ -12,11 +12,5 @@
         android:layout_gravity="center"
         android:id="@+id/graph1" />
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="380dp"
-        android:layout_height="305dp"
-        android:layout_gravity="center"
-        android:text="@string/testbutton" />
 
 </FrameLayout>
