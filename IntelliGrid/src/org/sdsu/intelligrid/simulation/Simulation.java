@@ -671,7 +671,7 @@ public class Simulation {
             }
             trC = trD;
             trA = trB + trC;
-            swiEFG = 2;
+            swiEFG = 4;
             traF = true;
         }
         //Fault at Load4/Commercial2
@@ -691,7 +691,7 @@ public class Simulation {
         	}
             trK = trI + trJ;
             trM = trK + trL;
-            swiIHG = 2;
+            swiIHG = 4;
             traH = true;
         }
         //Fault between Load4/Commercial1 and Load5/Commercial2

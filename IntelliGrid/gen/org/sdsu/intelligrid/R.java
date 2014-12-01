@@ -150,7 +150,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int transformer1night=0x7f02007d;
         public static final int turbine=0x7f02007e;
         public static final int turbinenight=0x7f02007f;
-        public static final int xout=0x7f020080;
+        public static final int turbinepopup=0x7f020080;
+        public static final int xout=0x7f020081;
     }
     public static final class id {
         public static final int graph1=0x7f080000;

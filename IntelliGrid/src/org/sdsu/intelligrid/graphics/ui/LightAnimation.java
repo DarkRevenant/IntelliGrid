@@ -250,7 +250,7 @@ public class LightAnimation {
 
 			final Color color;
 			final boolean additive;
-			if (Global.getGlobalSimulation().data.time >= 18.0
+			if (Global.getGlobalSimulation().data.time >= 19.5
 					|| Global.getGlobalSimulation().data.time <= 6.0) {
 				if (type == OrbTypes.BLUE) {
 					color = new Color(70, 255, 244);
@@ -284,7 +284,7 @@ public class LightAnimation {
 
 			final Color color;
 			final boolean additive;
-			if (Global.getGlobalSimulation().data.time >= 18.0
+			if (Global.getGlobalSimulation().data.time >= 19.5
 					|| Global.getGlobalSimulation().data.time <= 6.0) {
 				if (type == OrbTypes.BLUE) {
 					color = new Color(70, 255, 244);
