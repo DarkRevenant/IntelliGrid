@@ -791,13 +791,110 @@ public class InputHook {
 			MainUI.UIInfo.Load6.setDepth(11);
 		}
 
-		// // Wind Turbines
-		// if (object.getId().equals("turbine")) {
-		// Global.getGlobalSimulation().data.windGenerationLevel.set(1.0);
-		// }
-		// if (object.getId().equals("turbine2")) {
-		// Global.getGlobalSimulation().data.windGenerationLevel.set(1.0);
-		// }
+		// Wind Turbines
+		if (object.getId().equals("turbine")) {
+            MainUI.ClickableObjects.turbinepopup.setDepth(-1);
+            if (Global.getGlobalSimulation().data.windGenerationLevel.get() == 1.0) { //high
+                MainUI.ClickableObjects.turbinehighcheck.setDepth(-2);
+                MainUI.ClickableObjects.turbinemediumcheckoff.setDepth(-2);
+                MainUI.ClickableObjects.turbinelowcheckoff.setDepth(-2);
+                MainUI.ClickableObjects.turbineoffcheckoff.setDepth(-2);
+            } else if (Global.getGlobalSimulation().data.windGenerationLevel.get() == 1.0) { //medium
+                MainUI.ClickableObjects.turbinehighcheckoff.setDepth(-2);
+                MainUI.ClickableObjects.turbinemediumcheck.setDepth(-2);
+                MainUI.ClickableObjects.turbinelowcheckoff.setDepth(-2);
+                MainUI.ClickableObjects.turbineoffcheckoff.setDepth(-2);
+            } else if (Global.getGlobalSimulation().data.windGenerationLevel.get() == 1.0) { //low
+                MainUI.ClickableObjects.turbinehighcheckoff.setDepth(-2);
+                MainUI.ClickableObjects.turbinemediumcheckoff.setDepth(-2);
+                MainUI.ClickableObjects.turbinelowcheck.setDepth(-2);
+                MainUI.ClickableObjects.turbineoffcheckoff.setDepth(-2);
+            } else if (Global.getGlobalSimulation().data.windGenerationLevel.get() == 1.0) { //off
+                MainUI.ClickableObjects.turbinehighcheckoff.setDepth(-2);
+                MainUI.ClickableObjects.turbinemediumcheckoff.setDepth(-2);
+                MainUI.ClickableObjects.turbinelowcheckoff.setDepth(-2);
+                MainUI.ClickableObjects.turbineoffcheck.setDepth(-2);
+            }
+        }
+        if (object.getId().equals("turbine2")) {
+            MainUI.ClickableObjects.turbinepopup.setDepth(-1);
+            if (Global.getGlobalSimulation().data.windGenerationLevel.get() >= 0.7) { //high
+                MainUI.ClickableObjects.turbinehighcheck.setDepth(-2);
+                MainUI.ClickableObjects.turbinemediumcheckoff.setDepth(-2);
+                MainUI.ClickableObjects.turbinelowcheckoff.setDepth(-2);
+                MainUI.ClickableObjects.turbineoffcheckoff.setDepth(-2);
+            } else if (Global.getGlobalSimulation().data.windGenerationLevel.get() >= 0.4) { //medium
+                MainUI.ClickableObjects.turbinehighcheckoff.setDepth(-2);
+                MainUI.ClickableObjects.turbinemediumcheck.setDepth(-2);
+                MainUI.ClickableObjects.turbinelowcheckoff.setDepth(-2);
+                MainUI.ClickableObjects.turbineoffcheckoff.setDepth(-2);
+            } else if (Global.getGlobalSimulation().data.windGenerationLevel.get() >= 0.1) { //low
+                MainUI.ClickableObjects.turbinehighcheckoff.setDepth(-2);
+                MainUI.ClickableObjects.turbinemediumcheckoff.setDepth(-2);
+                MainUI.ClickableObjects.turbinelowcheck.setDepth(-2);
+                MainUI.ClickableObjects.turbineoffcheckoff.setDepth(-2);
+            } else if (Global.getGlobalSimulation().data.windGenerationLevel.get() >= 0.0) { //off
+                MainUI.ClickableObjects.turbinehighcheckoff.setDepth(-2);
+                MainUI.ClickableObjects.turbinemediumcheckoff.setDepth(-2);
+                MainUI.ClickableObjects.turbinelowcheckoff.setDepth(-2);
+                MainUI.ClickableObjects.turbineoffcheck.setDepth(-2);
+            }
+        }
+        if (object.getId().equals("turbinehighcheckoff")) {
+		    Global.getGlobalSimulation().data.windGenerationLevel.set(1.0);
+            MainUI.ClickableObjects.turbinehighcheck.setDepth(-2);
+            MainUI.ClickableObjects.turbinehighcheckoff.setDepth(11);
+            MainUI.ClickableObjects.turbinemediumcheck.setDepth(11);
+            MainUI.ClickableObjects.turbinemediumcheckoff.setDepth(-2);
+            MainUI.ClickableObjects.turbinelowcheck.setDepth(11);
+            MainUI.ClickableObjects.turbinelowcheckoff.setDepth(-2);
+            MainUI.ClickableObjects.turbineoffcheck.setDepth(11);
+            MainUI.ClickableObjects.turbineoffcheckoff.setDepth(-2);
+		}
+        if (object.getId().equals("turbinemediumcheckoff")) {
+            Global.getGlobalSimulation().data.windGenerationLevel.set(0.7);
+            MainUI.ClickableObjects.turbinehighcheck.setDepth(11);
+            MainUI.ClickableObjects.turbinehighcheckoff.setDepth(-2);
+            MainUI.ClickableObjects.turbinemediumcheck.setDepth(-2);
+            MainUI.ClickableObjects.turbinemediumcheckoff.setDepth(11);
+            MainUI.ClickableObjects.turbinelowcheck.setDepth(11);
+            MainUI.ClickableObjects.turbinelowcheckoff.setDepth(-2);
+            MainUI.ClickableObjects.turbineoffcheck.setDepth(11);
+            MainUI.ClickableObjects.turbineoffcheckoff.setDepth(-2);
+        }
+        if (object.getId().equals("turbinelowcheckoff")) {
+            Global.getGlobalSimulation().data.windGenerationLevel.set(0.1);
+            MainUI.ClickableObjects.turbinehighcheck.setDepth(11);
+            MainUI.ClickableObjects.turbinehighcheckoff.setDepth(-2);
+            MainUI.ClickableObjects.turbinemediumcheck.setDepth(11);
+            MainUI.ClickableObjects.turbinemediumcheckoff.setDepth(-2);
+            MainUI.ClickableObjects.turbinelowcheck.setDepth(-2);
+            MainUI.ClickableObjects.turbinelowcheckoff.setDepth(11);
+            MainUI.ClickableObjects.turbineoffcheck.setDepth(11);
+            MainUI.ClickableObjects.turbineoffcheckoff.setDepth(-2);
+        }
+        if (object.getId().equals("turbineoffcheckoff")) {
+            Global.getGlobalSimulation().data.windGenerationLevel.set(0.0);
+            MainUI.ClickableObjects.turbinehighcheck.setDepth(11);
+            MainUI.ClickableObjects.turbinehighcheckoff.setDepth(-2);
+            MainUI.ClickableObjects.turbinemediumcheck.setDepth(11);
+            MainUI.ClickableObjects.turbinemediumcheckoff.setDepth(-2);
+            MainUI.ClickableObjects.turbinelowcheck.setDepth(11);
+            MainUI.ClickableObjects.turbinelowcheckoff.setDepth(-2);
+            MainUI.ClickableObjects.turbineoffcheck.setDepth(-2);
+            MainUI.ClickableObjects.turbineoffcheckoff.setDepth(11);
+        }
+		if (object.getId().equals("turbinepopup")) {
+            MainUI.ClickableObjects.turbinepopup.setDepth(11);
+            MainUI.ClickableObjects.turbinehighcheck.setDepth(11);
+            MainUI.ClickableObjects.turbinehighcheckoff.setDepth(11);
+            MainUI.ClickableObjects.turbinemediumcheck.setDepth(11);
+            MainUI.ClickableObjects.turbinemediumcheckoff.setDepth(11);
+            MainUI.ClickableObjects.turbinelowcheck.setDepth(11);
+            MainUI.ClickableObjects.turbinelowcheckoff.setDepth(11);
+            MainUI.ClickableObjects.turbineoffcheck.setDepth(11);
+            MainUI.ClickableObjects.turbineoffcheckoff.setDepth(11);
+		}
 	}
 
 	/**
