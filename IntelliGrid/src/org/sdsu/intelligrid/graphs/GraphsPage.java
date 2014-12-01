@@ -20,7 +20,7 @@ public class GraphsPage extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-        View something = inflater.inflate(R.layout.graphs, container, false);
+        final View view = inflater.inflate(R.layout.graphs, container, false);
 
         // init example series data
         GraphViewSeries exampleSeries = new GraphViewSeries(new GraphViewData[]{
@@ -36,10 +36,10 @@ public class GraphsPage extends Fragment {
         );
         graphView.addSeries(exampleSeries); // data
 
-        LinearLayout layout = (LinearLayout) getView().findViewById(R.id.graph1);
+        LinearLayout layout = (LinearLayout) view.findViewById(R.id.graph1);
         layout.addView(graphView);
 
-        return something;
+        return view;
     }
 
 

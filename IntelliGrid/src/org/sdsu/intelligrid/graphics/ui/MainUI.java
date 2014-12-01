@@ -907,7 +907,7 @@ public class MainUI {
                 new Color(255, 255, 255), R.drawable.substation);
         Global.getRenderer().addDrawable(Objects.substation);
 
-        Objects.coal = new Sprite(pixelsToCoords(1520, 1430), 0, 0f, new Vector2f(1f, 1f),
+        Objects.coal = new Sprite(pixelsToCoords(1520, 1427), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.coal);
         Global.getRenderer().addDrawable(Objects.coal);
 
