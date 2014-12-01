@@ -218,6 +218,7 @@ public class MainUI {
         resources.add(R.drawable.transformer1night);
         resources.add(R.drawable.turbine);
         resources.add(R.drawable.turbinenight);
+        resources.add(R.drawable.turbinepopup);
         resources.add(R.drawable.xout);
         Global.getRenderer().loadTextures(resources);
     }
@@ -334,6 +335,15 @@ public class MainUI {
         public static ClickableSprite store;
         public static ClickableSprite turbine;
         public static ClickableSprite turbine2;
+        public static ClickableSprite turbinepopup;
+        public static ClickableSprite turbinehighcheck;
+        public static ClickableSprite turbinehighcheckoff;
+        public static ClickableSprite turbinemediumcheck;
+        public static ClickableSprite turbinemediumcheckoff;
+        public static ClickableSprite turbinelowcheck;
+        public static ClickableSprite turbinelowcheckoff;
+        public static ClickableSprite turbineoffcheck;
+        public static ClickableSprite turbineoffcheckoff;
         public static ClickableSprite transformer1;
         public static ClickableSprite transformer2;
         public static ClickableSprite transformer3;
@@ -651,22 +661,22 @@ public class MainUI {
         addClickable(ClickableObjects.house1apopup);
 
         ClickableObjects.house1asolarcheck = new ClickableSprite(pixelsToCoords(245, 130), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.check, sizeToCoords(-17,-17), sizeToCoords(17,17), "house1asolarcheck");
+                new Color(255, 255, 255), R.drawable.check, sizeToCoords(-20,-20), sizeToCoords(20,20), "house1asolarcheck");
         Global.getRenderer().addDrawable(ClickableObjects.house1asolarcheck);
         addClickable(ClickableObjects.house1asolarcheck);
 
         ClickableObjects.house1asolarcheckoff = new ClickableSprite(pixelsToCoords(245, 130), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-17,-17), sizeToCoords(17,17), "house1asolarcheckoff");
+                new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-20,-20), sizeToCoords(20,20), "house1asolarcheckoff");
         Global.getRenderer().addDrawable(ClickableObjects.house1asolarcheckoff);
         addClickable(ClickableObjects.house1asolarcheckoff);
 
         ClickableObjects.house1acarcheck = new ClickableSprite(pixelsToCoords(245, 75), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.check, sizeToCoords(-17,-17), sizeToCoords(17,17), "house1acarcheck");
+                new Color(255, 255, 255), R.drawable.check, sizeToCoords(-20,-20), sizeToCoords(20,20), "house1acarcheck");
         Global.getRenderer().addDrawable(ClickableObjects.house1acarcheck);
         addClickable(ClickableObjects.house1acarcheck);
 
         ClickableObjects.house1acarcheckoff = new ClickableSprite(pixelsToCoords(245, 75), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-17,-17), sizeToCoords(17,17), "house1acarcheckoff");
+                new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-20,-20), sizeToCoords(20,20), "house1acarcheckoff");
         Global.getRenderer().addDrawable(ClickableObjects.house1acarcheckoff);
         addClickable(ClickableObjects.house1acarcheckoff);
 
@@ -696,22 +706,22 @@ public class MainUI {
         addClickable(ClickableObjects.house1bpopup);
 
         ClickableObjects.house1bsolarcheck = new ClickableSprite(pixelsToCoords(455, 305), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.check, sizeToCoords(-17,-17), sizeToCoords(17,17), "house1bsolarcheck");
+                new Color(255, 255, 255), R.drawable.check, sizeToCoords(-20,-20), sizeToCoords(20,20), "house1bsolarcheck");
         Global.getRenderer().addDrawable(ClickableObjects.house1bsolarcheck);
         addClickable(ClickableObjects.house1bsolarcheck);
 
         ClickableObjects.house1bsolarcheckoff = new ClickableSprite(pixelsToCoords(455, 305), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-17,-17), sizeToCoords(17,17), "house1bsolarcheckoff");
+                new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-20,-20), sizeToCoords(20,20), "house1bsolarcheckoff");
         Global.getRenderer().addDrawable(ClickableObjects.house1bsolarcheckoff);
         addClickable(ClickableObjects.house1bsolarcheckoff);
 
         ClickableObjects.house1bcarcheck = new ClickableSprite(pixelsToCoords(455, 250), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.check, sizeToCoords(-17,-17), sizeToCoords(17,17), "house1bcarcheck");
+                new Color(255, 255, 255), R.drawable.check, sizeToCoords(-20,-20), sizeToCoords(20,20), "house1bcarcheck");
         Global.getRenderer().addDrawable(ClickableObjects.house1bcarcheck);
         addClickable(ClickableObjects.house1bcarcheck);
 
         ClickableObjects.house1bcarcheckoff = new ClickableSprite(pixelsToCoords(455, 250), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-17,-17), sizeToCoords(17,17), "house1bcarcheckoff");
+                new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-20,-20), sizeToCoords(20,20), "house1bcarcheckoff");
         Global.getRenderer().addDrawable(ClickableObjects.house1bcarcheckoff);
         addClickable(ClickableObjects.house1bcarcheckoff);
 
@@ -741,22 +751,22 @@ public class MainUI {
         addClickable(ClickableObjects.house1cpopup);
 
         ClickableObjects.house1csolarcheck = new ClickableSprite(pixelsToCoords(713, 305), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.check, sizeToCoords(-17,-17), sizeToCoords(17,17), "house1csolarcheck");
+                new Color(255, 255, 255), R.drawable.check, sizeToCoords(-20,-20), sizeToCoords(20,20), "house1csolarcheck");
         Global.getRenderer().addDrawable(ClickableObjects.house1csolarcheck);
         addClickable(ClickableObjects.house1csolarcheck);
 
         ClickableObjects.house1csolarcheckoff = new ClickableSprite(pixelsToCoords(713, 305), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-17,-17), sizeToCoords(17,17), "house1csolarcheckoff");
+                new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-20,-20), sizeToCoords(20,20), "house1csolarcheckoff");
         Global.getRenderer().addDrawable(ClickableObjects.house1csolarcheckoff);
         addClickable(ClickableObjects.house1csolarcheckoff);
 
         ClickableObjects.house1ccarcheck = new ClickableSprite(pixelsToCoords(713, 250), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.check, sizeToCoords(-17,-17), sizeToCoords(17,17), "house1ccarcheck");
+                new Color(255, 255, 255), R.drawable.check, sizeToCoords(-20,-20), sizeToCoords(20,20), "house1ccarcheck");
         Global.getRenderer().addDrawable(ClickableObjects.house1ccarcheck);
         addClickable(ClickableObjects.house1ccarcheck);
 
         ClickableObjects.house1ccarcheckoff = new ClickableSprite(pixelsToCoords(713, 250), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-17,-17), sizeToCoords(17,17), "house1ccarcheckoff");
+                new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-20,-20), sizeToCoords(20,20), "house1ccarcheckoff");
         Global.getRenderer().addDrawable(ClickableObjects.house1ccarcheckoff);
         addClickable(ClickableObjects.house1ccarcheckoff);
 
@@ -771,12 +781,12 @@ public class MainUI {
         addClickable(ClickableObjects.house2apopup);
 
         ClickableObjects.house2asolarcheck = new ClickableSprite(pixelsToCoords(240, 825), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.check, sizeToCoords(-17,-17), sizeToCoords(17,17), "house2asolarcheck");
+                new Color(255, 255, 255), R.drawable.check, sizeToCoords(-20,-20), sizeToCoords(20,20), "house2asolarcheck");
         Global.getRenderer().addDrawable(ClickableObjects.house2asolarcheck);
         addClickable(ClickableObjects.house2asolarcheck);
 
         ClickableObjects.house2asolarcheckoff = new ClickableSprite(pixelsToCoords(240, 825), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-17,-17), sizeToCoords(17,17), "house2asolarcheckoff");
+                new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-20,-20), sizeToCoords(20,20), "house2asolarcheckoff");
         Global.getRenderer().addDrawable(ClickableObjects.house2asolarcheckoff);
         addClickable(ClickableObjects.house2asolarcheckoff);
 
@@ -796,12 +806,12 @@ public class MainUI {
         addClickable(ClickableObjects.house2bpopup);
 
         ClickableObjects.house2bsolarcheck = new ClickableSprite(pixelsToCoords(540, 825), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.check, sizeToCoords(-17,-17), sizeToCoords(17,17), "house2bsolarcheck");
+                new Color(255, 255, 255), R.drawable.check, sizeToCoords(-20,-20), sizeToCoords(20,20), "house2bsolarcheck");
         Global.getRenderer().addDrawable(ClickableObjects.house2bsolarcheck);
         addClickable(ClickableObjects.house2bsolarcheck);
 
         ClickableObjects.house2bsolarcheckoff = new ClickableSprite(pixelsToCoords(540, 825), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-17,-17), sizeToCoords(17,17), "house2bsolarcheckoff");
+                new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-20,-20), sizeToCoords(20,20), "house2bsolarcheckoff");
         Global.getRenderer().addDrawable(ClickableObjects.house2bsolarcheckoff);
         addClickable(ClickableObjects.house2bsolarcheckoff);
 
@@ -864,6 +874,51 @@ public class MainUI {
                 new Color(255, 255, 255), R.drawable.turbine, sizeToCoords(-37,-49), sizeToCoords(37,49), "turbine2");
         Global.getRenderer().addDrawable(ClickableObjects.turbine2);
         addClickable(ClickableObjects.turbine2);
+
+        ClickableObjects.turbinepopup = new ClickableSprite(pixelsToCoords(950, 1425), -1, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.turbinepopup, sizeToCoords(-127,-84), sizeToCoords(127,84), "turbinepopup");
+        Global.getRenderer().addDrawable(ClickableObjects.turbinepopup);
+        addClickable(ClickableObjects.turbinepopup);
+
+        ClickableObjects.turbinehighcheck = new ClickableSprite(pixelsToCoords(950, 1425), -2, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.check, sizeToCoords(-20,-20), sizeToCoords(20,20), "turbinehighcheck");
+        Global.getRenderer().addDrawable(ClickableObjects.turbinehighcheck);
+        addClickable(ClickableObjects.turbinehighcheck);
+
+        ClickableObjects.turbinehighcheckoff = new ClickableSprite(pixelsToCoords(950, 1425), -2, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-20,-20), sizeToCoords(20,20), "turbinehighcheckoff");
+        Global.getRenderer().addDrawable(ClickableObjects.turbinehighcheckoff);
+        addClickable(ClickableObjects.turbinehighcheckoff);
+
+        ClickableObjects.turbinemediumcheck = new ClickableSprite(pixelsToCoords(950, 1400), -2, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.check, sizeToCoords(-20,-20), sizeToCoords(20,20), "turbinemediumcheck");
+        Global.getRenderer().addDrawable(ClickableObjects.turbinemediumcheck);
+        addClickable(ClickableObjects.turbinemediumcheck);
+
+        ClickableObjects.turbinemediumcheckoff = new ClickableSprite(pixelsToCoords(950, 1400), -2, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-20,-20), sizeToCoords(20,20), "turbinemediumcheckoff");
+        Global.getRenderer().addDrawable(ClickableObjects.turbinemediumcheckoff);
+        addClickable(ClickableObjects.turbinemediumcheckoff);
+
+        ClickableObjects.turbinelowcheck = new ClickableSprite(pixelsToCoords(1000, 1425), -2, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.check, sizeToCoords(-20,-20), sizeToCoords(20,20), "turbinelowcheck");
+        Global.getRenderer().addDrawable(ClickableObjects.turbinelowcheck);
+        addClickable(ClickableObjects.turbinelowcheck);
+
+        ClickableObjects.turbinelowcheckoff = new ClickableSprite(pixelsToCoords(1000, 1425), -2, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-20,-20), sizeToCoords(20,20), "turbinelowcheckoff");
+        Global.getRenderer().addDrawable(ClickableObjects.turbinelowcheckoff);
+        addClickable(ClickableObjects.turbinelowcheckoff);
+
+        ClickableObjects.turbineoffcheck = new ClickableSprite(pixelsToCoords(1000, 1400), -2, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.check, sizeToCoords(-20,-20), sizeToCoords(20,20), "turbineoffcheck");
+        Global.getRenderer().addDrawable(ClickableObjects.turbineoffcheck);
+        addClickable(ClickableObjects.turbineoffcheck);
+
+        ClickableObjects.turbineoffcheckoff = new ClickableSprite(pixelsToCoords(1000, 1400), -2, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.checkoff, sizeToCoords(-20,-20), sizeToCoords(20,20), "turbineoffcheckoff");
+        Global.getRenderer().addDrawable(ClickableObjects.turbineoffcheckoff);
+        addClickable(ClickableObjects.turbineoffcheckoff);
 
         ClickableObjects.transformer1 = new ClickableSprite(pixelsToCoords(1200, 1000), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.transformer1, sizeToCoords(-22,-25), sizeToCoords(22,25), "transformer1");
