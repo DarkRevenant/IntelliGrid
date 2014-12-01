@@ -67,8 +67,8 @@ public class LightAnimation {
 				LEDLayout.segmentBbranch1, 1f)), SEGMENT_B_BRANCH_2(
 				new Segment(LEDLayout.segmentBbranch2, 1f)), SEGMENT_B_BRANCH_3(
 				new Segment(LEDLayout.segmentBbranch3, 1f)), SEGMENT_C(
-				new Segment(LEDLayout.segmentC, 0.8f)), SEGMENT_C2(new Segment(
-				LEDLayout.segmentC2, 1.3f)), SEGMENT_D(new Segment(
+				new Segment(LEDLayout.segmentC, 0.7f)), SEGMENT_C2(new Segment(
+				LEDLayout.segmentC2, 1.6f)), SEGMENT_D(new Segment(
 				LEDLayout.segmentD, 1f)), SEGMENT_D_2(new Segment(
 				LEDLayout.segmentD2, 2f)), SEGMENT_D_BRANCH_1(new Segment(
 				LEDLayout.segmentDbranch1, 1f)), SEGMENT_D_BRANCH_2(
