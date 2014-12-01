@@ -515,10 +515,10 @@ public class InputHook {
 			MainUI.ClickableObjects.exitfaults.setDepth(11);
 		}
 
-//        // If Network is NOT Connected
-//        if (Global.getNetworkInterface().ENABLE_NETWORK.get() == 1.0) {
-//
-//        }
+        // If Network is NOT Connected
+        if (Global.getNetworkInterface().isConnected() == false) {
+
+        }
 
         // Residential 2
 		if (object.getId().equals("load2stats")) {
