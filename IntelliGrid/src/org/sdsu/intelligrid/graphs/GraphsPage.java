@@ -51,13 +51,42 @@ public class GraphsPage extends Fragment {
                 , new GraphViewData(23, SimulationData.res1[23])
         });
 
+        GraphViewSeries res2 = new GraphViewSeries(new GraphViewData[]{
+                new GraphViewData(0, SimulationData.res2[0])
+                , new GraphViewData(1, SimulationData.res2[1])
+                , new GraphViewData(2, SimulationData.res2[2])
+                , new GraphViewData(3, SimulationData.res2[3])
+                , new GraphViewData(4, SimulationData.res2[4])
+                , new GraphViewData(5, SimulationData.res2[5])
+                , new GraphViewData(6, SimulationData.res2[6])
+                , new GraphViewData(7, SimulationData.res2[7])
+                , new GraphViewData(8, SimulationData.res2[8])
+                , new GraphViewData(9, SimulationData.res2[9])
+                , new GraphViewData(10, SimulationData.res2[10])
+                , new GraphViewData(11, SimulationData.res2[11])
+                , new GraphViewData(12, SimulationData.res2[12])
+                , new GraphViewData(13, SimulationData.res2[13])
+                , new GraphViewData(14, SimulationData.res2[14])
+                , new GraphViewData(15, SimulationData.res2[15])
+                , new GraphViewData(16, SimulationData.res2[16])
+                , new GraphViewData(17, SimulationData.res2[17])
+                , new GraphViewData(18, SimulationData.res2[18])
+                , new GraphViewData(19, SimulationData.res2[19])
+                , new GraphViewData(20, SimulationData.res2[20])
+                , new GraphViewData(21, SimulationData.res2[21])
+                , new GraphViewData(22, SimulationData.res2[22])
+                , new GraphViewData(23, SimulationData.res2[23])
+        });
+
         GraphView graphView = new LineGraphView(
                 getActivity() // context
-                , "Infographics" // heading
+                , "Infographics - Load Data" // heading
         );
         graphView.addSeries(res1); // data
+        graphView.addSeries(res2);
 
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.graph1);
+        //LinearLayout layout = (LinearLayout) view.findViewById(R.id.)
         layout.addView(graphView);
 
         return view;
