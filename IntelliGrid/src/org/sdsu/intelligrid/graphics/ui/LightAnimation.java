@@ -444,8 +444,8 @@ public class LightAnimation {
 
 	private static final float OFF_THRESHOLD = 0.0001f;
 
-	private static final float GEN_SCALE = 16f;
-	private static final float FLOW_SCALE = 4f;
+	private static final float GEN_SCALE = 6f;
+	private static final float FLOW_SCALE = 1f;
 
 	private static final int SOFTWARE_ORB_MULTIPLIER = 3;
 
@@ -1559,7 +1559,7 @@ public class LightAnimation {
 		case SEGMENT_D_BRANCH_1: {
 			if (SimInfo.trD > 0.0) {
 				flow = SimInfo.trD / 3.0;
-			} else {
+			} else if (Math.abs(SimInfo.trD) > OFF_THRESHOLD) {
 				final double totalSolar = Global.getGlobalSimulation().data.solarPanelM1
 						.get()
 						+ Global.getGlobalSimulation().data.solarPanelM2.get();
@@ -1572,7 +1572,7 @@ public class LightAnimation {
 		case SEGMENT_D_BRANCH_2: {
 			if (SimInfo.trD > 0.0) {
 				flow = SimInfo.trD / 3.0;
-			} else {
+			} else if (Math.abs(SimInfo.trD) > OFF_THRESHOLD) {
 				final double totalSolar = Global.getGlobalSimulation().data.solarPanelM1
 						.get()
 						+ Global.getGlobalSimulation().data.solarPanelM2.get();
@@ -1585,8 +1585,6 @@ public class LightAnimation {
 		case SEGMENT_D_BRANCH_3: {
 			if (SimInfo.trD > 0.0) {
 				flow = SimInfo.trD / 3.0;
-			} else {
-				flow = 0.0;
 			}
 			break;
 		}
@@ -1605,7 +1603,7 @@ public class LightAnimation {
 		case SEGMENT_F_BRANCH_1: {
 			if (SimInfo.trF > 0.0) {
 				flow = SimInfo.trF / 3.0;
-			} else {
+			} else if (Math.abs(SimInfo.trF) > OFF_THRESHOLD) {
 				final double totalSolar = Global.getGlobalSimulation().data.solarPanelL1
 						.get()
 						+ Global.getGlobalSimulation().data.solarPanelL2.get()
@@ -1619,7 +1617,7 @@ public class LightAnimation {
 		case SEGMENT_F_BRANCH_2: {
 			if (SimInfo.trF > 0.0) {
 				flow = SimInfo.trF / 3.0;
-			} else {
+			} else if (Math.abs(SimInfo.trF) > OFF_THRESHOLD) {
 				final double totalSolar = Global.getGlobalSimulation().data.solarPanelL1
 						.get()
 						+ Global.getGlobalSimulation().data.solarPanelL2.get()
@@ -1633,7 +1631,7 @@ public class LightAnimation {
 		case SEGMENT_F_BRANCH_3: {
 			if (SimInfo.trF > 0.0) {
 				flow = SimInfo.trF / 3.0;
-			} else {
+			} else if (Math.abs(SimInfo.trF) > OFF_THRESHOLD) {
 				final double totalSolar = Global.getGlobalSimulation().data.solarPanelL1
 						.get()
 						+ Global.getGlobalSimulation().data.solarPanelL2.get()
@@ -1707,6 +1705,22 @@ public class LightAnimation {
 	}
 
 	public synchronized void advanceState(final float amount) {
+		for (LightStrands strand : LightStrands.values()) {
+			if (strand.strand instanceof Segment) {
+				if (Math.abs(getFlow(strand)) <= OFF_THRESHOLD) {
+					for (int led : strand.modelLEDs) {
+						states.put(led, LightStates.OFF);
+					}
+				} else {
+					for (int led : strand.modelLEDs) {
+						if (states.get(led) == LightStates.OFF) {
+							states.put(led, LightStates.DIMMEST_BLUE);
+						}
+					}
+				}
+			}
+		}
+
 		for (int i = 1; i <= 177; i++) {
 			final LightStates currentState = states.get(i);
 			switch (currentState) {
@@ -1723,10 +1737,10 @@ public class LightAnimation {
 				states.put(i, LightStates.DIMMEST_GREEN);
 				break;
 			case DIMMEST_BLUE:
-				states.put(i, LightStates.OFF);
+				// states.put(i, LightStates.OFF);
 				break;
 			case DIMMEST_GREEN:
-				states.put(i, LightStates.OFF);
+				// states.put(i, LightStates.OFF);
 				break;
 			case OFF:
 			default:

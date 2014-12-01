@@ -86,11 +86,11 @@ public class Simulation {
         
         //Solar Enables (set by model)
         // todo: add UI control to add/remove (only if model is not connected)
-        public MutableValue solarPanelM1 = new MutableValue(1.0);
-        public MutableValue solarPanelM2 = new MutableValue(1.0);
-        public MutableValue solarPanelL1 = new MutableValue(1.0);
-        public MutableValue solarPanelL2 = new MutableValue(1.0);
-        public MutableValue solarPanelL3 = new MutableValue(1.0);
+        public MutableValue solarPanelM1 = new MutableValue(0.0);
+        public MutableValue solarPanelM2 = new MutableValue(0.0);
+        public MutableValue solarPanelL1 = new MutableValue(0.0);
+        public MutableValue solarPanelL2 = new MutableValue(0.0);
+        public MutableValue solarPanelL3 = new MutableValue(0.0);
         
         //Wind Turbine Multiplier (set by model)
         // todo: add UI control
