@@ -159,6 +159,18 @@ public class MainUI {
         resources.add(R.drawable.infopage);
         resources.add(R.drawable.intelligrid);
         resources.add(R.drawable.loadstats);
+        resources.add(R.drawable.label_a);
+        resources.add(R.drawable.label_b);
+        resources.add(R.drawable.label_c);
+        resources.add(R.drawable.label_d);
+        resources.add(R.drawable.label_e);
+        resources.add(R.drawable.label_f);
+        resources.add(R.drawable.label_h);
+        resources.add(R.drawable.label_i);
+        resources.add(R.drawable.label_j);
+        resources.add(R.drawable.label_k);
+        resources.add(R.drawable.label_l);
+        resources.add(R.drawable.label_m);
         resources.add(R.drawable.midway);
         resources.add(R.drawable.midwaynight);
         resources.add(R.drawable.museum);
@@ -177,6 +189,7 @@ public class MainUI {
         resources.add(R.drawable.partlycloudy);
         resources.add(R.drawable.cloudy);
         resources.add(R.drawable.night);
+        resources.add(R.drawable.sdge);
         resources.add(R.drawable.solarpanel);
         resources.add(R.drawable.solarpanelnight);
         resources.add(R.drawable.stadium);
@@ -336,6 +349,7 @@ public class MainUI {
         public static Sprite balloon;
         public static Sprite midway;
         public static Sprite museum;
+        public static Sprite sdge;
         public static Sprite solarpanel;
         public static Sprite stadium;
         public static Sprite substation;
@@ -405,6 +419,20 @@ public class MainUI {
         public static Sprite xoutk;
         public static Sprite xoutl;
         public static Sprite xoutm;
+        public static Sprite xoutballoon;
+        public static Sprite xoutdig;
+        public static Sprite label_a;
+        public static Sprite label_b;
+        public static Sprite label_c;
+        public static Sprite label_d;
+        public static Sprite label_e;
+        public static Sprite label_f;
+        public static Sprite label_h;
+        public static Sprite label_i;
+        public static Sprite label_j;
+        public static Sprite label_k;
+        public static Sprite label_l;
+        public static Sprite label_m;
     }
 
     /**
@@ -417,13 +445,17 @@ public class MainUI {
         Global.getRenderer().addDrawable(ClickableObjects.background);
         addClickable(ClickableObjects.background);
 
-        Objects.paths = new Sprite(new Vector2f(), 2, 0f, new Vector2f(1f, 1f),
+        Objects.paths = new Sprite(new Vector2f(), 3, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.paths);
         Global.getRenderer().addDrawable(Objects.paths);
 
         Objects.intelligrid = new Sprite(pixelsToCoords(195, 1555), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.intelligrid);
         Global.getRenderer().addDrawable(Objects.intelligrid);
+
+        Objects.sdge = new Sprite(pixelsToCoords(2365, 100), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.sdge);
+        Global.getRenderer().addDrawable(Objects.sdge);
 
         Objects.sunny = new Sprite(pixelsToCoords(1800, 1551), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.sunny);
@@ -437,7 +469,7 @@ public class MainUI {
                 new Color(255, 255, 255), R.drawable.cloudy);
         Global.getRenderer().addDrawable(Objects.cloudy);
 
-        ClickableObjects.faults = new ClickableSprite(pixelsToCoords(2485, 425), 0, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.faults = new ClickableSprite(pixelsToCoords(2485, 600), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.faults, sizeToCoords(-64,-64), sizeToCoords(64,64), "faults");
         Global.getRenderer().addDrawable(ClickableObjects.faults);
         addClickable(ClickableObjects.faults);
@@ -452,7 +484,7 @@ public class MainUI {
         Global.getRenderer().addDrawable(ClickableObjects.exitfaults);
         addClickable(ClickableObjects.exitfaults);
 
-        ClickableObjects.graphs = new ClickableSprite(pixelsToCoords(2485, 300), 0, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.graphs = new ClickableSprite(pixelsToCoords(2485, 460), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.graphs, sizeToCoords(-64,-64), sizeToCoords(64,64), "graphs");
         Global.getRenderer().addDrawable(ClickableObjects.graphs);
         addClickable(ClickableObjects.graphs);
@@ -467,7 +499,7 @@ public class MainUI {
         Global.getRenderer().addDrawable(ClickableObjects.exitgraphs);
         addClickable(ClickableObjects.exitgraphs);
 
-        ClickableObjects.info = new ClickableSprite(pixelsToCoords(2485, 175), 0, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.info = new ClickableSprite(pixelsToCoords(2485, 320), 0, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.info, sizeToCoords(-50,-50), sizeToCoords(50,50), "info");
         Global.getRenderer().addDrawable(ClickableObjects.info);
         addClickable(ClickableObjects.info);
@@ -1122,11 +1154,15 @@ public class MainUI {
         addClickable(ClickableObjects.load6stats);
 
         UIInfo.trA = new TextSprite("",
-                pixelsToCoords(1370, 1200), 30, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(1365, 1200), 30, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trA);
 
-        Objects.xouta = new Sprite(pixelsToCoords(1350, 1150), 11, 0f, new Vector2f(1f, 1f),
+        Objects.label_a = new Sprite(pixelsToCoords(1310, 1150), 2, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.label_a);
+        Global.getRenderer().addDrawable(Objects.label_a);
+
+        Objects.xouta = new Sprite(pixelsToCoords(1310, 1150), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.xout);
         Global.getRenderer().addDrawable(Objects.xouta);
 
@@ -1135,14 +1171,22 @@ public class MainUI {
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trB);
 
+        Objects.label_b = new Sprite(pixelsToCoords(1063, 1005), 2, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.label_b);
+        Global.getRenderer().addDrawable(Objects.label_b);
+
         Objects.xoutb = new Sprite(pixelsToCoords(1063, 1005), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.xout);
         Global.getRenderer().addDrawable(Objects.xoutb);
 
         UIInfo.trC = new TextSprite("",
-                pixelsToCoords(960, 670), 30, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(970, 690), 30, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trC);
+
+        Objects.label_c = new Sprite(pixelsToCoords(885, 747), 2, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.label_c);
+        Global.getRenderer().addDrawable(Objects.label_c);
 
         Objects.xoutc = new Sprite(pixelsToCoords(885, 747), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.xout);
@@ -1153,14 +1197,22 @@ public class MainUI {
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trD);
 
-        Objects.xoutd = new Sprite(pixelsToCoords(350, 647), 11, 0f, new Vector2f(1f, 1f),
+        Objects.label_d = new Sprite(pixelsToCoords(430, 645), 2, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.label_d);
+        Global.getRenderer().addDrawable(Objects.label_d);
+
+        Objects.xoutd = new Sprite(pixelsToCoords(430, 645), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.xout);
         Global.getRenderer().addDrawable(Objects.xoutd);
 
         UIInfo.trE = new TextSprite("",
-                pixelsToCoords(960, 300), 30, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(965, 290), 30, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trE);
+
+        Objects.label_e = new Sprite(pixelsToCoords(870, 290), 2, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.label_e);
+        Global.getRenderer().addDrawable(Objects.label_e);
 
         Objects.xoute = new Sprite(pixelsToCoords(870, 290), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.xout);
@@ -1170,6 +1222,10 @@ public class MainUI {
                 pixelsToCoords(800, 60), 30, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trF);
+
+        Objects.label_f = new Sprite(pixelsToCoords(470, 120), 2, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.label_f);
+        Global.getRenderer().addDrawable(Objects.label_f);
 
         Objects.xoutf = new Sprite(pixelsToCoords(470, 120), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.xout);
@@ -1185,6 +1241,10 @@ public class MainUI {
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trH);
 
+        Objects.label_h = new Sprite(pixelsToCoords(1500, 336), 2, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.label_h);
+        Global.getRenderer().addDrawable(Objects.label_h);
+
         Objects.xouth = new Sprite(pixelsToCoords(1500, 336), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.xout);
         Global.getRenderer().addDrawable(Objects.xouth);
@@ -1194,7 +1254,11 @@ public class MainUI {
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trI);
 
-        Objects.xouti = new Sprite(pixelsToCoords(1500, 620), 11, 0f, new Vector2f(1f, 1f),
+        Objects.label_i = new Sprite(pixelsToCoords(1685, 630), 2, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.label_i);
+        Global.getRenderer().addDrawable(Objects.label_i);
+
+        Objects.xouti = new Sprite(pixelsToCoords(1685, 630), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.xout);
         Global.getRenderer().addDrawable(Objects.xouti);
 
@@ -1203,14 +1267,22 @@ public class MainUI {
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trJ);
 
+        Objects.label_j = new Sprite(pixelsToCoords(1898, 800), 2, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.label_j);
+        Global.getRenderer().addDrawable(Objects.label_j);
+
         Objects.xoutj = new Sprite(pixelsToCoords(1898, 800), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.xout);
         Global.getRenderer().addDrawable(Objects.xoutj);
 
         UIInfo.trK = new TextSprite("",
-                pixelsToCoords(1635, 910), 30, Typeface.DEFAULT, 1000f, 0, 0,
+                pixelsToCoords(1630, 910), 30, Typeface.DEFAULT, 1000f, 0, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trK);
+
+        Objects.label_k = new Sprite(pixelsToCoords(1700, 920), 2, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.label_k);
+        Global.getRenderer().addDrawable(Objects.label_k);
 
         Objects.xoutk = new Sprite(pixelsToCoords(1700, 920), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.xout);
@@ -1221,7 +1293,11 @@ public class MainUI {
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trL);
 
-        Objects.xoutl = new Sprite(pixelsToCoords(1922, 1150), 11, 0f, new Vector2f(1f, 1f),
+        Objects.label_l = new Sprite(pixelsToCoords(2050, 1150), 2, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.label_l);
+        Global.getRenderer().addDrawable(Objects.label_l);
+
+        Objects.xoutl = new Sprite(pixelsToCoords(2050, 1150), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.xout);
         Global.getRenderer().addDrawable(Objects.xoutl);
 
@@ -1230,9 +1306,21 @@ public class MainUI {
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.trM);
 
-        Objects.xoutm = new Sprite(pixelsToCoords(1647, 1150), 11, 0f, new Vector2f(1f, 1f),
+        Objects.label_m = new Sprite(pixelsToCoords(1685, 1150), 2, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.label_m);
+        Global.getRenderer().addDrawable(Objects.label_m);
+
+        Objects.xoutm = new Sprite(pixelsToCoords(1685, 1150), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.xout);
         Global.getRenderer().addDrawable(Objects.xoutm);
+
+        Objects.xoutballoon = new Sprite(pixelsToCoords(305, 647), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.xout);
+        Global.getRenderer().addDrawable(Objects.xoutballoon);
+
+        Objects.xoutdig = new Sprite(pixelsToCoords(1250, 535), 11, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.xout);
+        Global.getRenderer().addDrawable(Objects.xoutdig);
 
         UIInfo.WindTurbines = new TextSprite("",
                 pixelsToCoords(1250, 1370), 20, Typeface.DEFAULT, 1000f, 0, 0,

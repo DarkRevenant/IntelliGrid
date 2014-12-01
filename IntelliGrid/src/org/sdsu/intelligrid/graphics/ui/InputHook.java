@@ -108,6 +108,27 @@ public class InputHook {
             MainUI.ClickableObjects.balloonfault.setDepth(11);
             MainUI.ClickableObjects.digfault.setDepth(11);
             MainUI.ClickableObjects.nofault.setDepth(11);
+            MainUI.ClickableObjects.house1apopup.setDepth(11);
+            MainUI.ClickableObjects.house1asolarcheck.setDepth(11);
+            MainUI.ClickableObjects.house1asolarcheckoff.setDepth(11);
+            MainUI.ClickableObjects.house1acarcheck.setDepth(11);
+            MainUI.ClickableObjects.house1acarcheckoff.setDepth(11);
+            MainUI.ClickableObjects.house1bpopup.setDepth(11);
+            MainUI.ClickableObjects.house1bsolarcheck.setDepth(11);
+            MainUI.ClickableObjects.house1bsolarcheckoff.setDepth(11);
+            MainUI.ClickableObjects.house1bcarcheck.setDepth(11);
+            MainUI.ClickableObjects.house1bcarcheckoff.setDepth(11);
+            MainUI.ClickableObjects.house1cpopup.setDepth(11);
+            MainUI.ClickableObjects.house1csolarcheck.setDepth(11);
+            MainUI.ClickableObjects.house1csolarcheckoff.setDepth(11);
+            MainUI.ClickableObjects.house1ccarcheck.setDepth(11);
+            MainUI.ClickableObjects.house1ccarcheckoff.setDepth(11);
+            MainUI.ClickableObjects.house2apopup.setDepth(11);
+            MainUI.ClickableObjects.house2asolarcheck.setDepth(11);
+            MainUI.ClickableObjects.house2asolarcheckoff.setDepth(11);
+            MainUI.ClickableObjects.house2bpopup.setDepth(11);
+            MainUI.ClickableObjects.house2bsolarcheck.setDepth(11);
+            MainUI.ClickableObjects.house2bsolarcheckoff.setDepth(11);
         }
 
         // Info Page
@@ -757,6 +778,14 @@ public class InputHook {
             MainUI.ClickableObjects.load6stats.setDepth(11);
             MainUI.UIInfo.Load6.setDepth(11);
         }
+
+//        // Wind Turbines
+//        if (object.getId().equals("turbine")) {
+//            Global.getGlobalSimulation().data.windGenerationLevel.set(1.0);
+//        }
+//        if (object.getId().equals("turbine2")) {
+//            Global.getGlobalSimulation().data.windGenerationLevel.set(1.0);
+//        }
     }
 
     /**
