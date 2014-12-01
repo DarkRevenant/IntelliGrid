@@ -1712,9 +1712,18 @@ public class LightAnimation {
 						states.put(led, LightStates.OFF);
 					}
 				} else {
-					for (int led : strand.modelLEDs) {
-						if (states.get(led) == LightStates.OFF) {
-							states.put(led, LightStates.DIMMEST_BLUE);
+					if (strand == LightStrands.SEGMENT_W
+							|| strand == LightStrands.SEGMENT_X) {
+						for (int led : strand.modelLEDs) {
+							if (states.get(led) == LightStates.OFF) {
+								states.put(led, LightStates.DIMMEST_GREEN);
+							}
+						}
+					} else {
+						for (int led : strand.modelLEDs) {
+							if (states.get(led) == LightStates.OFF) {
+								states.put(led, LightStates.DIMMEST_BLUE);
+							}
 						}
 					}
 				}
@@ -1740,7 +1749,10 @@ public class LightAnimation {
 				// states.put(i, LightStates.OFF);
 				break;
 			case DIMMEST_GREEN:
-				states.put(i, LightStates.DIMMEST_BLUE);
+				if (!LightStrands.SEGMENT_W.modelLEDs.contains(i)
+						&& !LightStrands.SEGMENT_X.modelLEDs.contains(i)) {
+					states.put(i, LightStates.DIMMEST_BLUE);
+				}
 				break;
 			case OFF:
 			default:
