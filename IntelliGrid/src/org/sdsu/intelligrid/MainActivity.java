@@ -47,15 +47,6 @@ public class MainActivity extends Activity {
 		trans.add(graphs, "graphs").commit();
 		Global.graphs = graphs;
 
-//        (findViewById(R.id.button1)).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startGraphActivity(GraphsPage.class);
-//            }
-//        });
-//
-//    private void startGraphActivity(Class<? extends Activity> activity) {
-//        Intent intent = new Intent(MainActivity.this, activity);
 
 		View decorView = getWindow().getDecorView();
 		int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
