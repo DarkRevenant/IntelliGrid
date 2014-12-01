@@ -1,26 +1,5 @@
 package org.sdsu.intelligrid.graphs;
 
-/**
- * This file is part of GraphView.
- *
- * GraphView is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * GraphView is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with GraphView.  If not, see <http://www.gnu.org/licenses/lgpl.html>.
- *
- * Copyright Jonas Gehring
- */
-
-//package com.jjoe64.graphview;
-
         import java.nio.charset.Charset;
         import java.text.NumberFormat;
         import java.util.ArrayList;
@@ -48,11 +27,7 @@ package org.sdsu.intelligrid.graphs;
  * This is the abstract base class for all graphs. Extend this class and implement {@link #drawSeries(android.graphics.Canvas, GraphViewDataInterface[], float, float, float, double, double, double, double, float, com.jjoe64.graphview.GraphViewSeries.GraphViewSeriesStyle)} to display a custom graph.
  * Use {@link com.jjoe64.graphview.LineGraphView} for creating a line chart.
  *
- * @author jjoe64 - jonas gehring - http://www.jjoe64.com
  *
- * Copyright (C) 2011 Jonas Gehring
- * Licensed under the GNU Lesser General Public License (LGPL)
- * http://www.gnu.org/licenses/lgpl.html
  */
 abstract public class GraphView extends LinearLayout {
     static final private class GraphViewConfig {
