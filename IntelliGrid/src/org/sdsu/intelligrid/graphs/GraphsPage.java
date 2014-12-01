@@ -107,10 +107,107 @@ public class GraphsPage extends Fragment {
                 , new GraphViewData(23, SimulationData.res3[23])
          });
 
+        GraphViewSeries comm1 = new GraphViewSeries(new GraphViewData[]{
+                new GraphViewData(0, SimulationData.comm1[0])
+                , new GraphViewData(1, SimulationData.comm1[1])
+                , new GraphViewData(2, SimulationData.comm1[2])
+                , new GraphViewData(3, SimulationData.comm1[3])
+                , new GraphViewData(4, SimulationData.comm1[4])
+                , new GraphViewData(5, SimulationData.comm1[5])
+                , new GraphViewData(6, SimulationData.comm1[6])
+                , new GraphViewData(7, SimulationData.comm1[7])
+                , new GraphViewData(8, SimulationData.comm1[8])
+                , new GraphViewData(9, SimulationData.comm1[9])
+                , new GraphViewData(10, SimulationData.comm1[10])
+                , new GraphViewData(11, SimulationData.comm1[11])
+                , new GraphViewData(12, SimulationData.comm1[12])
+                , new GraphViewData(13, SimulationData.comm1[13])
+                , new GraphViewData(14, SimulationData.comm1[14])
+                , new GraphViewData(15, SimulationData.comm1[15])
+                , new GraphViewData(16, SimulationData.comm1[16])
+                , new GraphViewData(17, SimulationData.comm1[17])
+                , new GraphViewData(18, SimulationData.comm1[18])
+                , new GraphViewData(19, SimulationData.comm1[19])
+                , new GraphViewData(20, SimulationData.comm1[20])
+                , new GraphViewData(21, SimulationData.comm1[21])
+                , new GraphViewData(22, SimulationData.comm1[22])
+                , new GraphViewData(23, SimulationData.comm1[23])
+        });
+
+        GraphViewSeries comm2 = new GraphViewSeries(new GraphViewData[]{
+                new GraphViewData(0, SimulationData.comm2[0])
+                , new GraphViewData(1, SimulationData.comm2[1])
+                , new GraphViewData(2, SimulationData.comm2[2])
+                , new GraphViewData(3, SimulationData.comm2[3])
+                , new GraphViewData(4, SimulationData.comm2[4])
+                , new GraphViewData(5, SimulationData.comm2[5])
+                , new GraphViewData(6, SimulationData.comm2[6])
+                , new GraphViewData(7, SimulationData.comm2[7])
+                , new GraphViewData(8, SimulationData.comm2[8])
+                , new GraphViewData(9, SimulationData.comm2[9])
+                , new GraphViewData(10, SimulationData.comm2[10])
+                , new GraphViewData(11, SimulationData.comm2[11])
+                , new GraphViewData(12, SimulationData.comm2[12])
+                , new GraphViewData(13, SimulationData.comm2[13])
+                , new GraphViewData(14, SimulationData.comm2[14])
+                , new GraphViewData(15, SimulationData.comm2[15])
+                , new GraphViewData(16, SimulationData.comm2[16])
+                , new GraphViewData(17, SimulationData.comm2[17])
+                , new GraphViewData(18, SimulationData.comm2[18])
+                , new GraphViewData(19, SimulationData.comm2[19])
+                , new GraphViewData(20, SimulationData.comm2[20])
+                , new GraphViewData(21, SimulationData.comm2[21])
+                , new GraphViewData(22, SimulationData.comm2[22])
+                , new GraphViewData(23, SimulationData.comm2[23])
+        });
+
+        GraphViewSeries comm3 = new GraphViewSeries(new GraphViewData[]{
+                new GraphViewData(0, SimulationData.comm3[0])
+                , new GraphViewData(1, SimulationData.comm3[1])
+                , new GraphViewData(2, SimulationData.comm3[2])
+                , new GraphViewData(3, SimulationData.comm3[3])
+                , new GraphViewData(4, SimulationData.comm3[4])
+                , new GraphViewData(5, SimulationData.comm3[5])
+                , new GraphViewData(6, SimulationData.comm3[6])
+                , new GraphViewData(7, SimulationData.comm3[7])
+                , new GraphViewData(8, SimulationData.comm3[8])
+                , new GraphViewData(9, SimulationData.comm3[9])
+                , new GraphViewData(10, SimulationData.comm3[10])
+                , new GraphViewData(11, SimulationData.comm3[11])
+                , new GraphViewData(12, SimulationData.comm3[12])
+                , new GraphViewData(13, SimulationData.comm3[13])
+                , new GraphViewData(14, SimulationData.comm3[14])
+                , new GraphViewData(15, SimulationData.comm3[15])
+                , new GraphViewData(16, SimulationData.comm3[16])
+                , new GraphViewData(17, SimulationData.comm3[17])
+                , new GraphViewData(18, SimulationData.comm3[18])
+                , new GraphViewData(19, SimulationData.comm3[19])
+                , new GraphViewData(20, SimulationData.comm3[20])
+                , new GraphViewData(21, SimulationData.comm3[21])
+                , new GraphViewData(22, SimulationData.comm3[22])
+                , new GraphViewData(23, SimulationData.comm3[23])
+        });
+
         GraphView graphView = new LineGraphView(
                 getActivity() // context
-                , "Infographics - Load Data" // heading
+                , "Load Data" // heading
         );
+
+        graphView.setCustomLabelFormatter(new CustomLabelFormatter() {
+            @Override
+            public String formatLabel(double value, boolean isValueY) {
+                if (isValueY) {
+                    if (value < 1) {
+                        return "small";
+                    } else if (value < 2) {
+                        return "middle";
+                    } else {
+                        return "big";
+                    }
+                }
+                return null; // let graphview generate Y-axis label for us
+            }
+        });
 
         graphView.getGraphViewStyle().setTextSize(20);
 
@@ -119,6 +216,9 @@ public class GraphsPage extends Fragment {
         graphView.addSeries(res1); // data
         graphView.addSeries(res2);
         graphView.addSeries(res3);
+        graphView.addSeries(comm1);
+        graphView.addSeries(comm2);
+        graphView.addSeries(comm3);
 
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.graph1);
         layout.addView(graphView);
