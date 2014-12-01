@@ -1492,9 +1492,10 @@ public class MainUI {
     }
 
     private boolean first = true;
+    private boolean first2 = true;
     private boolean night = false;
 
-    private LightAnimation lightAnimation;
+    public LightAnimation lightAnimation;
 
     private static final float TEXT_UPDATE_INTERVAL = 0.1f;
     private static final double TEXT_UPDATE_CHANCE = 0.25;
@@ -1503,7 +1504,7 @@ public class MainUI {
 
     private double textUpdateChance = 1.0;
     private float textUpdateTimer = TEXT_UPDATE_INTERVAL;
-    
+
     private static final float LIGHT_PACKET_INTERVAL = (float) (1.0 / 15.0);
     private float lightPacketTimer = LIGHT_PACKET_INTERVAL;
 
@@ -2127,14 +2128,15 @@ public class MainUI {
             textUpdateTimer += TEXT_UPDATE_INTERVAL;
         }
 
-        lightPacketTimer -= amount;
         lightAnimation.advance(amount);
-        if (lightPacketTimer <= 0f) {
-            lightAnimation.advanceState(amount);
-            MainNetworkHandler.constructAndSendPacket(PacketTypes.LIGHT_ANIMATION, null);
-            lightPacketTimer = LIGHT_PACKET_INTERVAL;
-        }
 
         textUpdateChance = TEXT_UPDATE_CHANCE;
+
+        lightPacketTimer -= amount;
+        if (lightPacketTimer <= 0f) {
+            Global.getMainUI().lightAnimation.advanceState(amount);
+            MainNetworkHandler.constructAndSendPacket(MainNetworkHandler.PacketTypes.LIGHT_ANIMATION, null);
+            lightPacketTimer = LIGHT_PACKET_INTERVAL;
+        }
     }
 }
