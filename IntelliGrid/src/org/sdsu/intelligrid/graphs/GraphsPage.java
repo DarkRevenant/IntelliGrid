@@ -82,6 +82,10 @@ public class GraphsPage extends Fragment {
                 getActivity() // context
                 , "Infographics - Load Data" // heading
         );
+
+        graphView.getGraphViewStyle().setTextSize(20);
+        graphView.getGraphViewStyle().setNumHorizontalLabels(24);
+        //graphView.getGraphViewStyle().gethorizo
         graphView.addSeries(res1); // data
         graphView.addSeries(res2);
 
