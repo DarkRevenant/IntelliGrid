@@ -209,7 +209,7 @@ public class GraphsPage extends Fragment {
 
         // set legend
         graphView.setShowLegend(true);
-        graphView.setLegendAlign(LegendAlign.BOTTOM);
+        graphView.setLegendAlign(LegendAlign.TOP);
         graphView.setLegendWidth(200);
 
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.graph1);
