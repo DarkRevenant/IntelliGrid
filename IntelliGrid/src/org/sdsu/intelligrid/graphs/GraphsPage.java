@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.graphics.Color;
 
 import org.sdsu.intelligrid.graphs.GraphView;
 import org.sdsu.intelligrid.graphs.GraphView.GraphViewData;
@@ -15,7 +16,7 @@ import org.sdsu.intelligrid.simulation.Simulation.SimulationData;
 import org.sdsu.intelligrid.graphs.GraphViewSeries;
 import org.sdsu.intelligrid.graphs.GraphViewSeries.GraphViewSeriesStyle;
 import org.sdsu.intelligrid.graphs.LineGraphView;
-import org.sdsu.intelligrid.util.Color;
+//import org.sdsu.intelligrid.util.Color;
 
 
 public class GraphsPage extends Fragment {
@@ -26,7 +27,7 @@ public class GraphsPage extends Fragment {
         final View view = inflater.inflate(R.layout.graphs, container, false);
 
         // init example series data
-        GraphViewSeries res1 = new GraphViewSeries(new GraphViewData[]{
+        GraphViewSeries res1 = new GraphViewSeries("res1", new GraphViewSeriesStyle(Color.rgb(200,50,00),3), new GraphViewData[]{
                 new GraphViewData(0, SimulationData.res1[0])
                 , new GraphViewData(1, SimulationData.res1[1])
                 , new GraphViewData(2, SimulationData.res1[2])
@@ -193,21 +194,21 @@ public class GraphsPage extends Fragment {
                 , "Load Data" // heading
         );
 
-        graphView.setCustomLabelFormatter(new CustomLabelFormatter() {
-            @Override
-            public String formatLabel(double value, boolean isValueY) {
-                if (isValueY) {
-                    if (value < 1) {
-                        return "small";
-                    } else if (value < 2) {
-                        return "middle";
-                    } else {
-                        return "big";
-                    }
-                }
-                return null; // let graphview generate Y-axis label for us
-            }
-        });
+//        graphView.setCustomLabelFormatter(new CustomLabelFormatter() {
+//            @Override
+//            public String formatLabel(double value, boolean isValueY) {
+//                if (isValueY) {
+//                    if (value < 1) {
+//                        return "small";
+//                    } else if (value < 2) {
+//                        return "middle";
+//                    } else {
+//                        return "big";
+//                    }
+//                }
+//                return null; // let graphview generate Y-axis label for us
+//            }
+//        });
 
         graphView.getGraphViewStyle().setTextSize(20);
 
