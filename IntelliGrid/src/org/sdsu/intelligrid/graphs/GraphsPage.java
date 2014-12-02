@@ -15,6 +15,7 @@ import org.sdsu.intelligrid.graphs.GraphView.GraphViewData;
 import org.sdsu.intelligrid.simulation.Simulation.SimulationData;
 import org.sdsu.intelligrid.graphs.GraphViewSeries;
 import org.sdsu.intelligrid.graphs.GraphViewSeries.GraphViewSeriesStyle;
+import org.sdsu.intelligrid.graphs.GraphView.LegendAlign;
 import org.sdsu.intelligrid.graphs.LineGraphView;
 //import org.sdsu.intelligrid.util.Color;
 
@@ -195,7 +196,7 @@ public class GraphsPage extends Fragment {
         );
 
 
-        graphView.getGraphViewStyle().setTextSize(200);
+        graphView.getGraphViewStyle().setTextSize(30);
 
         graphView.getGraphViewStyle().setNumHorizontalLabels(24);
 
@@ -205,6 +206,11 @@ public class GraphsPage extends Fragment {
         graphView.addSeries(comm1);
         graphView.addSeries(comm2);
         graphView.addSeries(comm3);
+
+        // set legend
+        graphView.setShowLegend(true);
+        graphView.setLegendAlign(LegendAlign.BOTTOM);
+        graphView.setLegendWidth(200);
 
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.graph1);
         layout.addView(graphView);
