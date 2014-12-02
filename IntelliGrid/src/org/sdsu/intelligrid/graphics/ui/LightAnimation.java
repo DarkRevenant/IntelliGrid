@@ -438,10 +438,6 @@ public class LightAnimation {
 		return (float) Math.random() * 0.05f;
 	}
 
-	public static void setPaused(final boolean p) {
-		paused = p;
-	}
-
 	private static final float OFF_THRESHOLD = 0.0001f;
 
 	private static final float GEN_SCALE = 6f;
@@ -449,15 +445,14 @@ public class LightAnimation {
 
 	private static final int SOFTWARE_ORB_MULTIPLIER = 3;
 
-	private static boolean paused = false;
-
 	private final List<Orb> orbs = new ArrayList<>();
 
-	public synchronized void advance(final float amount) {
+	public synchronized void advance(float amount) {
 		// Logger.getGlobal().log(Level.SEVERE, "" + orbs.size() + " orbs");
-		if (paused) {
+		if (Global.getGlobalSimulation().data.timeScale <= (double) OFF_THRESHOLD) {
 			return;
 		}
+        amount *= Global.getGlobalSimulation().data.timeScale / 288.0;
 		Iterator<Orb> iter = orbs.iterator();
 		while (iter.hasNext()) {
 			final Orb orb = iter.next();
