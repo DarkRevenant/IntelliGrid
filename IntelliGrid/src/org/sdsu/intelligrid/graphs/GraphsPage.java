@@ -28,7 +28,7 @@ public class GraphsPage extends Fragment {
         final View view = inflater.inflate(R.layout.graphs, container, false);
 
         // init example series data
-        GraphViewSeries res1 = new GraphViewSeries("res1", new GraphViewSeriesStyle(Color.rgb(200,50,00),5), new GraphViewData[]{
+        GraphViewSeries res1 = new GraphViewSeries("Residential 1", new GraphViewSeriesStyle(Color.rgb(200,50,00),5), new GraphViewData[]{
                 new GraphViewData(0, SimulationData.res1[0])
                 , new GraphViewData(1, SimulationData.res1[1])
                 , new GraphViewData(2, SimulationData.res1[2])
@@ -55,7 +55,7 @@ public class GraphsPage extends Fragment {
                 , new GraphViewData(23, SimulationData.res1[23])
         });
 
-        GraphViewSeries res2 = new GraphViewSeries("res2", new GraphViewSeriesStyle(Color.BLUE,5),new GraphViewData[]{
+        GraphViewSeries res2 = new GraphViewSeries("Residential 2", new GraphViewSeriesStyle(Color.BLUE,5),new GraphViewData[]{
                 new GraphViewData(0, SimulationData.res2[0])
                 , new GraphViewData(1, SimulationData.res2[1])
                 , new GraphViewData(2, SimulationData.res2[2])
@@ -82,7 +82,7 @@ public class GraphsPage extends Fragment {
                 , new GraphViewData(23, SimulationData.res2[23])
         });
 
-        GraphViewSeries res3 = new GraphViewSeries("res3", new GraphViewSeriesStyle(Color.GREEN,5),new GraphViewData[]{
+        GraphViewSeries res3 = new GraphViewSeries("Residential 3", new GraphViewSeriesStyle(Color.GREEN,5),new GraphViewData[]{
         new GraphViewData(0, SimulationData.res3[0])
                 , new GraphViewData(1, SimulationData.res3[1])
                 , new GraphViewData(2, SimulationData.res3[2])
@@ -109,7 +109,7 @@ public class GraphsPage extends Fragment {
                 , new GraphViewData(23, SimulationData.res3[23])
          });
 
-        GraphViewSeries comm1 = new GraphViewSeries("comm1", new GraphViewSeriesStyle(Color.MAGENTA,5),new GraphViewData[]{
+        GraphViewSeries comm1 = new GraphViewSeries("Commercial 1", new GraphViewSeriesStyle(Color.MAGENTA,5),new GraphViewData[]{
                 new GraphViewData(0, SimulationData.comm1[0])
                 , new GraphViewData(1, SimulationData.comm1[1])
                 , new GraphViewData(2, SimulationData.comm1[2])
@@ -136,7 +136,7 @@ public class GraphsPage extends Fragment {
                 , new GraphViewData(23, SimulationData.comm1[23])
         });
 
-        GraphViewSeries comm2 = new GraphViewSeries("comm2", new GraphViewSeriesStyle(Color.CYAN,5),new GraphViewData[]{
+        GraphViewSeries comm2 = new GraphViewSeries("Commercial 2", new GraphViewSeriesStyle(Color.CYAN,5),new GraphViewData[]{
                 new GraphViewData(0, SimulationData.comm2[0])
                 , new GraphViewData(1, SimulationData.comm2[1])
                 , new GraphViewData(2, SimulationData.comm2[2])
@@ -163,7 +163,7 @@ public class GraphsPage extends Fragment {
                 , new GraphViewData(23, SimulationData.comm2[23])
         });
 
-        GraphViewSeries comm3 = new GraphViewSeries("comm3", new GraphViewSeriesStyle(Color.YELLOW,5),new GraphViewData[]{
+        GraphViewSeries comm3 = new GraphViewSeries("Commercial 3", new GraphViewSeriesStyle(Color.YELLOW,5),new GraphViewData[]{
                 new GraphViewData(0, SimulationData.comm3[0])
                 , new GraphViewData(1, SimulationData.comm3[1])
                 , new GraphViewData(2, SimulationData.comm3[2])
