@@ -195,7 +195,7 @@ public class GraphsPage extends Fragment {
         );
 
 
-        graphView.getGraphViewStyle().setTextSize(20);
+        graphView.getGraphViewStyle().setTextSize(200);
 
         graphView.getGraphViewStyle().setNumHorizontalLabels(24);
 
