@@ -1647,6 +1647,9 @@ public class MainUI {
     private static final float LIGHT_PACKET_INTERVAL = (float) (1.0 / 9.0);
     private float lightPacketTimer = LIGHT_PACKET_INTERVAL;
 
+    private static final float GRAPH_UPDATE_INTERVAL = 1f;
+    private float graphUpdateTimer = GRAPH_UPDATE_INTERVAL;
+
     /**
      * This is the primary step driver for the interface. Call all time-based
      * functions from here.
@@ -2320,6 +2323,16 @@ public class MainUI {
             Global.getMainUI().lightAnimation.advanceState(amount);
             MainNetworkHandler.constructAndSendPacket(MainNetworkHandler.PacketTypes.LIGHT_ANIMATION, null);
             lightPacketTimer = LIGHT_PACKET_INTERVAL;
+        }
+
+        graphUpdateTimer -= amount;
+        if (graphUpdateTimer <= 0f) {
+            Global.getMainActivity().runOnUiThread(new Runnable() {
+                public void run() {
+                    Global.getGraphFragment().update();
+                }
+            });
+            graphUpdateTimer = GRAPH_UPDATE_INTERVAL;
         }
     }
 }
