@@ -100,9 +100,9 @@ public class Simulation {
         
         //Electric Vehicle Enables (set by model)
         // todo: add UI control (only if model is not connected)
-        public MutableValue electricVehicleL1 = new MutableValue(1.0);
-        public MutableValue electricVehicleL2 = new MutableValue(1.0);
-        public MutableValue electricVehicleL3 = new MutableValue(1.0);
+        public MutableValue electricVehicleL1 = new MutableValue(0.0);
+        public MutableValue electricVehicleL2 = new MutableValue(0.0);
+        public MutableValue electricVehicleL3 = new MutableValue(0.0);
 
         public boolean load1WasOn = true;
         public boolean load2WasOn = true;

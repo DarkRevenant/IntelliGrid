@@ -588,12 +588,12 @@ public class MainUI {
         Global.getRenderer().addDrawable(ClickableObjects.fault_f);
         addClickable(ClickableObjects.fault_f);
 
-        ClickableObjects.fault_h = new ClickableSprite(pixelsToCoords(565, 690), 11, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.fault_h = new ClickableSprite(pixelsToCoords(1820, 690), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.fault_h, sizeToCoords(-56,-60), sizeToCoords(56,60), "faulth");
         Global.getRenderer().addDrawable(ClickableObjects.fault_h);
         addClickable(ClickableObjects.fault_h);
 
-        ClickableObjects.fault_i = new ClickableSprite(pixelsToCoords(715, 690), 11, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.fault_i = new ClickableSprite(pixelsToCoords(1960, 690), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.fault_i, sizeToCoords(-56,-60), sizeToCoords(56,60), "faulti");
         Global.getRenderer().addDrawable(ClickableObjects.fault_i);
         addClickable(ClickableObjects.fault_i);
@@ -608,12 +608,12 @@ public class MainUI {
         Global.getRenderer().addDrawable(ClickableObjects.fault_k);
         addClickable(ClickableObjects.fault_k);
 
-        ClickableObjects.fault_l = new ClickableSprite(pixelsToCoords(1820, 690), 11, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.fault_l = new ClickableSprite(pixelsToCoords(565, 690), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.fault_l, sizeToCoords(-56,-60), sizeToCoords(56,60), "faultl");
         Global.getRenderer().addDrawable(ClickableObjects.fault_l);
         addClickable(ClickableObjects.fault_l);
 
-        ClickableObjects.fault_m = new ClickableSprite(pixelsToCoords(1960, 690), 11, 0f, new Vector2f(1f, 1f),
+        ClickableObjects.fault_m = new ClickableSprite(pixelsToCoords(715, 690), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.fault_m, sizeToCoords(-56,-60), sizeToCoords(56,60), "faultm");
         Global.getRenderer().addDrawable(ClickableObjects.fault_m);
         addClickable(ClickableObjects.fault_m);
@@ -919,32 +919,32 @@ public class MainUI {
         addClickable(ClickableObjects.turbineoffcheckoff);
 
         ClickableObjects.transformer1 = new ClickableSprite(pixelsToCoords(1200, 1000), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.transformer1, sizeToCoords(-22,-25), sizeToCoords(22,25), "transformer1");
+                new Color(255, 255, 255), R.drawable.transformer1, sizeToCoords(-30,-33), sizeToCoords(30,33), "transformer1");
         Global.getRenderer().addDrawable(ClickableObjects.transformer1);
         addClickable(ClickableObjects.transformer1);
 
         ClickableObjects.transformer2 = new ClickableSprite(pixelsToCoords(520, 640), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.transformer1, sizeToCoords(-22,-25), sizeToCoords(22,25), "transformer2");
+                new Color(255, 255, 255), R.drawable.transformer1, sizeToCoords(-30,-33), sizeToCoords(30,33), "transformer2");
         Global.getRenderer().addDrawable(ClickableObjects.transformer2);
         addClickable(ClickableObjects.transformer2);
 
         ClickableObjects.transformer3 = new ClickableSprite(pixelsToCoords(770, 115), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.transformer1, sizeToCoords(-22,-25), sizeToCoords(22,25), "transformer3");
+                new Color(255, 255, 255), R.drawable.transformer1, sizeToCoords(-30,-33), sizeToCoords(30,33), "transformer3");
         Global.getRenderer().addDrawable(ClickableObjects.transformer3);
         addClickable(ClickableObjects.transformer3);
 
         ClickableObjects.transformer4 = new ClickableSprite(pixelsToCoords(1350, 335), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.transformer1, sizeToCoords(-22,-25), sizeToCoords(22,25), "transformer4");
+                new Color(255, 255, 255), R.drawable.transformer1, sizeToCoords(-30,-33), sizeToCoords(30,33), "transformer4");
         Global.getRenderer().addDrawable(ClickableObjects.transformer4);
         addClickable(ClickableObjects.transformer4);
 
         ClickableObjects.transformer5 = new ClickableSprite(pixelsToCoords(1800, 800), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.transformer1, sizeToCoords(-22,-25), sizeToCoords(22,25), "transformer5");
+                new Color(255, 255, 255), R.drawable.transformer1, sizeToCoords(-30,-33), sizeToCoords(30,33), "transformer5");
         Global.getRenderer().addDrawable(ClickableObjects.transformer5);
         addClickable(ClickableObjects.transformer5);
 
         ClickableObjects.transformer6 = new ClickableSprite(pixelsToCoords(1800, 1150), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.transformer1, sizeToCoords(-22,-25), sizeToCoords(22,25), "transformer6");
+                new Color(255, 255, 255), R.drawable.transformer1, sizeToCoords(-30,-33), sizeToCoords(30,33), "transformer6");
         Global.getRenderer().addDrawable(ClickableObjects.transformer6);
         addClickable(ClickableObjects.transformer6);
 
@@ -1145,11 +1145,9 @@ public class MainUI {
         Global.getRenderer().addDrawable(Objects.tieopen);
 
         UIInfo.Load1 = new TextSprite("",
-                pixelsToCoords(1000, 1000), 20, Typeface.DEFAULT, 1000f, 11, 0,
+                pixelsToCoords(1080, 970), 25, Typeface.DEFAULT, 1000f, 11, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load1);
-
-
 
         ClickableObjects.load1stats = new ClickableSprite(pixelsToCoords(1000, 1000), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.loadstats, sizeToCoords(-211,-140), sizeToCoords(211,140), "load1stats");
@@ -1157,7 +1155,7 @@ public class MainUI {
         addClickable(ClickableObjects.load1stats);
 
         UIInfo.Load2 = new TextSprite("",
-                pixelsToCoords(295, 675), 20, Typeface.DEFAULT, 1000f, 11, 0,
+                pixelsToCoords(375, 645), 25, Typeface.DEFAULT, 1000f, 11, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load2);
 
@@ -1167,7 +1165,7 @@ public class MainUI {
         addClickable(ClickableObjects.load2stats);
 
         UIInfo.Load3 = new TextSprite("",
-                pixelsToCoords(400, 190), 20, Typeface.DEFAULT, 1000f, 11, 0,
+                pixelsToCoords(480, 160), 25, Typeface.DEFAULT, 1000f, 11, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load3);
 
@@ -1177,7 +1175,7 @@ public class MainUI {
         addClickable(ClickableObjects.load3stats);
 
         UIInfo.Load4 = new TextSprite("",
-                pixelsToCoords(1530, 420), 20, Typeface.DEFAULT, 1000f, 11, 0,
+                pixelsToCoords(1610, 390), 25, Typeface.DEFAULT, 1000f, 11, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load4);
 
@@ -1187,7 +1185,7 @@ public class MainUI {
         addClickable(ClickableObjects.load4stats);
 
         UIInfo.Load5 = new TextSprite("",
-                pixelsToCoords(1980, 720), 20, Typeface.DEFAULT, 1000f, 11, 0,
+                pixelsToCoords(2060, 690), 25, Typeface.DEFAULT, 1000f, 11, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load5);
 
@@ -1197,7 +1195,7 @@ public class MainUI {
         addClickable(ClickableObjects.load5stats);
 
         UIInfo.Load6 = new TextSprite("",
-                pixelsToCoords(2010, 1140), 20, Typeface.DEFAULT, 1000f, 11, 0,
+                pixelsToCoords(2090, 1110), 25, Typeface.DEFAULT, 1000f, 11, 0,
                 new Vector2f(1f, 1f), new Color(0, 0, 0));
         Global.getRenderer().addDrawable(UIInfo.Load6);
 
@@ -2080,7 +2078,7 @@ public class MainUI {
             ClickableObjects.business2a.setResourceOverTime(R.drawable.business2, DAY_NIGHT_TRANSITION_TIME);
             ClickableObjects.business2b.setResourceOverTime(R.drawable.business2, DAY_NIGHT_TRANSITION_TIME);
             ClickableObjects.business2c.setResourceOverTime(R.drawable.business2, DAY_NIGHT_TRANSITION_TIME);
-            ClickableObjects.house1a.setResourceOverTime(R.drawable.house1night, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.house1a.setResourceOverTime(R.drawable.house1, DAY_NIGHT_TRANSITION_TIME);
             ClickableObjects.house1asolar.setResourceOverTime(R.drawable.house1solar, DAY_NIGHT_TRANSITION_TIME);
             ClickableObjects.house1acar.setResourceOverTime(R.drawable.house1car, DAY_NIGHT_TRANSITION_TIME);
             ClickableObjects.house1aboth.setResourceOverTime(R.drawable.house1both, DAY_NIGHT_TRANSITION_TIME);
@@ -2175,7 +2173,7 @@ public class MainUI {
                 UIInfo.Load1.setText("\t\t\t\t\t\t\t\t\t\t\t\t" + "Residential 1" + "\n" + "\n"
                                 + "Real Power: \t\t\t\t\t\t\t\t\t" + "" + String.format("%.2f", Simulation.SimInfo.Load1) + " MW" + "\n"
                                 + "Reactive Power: \t\t\t" + String.format("%.2f", Simulation.SimInfo.Load1r) + " MVAR" + "\n"
-                                + "Apparent Power: \t\t\t" + String.format("%.2f", Simulation.SimInfo.Load1a) + " MVA",
+                                + "Apparent Power: \t\t" + String.format("%.2f", Simulation.SimInfo.Load1a) + " MVA",
                         UIInfo.Load1.getFontSize(), UIInfo.Load1.getFont(),
                         UIInfo.Load1.getMaxLineWidth());
 
@@ -2183,7 +2181,7 @@ public class MainUI {
                 UIInfo.Load2.setText("\t\t\t\t\t\t\t\t\t\t\t\t" + "Residential 2" + "\n" + "\n"
                                 + "Real Power: \t\t\t\t\t\t\t\t\t" + "" + String.format("%.2f", Simulation.SimInfo.Load2) + " MW" + "\n"
                                 + "Reactive Power: \t\t\t" + String.format("%.2f", Simulation.SimInfo.Load2r) + " MVAR" + "\n"
-                                + "Apparent Power: \t\t\t" + String.format("%.2f", Simulation.SimInfo.Load2a) + " MVA",
+                                + "Apparent Power: \t\t" + String.format("%.2f", Simulation.SimInfo.Load2a) + " MVA",
                         UIInfo.Load2.getFontSize(), UIInfo.Load2.getFont(),
                         UIInfo.Load2.getMaxLineWidth());
 
@@ -2191,7 +2189,7 @@ public class MainUI {
                 UIInfo.Load3.setText("\t\t\t\t\t\t\t\t\t\t\t\t" + "Residential 3" + "\n" + "\n"
                                 + "Real Power: \t\t\t\t\t\t\t\t\t" + "" + String.format("%.2f", Simulation.SimInfo.Load3) + " MW" + "\n"
                                 + "Reactive Power: \t\t\t" + String.format("%.2f", Simulation.SimInfo.Load3r) + " MVAR" + "\n"
-                                + "Apparent Power: \t\t\t" + String.format("%.2f", Simulation.SimInfo.Load3a) + " MVA",
+                                + "Apparent Power: \t\t" + String.format("%.2f", Simulation.SimInfo.Load3a) + " MVA",
                         UIInfo.Load3.getFontSize(), UIInfo.Load3.getFont(),
                         UIInfo.Load3.getMaxLineWidth());
 
@@ -2199,7 +2197,7 @@ public class MainUI {
                 UIInfo.Load4.setText("\t\t\t\t\t\t\t\t\t\t\t\t" + "Commercial 3" + "\n" + "\n"
                                 + "Real Power: \t\t\t\t\t\t\t\t\t" + "" + String.format("%.2f", Simulation.SimInfo.Load4) + " MW" + "\n"
                                 + "Reactive Power: \t\t\t" + String.format("%.2f", Simulation.SimInfo.Load4r) + " MVAR" + "\n"
-                                + "Apparent Power: \t\t\t" + String.format("%.2f", Simulation.SimInfo.Load4a) + " MVA",
+                                + "Apparent Power: \t\t" + String.format("%.2f", Simulation.SimInfo.Load4a) + " MVA",
                         UIInfo.Load4.getFontSize(), UIInfo.Load4.getFont(),
                         UIInfo.Load4.getMaxLineWidth());
 
@@ -2215,7 +2213,7 @@ public class MainUI {
                 UIInfo.Load6.setText("\t\t\t\t\t\t\t\t\t\t\t\t" + "Commercial 1" + "\n" + "\n"
                                 + "Real Power: \t\t\t\t\t\t\t\t\t" + "" + String.format("%.2f", Simulation.SimInfo.Load6) + " MW" + "\n"
                                 + "Reactive Power: \t\t\t" + String.format("%.2f", Simulation.SimInfo.Load6r) + " MVAR" + "\n"
-                                + "Apparent Power: \t\t\t" + String.format("%.2f", Simulation.SimInfo.Load6a) + " MVA",
+                                + "Apparent Power: \t\t" + String.format("%.2f", Simulation.SimInfo.Load6a) + " MVA",
                         UIInfo.Load6.getFontSize(), UIInfo.Load6.getFont(),
                         UIInfo.Load6.getMaxLineWidth());
 
