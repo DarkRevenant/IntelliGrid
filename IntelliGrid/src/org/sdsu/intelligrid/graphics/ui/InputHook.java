@@ -152,8 +152,8 @@ public class InputHook {
 
 		// Info Page
 		if (object.getId().equals("info")) {
-			MainUI.ClickableObjects.infopage.setDepth(-1);
-			MainUI.ClickableObjects.exitinfo.setDepth(-2);
+			MainUI.ClickableObjects.infopage.setDepth(-4);
+			MainUI.ClickableObjects.exitinfo.setDepth(-5);
 			MainUI.ClickableObjects.load1stats.setDepth(11);
 			MainUI.UIInfo.Load1.setDepth(11);
 			MainUI.ClickableObjects.load2stats.setDepth(11);
@@ -312,8 +312,8 @@ public class InputHook {
 
 		// Faults Page
 		if (object.getId().equals("faults")) {
-			MainUI.ClickableObjects.faultspage.setDepth(-1);
-			MainUI.ClickableObjects.exitfaults.setDepth(-2);
+			MainUI.ClickableObjects.faultspage.setDepth(-4);
+			MainUI.ClickableObjects.exitfaults.setDepth(-5);
 			MainUI.ClickableObjects.fault_a.setDepth(-2);
 			MainUI.ClickableObjects.fault_b.setDepth(-2);
 			MainUI.ClickableObjects.fault_c.setDepth(-2);
