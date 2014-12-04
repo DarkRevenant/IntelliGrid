@@ -11,13 +11,10 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.graphics.Color;
 
-import org.sdsu.intelligrid.graphs.GraphView;
-import org.sdsu.intelligrid.graphs.GraphView.GraphViewData;
+import org.sdsu.intelligrid.simulation.Simulation.SimInfo;
 import org.sdsu.intelligrid.simulation.Simulation.SimulationData;
-import org.sdsu.intelligrid.graphs.GraphViewSeries;
-import org.sdsu.intelligrid.graphs.GraphViewSeries.GraphViewSeriesStyle;
-import org.sdsu.intelligrid.graphs.GraphView.LegendAlign;
-import org.sdsu.intelligrid.graphs.LineGraphView;
+
+import static com.jjoe64.graphview.*;
 //import org.sdsu.intelligrid.util.Color;
 
 
@@ -30,8 +27,6 @@ public class GraphsPage extends Fragment {
     private GraphViewSeries comm2;
     private GraphViewSeries comm3;
     private GraphViewSeries Battery;
-    private Runnable mTimer1;
-    private final Handler mHandler = new Handler();
 
 
 	@Override
@@ -86,7 +81,7 @@ public class GraphsPage extends Fragment {
             for (int i = 0; i < 24; i++){
                 graphData[i] = new GraphViewData(i, SimulationData.Battery[i%23]);
             }
-             Battery = new GraphViewSeries("Battery", new GraphViewSeriesStyle(Color.rgb(20, 129, 12), 5), graphData);
+             Battery = new GraphViewSeries("Battery", new GraphViewSeriesStyle(Color.rgb(31, 164, 5), 5), graphData);
 
         //}
 
@@ -98,7 +93,7 @@ public class GraphsPage extends Fragment {
 
         graphView.getGraphViewStyle().setTextSize(30);
 
-        graphView.getGraphViewStyle().setNumHorizontalLabels(12);
+        graphView.getGraphViewStyle().setNumHorizontalLabels(24);
 
         graphView.addSeries(res1); // data
         graphView.addSeries(res2);
@@ -108,7 +103,7 @@ public class GraphsPage extends Fragment {
         graphView.addSeries(comm3);
         graphView.addSeries(Battery);
 
-        graphView.setViewPort(0,11);
+        graphView.setViewPort(0,23);
         graphView.setScrollable(true);
         graphView.setScalable(true);
 
@@ -125,38 +120,54 @@ public class GraphsPage extends Fragment {
         return view;
     }
 
-    public void update() {
+    private double lastTime = 12.0;
 
+    private int hour = 12;
+
+    public void update() {
+        double currentTime = SimInfo.currentTime;
+        boolean update = false;
+        if (currentTime < lastTime) {
+            hour++;
+            update = true;
+        } else {
+            if ((int) currentTime > (int) lastTime) {
+                hour++;
+                update = true;
+            }
+        }
+        if (hour >= 24*5) {
+            hour = 0;
+            res1.resetData();
+        }
+        lastTime = currentTime;
+
+        if (!update) {
+            return;
+        }
+
+//        GraphViewData[] graphData = new GraphViewData[24];
+
+//        for (int i = 0; i < 24; i++) {
+//            graphData[i] = new GraphViewData(i, SimulationData.res3[i%23]);
+//
+//        }
+//        res1 = new GraphViewSeries("Residential 1", new GraphViewSeriesStyle(Color.rgb(219, 48, 48), 5), graphData);
+//        for(int i = 0; i < 24; i++) {
+            res1.appendData(new GraphViewData(hour, SimInfo.Load1), true, 24*5);
+//        }
     }
 
 
 //    @Override
 //    public void onPause() {
-//        mHandler.removeCallbacks(mTimer1);
 //        //mHandler.removeCallbacks(mTimer2);
 //        super.onPause();
 //    }
-//
+
 //    @Override
 //     public void onResume() {
 //        super.onResume();
-//
-//        mTimer1 = new Runnable() {
-//
-//            @Override
-//            public void run() {
-//                int graph = 2;
-//                graph += 1;
-//
-//                for (int y = 0; y < 24; y++) {
-//                    res1.appendData(new GraphViewData(graph, SimulationData.res1[y%23]), true, 10);
-//                }
-////                res1.appendData(new GraphViewData(graph, 2), true, 10);
-//                mHandler.postDelayed(this, 200);
-//            }
-//        };
-//
-//        mHandler.postDelayed(mTimer1, 1000);
 
 //        mTimer1 = new Runnable() {
 //            @Override
