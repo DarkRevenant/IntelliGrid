@@ -2,6 +2,9 @@
 
 package org.sdsu.intelligrid.network;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.sdsu.intelligrid.Global;
 import org.sdsu.intelligrid.graphics.ui.LightAnimation;
 
@@ -14,21 +17,26 @@ public class MainNetworkHandler {
 
 	public static enum PacketTypes {
 
-		SOLAR_GENERATION_LEVEL("S", new SolarGenHandler()), WIND_GENERATION_LEVEL(
-				"W", new WindTurbineHandler()), BATTERY_STORAGE_LEVEL("B",
-				new BatteryHandler()), TIME_OF_DAY("T", new TimeHandler()), POWER_OUTAGE(
-				"P", new OutageHandler()), CAR_DETECT("E",
-				new ElectricCarHandler()), SOLAR_DETECT("R",
-				new SolarPanelHandler()), BALLOON_DETECT_RESET("M",
-				new MylarBalloonHandler()), DIG_DETECT_RESET("D",
-				new DigFaultHandler()), LIGHT_ANIMATION("L", new LEDHandler());
+		SOLAR_GENERATION_LEVEL("S", new SolarGenHandler(), 3), WIND_GENERATION_LEVEL(
+				"W", new WindTurbineHandler(), 2), BATTERY_STORAGE_LEVEL("B",
+				new BatteryHandler(), 2), TIME_OF_DAY("T", new TimeHandler(), 2), POWER_OUTAGE(
+				"P", new OutageHandler(), 3), CAR_DETECT("E",
+				new ElectricCarHandler(), 3), SOLAR_DETECT("R",
+				new SolarPanelHandler(), 3), BALLOON_DETECT_RESET("M",
+				new MylarBalloonHandler(), 2), DIG_DETECT_RESET("D",
+				new DigFaultHandler(), 2), LIGHT_ANIMATION("L",
+				new LEDHandler(), 178);
 
 		private final String prefix;
 		private final PacketHandler handler;
 
-		private PacketTypes(final String prefix, final PacketHandler handler) {
+		public final int expectedLength;
+
+		private PacketTypes(final String prefix, final PacketHandler handler,
+				final int expectedLength) {
 			this.prefix = prefix;
 			this.handler = handler;
+			this.expectedLength = expectedLength;
 		}
 
 		public String getPrefix() {
@@ -236,7 +244,7 @@ public class MainNetworkHandler {
 			} else {
 				out = out + "0";
 			}
-			
+
 			switch (data.load) {
 			case 1:
 				out = out + "1";
@@ -408,6 +416,8 @@ public class MainNetworkHandler {
 		network = Global.getNetworkInterface();
 	}
 
+	private String partialMessage = "";
+
 	/**
 	 * This is the primary step driver for the handler. Call all time-based
 	 * functions from here.
@@ -424,23 +434,54 @@ public class MainNetworkHandler {
 				break;
 			}
 
-			String message = null;
-			String pre = "";
-			PacketTypes type = null;
-			for (PacketTypes prefix : PacketTypes.values()) {
-				if (packet.message.startsWith(prefix.getPrefix())
-						&& prefix.getPrefix().length() > pre.length()) {
-					message = packet.message.substring(prefix.getPrefix()
-							.length());
-					pre = prefix.getPrefix();
-					type = prefix;
-				}
-			}
-			if (message == null) {
-				continue;
-			}
+			String packetMessage = partialMessage + packet.message;
+			Logger.getGlobal().log(Level.INFO,
+					"Parsing packet: " + packetMessage);
+			partialMessage = "";
 
-			type.input(message);
+			while (true) {
+				String message = null;
+				PacketTypes type = null;
+				for (PacketTypes prefix : PacketTypes.values()) {
+					if (packetMessage.startsWith(prefix.getPrefix())) {
+						if (packetMessage.length() < prefix.expectedLength) {
+							partialMessage = packetMessage;
+							Logger.getGlobal().log(
+									Level.INFO,
+									"Message broken between lines (done parsing): "
+											+ partialMessage);
+							break;
+						} else {
+							message = packetMessage.substring(prefix
+									.getPrefix().length(),
+									prefix.expectedLength);
+							Logger.getGlobal().log(Level.INFO,
+									"Parsing message: " + message);
+						}
+						type = prefix;
+						if (packetMessage.length() <= prefix.expectedLength) {
+							packetMessage = null;
+						} else {
+							packetMessage = packetMessage
+									.substring(prefix.expectedLength);
+						}
+					}
+				}
+				if (message == null) {
+					break;
+				}
+
+				Logger.getGlobal().log(Level.INFO,
+						"Running input type " + type.name());
+				type.input(message);
+
+				if (packetMessage == null || packetMessage.isEmpty()) {
+					Logger.getGlobal().log(Level.INFO, "Done parsing");
+					break;
+				}
+				Logger.getGlobal().log(Level.INFO,
+						"Remaining packet: " + packetMessage);
+			}
 		}
 	}
 
@@ -456,7 +497,8 @@ public class MainNetworkHandler {
 	public static void constructAndSendPacket(final PacketTypes type,
 			final Object param) {
 		final String out = type.output(param);
-		if (out != null && !out.isEmpty() && Global.getNetworkInterface().isConnected()) {
+		if (out != null && !out.isEmpty()
+				&& Global.getNetworkInterface().isConnected()) {
 			Global.getNetworkInterface().sendMessage(type.getPrefix() + out);
 		}
 	}
