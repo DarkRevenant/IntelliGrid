@@ -23,54 +23,33 @@ import android.opengl.GLUtils;
 class TextTextureManager {
 
 	private static final Map<String, Texture> textureMap = new LinkedHashMap<>();
-	
+
 	private static final int MAX_BUFFERED_TEXTURES = 500;
 
-	private static int measureHeight(final String text, final int fontSize,
-			final Typeface font, final float maxLineWidth) {
-		final Paint textPaint = new Paint();
-		textPaint.setTextSize(fontSize);
-		textPaint.setAntiAlias(true);
-		textPaint.setTypeface(font);
-		textPaint.setTextAlign(Align.LEFT);
-		textPaint.setARGB(0xff, 0xff, 0xff, 0xff);
-
-		Rect rect = new Rect();
-		textPaint.getTextBounds(text, 0, text.length(), rect);
-		final float lineSpacing = textPaint.getFontSpacing();
-		int currentStart = 0;
-		float totalHeight = rect.height();
-		while (currentStart < text.length()) {
-			if (currentStart != 0) {
-				totalHeight += lineSpacing;
-			}
-			int chars = textPaint.breakText(text.substring(currentStart), true,
-					maxLineWidth, null);
-			int skip = 0;
-			for (int i = currentStart; i < currentStart + chars; i++) {
-				if (text.charAt(i) == '\n') {
-					chars = i - currentStart;
-					skip++;
-					break;
-				}
-			}
-			if (skip == 0 && text.length() > currentStart + chars
-					&& text.charAt(currentStart + chars) != '\n'
-					&& text.charAt(currentStart + chars) != ' ') {
-				for (int i = currentStart + chars - 1; i >= currentStart; i--) {
-					if (text.charAt(i) == ' ') {
-						chars = i - currentStart;
-						skip++;
-						break;
-					}
-				}
-			}
-			currentStart += chars + skip;
-		}
-		// Logger.getGlobal().log(Level.SEVERE, "totalheight: " + totalHeight);
-
-		return (int) totalHeight;
-	}
+	/*
+	 * private static int measureHeight(final String text, final int fontSize,
+	 * final Typeface font, final float maxLineWidth) { final Paint textPaint =
+	 * new Paint(); textPaint.setTextSize(fontSize);
+	 * textPaint.setAntiAlias(true); textPaint.setTypeface(font);
+	 * textPaint.setTextAlign(Align.LEFT); textPaint.setARGB(0xff, 0xff, 0xff,
+	 * 0xff);
+	 * 
+	 * Rect rect = new Rect(); textPaint.getTextBounds(text, 0, text.length(),
+	 * rect); final float lineSpacing = textPaint.getFontSpacing(); int
+	 * currentStart = 0; float totalHeight = rect.height(); while (currentStart
+	 * < text.length()) { if (currentStart != 0) { totalHeight += lineSpacing; }
+	 * int chars = textPaint.breakText(text.substring(currentStart), true,
+	 * maxLineWidth, null); int skip = 0; for (int i = currentStart; i <
+	 * currentStart + chars; i++) { if (text.charAt(i) == '\n') { chars = i -
+	 * currentStart; skip++; break; } } if (skip == 0 && text.length() >
+	 * currentStart + chars && text.charAt(currentStart + chars) != '\n' &&
+	 * text.charAt(currentStart + chars) != ' ') { for (int i = currentStart +
+	 * chars - 1; i >= currentStart; i--) { if (text.charAt(i) == ' ') { chars =
+	 * i - currentStart; skip++; break; } } } currentStart += chars + skip; } //
+	 * Logger.getGlobal().log(Level.SEVERE, "totalheight: " + totalHeight);
+	 * 
+	 * return (int) totalHeight; }
+	 */
 
 	private static int getPowerOfTwo(final int in) {
 		int x = 64;
@@ -198,9 +177,8 @@ class TextTextureManager {
 
 	static Texture getTexture(final String text, final int fontSize,
 			final Typeface font, final float maxLineWidth) {
-		final float height = measureHeight(text, fontSize, font, maxLineWidth);
 		final String mapString = text + "$" + fontSize + "$" + font.toString()
-				+ "$" + (int) height + "$";
+				+ "$" + (int) maxLineWidth + "$";
 
 		if (!textureMap.containsKey(mapString)) {
 			final Texture texture = buildTexture(text, fontSize, font,
@@ -245,8 +223,10 @@ class TextTextureManager {
 			count++;
 		}
 
-		//Logger.getGlobal().log(Level.SEVERE, "Removing " + count + " textures");
-		//Logger.getGlobal().log(Level.SEVERE, "Still has " + textureMap.size() + " textures");
+		// Logger.getGlobal().log(Level.SEVERE, "Removing " + count +
+		// " textures");
+		// Logger.getGlobal().log(Level.SEVERE, "Still has " + textureMap.size()
+		// + " textures");
 		glDeleteTextures(count, toRemove, 0);
 	}
 }

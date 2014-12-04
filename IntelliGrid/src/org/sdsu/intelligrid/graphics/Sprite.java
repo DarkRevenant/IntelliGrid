@@ -67,7 +67,6 @@ public class Sprite implements Drawable {
 	private int texture;
 	private int resource;
 	private int texture2;
-	private int resource2;
 
 	private float time = 1f;
 	private float progress = 1f;
@@ -95,14 +94,12 @@ public class Sprite implements Drawable {
 		spriteTexCoordinateBuffer.put(spriteTexCoordinateData).position(0);
 
 		// Load the vertex shader text
-		String vert;
-		vert = StringUtils.rawResourceToString(Global.getResources(),
-				org.sdsu.intelligrid.R.raw.spritevert);
+		final String vert = StringUtils.rawResourceToString(
+				Global.getResources(), org.sdsu.intelligrid.R.raw.spritevert);
 
 		// Load the fragment shader text
-		String frag;
-		frag = StringUtils.rawResourceToString(Global.getResources(),
-				org.sdsu.intelligrid.R.raw.spritefrag);
+		final String frag = StringUtils.rawResourceToString(
+				Global.getResources(), org.sdsu.intelligrid.R.raw.spritefrag);
 
 		// Load and compile the shader
 		spriteShader = MainRenderer.loadShader(vert, frag);
@@ -307,7 +304,6 @@ public class Sprite implements Drawable {
 	 *            the time to blend the sprite transition
 	 */
 	public void setResourceOverTime(final int resource, final float time) {
-		resource2 = this.resource;
 		texture2 = texture;
 
 		this.resource = resource;
@@ -353,9 +349,8 @@ public class Sprite implements Drawable {
 	@Override
 	public void advance(final float amount) {
 		if (progress < 1f) {
-			progress += amount;
+			progress += amount / time;
 			if (progress >= 1f) {
-				resource2 = -1;
 				texture2 = -1;
 			}
 		}

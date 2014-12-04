@@ -113,6 +113,11 @@ public class NetworkInterface implements Runnable {
 		public void run() {
 			while (!Thread.currentThread().isInterrupted()) {
 				if (clientSocket == null || reader == null) {
+					try {
+						Thread.sleep(5000);
+					} catch (InterruptedException e) {
+						Logger.getGlobal().log(Level.SEVERE, e.getMessage());
+					}
 					continue;
 				}
 
@@ -208,7 +213,8 @@ public class NetworkInterface implements Runnable {
 						clientSocket = null;
 						continue;
 					}
-					//Logger.getGlobal().log(Level.INFO, "Sent \"" + out + "\"");
+					// Logger.getGlobal().log(Level.INFO, "Sent \"" + out +
+					// "\"");
 				}
 			}
 		}
