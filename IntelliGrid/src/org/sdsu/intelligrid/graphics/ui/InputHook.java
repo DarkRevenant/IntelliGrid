@@ -213,6 +213,16 @@ public class InputHook {
             MainUI.ClickableObjects.house2bpopup.setDepth(11);
             MainUI.ClickableObjects.house2bsolarcheck.setDepth(11);
             MainUI.ClickableObjects.house2bsolarcheckoff.setDepth(11);
+            if (graphsOn) {
+                Global.getMainActivity().runOnUiThread(new Runnable() {
+                    public void run() {
+                        ((ViewGroup) Global.getGraphFragment().getView()
+                                .getParent()).removeView(Global
+                                .getGraphFragment().getView());
+                    }
+                });
+                graphsOn = false;
+            }
 		}
 		if (object.getId().equals("exitinfo") || object.getId().equals("infopage")) {
 			MainUI.ClickableObjects.infopage.setDepth(11);
@@ -372,6 +382,16 @@ public class InputHook {
             MainUI.ClickableObjects.house2bpopup.setDepth(11);
             MainUI.ClickableObjects.house2bsolarcheck.setDepth(11);
             MainUI.ClickableObjects.house2bsolarcheckoff.setDepth(11);
+            if (graphsOn) {
+                Global.getMainActivity().runOnUiThread(new Runnable() {
+                    public void run() {
+                        ((ViewGroup) Global.getGraphFragment().getView()
+                                .getParent()).removeView(Global
+                                .getGraphFragment().getView());
+                    }
+                });
+                graphsOn = false;
+            }
 		}
 		if (object.getId().equals("faulta")) {
 			Global.getGlobalSimulation().faultManager.startGenericFault("A");
