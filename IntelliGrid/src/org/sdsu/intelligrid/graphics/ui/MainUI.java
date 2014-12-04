@@ -352,13 +352,14 @@ public class MainUI {
         public static ClickableSprite transformer4;
         public static ClickableSprite transformer5;
         public static ClickableSprite transformer6;
+        public static ClickableSprite balloon;
+        public static ClickableSprite trackhoe;
     }
 
     public static class Objects {
         public static Sprite battery1;
         public static Sprite battery2;
         public static Sprite battery3;
-        public static Sprite balloon;
         public static Sprite midway;
         public static Sprite museum;
         public static Sprite sdge;
@@ -408,7 +409,6 @@ public class MainUI {
         public static Sprite play3down;
         public static Sprite paths;
         public static Sprite intelligrid;
-        public static Sprite trackhoe;
         public static Sprite coal;
         public static Sprite sunny;
         public static Sprite partlycloudy;
@@ -512,7 +512,7 @@ public class MainUI {
         addClickable(ClickableObjects.info);
 
         ClickableObjects.infopage = new ClickableSprite(pixelsToCoords(1280, 800), 11, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.infopage, sizeToCoords(0,0), sizeToCoords(0,0), "infopage");
+                new Color(255, 255, 255), R.drawable.infopage, sizeToCoords(-1050,-625), sizeToCoords(1050,625), "infopage");
         Global.getRenderer().addDrawable(ClickableObjects.infopage);
         addClickable(ClickableObjects.infopage);
 
@@ -960,13 +960,15 @@ public class MainUI {
                 new Color(255, 255, 255), R.drawable.midway);
         Global.getRenderer().addDrawable(Objects.midway);
 
-        Objects.balloon = new Sprite(pixelsToCoords(300, 680), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.balloon);
-        Global.getRenderer().addDrawable(Objects.balloon);
+        ClickableObjects.balloon = new ClickableSprite(pixelsToCoords(300, 680), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.balloon, sizeToCoords(-20,-44), sizeToCoords(20,44), "balloon");
+        Global.getRenderer().addDrawable(ClickableObjects.balloon);
+        addClickable(ClickableObjects.balloon);
 
-        Objects.trackhoe = new Sprite(pixelsToCoords(1305, 550), 0, 0f, new Vector2f(1f, 1f),
-                new Color(255, 255, 255), R.drawable.trackhoe);
-        Global.getRenderer().addDrawable(Objects.trackhoe);
+        ClickableObjects.trackhoe = new ClickableSprite(pixelsToCoords(1305, 550), 0, 0f, new Vector2f(1f, 1f),
+                new Color(255, 255, 255), R.drawable.trackhoe, sizeToCoords(-32,-30), sizeToCoords(32,30), "trackhoe");
+        Global.getRenderer().addDrawable(ClickableObjects.trackhoe);
+        addClickable(ClickableObjects.trackhoe);
 
         Objects.battery1 = new Sprite(pixelsToCoords(1500, 1055), 11, 0f, new Vector2f(1f, 1f),
                 new Color(255, 255, 255), R.drawable.battery1);
@@ -2007,6 +2009,8 @@ public class MainUI {
             ClickableObjects.transformer4.setResourceOverTime(R.drawable.transformer1night, DAY_NIGHT_TRANSITION_TIME);
             ClickableObjects.transformer5.setResourceOverTime(R.drawable.transformer1night, DAY_NIGHT_TRANSITION_TIME);
             ClickableObjects.transformer6.setResourceOverTime(R.drawable.transformer1night, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.balloon.setResourceOverTime(R.drawable.balloonnight, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.trackhoe.setResourceOverTime(R.drawable.trackhoenight, DAY_NIGHT_TRANSITION_TIME);
             Objects.sunny.setResourceOverTime(R.drawable.night, DAY_NIGHT_TRANSITION_TIME);
             Objects.partlycloudy.setResourceOverTime(R.drawable.night, DAY_NIGHT_TRANSITION_TIME);
             Objects.cloudy.setResourceOverTime(R.drawable.night, DAY_NIGHT_TRANSITION_TIME);
@@ -2046,10 +2050,6 @@ public class MainUI {
             Objects.tie.setResourceOverTime(R.drawable.tienight, DAY_NIGHT_TRANSITION_TIME);
             Objects.tieopen.setResourceOverTime(R.drawable.tieopennight, DAY_NIGHT_TRANSITION_TIME);
             Objects.sdge.setResourceOverTime(R.drawable.sdgenight, DAY_NIGHT_TRANSITION_TIME);
-
-
-            Objects.balloon.setResourceOverTime(R.drawable.balloonnight, DAY_NIGHT_TRANSITION_TIME);
-            Objects.trackhoe.setResourceOverTime(R.drawable.trackhoenight, DAY_NIGHT_TRANSITION_TIME);
             UIInfo.trA.setColor(new Color(255, 255, 255));
             UIInfo.trB.setColor(new Color(255, 255, 255));
             UIInfo.trC.setColor(new Color(255, 255, 255));
@@ -2106,6 +2106,8 @@ public class MainUI {
             ClickableObjects.transformer4.setResourceOverTime(R.drawable.transformer1, DAY_NIGHT_TRANSITION_TIME);
             ClickableObjects.transformer5.setResourceOverTime(R.drawable.transformer1, DAY_NIGHT_TRANSITION_TIME);
             ClickableObjects.transformer6.setResourceOverTime(R.drawable.transformer1, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.balloon.setResourceOverTime(R.drawable.balloon, DAY_NIGHT_TRANSITION_TIME);
+            ClickableObjects.trackhoe.setResourceOverTime(R.drawable.trackhoe, DAY_NIGHT_TRANSITION_TIME);
             Objects.sunny.setResourceOverTime(R.drawable.sunny, DAY_NIGHT_TRANSITION_TIME);
             Objects.partlycloudy.setResourceOverTime(R.drawable.partlycloudy, DAY_NIGHT_TRANSITION_TIME);
             Objects.cloudy.setResourceOverTime(R.drawable.cloudy, DAY_NIGHT_TRANSITION_TIME);
@@ -2146,10 +2148,6 @@ public class MainUI {
             Objects.tie.setResourceOverTime(R.drawable.tie, DAY_NIGHT_TRANSITION_TIME);
             Objects.tieopen.setResourceOverTime(R.drawable.tieopen, DAY_NIGHT_TRANSITION_TIME);
             Objects.sdge.setResourceOverTime(R.drawable.sdge, DAY_NIGHT_TRANSITION_TIME);
-
-
-            Objects.balloon.setResourceOverTime(R.drawable.balloon, DAY_NIGHT_TRANSITION_TIME);
-            Objects.trackhoe.setResourceOverTime(R.drawable.trackhoe, DAY_NIGHT_TRANSITION_TIME);
             UIInfo.trA.setColor(new Color(0, 0, 0));
             UIInfo.trB.setColor(new Color(0, 0, 0));
             UIInfo.trC.setColor(new Color(0, 0, 0));

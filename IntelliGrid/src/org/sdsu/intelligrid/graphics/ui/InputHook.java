@@ -214,7 +214,7 @@ public class InputHook {
             MainUI.ClickableObjects.house2bsolarcheck.setDepth(11);
             MainUI.ClickableObjects.house2bsolarcheckoff.setDepth(11);
 		}
-		if (object.getId().equals("exitinfo")) {
+		if (object.getId().equals("exitinfo") || object.getId().equals("infopage")) {
 			MainUI.ClickableObjects.infopage.setDepth(11);
 			MainUI.ClickableObjects.exitinfo.setDepth(11);
 		}
@@ -246,6 +246,68 @@ public class InputHook {
 				});
 				graphsOn = false;
 			}
+            MainUI.ClickableObjects.load1stats.setDepth(11);
+            MainUI.UIInfo.Load1.setDepth(11);
+            MainUI.ClickableObjects.load2stats.setDepth(11);
+            MainUI.UIInfo.Load2.setDepth(11);
+            MainUI.ClickableObjects.load3stats.setDepth(11);
+            MainUI.UIInfo.Load3.setDepth(11);
+            MainUI.ClickableObjects.load4stats.setDepth(11);
+            MainUI.UIInfo.Load4.setDepth(11);
+            MainUI.ClickableObjects.load5stats.setDepth(11);
+            MainUI.UIInfo.Load5.setDepth(11);
+            MainUI.ClickableObjects.load6stats.setDepth(11);
+            MainUI.UIInfo.Load6.setDepth(11);
+            MainUI.ClickableObjects.info.setDepth(11);
+            MainUI.ClickableObjects.infopage.setDepth(11);
+            MainUI.ClickableObjects.exitinfo.setDepth(11);
+            MainUI.ClickableObjects.faultspage.setDepth(11);
+            MainUI.ClickableObjects.exitfaults.setDepth(11);
+            MainUI.ClickableObjects.fault_a.setDepth(11);
+            MainUI.ClickableObjects.fault_b.setDepth(11);
+            MainUI.ClickableObjects.fault_c.setDepth(11);
+            MainUI.ClickableObjects.fault_d.setDepth(11);
+            MainUI.ClickableObjects.fault_e.setDepth(11);
+            MainUI.ClickableObjects.fault_f.setDepth(11);
+            MainUI.ClickableObjects.fault_h.setDepth(11);
+            MainUI.ClickableObjects.fault_i.setDepth(11);
+            MainUI.ClickableObjects.fault_j.setDepth(11);
+            MainUI.ClickableObjects.fault_k.setDepth(11);
+            MainUI.ClickableObjects.fault_l.setDepth(11);
+            MainUI.ClickableObjects.fault_m.setDepth(11);
+            MainUI.ClickableObjects.balloonfault.setDepth(11);
+            MainUI.ClickableObjects.digfault.setDepth(11);
+            MainUI.ClickableObjects.nofault.setDepth(11);
+            MainUI.ClickableObjects.turbinepopup.setDepth(11);
+            MainUI.ClickableObjects.turbinehighcheck.setDepth(11);
+            MainUI.ClickableObjects.turbinehighcheckoff.setDepth(11);
+            MainUI.ClickableObjects.turbinemediumcheck.setDepth(11);
+            MainUI.ClickableObjects.turbinemediumcheckoff.setDepth(11);
+            MainUI.ClickableObjects.turbinelowcheck.setDepth(11);
+            MainUI.ClickableObjects.turbinelowcheckoff.setDepth(11);
+            MainUI.ClickableObjects.turbineoffcheck.setDepth(11);
+            MainUI.ClickableObjects.turbineoffcheckoff.setDepth(11);
+            MainUI.ClickableObjects.house1apopup.setDepth(11);
+            MainUI.ClickableObjects.house1asolarcheck.setDepth(11);
+            MainUI.ClickableObjects.house1asolarcheckoff.setDepth(11);
+            MainUI.ClickableObjects.house1acarcheck.setDepth(11);
+            MainUI.ClickableObjects.house1acarcheckoff.setDepth(11);
+            MainUI.ClickableObjects.house1bpopup.setDepth(11);
+            MainUI.ClickableObjects.house1bsolarcheck.setDepth(11);
+            MainUI.ClickableObjects.house1bsolarcheckoff.setDepth(11);
+            MainUI.ClickableObjects.house1bcarcheck.setDepth(11);
+            MainUI.ClickableObjects.house1bcarcheckoff.setDepth(11);
+            MainUI.ClickableObjects.house1cpopup.setDepth(11);
+            MainUI.ClickableObjects.house1csolarcheck.setDepth(11);
+            MainUI.ClickableObjects.house1csolarcheckoff.setDepth(11);
+            MainUI.ClickableObjects.house1ccarcheck.setDepth(11);
+            MainUI.ClickableObjects.house1ccarcheckoff.setDepth(11);
+            MainUI.ClickableObjects.house2apopup.setDepth(11);
+            MainUI.ClickableObjects.house2asolarcheck.setDepth(11);
+            MainUI.ClickableObjects.house2asolarcheckoff.setDepth(11);
+            MainUI.ClickableObjects.house2bpopup.setDepth(11);
+            MainUI.ClickableObjects.house2bsolarcheck.setDepth(11);
+            MainUI.ClickableObjects.house2bsolarcheckoff.setDepth(11);
 		}
 
 		// Faults Page
@@ -552,7 +614,7 @@ public class InputHook {
 			MainUI.ClickableObjects.faultspage.setDepth(11);
 			MainUI.ClickableObjects.exitfaults.setDepth(11);
 		}
-		if (object.getId().equals("balloonfault")) {
+		if (object.getId().equals("balloonfault") || object.getId().equals("balloon")) {
 			MainNetworkHandler.constructAndSendPacket(
 					PacketTypes.BALLOON_DETECT_RESET, true);
 			Global.getGlobalSimulation().faultManager.startBalloonFault();
@@ -574,7 +636,7 @@ public class InputHook {
 			MainUI.ClickableObjects.faultspage.setDepth(11);
 			MainUI.ClickableObjects.exitfaults.setDepth(11);
 		}
-		if (object.getId().equals("digfault")) {
+		if (object.getId().equals("digfault") || object.getId().equals("trackhoe")) {
 			MainNetworkHandler.constructAndSendPacket(
 					PacketTypes.DIG_DETECT_RESET, true);
 			Global.getGlobalSimulation().faultManager.startDigFault();
