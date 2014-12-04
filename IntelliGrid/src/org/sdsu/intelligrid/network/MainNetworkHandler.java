@@ -144,8 +144,6 @@ public class MainNetworkHandler {
 		// param == integer representing the wind generation level
 		@Override
 		public String output(final Object param) {
-			// This is not called anywhere yet
-
 			final int val = (int) param;
 			final String out;
 			switch (val) {

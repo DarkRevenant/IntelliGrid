@@ -1288,7 +1288,7 @@ public class InputHook {
 		}
 
 		// Wind Turbines
-		if (object.getId().equals("turbine")) {
+		if (object.getId().equals("turbine") || object.getId().equals("turbine2")) {
             MainUI.ClickableObjects.turbinepopup.setDepth(-1);
             if (Global.getGlobalSimulation().data.windGenerationLevel.get() >= 0.7) { //high
                 MainUI.ClickableObjects.turbinehighcheck.setDepth(-2);
@@ -1305,52 +1305,7 @@ public class InputHook {
                 MainUI.ClickableObjects.turbinemediumcheckoff.setDepth(-2);
                 MainUI.ClickableObjects.turbinelowcheck.setDepth(-2);
                 MainUI.ClickableObjects.turbineoffcheckoff.setDepth(-2);
-            } else if (Global.getGlobalSimulation().data.windGenerationLevel.get() >= 0.0) { //off
-                MainUI.ClickableObjects.turbinehighcheckoff.setDepth(-2);
-                MainUI.ClickableObjects.turbinemediumcheckoff.setDepth(-2);
-                MainUI.ClickableObjects.turbinelowcheckoff.setDepth(-2);
-                MainUI.ClickableObjects.turbineoffcheck.setDepth(-2);
-            }
-            MainUI.ClickableObjects.house1apopup.setDepth(11);
-            MainUI.ClickableObjects.house1asolarcheck.setDepth(11);
-            MainUI.ClickableObjects.house1asolarcheckoff.setDepth(11);
-            MainUI.ClickableObjects.house1acarcheck.setDepth(11);
-            MainUI.ClickableObjects.house1acarcheckoff.setDepth(11);
-            MainUI.ClickableObjects.house1bpopup.setDepth(11);
-            MainUI.ClickableObjects.house1bsolarcheck.setDepth(11);
-            MainUI.ClickableObjects.house1bsolarcheckoff.setDepth(11);
-            MainUI.ClickableObjects.house1bcarcheck.setDepth(11);
-            MainUI.ClickableObjects.house1bcarcheckoff.setDepth(11);
-            MainUI.ClickableObjects.house1cpopup.setDepth(11);
-            MainUI.ClickableObjects.house1csolarcheck.setDepth(11);
-            MainUI.ClickableObjects.house1csolarcheckoff.setDepth(11);
-            MainUI.ClickableObjects.house1ccarcheck.setDepth(11);
-            MainUI.ClickableObjects.house1ccarcheckoff.setDepth(11);
-            MainUI.ClickableObjects.house2apopup.setDepth(11);
-            MainUI.ClickableObjects.house2asolarcheck.setDepth(11);
-            MainUI.ClickableObjects.house2asolarcheckoff.setDepth(11);
-            MainUI.ClickableObjects.house2bpopup.setDepth(11);
-            MainUI.ClickableObjects.house2bsolarcheck.setDepth(11);
-            MainUI.ClickableObjects.house2bsolarcheckoff.setDepth(11);
-        }
-        if (object.getId().equals("turbine2")) {
-            MainUI.ClickableObjects.turbinepopup.setDepth(-1);
-            if (Global.getGlobalSimulation().data.windGenerationLevel.get() >= 0.7) { //high
-                MainUI.ClickableObjects.turbinehighcheck.setDepth(-2);
-                MainUI.ClickableObjects.turbinemediumcheckoff.setDepth(-2);
-                MainUI.ClickableObjects.turbinelowcheckoff.setDepth(-2);
-                MainUI.ClickableObjects.turbineoffcheckoff.setDepth(-2);
-            } else if (Global.getGlobalSimulation().data.windGenerationLevel.get() >= 0.4) { //medium
-                MainUI.ClickableObjects.turbinehighcheckoff.setDepth(-2);
-                MainUI.ClickableObjects.turbinemediumcheck.setDepth(-2);
-                MainUI.ClickableObjects.turbinelowcheckoff.setDepth(-2);
-                MainUI.ClickableObjects.turbineoffcheckoff.setDepth(-2);
-            } else if (Global.getGlobalSimulation().data.windGenerationLevel.get() >= 0.1) { //low
-                MainUI.ClickableObjects.turbinehighcheckoff.setDepth(-2);
-                MainUI.ClickableObjects.turbinemediumcheckoff.setDepth(-2);
-                MainUI.ClickableObjects.turbinelowcheck.setDepth(-2);
-                MainUI.ClickableObjects.turbineoffcheckoff.setDepth(-2);
-            } else if (Global.getGlobalSimulation().data.windGenerationLevel.get() >= 0.0) { //off
+            } else { //off
                 MainUI.ClickableObjects.turbinehighcheckoff.setDepth(-2);
                 MainUI.ClickableObjects.turbinemediumcheckoff.setDepth(-2);
                 MainUI.ClickableObjects.turbinelowcheckoff.setDepth(-2);
@@ -1379,7 +1334,8 @@ public class InputHook {
             MainUI.ClickableObjects.house2bsolarcheckoff.setDepth(11);
         }
         if (object.getId().equals("turbinehighcheckoff")) {
-		    Global.getGlobalSimulation().data.windGenerationLevel.set(0.7);
+            MainNetworkHandler.constructAndSendPacket(PacketTypes.WIND_GENERATION_LEVEL, 3);
+		    Global.getGlobalSimulation().data.windGenerationLevel.set(1.0);
             MainUI.ClickableObjects.turbinehighcheck.setDepth(-2);
             MainUI.ClickableObjects.turbinehighcheckoff.setDepth(11);
             MainUI.ClickableObjects.turbinemediumcheck.setDepth(11);
@@ -1390,7 +1346,8 @@ public class InputHook {
             MainUI.ClickableObjects.turbineoffcheckoff.setDepth(-2);
 		}
         if (object.getId().equals("turbinemediumcheckoff")) {
-            Global.getGlobalSimulation().data.windGenerationLevel.set(0.4);
+            MainNetworkHandler.constructAndSendPacket(PacketTypes.WIND_GENERATION_LEVEL, 2);
+            Global.getGlobalSimulation().data.windGenerationLevel.set(2.0 / 3.0);
             MainUI.ClickableObjects.turbinehighcheck.setDepth(11);
             MainUI.ClickableObjects.turbinehighcheckoff.setDepth(-2);
             MainUI.ClickableObjects.turbinemediumcheck.setDepth(-2);
@@ -1401,7 +1358,8 @@ public class InputHook {
             MainUI.ClickableObjects.turbineoffcheckoff.setDepth(-2);
         }
         if (object.getId().equals("turbinelowcheckoff")) {
-            Global.getGlobalSimulation().data.windGenerationLevel.set(0.1);
+            MainNetworkHandler.constructAndSendPacket(PacketTypes.WIND_GENERATION_LEVEL, 1);
+            Global.getGlobalSimulation().data.windGenerationLevel.set(1.0 / 3.0);
             MainUI.ClickableObjects.turbinehighcheck.setDepth(11);
             MainUI.ClickableObjects.turbinehighcheckoff.setDepth(-2);
             MainUI.ClickableObjects.turbinemediumcheck.setDepth(11);
@@ -1412,6 +1370,7 @@ public class InputHook {
             MainUI.ClickableObjects.turbineoffcheckoff.setDepth(-2);
         }
         if (object.getId().equals("turbineoffcheckoff")) {
+            MainNetworkHandler.constructAndSendPacket(PacketTypes.WIND_GENERATION_LEVEL, 0);
             Global.getGlobalSimulation().data.windGenerationLevel.set(0.0);
             MainUI.ClickableObjects.turbinehighcheck.setDepth(11);
             MainUI.ClickableObjects.turbinehighcheckoff.setDepth(-2);
