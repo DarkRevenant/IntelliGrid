@@ -937,11 +937,11 @@ public class LightAnimation {
 
 		if ((float) SimInfo.trA > OFF_THRESHOLD) {
 			final float flow = (float) SimInfo.trA * amount;
-			final float greenFlow = (float) (SimInfo.PowPlant + SimInfo.WindTurbines)
-					* (float) (SimInfo.trA / (SimInfo.trA + SimInfo.trM + SimInfo.BatteryStorage
-							* SimInfo.GenScale))
-					* amount
-					* (float) SimInfo.GenScale;
+			final float greenFlow = (float) (SimInfo.PowPlant
+					+ SimInfo.WindTurbines + Math.max(0.0,
+					SimInfo.BatteryStorage))
+					* (float) (SimInfo.trA / (SimInfo.trA + SimInfo.trM))
+					* amount * (float) SimInfo.GenScale;
 			final float blueFlow = flow - greenFlow;
 
 			final Segment strand = (Segment) LightStrands.SEGMENT_A.strand;
@@ -1081,11 +1081,11 @@ public class LightAnimation {
 
 		if ((float) SimInfo.trM > OFF_THRESHOLD) {
 			final float flow = (float) SimInfo.trM * amount;
-			final float greenFlow = (float) (SimInfo.PowPlant + SimInfo.WindTurbines)
-					* (float) (SimInfo.trM / (SimInfo.trA + SimInfo.trM + SimInfo.BatteryStorage
-							* SimInfo.GenScale))
-					* amount
-					* (float) SimInfo.GenScale;
+			final float greenFlow = (float) (SimInfo.PowPlant
+					+ SimInfo.WindTurbines + Math.max(0.0,
+					SimInfo.BatteryStorage))
+					* (float) (SimInfo.trM / (SimInfo.trA + SimInfo.trM))
+					* amount * (float) SimInfo.GenScale;
 			final float blueFlow = flow - greenFlow;
 
 			final Segment strand = (Segment) LightStrands.SEGMENT_M.strand;
