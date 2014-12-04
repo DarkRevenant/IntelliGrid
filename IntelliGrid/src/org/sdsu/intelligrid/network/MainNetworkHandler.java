@@ -2,11 +2,13 @@
 
 package org.sdsu.intelligrid.network;
 
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.sdsu.intelligrid.Global;
 import org.sdsu.intelligrid.graphics.ui.LightAnimation;
+import org.sdsu.intelligrid.graphics.ui.LightAnimation.LightStates;
 
 /**
  * Main network handler class for the application.
@@ -401,11 +403,15 @@ public class MainNetworkHandler {
 		// param == null
 		@Override
 		public String output(final Object param) {
-			String out = "";
-			for (int i = 1; i <= 177; i++) {
-				out = out + LightAnimation.getState(i).signal;
+			final char[] out = new char[177];
+			int i = 0;
+			Iterator<LightStates> iter = LightAnimation.getStates().values()
+					.iterator();
+			while (iter.hasNext()) {
+				out[i] = iter.next().signal;
+				i++;
 			}
-			return out;
+			return String.valueOf(out);
 		}
 	}
 

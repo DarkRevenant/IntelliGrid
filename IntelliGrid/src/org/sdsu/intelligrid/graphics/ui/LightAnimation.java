@@ -4,8 +4,8 @@ package org.sdsu.intelligrid.graphics.ui;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,13 +23,12 @@ public class LightAnimation {
 	}
 
 	public static enum LightStates {
-		OFF((byte) 0), RED((byte) 1), BLUE((byte) 2), DIMMER_BLUE((byte) 3), DIMMEST_BLUE(
-				(byte) 4), GREEN((byte) 5), DIMMER_GREEN((byte) 6), DIMMEST_GREEN(
-				(byte) 7);
+		OFF('0'), RED('1'), BLUE('2'), DIMMER_BLUE('3'), DIMMEST_BLUE('4'), GREEN(
+				'5'), DIMMER_GREEN('6'), DIMMEST_GREEN('7');
 
-		public final byte signal;
+		public final char signal;
 
-		private LightStates(final byte signal) {
+		private LightStates(final char signal) {
 			this.signal = signal;
 		}
 	}
@@ -213,15 +212,17 @@ public class LightAnimation {
 				172, 171, 170, 169, 168);
 	}
 
-	protected static final Map<Integer, LightStates> states = new HashMap<>();
+	protected static final Map<Integer, LightStates> states = new LinkedHashMap<>(
+			177);
 
-	public static LightStates getState(final int led) {
-		final LightStates state = states.get(led);
-		if (state == null) {
-			return LightStates.OFF;
-		} else {
-			return state;
+	static {
+		for (int i = 1; i <= 177; i++) {
+			states.put(i, LightStates.OFF);
 		}
+	}
+
+	public static Map<Integer, LightStates> getStates() {
+		return states;
 	}
 
 	private static class Orb {
@@ -238,6 +239,7 @@ public class LightAnimation {
 		public boolean forward = true;
 		private float alpha = 1f;
 		public boolean onHardware = false;
+		private boolean isNight;
 
 		private List<Integer> previous = new ArrayList<>();
 
@@ -258,6 +260,7 @@ public class LightAnimation {
 					color = new Color(111, 255, 0);
 				}
 				additive = true;
+				isNight = true;
 			} else {
 				if (type == OrbTypes.BLUE) {
 					color = new Color(100, 255, 250);
@@ -265,6 +268,7 @@ public class LightAnimation {
 					color = new Color(125, 255, 75);
 				}
 				additive = false;
+				isNight = false;
 			}
 
 			sprite = new Sprite(MainUI.ledPositionMap.get(from), 1, 0f,
@@ -284,24 +288,29 @@ public class LightAnimation {
 
 			final Color color;
 			final boolean additive;
-			if (Global.getGlobalSimulation().data.time >= 19.5
-					|| Global.getGlobalSimulation().data.time <= 6.0) {
+			if ((Global.getGlobalSimulation().data.time >= 19.5 || Global
+					.getGlobalSimulation().data.time <= 6.0) && !isNight) {
 				if (type == OrbTypes.BLUE) {
 					color = new Color(70, 255, 244);
 				} else {
 					color = new Color(111, 255, 0);
 				}
 				additive = true;
-			} else {
+				isNight = true;
+				sprite.setColor(color);
+				sprite.setAdditive(additive);
+			} else if ((Global.getGlobalSimulation().data.time < 19.5 && Global
+					.getGlobalSimulation().data.time > 6.0) && isNight) {
 				if (type == OrbTypes.BLUE) {
 					color = new Color(100, 255, 250);
 				} else {
 					color = new Color(125, 255, 75);
 				}
 				additive = false;
+				isNight = false;
+				sprite.setColor(color);
+				sprite.setAdditive(additive);
 			}
-			sprite.setColor(color);
-			sprite.setAdditive(additive);
 
 			final float dist = Vector2f.sub(MainUI.ledPositionMap.get(toLED),
 					MainUI.ledPositionMap.get(fromLED), null).length();
@@ -452,7 +461,7 @@ public class LightAnimation {
 		if (Global.getGlobalSimulation().data.timeScale <= (double) OFF_THRESHOLD) {
 			return;
 		}
-        amount *= Global.getGlobalSimulation().data.timeScale / 288.0;
+		amount *= Global.getGlobalSimulation().data.timeScale / 288.0;
 		Iterator<Orb> iter = orbs.iterator();
 		while (iter.hasNext()) {
 			final Orb orb = iter.next();
@@ -928,11 +937,11 @@ public class LightAnimation {
 
 		if ((float) SimInfo.trA > OFF_THRESHOLD) {
 			final float flow = (float) SimInfo.trA * amount;
-			final float greenFlow = (float) (SimInfo.PowPlant + SimInfo.WindTurbines)
-					* (float) (SimInfo.trA / (SimInfo.trA + SimInfo.trM + SimInfo.BatteryStorage
-							* SimInfo.GenScale))
-					* amount
-					* (float) SimInfo.GenScale;
+			final float greenFlow = (float) (SimInfo.PowPlant
+					+ SimInfo.WindTurbines + Math.max(0.0,
+					SimInfo.BatteryStorage))
+					* (float) (SimInfo.trA / (SimInfo.trA + SimInfo.trM))
+					* amount * (float) SimInfo.GenScale;
 			final float blueFlow = flow - greenFlow;
 
 			final Segment strand = (Segment) LightStrands.SEGMENT_A.strand;
@@ -1072,11 +1081,11 @@ public class LightAnimation {
 
 		if ((float) SimInfo.trM > OFF_THRESHOLD) {
 			final float flow = (float) SimInfo.trM * amount;
-			final float greenFlow = (float) (SimInfo.PowPlant + SimInfo.WindTurbines)
-					* (float) (SimInfo.trM / (SimInfo.trA + SimInfo.trM + SimInfo.BatteryStorage
-							* SimInfo.GenScale))
-					* amount
-					* (float) SimInfo.GenScale;
+			final float greenFlow = (float) (SimInfo.PowPlant
+					+ SimInfo.WindTurbines + Math.max(0.0,
+					SimInfo.BatteryStorage))
+					* (float) (SimInfo.trM / (SimInfo.trA + SimInfo.trM))
+					* amount * (float) SimInfo.GenScale;
 			final float blueFlow = flow - greenFlow;
 
 			final Segment strand = (Segment) LightStrands.SEGMENT_M.strand;
