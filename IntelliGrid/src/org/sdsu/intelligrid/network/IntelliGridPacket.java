@@ -11,9 +11,12 @@ public class IntelliGridPacket {
 
 	public final String message;
 	public final Date date;
+	public int repeat;
 
-	public IntelliGridPacket(final String message, final Date date) {
+	public IntelliGridPacket(final String message, final Date date,
+			final int repeat) {
 		this.message = message;
 		this.date = date;
+		this.repeat = repeat;
 	}
 }

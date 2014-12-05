@@ -22,6 +22,11 @@ public class NetworkInterface implements Runnable {
 	private static final int INPUT_BUFFER_CAPACITY = 10000;
 	private static final int OUTPUT_BUFFER_CAPACITY = 10;
 
+	private static final int RETRY_CONNECTION_DELAY_MS = 5000;
+	private static final int TIME_BETWEEN_PACKETS_MS = 10;
+
+	private static final int DELAY_AFTER_CONNECT_MS = 5000;
+
 	private static final boolean ENABLE_NETWORK = true;
 
 	private final Queue<IntelliGridPacket> outputBuffer = new ArrayBlockingQueue<>(
@@ -42,7 +47,7 @@ public class NetworkInterface implements Runnable {
 	private BufferedReader reader = null;
 	private BufferedWriter writer = null;
 
-	private float waitAfterConnect = 5f;
+	private int waitAfterConnect = DELAY_AFTER_CONNECT_MS;
 	private long startTime;
 
 	/**
@@ -54,8 +59,10 @@ public class NetworkInterface implements Runnable {
 	 * 
 	 * @param message
 	 *            the message to send in the packet
+	 * @param repeat
+	 *            how many times to send the packet (error checking kludge)
 	 */
-	public void sendMessage(final String message) {
+	public void sendMessage(final String message, final int repeat) {
 		if (clientSocket == null) {
 			Logger.getGlobal().log(Level.INFO, "No client to send message!");
 			return;
@@ -64,7 +71,7 @@ public class NetworkInterface implements Runnable {
 			outputBuffer.remove();
 			Logger.getGlobal().log(Level.INFO, "Buffer Full!");
 		}
-		outputBuffer.add(new IntelliGridPacket(message, new Date()));
+		outputBuffer.add(new IntelliGridPacket(message, new Date(), repeat));
 	}
 
 	/**
@@ -89,7 +96,7 @@ public class NetworkInterface implements Runnable {
 	 * Returns <tt>false</tt> otherwise.
 	 */
 	public boolean isConnected() {
-		return clientSocket != null && waitAfterConnect <= 0f;
+		return clientSocket != null && waitAfterConnect < 0;
 	}
 
 	private Socket connect() {
@@ -102,7 +109,7 @@ public class NetworkInterface implements Runnable {
 			return null;
 		}
 
-		waitAfterConnect = 5f;
+		waitAfterConnect = DELAY_AFTER_CONNECT_MS;
 		startTime = System.currentTimeMillis();
 		return connection;
 	}
@@ -114,16 +121,23 @@ public class NetworkInterface implements Runnable {
 			while (!Thread.currentThread().isInterrupted()) {
 				if (clientSocket == null || reader == null) {
 					try {
-						Thread.sleep(5000);
+						Thread.sleep(RETRY_CONNECTION_DELAY_MS);
 					} catch (InterruptedException e) {
 						Logger.getGlobal().log(Level.SEVERE, e.getMessage());
 					}
 					continue;
 				}
 
-				final String in;
+				String in = null;
+				final char[] buffer = new char[1000];
 				try {
-					in = reader.readLine();
+					final int howMuch = reader.read(buffer, 0, 1000);
+					if (howMuch == -1) {
+						Logger.getGlobal().log(Level.SEVERE,
+								"Too much to read!");
+						continue;
+					}
+					in = String.valueOf(buffer).substring(0, howMuch);
 				} catch (IOException e) {
 					Logger.getGlobal().log(Level.SEVERE,
 							"Reader failed: " + e.getMessage());
@@ -134,9 +148,9 @@ public class NetworkInterface implements Runnable {
 				if (in != null) {
 					Logger.getGlobal().log(Level.INFO, "Read: \"" + in + "\"");
 					if (inputBuffer.size() == INPUT_BUFFER_CAPACITY) {
-						inputBuffer.remove();
+						inputBuffer.clear(); // Let's avoid some crash
 					}
-					inputBuffer.add(new IntelliGridPacket(in, new Date()));
+					inputBuffer.add(new IntelliGridPacket(in, new Date(), 1));
 				}
 			}
 		}
@@ -170,7 +184,7 @@ public class NetworkInterface implements Runnable {
 				clientSocket = connect();
 				if (clientSocket == null) {
 					try {
-						Thread.sleep(5000);
+						Thread.sleep(RETRY_CONNECTION_DELAY_MS);
 					} catch (InterruptedException e) {
 						Logger.getGlobal().log(Level.SEVERE, e.getMessage());
 					}
@@ -194,17 +208,18 @@ public class NetworkInterface implements Runnable {
 				}
 			}
 
-			if (waitAfterConnect > 0f) {
-				waitAfterConnect -= (float) (System.currentTimeMillis() - startTime) / 1000f;
+			if (waitAfterConnect > 0) {
+				waitAfterConnect -= System.currentTimeMillis() - startTime;
 				startTime = System.currentTimeMillis();
 			}
 
 			if (writer != null) {
-				final IntelliGridPacket packet = outputBuffer.poll();
+				final IntelliGridPacket packet = outputBuffer.peek();
 
 				if (packet != null) {
 					final String out = packet.message;
 					try {
+						packet.repeat--;
 						writer.write(out);
 						writer.flush();
 					} catch (Exception e) {
@@ -213,8 +228,17 @@ public class NetworkInterface implements Runnable {
 						clientSocket = null;
 						continue;
 					}
+					if (packet.repeat <= 0) {
+						outputBuffer.poll();
+					}
 					// Logger.getGlobal().log(Level.INFO, "Sent \"" + out +
 					// "\"");
+				}
+
+				try {
+					Thread.sleep(TIME_BETWEEN_PACKETS_MS);
+				} catch (InterruptedException e) {
+					Logger.getGlobal().log(Level.SEVERE, e.getMessage());
 				}
 			}
 		}

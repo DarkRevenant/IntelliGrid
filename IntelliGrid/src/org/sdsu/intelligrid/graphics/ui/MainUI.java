@@ -750,7 +750,8 @@ public class MainUI {
 
 		ClickableObjects.house1asolarcheck = new ClickableSprite(
 				pixelsToCoords(175, 125), 11, 0f, new Vector2f(1f, 1f),
-				new Color(255, 255, 255), R.drawable.solarcheck, sizeToCoords(-127, -23), sizeToCoords(127, 23), "house1asolarcheck");
+				new Color(255, 255, 255), R.drawable.solarcheck, sizeToCoords(
+						-127, -23), sizeToCoords(127, 23), "house1asolarcheck");
 		Global.getRenderer().addDrawable(ClickableObjects.house1asolarcheck);
 		addClickable(ClickableObjects.house1asolarcheck);
 
@@ -764,13 +765,15 @@ public class MainUI {
 
 		ClickableObjects.house1acarcheck = new ClickableSprite(pixelsToCoords(
 				175, 70), 11, 0f, new Vector2f(1f, 1f),
-				new Color(255, 255, 255), R.drawable.carcheck, sizeToCoords(-127, -23), sizeToCoords(127, 23), "house1acarcheck");
+				new Color(255, 255, 255), R.drawable.carcheck, sizeToCoords(
+						-127, -23), sizeToCoords(127, 23), "house1acarcheck");
 		Global.getRenderer().addDrawable(ClickableObjects.house1acarcheck);
 		addClickable(ClickableObjects.house1acarcheck);
 
 		ClickableObjects.house1acarcheckoff = new ClickableSprite(
 				pixelsToCoords(175, 70), 11, 0f, new Vector2f(1f, 1f),
-				new Color(255, 255, 255), R.drawable.carcheckoff, sizeToCoords(-127, -23), sizeToCoords(127, 23), "house1acarcheckoff");
+				new Color(255, 255, 255), R.drawable.carcheckoff, sizeToCoords(
+						-127, -23), sizeToCoords(127, 23), "house1acarcheckoff");
 		Global.getRenderer().addDrawable(ClickableObjects.house1acarcheckoff);
 		addClickable(ClickableObjects.house1acarcheckoff);
 
@@ -811,7 +814,8 @@ public class MainUI {
 
 		ClickableObjects.house1bsolarcheck = new ClickableSprite(
 				pixelsToCoords(380, 300), 11, 0f, new Vector2f(1f, 1f),
-				new Color(255, 255, 255), R.drawable.solarcheck, sizeToCoords(-127, -23), sizeToCoords(127, 23), "house1bsolarcheck");
+				new Color(255, 255, 255), R.drawable.solarcheck, sizeToCoords(
+						-127, -23), sizeToCoords(127, 23), "house1bsolarcheck");
 		Global.getRenderer().addDrawable(ClickableObjects.house1bsolarcheck);
 		addClickable(ClickableObjects.house1bsolarcheck);
 
@@ -825,13 +829,15 @@ public class MainUI {
 
 		ClickableObjects.house1bcarcheck = new ClickableSprite(pixelsToCoords(
 				380, 245), 11, 0f, new Vector2f(1f, 1f), new Color(255, 255,
-				255), R.drawable.carcheck, sizeToCoords(-127, -23), sizeToCoords(127, 23), "house1bcarcheck");
+				255), R.drawable.carcheck, sizeToCoords(-127, -23),
+				sizeToCoords(127, 23), "house1bcarcheck");
 		Global.getRenderer().addDrawable(ClickableObjects.house1bcarcheck);
 		addClickable(ClickableObjects.house1bcarcheck);
 
 		ClickableObjects.house1bcarcheckoff = new ClickableSprite(
 				pixelsToCoords(380, 245), 11, 0f, new Vector2f(1f, 1f),
-				new Color(255, 255, 255), R.drawable.carcheckoff, sizeToCoords(-127, -23), sizeToCoords(127, 23), "house1bcarcheckoff");
+				new Color(255, 255, 255), R.drawable.carcheckoff, sizeToCoords(
+						-127, -23), sizeToCoords(127, 23), "house1bcarcheckoff");
 		Global.getRenderer().addDrawable(ClickableObjects.house1bcarcheckoff);
 		addClickable(ClickableObjects.house1bcarcheckoff);
 
@@ -872,7 +878,8 @@ public class MainUI {
 
 		ClickableObjects.house1csolarcheck = new ClickableSprite(
 				pixelsToCoords(640, 300), 11, 0f, new Vector2f(1f, 1f),
-				new Color(255, 255, 255), R.drawable.solarcheck, sizeToCoords(-127, -23), sizeToCoords(127, 23), "house1csolarcheck");
+				new Color(255, 255, 255), R.drawable.solarcheck, sizeToCoords(
+						-127, -23), sizeToCoords(127, 23), "house1csolarcheck");
 		Global.getRenderer().addDrawable(ClickableObjects.house1csolarcheck);
 		addClickable(ClickableObjects.house1csolarcheck);
 
@@ -886,13 +893,15 @@ public class MainUI {
 
 		ClickableObjects.house1ccarcheck = new ClickableSprite(pixelsToCoords(
 				640, 245), 11, 0f, new Vector2f(1f, 1f), new Color(255, 255,
-				255), R.drawable.carcheck, sizeToCoords(-127, -23), sizeToCoords(127, 23), "house1ccarcheck");
+				255), R.drawable.carcheck, sizeToCoords(-127, -23),
+				sizeToCoords(127, 23), "house1ccarcheck");
 		Global.getRenderer().addDrawable(ClickableObjects.house1ccarcheck);
 		addClickable(ClickableObjects.house1ccarcheck);
 
 		ClickableObjects.house1ccarcheckoff = new ClickableSprite(
 				pixelsToCoords(640, 245), 11, 0f, new Vector2f(1f, 1f),
-				new Color(255, 255, 255), R.drawable.carcheckoff, sizeToCoords(-127, -23), sizeToCoords(127, 23), "house1ccarcheckoff");
+				new Color(255, 255, 255), R.drawable.carcheckoff, sizeToCoords(
+						-127, -23), sizeToCoords(127, 23), "house1ccarcheckoff");
 		Global.getRenderer().addDrawable(ClickableObjects.house1ccarcheckoff);
 		addClickable(ClickableObjects.house1ccarcheckoff);
 
@@ -912,7 +921,8 @@ public class MainUI {
 
 		ClickableObjects.house2asolarcheck = new ClickableSprite(
 				pixelsToCoords(175, 820), 11, 0f, new Vector2f(1f, 1f),
-				new Color(255, 255, 255), R.drawable.solarcheck, sizeToCoords(-127, -23), sizeToCoords(127, 23), "house2asolarcheck");
+				new Color(255, 255, 255), R.drawable.solarcheck, sizeToCoords(
+						-127, -23), sizeToCoords(127, 23), "house2asolarcheck");
 		Global.getRenderer().addDrawable(ClickableObjects.house2asolarcheck);
 		addClickable(ClickableObjects.house2asolarcheck);
 
@@ -947,7 +957,8 @@ public class MainUI {
 
 		ClickableObjects.house2bsolarcheck = new ClickableSprite(
 				pixelsToCoords(475, 820), 11, 0f, new Vector2f(1f, 1f),
-				new Color(255, 255, 255), R.drawable.solarcheck, sizeToCoords(-127, -23), sizeToCoords(127, 23), "house2bsolarcheck");
+				new Color(255, 255, 255), R.drawable.solarcheck, sizeToCoords(
+						-127, -23), sizeToCoords(127, 23), "house2bsolarcheck");
 		Global.getRenderer().addDrawable(ClickableObjects.house2bsolarcheck);
 		addClickable(ClickableObjects.house2bsolarcheck);
 
@@ -1083,8 +1094,8 @@ public class MainUI {
 
 		ClickableObjects.turbinelowcheck = new ClickableSprite(pixelsToCoords(
 				1055, 1325), 11, 0f, new Vector2f(1f, 1f), new Color(255, 255,
-				255), R.drawable.lowcheck, sizeToCoords(
-                -56, -24), sizeToCoords(56, 24), "turbinelowcheck");
+				255), R.drawable.lowcheck, sizeToCoords(-56, -24),
+				sizeToCoords(56, 24), "turbinelowcheck");
 		Global.getRenderer().addDrawable(ClickableObjects.turbinelowcheck);
 		addClickable(ClickableObjects.turbinelowcheck);
 
@@ -1098,14 +1109,14 @@ public class MainUI {
 		ClickableObjects.turbineoffcheck = new ClickableSprite(pixelsToCoords(
 				1055, 1405), 11, 0f, new Vector2f(1f, 1f), new Color(255, 255,
 				255), R.drawable.offcheck, sizeToCoords(-57, -22),
-                sizeToCoords(57, 22), "turbineoffcheck");
+				sizeToCoords(57, 22), "turbineoffcheck");
 		Global.getRenderer().addDrawable(ClickableObjects.turbineoffcheck);
 		addClickable(ClickableObjects.turbineoffcheck);
 
 		ClickableObjects.turbineoffcheckoff = new ClickableSprite(
 				pixelsToCoords(1055, 1405), 11, 0f, new Vector2f(1f, 1f),
-				new Color(255, 255, 255), R.drawable.offcheckoff, sizeToCoords(-57, -22),
-                sizeToCoords(57, 22), "turbineoffcheckoff");
+				new Color(255, 255, 255), R.drawable.offcheckoff, sizeToCoords(
+						-57, -22), sizeToCoords(57, 22), "turbineoffcheckoff");
 		Global.getRenderer().addDrawable(ClickableObjects.turbineoffcheckoff);
 		addClickable(ClickableObjects.turbineoffcheckoff);
 
@@ -1915,7 +1926,7 @@ public class MainUI {
 	private static final float TEXT_UPDATE_INTERVAL = 0.1f;
 	private static final double TEXT_UPDATE_CHANCE = 0.25;
 
-	private static final float DAY_NIGHT_TRANSITION_TIME = 5f;
+	private static final float DAY_NIGHT_TRANSITION_TIME = 3f;
 
 	private double textUpdateChance = 1.0;
 	private float textUpdateTimer = TEXT_UPDATE_INTERVAL;
@@ -2848,15 +2859,11 @@ public class MainUI {
 								.getMaxLineWidth());
 
 			if (Math.random() < textUpdateChance)
-				UIInfo.PowPlant
-						.setText(
-								""
-										+ String.format(
-												"%.2f",
-												Simulation.SimInfo.PowPlant)
-										+ " MW", UIInfo.PowPlant.getFontSize(),
-								UIInfo.PowPlant.getFont(), UIInfo.PowPlant
-										.getMaxLineWidth());
+				UIInfo.PowPlant.setText(
+						"" + String.format("%.2f", Simulation.SimInfo.PowPlant)
+								+ " MW", UIInfo.PowPlant.getFontSize(),
+						UIInfo.PowPlant.getFont(),
+						UIInfo.PowPlant.getMaxLineWidth());
 
 			// if (Math.random() < textUpdateChance)
 			// UIInfo.transTotal.setText("" + String.format("%.2f",

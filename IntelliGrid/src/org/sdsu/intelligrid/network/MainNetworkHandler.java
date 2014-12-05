@@ -19,26 +19,29 @@ public class MainNetworkHandler {
 
 	public static enum PacketTypes {
 
-		SOLAR_GENERATION_LEVEL("S", new SolarGenHandler(), 3), WIND_GENERATION_LEVEL(
-				"W", new WindTurbineHandler(), 2), BATTERY_STORAGE_LEVEL("B",
-				new BatteryHandler(), 2), TIME_OF_DAY("T", new TimeHandler(), 2), POWER_OUTAGE(
-				"P", new OutageHandler(), 3), CAR_DETECT("E",
-				new ElectricCarHandler(), 3), SOLAR_DETECT("R",
-				new SolarPanelHandler(), 3), BALLOON_DETECT_RESET("M",
-				new MylarBalloonHandler(), 2), DIG_DETECT_RESET("D",
-				new DigFaultHandler(), 2), LIGHT_ANIMATION("L",
-				new LEDHandler(), 178);
+		SOLAR_GENERATION_LEVEL("S", new SolarGenHandler(), 3, 1), WIND_GENERATION_LEVEL(
+				"W", new WindTurbineHandler(), 2, 3), BATTERY_STORAGE_LEVEL(
+				"B", new BatteryHandler(), 2, 3), TIME_OF_DAY("T",
+				new TimeHandler(), 2, 5), POWER_OUTAGE("P",
+				new OutageHandler(), 3, 3), CAR_DETECT("E",
+				new ElectricCarHandler(), 3, 1), SOLAR_DETECT("R",
+				new SolarPanelHandler(), 3, 1), BALLOON_DETECT_RESET("M",
+				new MylarBalloonHandler(), 2, 5), DIG_DETECT_RESET("D",
+				new DigFaultHandler(), 2, 5), LIGHT_ANIMATION("L",
+				new LEDHandler(), 178, 1);
 
 		private final String prefix;
 		private final PacketHandler handler;
 
 		public final int expectedLength;
+		public final int repeat;
 
 		private PacketTypes(final String prefix, final PacketHandler handler,
-				final int expectedLength) {
+				final int expectedLength, final int repeat) {
 			this.prefix = prefix;
 			this.handler = handler;
 			this.expectedLength = expectedLength;
+			this.repeat = repeat;
 		}
 
 		public String getPrefix() {
@@ -88,12 +91,9 @@ public class MainNetworkHandler {
 				solarLevel = 0.0;
 				break;
 			case '1':
-				solarLevel = 1.0 / 3.0;
+				solarLevel = 1.0 / 2.0;
 				break;
 			case '2':
-				solarLevel = 2.0 / 3.0;
-				break;
-			case '3':
 				solarLevel = 1.0;
 				break;
 			default:
@@ -102,7 +102,7 @@ public class MainNetworkHandler {
 
 			code = message.charAt(0);
 			switch (code) {
-			case '0':
+			case '2':
 				Global.getGlobalSimulation().data.lowerSolarLevel
 						.changeOverTime(solarLevel, 2.0, false);
 				break;
@@ -110,7 +110,7 @@ public class MainNetworkHandler {
 				Global.getGlobalSimulation().data.middleSolarLevel
 						.changeOverTime(solarLevel, 2.0, false);
 				break;
-			case '2':
+			case '0':
 				Global.getGlobalSimulation().data.renewableSolarLevel
 						.changeOverTime(solarLevel, 2.0, false);
 				break;
@@ -368,7 +368,18 @@ public class MainNetworkHandler {
 
 		@Override
 		public void input(final String message) {
-			Global.getGlobalSimulation().faultManager.startBalloonFault();
+			final char code = message.charAt(0);
+			switch (code) {
+			case '1':
+				if (!Global.getGlobalSimulation().faultManager
+						.isBalloonFaultOngoing()) {
+					Global.getGlobalSimulation().faultManager
+							.startBalloonFault();
+				}
+				break;
+			default:
+				return;
+			}
 		}
 
 		// param == boolean; true means start fault, false means end fault
@@ -376,13 +387,6 @@ public class MainNetworkHandler {
 		public String output(final Object param) {
 			final boolean start = (boolean) param;
 			final String out = start ? "1" : "0";
-			if ((boolean) param == false) {
-				Logger.getGlobal().log(Level.SEVERE,
-						"Reset Balloon Fault Packet Sent!");
-			} else {
-				Logger.getGlobal().log(Level.SEVERE,
-						"Start Balloon Fault Packet Sent!");
-			}
 
 			return out;
 		}
@@ -392,7 +396,17 @@ public class MainNetworkHandler {
 
 		@Override
 		public void input(final String message) {
-			Global.getGlobalSimulation().faultManager.startDigFault();
+			final char code = message.charAt(0);
+			switch (code) {
+			case '1':
+				if (!Global.getGlobalSimulation().faultManager
+						.isDigFaultOngoing()) {
+					Global.getGlobalSimulation().faultManager.startDigFault();
+				}
+				break;
+			default:
+				return;
+			}
 		}
 
 		// param == boolean; true means start fault, false means end fault
@@ -448,9 +462,12 @@ public class MainNetworkHandler {
 			}
 
 			String packetMessage = partialMessage + packet.message;
-			Logger.getGlobal().log(Level.INFO,
-					"Parsing packet: " + packetMessage);
+			// Logger.getGlobal().log(Level.INFO,
+			// "Parsing packet: " + packetMessage);
 			partialMessage = "";
+			if (packetMessage.length() > 60000 || packetMessage.isEmpty()) {
+				return; // NOPE.
+			}
 
 			while (true) {
 				String message = null;
@@ -459,17 +476,17 @@ public class MainNetworkHandler {
 					if (packetMessage.startsWith(prefix.getPrefix())) {
 						if (packetMessage.length() < prefix.expectedLength) {
 							partialMessage = packetMessage;
-							Logger.getGlobal().log(
-									Level.INFO,
-									"Message broken between lines (done parsing): "
-											+ partialMessage);
+							// Logger.getGlobal().log(
+							// Level.INFO,
+							// "Message broken between lines (done parsing): "
+							// + partialMessage);
 							break;
 						} else {
-							message = packetMessage.substring(prefix
+							message = new String(packetMessage.substring(prefix
 									.getPrefix().length(),
-									prefix.expectedLength);
-							Logger.getGlobal().log(Level.INFO,
-									"Parsing message: " + message);
+									prefix.expectedLength));
+							// Logger.getGlobal().log(Level.INFO,
+							// "Parsing message: " + message);
 						}
 						type = prefix;
 						if (packetMessage.length() <= prefix.expectedLength) {
@@ -478,22 +495,33 @@ public class MainNetworkHandler {
 							packetMessage = packetMessage
 									.substring(prefix.expectedLength);
 						}
+						break;
 					}
 				}
-				if (message == null) {
+				if (message == null
+						&& (partialMessage == null || partialMessage.isEmpty())) {
+					if (packetMessage != null && packetMessage.length() > 1) {
+						partialMessage = new String(packetMessage.substring(1));
+					}
 					break;
 				}
 
-				Logger.getGlobal().log(Level.INFO,
-						"Running input type " + type.name());
+				if (type == null || message == null) {
+					break;
+				}
+
+				Logger.getGlobal().log(
+						Level.INFO,
+						"Running input type " + type.name() + ": " + "\""
+								+ message + "\"");
 				type.input(message);
 
 				if (packetMessage == null || packetMessage.isEmpty()) {
-					Logger.getGlobal().log(Level.INFO, "Done parsing");
+					// Logger.getGlobal().log(Level.INFO, "Done parsing");
 					break;
 				}
-				Logger.getGlobal().log(Level.INFO,
-						"Remaining packet: " + packetMessage);
+				// Logger.getGlobal().log(Level.INFO,
+				// "Remaining packet: " + packetMessage);
 			}
 		}
 	}
@@ -512,7 +540,8 @@ public class MainNetworkHandler {
 		final String out = type.output(param);
 		if (out != null && !out.isEmpty()
 				&& Global.getNetworkInterface().isConnected()) {
-			Global.getNetworkInterface().sendMessage(type.getPrefix() + out);
+			Global.getNetworkInterface().sendMessage(type.getPrefix() + out,
+					type.repeat);
 		}
 	}
 }
