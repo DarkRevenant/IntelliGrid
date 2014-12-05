@@ -279,10 +279,10 @@ public class LightAnimation {
 		}
 
 		public float advance(final float distance) {
-			if (Math.abs(MainUI.ledPositionMap.get(toLED).x
-					- MainUI.ledPositionMap.get(fromLED).x) <= OFF_THRESHOLD
-					&& Math.abs(MainUI.ledPositionMap.get(toLED).y
-							- MainUI.ledPositionMap.get(fromLED).y) <= OFF_THRESHOLD) {
+			final Vector2f to = MainUI.ledPositionMap.get(toLED);
+			final Vector2f from = MainUI.ledPositionMap.get(fromLED);
+			if (Math.abs(to.x - from.x) <= OFF_THRESHOLD
+					&& Math.abs(to.y - from.y) <= OFF_THRESHOLD) {
 				return distance;
 			}
 
@@ -312,13 +312,10 @@ public class LightAnimation {
 				sprite.setAdditive(additive);
 			}
 
-			final float dist = Vector2f.sub(MainUI.ledPositionMap.get(toLED),
-					MainUI.ledPositionMap.get(fromLED), null).length();
+			final float dist = Vector2f.sub(to, from, null).length();
 			progress += distance / dist;
 
-			sprite.setLocation(Vector2f.linear(
-					MainUI.ledPositionMap.get(fromLED),
-					MainUI.ledPositionMap.get(toLED), progress));
+			sprite.setLocation(Vector2f.linear(from, to, progress));
 
 			if (progress > 1f) {
 				return (progress - 1f) * dist;
@@ -333,9 +330,9 @@ public class LightAnimation {
 				destroy();
 				return true;
 			}
-			sprite.setColor(new Color(sprite.getColor().getRed(), sprite
-					.getColor().getGreen(), sprite.getColor().getBlue(),
-					(int) (alpha * 255f)));
+			final Color color = sprite.getColor();
+			sprite.setColor(new Color(color.getRed(), color.getGreen(), color
+					.getBlue(), (int) (alpha * 255f)));
 			return false;
 		}
 
@@ -1774,35 +1771,32 @@ public class LightAnimation {
 			} else {
 				loc = orb.getTo();
 			}
+			final LightStates currentState = states.get(loc);
 
 			if (orb.getType() == OrbTypes.GREEN) {
 				if (orb.alpha >= 0.9) {
 					states.put(loc, LightStates.GREEN);
-				} else if (orb.alpha >= 0.6
-						&& states.get(loc) != LightStates.BLUE
-						&& states.get(loc) != LightStates.GREEN) {
+				} else if (orb.alpha >= 0.6 && currentState != LightStates.BLUE
+						&& currentState != LightStates.GREEN) {
 					states.put(loc, LightStates.DIMMER_GREEN);
-				} else if (orb.alpha >= 0.3
-						&& states.get(loc) != LightStates.BLUE
-						&& states.get(loc) != LightStates.GREEN
-						&& states.get(loc) != LightStates.DIMMER_BLUE
-						&& states.get(loc) != LightStates.DIMMER_GREEN) {
+				} else if (orb.alpha >= 0.3 && currentState != LightStates.BLUE
+						&& currentState != LightStates.GREEN
+						&& currentState != LightStates.DIMMER_BLUE
+						&& currentState != LightStates.DIMMER_GREEN) {
 					states.put(loc, LightStates.DIMMEST_GREEN);
 				}
 			} else if (orb.getType() == OrbTypes.BLUE) {
-				if (orb.alpha >= 0.9 && states.get(loc) != LightStates.GREEN) {
+				if (orb.alpha >= 0.9 && currentState != LightStates.GREEN) {
 					states.put(loc, LightStates.BLUE);
-				} else if (orb.alpha >= 0.6
-						&& states.get(loc) != LightStates.BLUE
-						&& states.get(loc) != LightStates.GREEN
-						&& states.get(loc) != LightStates.DIMMER_GREEN) {
+				} else if (orb.alpha >= 0.6 && currentState != LightStates.BLUE
+						&& currentState != LightStates.GREEN
+						&& currentState != LightStates.DIMMER_GREEN) {
 					states.put(loc, LightStates.DIMMER_BLUE);
-				} else if (orb.alpha >= 0.3
-						&& states.get(loc) != LightStates.BLUE
-						&& states.get(loc) != LightStates.GREEN
-						&& states.get(loc) != LightStates.DIMMER_BLUE
-						&& states.get(loc) != LightStates.DIMMER_GREEN
-						&& states.get(loc) != LightStates.DIMMEST_GREEN) {
+				} else if (orb.alpha >= 0.3 && currentState != LightStates.BLUE
+						&& currentState != LightStates.GREEN
+						&& currentState != LightStates.DIMMER_BLUE
+						&& currentState != LightStates.DIMMER_GREEN
+						&& currentState != LightStates.DIMMEST_GREEN) {
 					states.put(loc, LightStates.DIMMEST_BLUE);
 				}
 			}

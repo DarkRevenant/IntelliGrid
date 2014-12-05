@@ -376,6 +376,13 @@ public class MainNetworkHandler {
 		public String output(final Object param) {
 			final boolean start = (boolean) param;
 			final String out = start ? "1" : "0";
+			if ((boolean) param == false) {
+				Logger.getGlobal().log(Level.SEVERE,
+						"Reset Balloon Fault Packet Sent!");
+			} else {
+				Logger.getGlobal().log(Level.SEVERE,
+						"Start Balloon Fault Packet Sent!");
+			}
 
 			return out;
 		}

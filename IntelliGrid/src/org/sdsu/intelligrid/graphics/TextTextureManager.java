@@ -3,6 +3,7 @@ package org.sdsu.intelligrid.graphics;
 import static android.opengl.GLES20.*;
 
 import java.nio.IntBuffer;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -75,10 +76,12 @@ class TextTextureManager {
 		int iterations = 0;
 		int currentStart = 0;
 		Rect fullRect = null;
+		final Map<Integer, Integer> charsMap = new HashMap<>();
 		while (currentStart < text.length()) {
 			iterations++;
 			int chars = textPaint.breakText(text.substring(currentStart), true,
 					maxLineWidth, null);
+			charsMap.put(iterations, chars);
 			int skip = 0;
 			for (int i = currentStart; i < currentStart + chars; i++) {
 				if (text.charAt(i) == '\n') {
@@ -122,8 +125,7 @@ class TextTextureManager {
 			currentStart = 0;
 			while (currentStart < text.length()) {
 				iterations++;
-				int chars = textPaint.breakText(text.substring(currentStart),
-						true, maxLineWidth, null);
+				int chars = charsMap.get(iterations);
 				int skip = 0;
 				for (int i = currentStart; i < currentStart + chars; i++) {
 					if (text.charAt(i) == '\n') {
