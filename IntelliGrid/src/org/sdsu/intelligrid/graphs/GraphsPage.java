@@ -4,7 +4,6 @@ import org.sdsu.intelligrid.R;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,75 +19,83 @@ import com.jjoe64.graphview.GraphView.*;
 
 public class GraphsPage extends Fragment {
 
-	private GraphViewSeries res1;
+
+    private GraphViewSeries res1update;
+    private GraphViewSeries res1;
 	private GraphViewSeries res2;
+    private GraphViewSeries res2update;
 	private GraphViewSeries res3;
+    private GraphViewSeries res3update;
 	private GraphViewSeries comm1;
+    private GraphViewSeries comm1update;
 	private GraphViewSeries comm2;
+    private GraphViewSeries comm2update;
 	private GraphViewSeries comm3;
-	private GraphViewSeries Battery;
+    private GraphViewSeries comm3update;
+//	private GraphViewSeries Battery;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		final View view = inflater.inflate(R.layout.graphs, container, false);
 
-		// for(int day = 0; day < 7; day++) {
-
 		// init example series data
-		GraphViewData[] graphData = new GraphViewData[24]; // 7 days
+		GraphViewData[] graphData = new GraphViewData[24];
 
 		for (int i = 0; i < 24; i++) {
 			graphData[i] = new GraphViewData(i, SimulationData.res1[i % 23]);
-
 		}
-		res1 = new GraphViewSeries("Residential 1", new GraphViewSeriesStyle(
-				Color.rgb(219, 48, 48), 5), graphData);
-		res1.resetData(new GraphViewDataInterface[0]);
+		res1 = new GraphViewSeries("Res 1 Forecast", new GraphViewSeriesStyle(Color.rgb(237, 216, 216), 5), graphData);
+        res1update = new GraphViewSeries("Residential 1", new GraphViewSeriesStyle(Color.rgb(219, 48, 48), 5), graphData);
+        res1update.resetData(new GraphViewDataInterface[0]);
 
 		graphData = new GraphViewData[24];
 		for (int i = 0; i < 24; i++) {
 			graphData[i] = new GraphViewData(i, SimulationData.res2[i % 23]);
 		}
-		res2 = new GraphViewSeries("Residential 2", new GraphViewSeriesStyle(
-				Color.rgb(245, 133, 22), 5), graphData);
+		res2 = new GraphViewSeries("Res 2 Forecast", new GraphViewSeriesStyle(Color.rgb(245, 225, 206), 5), graphData);
+        res2update = new GraphViewSeries("Residential 2", new GraphViewSeriesStyle(Color.rgb(245, 133, 22), 5), graphData);
+        res2update.resetData(new GraphViewDataInterface[0]);
 
 		graphData = new GraphViewData[24];
 		for (int i = 0; i < 24; i++) {
 			graphData[i] = new GraphViewData(i, SimulationData.res3[i % 23]);
 		}
-		res3 = new GraphViewSeries("Residential 3", new GraphViewSeriesStyle(
-				Color.rgb(242, 227, 53), 5), graphData);
+		res3 = new GraphViewSeries("Res 3 Forecast", new GraphViewSeriesStyle(Color.rgb(245, 241, 196), 5), graphData);
+        res3update = new GraphViewSeries("Residential 3", new GraphViewSeriesStyle(Color.rgb(242, 227, 53), 5), graphData);
+        res3update.resetData(new GraphViewDataInterface[0]);
 
 		graphData = new GraphViewData[24];
 		for (int i = 0; i < 24; i++) {
 			graphData[i] = new GraphViewData(i, SimulationData.comm1[i % 23]);
 		}
-		comm1 = new GraphViewSeries("Commercial 1", new GraphViewSeriesStyle(
-				Color.rgb(134, 219, 48), 5), graphData);
+		comm2 = new GraphViewSeries("Comm 2 Forecast", new GraphViewSeriesStyle(Color.rgb(202, 216, 222), 5), graphData);
+        comm1update = new GraphViewSeries("Commercial 1", new GraphViewSeriesStyle(Color.rgb(134, 219, 48), 5), graphData);
+        comm1update.resetData(new GraphViewDataInterface[0]);
 
 		graphData = new GraphViewData[24];
 		for (int i = 0; i < 24; i++) {
 			graphData[i] = new GraphViewData(i, SimulationData.comm2[i % 23]);
 		}
-		comm2 = new GraphViewSeries("Commercial 2", new GraphViewSeriesStyle(
-				Color.rgb(48, 168, 219), 5), graphData);
+		comm3 = new GraphViewSeries("Comm 3 Forecast", new GraphViewSeriesStyle(Color.rgb(227, 218, 230), 5), graphData);
+        comm2update = new GraphViewSeries("Commercial 2", new GraphViewSeriesStyle(Color.rgb(48, 168, 219), 5), graphData);
+        comm2update.resetData(new GraphViewDataInterface[0]);
 
 		graphData = new GraphViewData[24];
 		for (int i = 0; i < 24; i++) {
 			graphData[i] = new GraphViewData(i, SimulationData.comm3[i % 23]);
 		}
-		comm3 = new GraphViewSeries("Commercial 3", new GraphViewSeriesStyle(
-				Color.rgb(177, 48, 219), 5), graphData);
+        comm1 = new GraphViewSeries("Comm 1 Forecast", new GraphViewSeriesStyle(Color.rgb(207, 227, 186), 5), graphData);
+        comm3update = new GraphViewSeries("Commercial 3", new GraphViewSeriesStyle(Color.rgb(177, 48, 219), 5), graphData);
+        comm3update.resetData(new GraphViewDataInterface[0]);
 
-		graphData = new GraphViewData[24];
-		for (int i = 0; i < 24; i++) {
-			graphData[i] = new GraphViewData(i, SimulationData.Battery[i % 23]);
-		}
-		Battery = new GraphViewSeries("Battery", new GraphViewSeriesStyle(
-				Color.rgb(31, 164, 5), 5), graphData);
+//		graphData = new GraphViewData[24];
+//		for (int i = 0; i < 24; i++) {
+//			graphData[i] = new GraphViewData(i, SimulationData.Battery[i % 23]);
+//		}
+//		Battery = new GraphViewSeries("Battery", new GraphViewSeriesStyle(Color.rgb(31, 164, 5), 5), graphData);
+//        Battery.resetData(new GraphViewDataInterface[0]);
 
-		// }
 
 		GraphView graphView = new LineGraphView(getActivity() // context
 				, "Load Data" // heading
@@ -97,14 +104,22 @@ public class GraphsPage extends Fragment {
 		graphView.getGraphViewStyle().setTextSize(30);
 
 		graphView.getGraphViewStyle().setNumHorizontalLabels(24);
+        graphView.getGraphViewStyle().setNumVerticalLabels(16);
 
-		graphView.addSeries(res1); // data
-		graphView.addSeries(res2);
-		graphView.addSeries(res3);
-		graphView.addSeries(comm1);
-		graphView.addSeries(comm2);
-		graphView.addSeries(comm3);
-		graphView.addSeries(Battery);
+        graphView.addSeries(res1);//data
+        graphView.addSeries(res2);
+        graphView.addSeries(res3);
+        graphView.addSeries(comm1);
+        graphView.addSeries(comm2);
+        graphView.addSeries(comm3);
+        graphView.addSeries(res1update);
+        graphView.addSeries(res2update);
+        graphView.addSeries(res3update);
+        graphView.addSeries(comm1update);
+        graphView.addSeries(comm2update);
+        graphView.addSeries(comm3update);
+
+//		graphView.addSeries(Battery);
 
 		graphView.setViewPort(0, 23);
 		graphView.setScrollable(true);
@@ -113,7 +128,8 @@ public class GraphsPage extends Fragment {
 		// set legend
 		graphView.setShowLegend(true);
 		graphView.setLegendAlign(LegendAlign.TOP);
-		graphView.getGraphViewStyle().setLegendWidth(250);
+		graphView.getGraphViewStyle().setLegendWidth(300);
+
 
 		LinearLayout layout = (LinearLayout) view.findViewById(R.id.graph1);
 		layout.addView(graphView);
@@ -139,9 +155,15 @@ public class GraphsPage extends Fragment {
 				update = true;
 			}
 		}
-		if (hour >= 24 * 5) {
+		if (hour >= 24) {
 			hour = 0;
-			res1.resetData(new GraphViewDataInterface[0]);
+			res1update.resetData(new GraphViewDataInterface[0]);
+            res2update.resetData(new GraphViewDataInterface[0]);
+            res3update.resetData(new GraphViewDataInterface[0]);
+            comm1update.resetData(new GraphViewDataInterface[0]);
+            comm2update.resetData(new GraphViewDataInterface[0]);
+            comm3update.resetData(new GraphViewDataInterface[0]);
+//            Battery.resetData(new GraphViewDataInterface[0]);
 		}
 		lastTime = currentTime;
 
@@ -149,88 +171,13 @@ public class GraphsPage extends Fragment {
 			return;
 		}
 
-		// GraphViewData[] graphData = new GraphViewData[24];
-
-		// for (int i = 0; i < 24; i++) {
-		// graphData[i] = new GraphViewData(i, SimulationData.res3[i%23]);
-		//
-		// }
-		// res1 = new GraphViewSeries("Residential 1", new
-		// GraphViewSeriesStyle(Color.rgb(219, 48, 48), 5), graphData);
-		// for(int i = 0; i < 24; i++) {
-		res1.appendData(new GraphViewData(hour, SimInfo.Load1), true, 24 * 5);
-		// }
+		res1update.appendData(new GraphViewData(hour, SimInfo.Load1), true, 24);
+        res2update.appendData(new GraphViewData(hour, SimInfo.Load2), true, 24);
+        res3update.appendData(new GraphViewData(hour, SimInfo.Load3), true, 24);
+        comm1update.appendData(new GraphViewData(hour, SimInfo.Load6), true, 24);
+        comm2update.appendData(new GraphViewData(hour, SimInfo.Load5), true, 24);
+        comm3update.appendData(new GraphViewData(hour, SimInfo.Load4), true, 24);
+//        Battery.appendData(new GraphViewData(hour, SimInfo.BatteryStorage), true, 24 * 5);
 	}
-
-	// @Override
-	// public void onPause() {
-	// //mHandler.removeCallbacks(mTimer2);
-	// super.onPause();
-	// }
-
-	// @Override
-	// public void onResume() {
-	// super.onResume();
-
-	// mTimer1 = new Runnable() {
-	// @Override
-	// public void run() {
-	// res1.resetData(new GraphViewData[] {
-	// new GraphViewData(0, SimulationData.res1[0])
-	// , new GraphViewData(1, SimulationData.res1[1])
-	// , new GraphViewData(2, SimulationData.res1[2])
-	// , new GraphViewData(3, SimulationData.res1[3])
-	// , new GraphViewData(4, SimulationData.res1[4])
-	// , new GraphViewData(5, SimulationData.res1[5])
-	// , new GraphViewData(6, SimulationData.res1[6])
-	// , new GraphViewData(7, SimulationData.res1[7])
-	// , new GraphViewData(8, SimulationData.res1[8])
-	// , new GraphViewData(9, SimulationData.res1[9])
-	// , new GraphViewData(10, SimulationData.res1[10])
-	// , new GraphViewData(11, SimulationData.res1[11])
-	// , new GraphViewData(12, SimulationData.res1[12])
-	// , new GraphViewData(13, SimulationData.res1[13])
-	// , new GraphViewData(14, SimulationData.res1[14])
-	// , new GraphViewData(15, SimulationData.res1[15])
-	// , new GraphViewData(16, SimulationData.res1[16])
-	// , new GraphViewData(17, SimulationData.res1[17])
-	// , new GraphViewData(18, SimulationData.res1[18])
-	// , new GraphViewData(19, SimulationData.res1[19])
-	// , new GraphViewData(20, SimulationData.res1[20])
-	// , new GraphViewData(21, SimulationData.res1[21])
-	// , new GraphViewData(22, SimulationData.res1[22])
-	// , new GraphViewData(23, SimulationData.res1[23])
-	// });
-	// res2.resetData(new GraphViewData[] {
-	// new GraphViewData(0, SimulationData.res2[0])
-	// , new GraphViewData(1, SimulationData.res2[1])
-	// , new GraphViewData(2, SimulationData.res2[2])
-	// , new GraphViewData(3, SimulationData.res2[3])
-	// , new GraphViewData(4, SimulationData.res2[4])
-	// , new GraphViewData(5, SimulationData.res2[5])
-	// , new GraphViewData(6, SimulationData.res2[6])
-	// , new GraphViewData(7, SimulationData.res2[7])
-	// , new GraphViewData(8, SimulationData.res2[8])
-	// , new GraphViewData(9, SimulationData.res2[9])
-	// , new GraphViewData(10, SimulationData.res2[10])
-	// , new GraphViewData(11, SimulationData.res2[11])
-	// , new GraphViewData(12, SimulationData.res2[12])
-	// , new GraphViewData(13, SimulationData.res2[13])
-	// , new GraphViewData(14, SimulationData.res2[14])
-	// , new GraphViewData(15, SimulationData.res2[15])
-	// , new GraphViewData(16, SimulationData.res2[16])
-	// , new GraphViewData(17, SimulationData.res2[17])
-	// , new GraphViewData(18, SimulationData.res2[18])
-	// , new GraphViewData(19, SimulationData.res2[19])
-	// , new GraphViewData(20, SimulationData.res2[20])
-	// , new GraphViewData(21, SimulationData.res2[21])
-	// , new GraphViewData(22, SimulationData.res2[22])
-	// , new GraphViewData(23, SimulationData.res2[23])
-	// });
-	// mHandler.postDelayed(this, 300);
-	// }
-	// };
-	// mHandler.postDelayed(mTimer1, 300);
-	// }
 
 }
