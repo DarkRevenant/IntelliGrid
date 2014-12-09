@@ -9,7 +9,6 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -46,9 +45,6 @@ public class MainRenderer implements GLSurfaceView.Renderer {
 	private final float[] projectionMatrix = new float[16];
 
 	private long lastms;
-	private static final int FRAME_RATE = 63; // maximum frames per second, set
-												// slightly higher than 60
-												// because we're rebels
 
 	@Override
 	public void onDrawFrame(GL10 unused) {

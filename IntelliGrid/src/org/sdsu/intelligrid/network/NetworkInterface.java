@@ -20,10 +20,10 @@ import java.util.logging.Logger;
 public class NetworkInterface implements Runnable {
 
 	private static final int INPUT_BUFFER_CAPACITY = 10000;
-	private static final int OUTPUT_BUFFER_CAPACITY = 10;
+	private static final int OUTPUT_BUFFER_CAPACITY = 20;
 
 	private static final int RETRY_CONNECTION_DELAY_MS = 5000;
-	private static final int TIME_BETWEEN_PACKETS_MS = 10;
+	private static final int TIME_BETWEEN_PACKETS_MS = 20;
 
 	private static final int DELAY_AFTER_CONNECT_MS = 5000;
 

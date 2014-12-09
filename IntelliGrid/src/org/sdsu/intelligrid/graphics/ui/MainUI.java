@@ -1934,8 +1934,8 @@ public class MainUI {
 	private static final float LIGHT_PACKET_INTERVAL = (float) (1.0 / 9.0);
 	private float lightPacketTimer = LIGHT_PACKET_INTERVAL;
 
-	private static final float GRAPH_UPDATE_INTERVAL = 1f;
-	private float graphUpdateTimer = GRAPH_UPDATE_INTERVAL;
+	private static final float DECORVIEW_UPDATE_INTERVAL = 1f;
+	private float decorviewUpdateTimer = DECORVIEW_UPDATE_INTERVAL;
 
 	/**
 	 * This is the primary step driver for the interface. Call all time-based
@@ -1976,100 +1976,100 @@ public class MainUI {
 		}
 
 		// Load 1 Solar Panels
-		if (Global.getGlobalSimulation().data.solarPanelM1.get() == 1.0) {
+		if (Global.getGlobalSimulation().data.solarPanelM1.get() > 0.5) {
 			ClickableObjects.house2a.setDepth(11);
 			ClickableObjects.house2asolar.setDepth(0);
-		} else if (Global.getGlobalSimulation().data.solarPanelM1.get() == 0.0) {
+		} else if (Global.getGlobalSimulation().data.solarPanelM1.get() < 0.5) {
 			ClickableObjects.house2a.setDepth(0);
 			ClickableObjects.house2asolar.setDepth(11);
 		}
-		if (Global.getGlobalSimulation().data.solarPanelM2.get() == 1.0) {
+		if (Global.getGlobalSimulation().data.solarPanelM2.get() > 0.5) {
 			ClickableObjects.house2b.setDepth(11);
 			ClickableObjects.house2bsolar.setDepth(0);
-		} else if (Global.getGlobalSimulation().data.solarPanelM2.get() == 0.0) {
+		} else if (Global.getGlobalSimulation().data.solarPanelM2.get() < 0.5) {
 			ClickableObjects.house2b.setDepth(0);
 			ClickableObjects.house2bsolar.setDepth(11);
 		}
 		// Load 2&3 Solar Panels & Electric Cars
-		if (Global.getGlobalSimulation().data.solarPanelL1.get() == 1.0
-				&& Global.getGlobalSimulation().data.electricVehicleL1.get() == 0.0) {
+		if (Global.getGlobalSimulation().data.solarPanelL1.get() > 0.5
+				&& Global.getGlobalSimulation().data.electricVehicleL1.get() < 0.5) {
 			ClickableObjects.house1a.setDepth(11);
 			ClickableObjects.house1asolar.setDepth(0);
 			ClickableObjects.house1acar.setDepth(11);
 			ClickableObjects.house1aboth.setDepth(11);
 		}
-		if (Global.getGlobalSimulation().data.solarPanelL1.get() == 0.0
-				&& Global.getGlobalSimulation().data.electricVehicleL1.get() == 1.0) {
+		if (Global.getGlobalSimulation().data.solarPanelL1.get() < 0.5
+				&& Global.getGlobalSimulation().data.electricVehicleL1.get() > 0.5) {
 			ClickableObjects.house1a.setDepth(11);
 			ClickableObjects.house1asolar.setDepth(11);
 			ClickableObjects.house1acar.setDepth(0);
 			ClickableObjects.house1aboth.setDepth(11);
 		}
-		if (Global.getGlobalSimulation().data.solarPanelL1.get() == 1.0
-				&& Global.getGlobalSimulation().data.electricVehicleL1.get() == 1.0) {
+		if (Global.getGlobalSimulation().data.solarPanelL1.get() > 0.5
+				&& Global.getGlobalSimulation().data.electricVehicleL1.get() > 0.5) {
 			ClickableObjects.house1a.setDepth(11);
 			ClickableObjects.house1asolar.setDepth(11);
 			ClickableObjects.house1acar.setDepth(11);
 			ClickableObjects.house1aboth.setDepth(0);
 		}
-		if (Global.getGlobalSimulation().data.solarPanelL1.get() == 0.0
-				&& Global.getGlobalSimulation().data.electricVehicleL1.get() == 0.0) {
+		if (Global.getGlobalSimulation().data.solarPanelL1.get() < 0.5
+				&& Global.getGlobalSimulation().data.electricVehicleL1.get() < 0.5) {
 			ClickableObjects.house1a.setDepth(0);
 			ClickableObjects.house1asolar.setDepth(11);
 			ClickableObjects.house1acar.setDepth(11);
 			ClickableObjects.house1aboth.setDepth(11);
 		}
-		if (Global.getGlobalSimulation().data.solarPanelL2.get() == 1.0
-				&& Global.getGlobalSimulation().data.electricVehicleL2.get() == 0.0) {
+		if (Global.getGlobalSimulation().data.solarPanelL2.get() > 0.5
+				&& Global.getGlobalSimulation().data.electricVehicleL2.get() < 0.5) {
 			ClickableObjects.house1b.setDepth(11);
 			ClickableObjects.house1bsolar.setDepth(0);
 			ClickableObjects.house1bcar.setDepth(11);
 			ClickableObjects.house1bboth.setDepth(11);
 		}
-		if (Global.getGlobalSimulation().data.solarPanelL2.get() == 0.0
-				&& Global.getGlobalSimulation().data.electricVehicleL2.get() == 1.0) {
+		if (Global.getGlobalSimulation().data.solarPanelL2.get() < 0.5
+				&& Global.getGlobalSimulation().data.electricVehicleL2.get() > 0.5) {
 			ClickableObjects.house1b.setDepth(11);
 			ClickableObjects.house1bsolar.setDepth(11);
 			ClickableObjects.house1bcar.setDepth(0);
 			ClickableObjects.house1bboth.setDepth(11);
 		}
-		if (Global.getGlobalSimulation().data.solarPanelL2.get() == 1.0
-				&& Global.getGlobalSimulation().data.electricVehicleL2.get() == 1.0) {
+		if (Global.getGlobalSimulation().data.solarPanelL2.get() > 0.5
+				&& Global.getGlobalSimulation().data.electricVehicleL2.get() > 0.5) {
 			ClickableObjects.house1b.setDepth(11);
 			ClickableObjects.house1bsolar.setDepth(11);
 			ClickableObjects.house1bcar.setDepth(11);
 			ClickableObjects.house1bboth.setDepth(0);
 		}
-		if (Global.getGlobalSimulation().data.solarPanelL2.get() == 0.0
-				&& Global.getGlobalSimulation().data.electricVehicleL2.get() == 0.0) {
+		if (Global.getGlobalSimulation().data.solarPanelL2.get() < 0.5
+				&& Global.getGlobalSimulation().data.electricVehicleL2.get() < 0.5) {
 			ClickableObjects.house1b.setDepth(0);
 			ClickableObjects.house1bsolar.setDepth(11);
 			ClickableObjects.house1bcar.setDepth(11);
 			ClickableObjects.house1bboth.setDepth(11);
 		}
-		if (Global.getGlobalSimulation().data.solarPanelL3.get() == 1.0
-				&& Global.getGlobalSimulation().data.electricVehicleL3.get() == 0.0) {
+		if (Global.getGlobalSimulation().data.solarPanelL3.get() > 0.5
+				&& Global.getGlobalSimulation().data.electricVehicleL3.get() < 0.5) {
 			ClickableObjects.house1c.setDepth(11);
 			ClickableObjects.house1csolar.setDepth(0);
 			ClickableObjects.house1ccar.setDepth(11);
 			ClickableObjects.house1cboth.setDepth(11);
 		}
-		if (Global.getGlobalSimulation().data.solarPanelL3.get() == 0.0
-				&& Global.getGlobalSimulation().data.electricVehicleL3.get() == 1.0) {
+		if (Global.getGlobalSimulation().data.solarPanelL3.get() < 0.5
+				&& Global.getGlobalSimulation().data.electricVehicleL3.get() > 0.5) {
 			ClickableObjects.house1c.setDepth(11);
 			ClickableObjects.house1csolar.setDepth(11);
 			ClickableObjects.house1ccar.setDepth(0);
 			ClickableObjects.house1cboth.setDepth(11);
 		}
-		if (Global.getGlobalSimulation().data.solarPanelL3.get() == 1.0
-				&& Global.getGlobalSimulation().data.electricVehicleL3.get() == 1.0) {
+		if (Global.getGlobalSimulation().data.solarPanelL3.get() > 0.5
+				&& Global.getGlobalSimulation().data.electricVehicleL3.get() > 0.5) {
 			ClickableObjects.house1c.setDepth(11);
 			ClickableObjects.house1csolar.setDepth(11);
 			ClickableObjects.house1ccar.setDepth(11);
 			ClickableObjects.house1cboth.setDepth(0);
 		}
-		if (Global.getGlobalSimulation().data.solarPanelL3.get() == 0.0
-				&& Global.getGlobalSimulation().data.electricVehicleL3.get() == 0.0) {
+		if (Global.getGlobalSimulation().data.solarPanelL3.get() < 0.5
+				&& Global.getGlobalSimulation().data.electricVehicleL3.get() < 0.5) {
 			ClickableObjects.house1c.setDepth(0);
 			ClickableObjects.house1csolar.setDepth(11);
 			ClickableObjects.house1ccar.setDepth(11);
@@ -2913,14 +2913,14 @@ public class MainUI {
 			lightPacketTimer = LIGHT_PACKET_INTERVAL;
 		}
 
-		graphUpdateTimer -= amount;
-		if (graphUpdateTimer <= 0f) {
-			Global.getMainActivity().runOnUiThread(new Runnable() {
-				public void run() {
-					Global.getGraphFragment().update();
-				}
-			});
+		Global.getMainActivity().runOnUiThread(new Runnable() {
+			public void run() {
+				Global.getGraphFragment().update();
+			}
+		});
 
+		decorviewUpdateTimer -= amount;
+		if (decorviewUpdateTimer <= 0f) {
 			Global.getMainActivity().runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
@@ -2933,7 +2933,7 @@ public class MainUI {
 				}
 			});
 
-			graphUpdateTimer = GRAPH_UPDATE_INTERVAL;
+			decorviewUpdateTimer = DECORVIEW_UPDATE_INTERVAL;
 		}
 	}
 }
