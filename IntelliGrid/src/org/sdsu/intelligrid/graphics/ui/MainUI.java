@@ -934,8 +934,7 @@ public class MainUI {
 		Global.getRenderer().addDrawable(ClickableObjects.house2asolarcheckoff);
 		addClickable(ClickableObjects.house2asolarcheckoff);
 
-		ClickableObjects.house2asolar = new ClickableSprite(pixelsToCoords(140,
-				825), 11, 0f, new Vector2f(1f, 1f), new Color(255, 255, 255),
+		ClickableObjects.house2asolar = new ClickableSprite(pixelsToCoords(135, 830), 11, 0f, new Vector2f(1f, 1f), new Color(255, 255, 255),
 				R.drawable.house2solar, sizeToCoords(-69, -68), sizeToCoords(
 						69, 68), "house2asolar");
 		Global.getRenderer().addDrawable(ClickableObjects.house2asolar);
