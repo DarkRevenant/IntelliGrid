@@ -148,7 +148,7 @@ public class MainNetworkHandler {
 			}
 
 			Global.getGlobalSimulation().data.windGenerationLevel
-					.changeOverTime(windLevel, 2.0, false);
+					.changeOverTime(windLevel, 1.0, false);
 		}
 
 		// param == integer representing the wind generation level
@@ -510,10 +510,10 @@ public class MainNetworkHandler {
 					break;
 				}
 
-				Logger.getGlobal().log(
-						Level.INFO,
-						"Running input type " + type.name() + ": " + "\""
-								+ message + "\"");
+				// Logger.getGlobal().log(
+				// Level.INFO,
+				// "Running input type " + type.name() + ": " + "\""
+				// + message + "\"");
 				type.input(message);
 
 				if (packetMessage == null || packetMessage.isEmpty()) {

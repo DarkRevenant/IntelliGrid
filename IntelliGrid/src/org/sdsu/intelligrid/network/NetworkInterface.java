@@ -146,7 +146,8 @@ public class NetworkInterface implements Runnable {
 				}
 
 				if (in != null) {
-					Logger.getGlobal().log(Level.INFO, "Read: \"" + in + "\"");
+					// Logger.getGlobal().log(Level.INFO, "Read: \"" + in +
+					// "\"");
 					if (inputBuffer.size() == INPUT_BUFFER_CAPACITY) {
 						inputBuffer.clear(); // Let's avoid some crash
 					}

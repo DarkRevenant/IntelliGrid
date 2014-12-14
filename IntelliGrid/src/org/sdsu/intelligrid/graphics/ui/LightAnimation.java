@@ -1709,22 +1709,31 @@ public class LightAnimation {
 		for (LightStrands strand : LightStrands.values()) {
 			if (strand.strand instanceof Segment) {
 				if (Math.abs(getFlow(strand)) <= OFF_THRESHOLD) {
+					boolean doIt = true;
+					if (strand == LightStrands.SEGMENT_D_BRANCH_3) {
+						if (getFlow(LightStrands.SEGMENT_D_BRANCH_1) < 0.0
+								&& getFlow(LightStrands.SEGMENT_D_BRANCH_2) < 0.0) {
+							doIt = false;
+						}
+					}
+					if (doIt) {
+						for (int led : strand.modelLEDs) {
+							states.put(led, LightStates.OFF);
+						}
+						continue;
+					}
+				}
+				if (strand == LightStrands.SEGMENT_W
+						|| strand == LightStrands.SEGMENT_X) {
 					for (int led : strand.modelLEDs) {
-						states.put(led, LightStates.OFF);
+						if (states.get(led) == LightStates.OFF) {
+							states.put(led, LightStates.DIMMEST_GREEN);
+						}
 					}
 				} else {
-					if (strand == LightStrands.SEGMENT_W
-							|| strand == LightStrands.SEGMENT_X) {
-						for (int led : strand.modelLEDs) {
-							if (states.get(led) == LightStates.OFF) {
-								states.put(led, LightStates.DIMMEST_GREEN);
-							}
-						}
-					} else {
-						for (int led : strand.modelLEDs) {
-							if (states.get(led) == LightStates.OFF) {
-								states.put(led, LightStates.DIMMEST_BLUE);
-							}
+					for (int led : strand.modelLEDs) {
+						if (states.get(led) == LightStates.OFF) {
+							states.put(led, LightStates.DIMMEST_BLUE);
 						}
 					}
 				}
