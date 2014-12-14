@@ -1,3 +1,5 @@
+// Copyright 2014 Harrison Snodgrass and San Diego Gas and Electric, all rights reserved
+
 package org.sdsu.intelligrid.graphics;
 
 /**

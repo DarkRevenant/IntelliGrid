@@ -1,3 +1,5 @@
+// Copyright 2014 Emmanuel Demonteverde and San Diego Gas and Electric, all rights reserved
+
 package org.sdsu.intelligrid.graphs;
 
 import org.sdsu.intelligrid.R;
@@ -34,9 +36,8 @@ public class GraphsPage extends Fragment {
 	private GraphViewSeries feeder2;
 	private GraphViewSeries sdge;
 	private GraphViewSeries renewables;
-	private GraphView graphView;
 
-	// private GraphViewSeries Battery;
+	private GraphView graphView;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,

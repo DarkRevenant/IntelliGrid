@@ -1,3 +1,5 @@
+// Copyright 2014 Kysa Tran and San Diego Gas and Electric, all rights reserved
+
 package org.sdsu.intelligrid.graphics.ui;
 
 import org.sdsu.intelligrid.Global;

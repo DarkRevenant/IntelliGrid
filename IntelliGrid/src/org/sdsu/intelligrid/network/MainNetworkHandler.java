@@ -1,10 +1,8 @@
-// Copyright 2014 Harrison Snodgrass, all rights reserved
+// Copyright 2014 Harrison Snodgrass and San Diego Gas and Electric, all rights reserved
 
 package org.sdsu.intelligrid.network;
 
 import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.sdsu.intelligrid.Global;
 import org.sdsu.intelligrid.graphics.ui.LightAnimation;

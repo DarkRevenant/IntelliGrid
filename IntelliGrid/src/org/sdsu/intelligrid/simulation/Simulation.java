@@ -1,4 +1,4 @@
-// Copyright 2014 Edmond Basilan, all rights reserved
+// Copyright 2014 Edmond Basilan and San Diego Gas and Electric, all rights reserved
 
 package org.sdsu.intelligrid.simulation;
 
